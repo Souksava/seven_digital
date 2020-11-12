@@ -1,0 +1,10 @@
+RewriteEngine On
+
+RewriteRule ^/?$ index.php
+RewriteRule ^User/Main?$ User/Main.php
+RewriteRule ^User/Management/auther?$ User/Management/auther.php
+RewriteRule ^User/Management/employee?$ User/Management/employee.php
+RewriteRule ^User/Form/form?$ User/Form/form.php
+RewriteRule ^User/Form/formdetail?$ User/Form/formdetail.php
+RewriteRule ^User/Import/import?$ User/Import/import.php
+RewriteRule ^User/Form/distribute?$ User/Form/distribute.php
