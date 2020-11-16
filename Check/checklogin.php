@@ -7,7 +7,7 @@
      //$pass = md5($_POST['pass']);
 
 
-    $sql1 = "select * from tbemployees where email='$email' and password='$pass';";
+    $sql1 = "select * from tbemployee where email='$email' and password='$pass';";
     $resultck = mysqli_query($link, $sql1);
    //$num1 = MYSQLI_NUM_ROWS($sql1);
          if($email == "")
@@ -30,7 +30,7 @@
              }
              else 
              {
-                 $sql = "select * from tbemployees where Email = '$email' and password = '$pass';";
+                 $sql = "select * from tbemployee where Email = '$email' and password = '$pass';";
                  $resultget = mysqli_query($link, $sql);
                  
                  if(mysqli_num_rows($resultget) <= 0){

@@ -1,3 +1,3 @@
 <?php 
-$link = mysqli_connect("Localhost", "root", "", "factory");
+$link = mysqli_connect("Localhost", "root", "", "seven");
 ?>

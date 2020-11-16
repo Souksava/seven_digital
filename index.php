@@ -7,8 +7,10 @@
   <link rel="icon" href="image/logo.png">
   <title>Seven Digital</title>
   <link rel="stylesheet" href="dist/css/alt/style2.css">
+  <link rel="stylesheet" href="dist/css/alt/style.css">
   <link rel="stylesheet" href="fontawesome/css/all.css">
 </head>
+
 <body>
     <div class="container">
       <div class="forms-container">

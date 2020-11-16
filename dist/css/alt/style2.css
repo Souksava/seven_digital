@@ -1,11 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@font-face {
+    font-family: 'Noto Sans Lao';
+    src: 
+    url(NotoSansLao-Bold.ttf) format('truetype'),
+    url(notosanslao-bold-webfont.woff) format('woff'),
+    url(notosanslao-bold-webfont.woff2) format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
 }
 body, input, select, button{
-    font-family: 'Poppins','Noto Sans Lao', sans-serif;
+    font-family: 'Poppins','Noto Sans Lao','Phetsarath OT', sans-serif;
 }
 .container{
     position: relative;
