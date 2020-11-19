@@ -34,6 +34,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo $path ?>dist/css/adminlte.min.css">
   <link rel="stylesheet" href="<?php echo $path ?>dist/css/alt/style.css">
+  
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?php echo $path ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
