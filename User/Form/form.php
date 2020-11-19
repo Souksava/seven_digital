@@ -1,12 +1,12 @@
 <?php
   $title = "ສ້າງຟອມ";
-  $path="../../";
+  $path = "../../";
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
 ?>
     <div style="width: 100%;">
-        <b><?php echo $title ?></b>&nbsp <img src="<? echo $path ?>icon/hidemenu.ico" width="10px">
+        <b><?php echo $title ?></b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
     </div><br>
     <form action="">
       <div class="row">
