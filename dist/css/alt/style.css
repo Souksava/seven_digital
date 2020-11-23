@@ -72,10 +72,14 @@ top: 40px;
 right: 10px;
 margin-right: 5px;
 }
+
 .form-control2{
 margin-bottom: 10px;
 padding-bottom: 20px;
 position: relative;
+}
+.form-control:focus{
+    border-color:blue;
 }
 .form-control2 input{
 border: 2px solid #f0f0f0;

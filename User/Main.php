@@ -6,7 +6,7 @@
   include ("../header-footer/header.php");
 ?>
   <div class="row">
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/auther" class="m-a">
       <div class="btn btn-light mainlink">
           ຕຳແໜ່ງ
       </div>
