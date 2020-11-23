@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2020 at 05:10 AM
+-- Generation Time: Nov 23, 2020 at 10:34 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -26,7 +26,7 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `auther` (`s` VARCHAR(50))  Begin
+CREATE DEFINER=`root`@`localhost` PROCEDURE `auther` (IN `s` VARCHAR(50))  Begin
 Select auther_id,auther_name from auther where auther_id like s or auther_name like s;
 End$$
 
@@ -37,6 +37,15 @@ end$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `category` (`s` VARCHAR(250))  begin
 select cate_id,cate_name from category where cate_id like s or cate_name like s;
 end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_auther_id` (IN `id` VARCHAR(20))  NO SQL
+SELECT * from auther where auther_id = id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_auther_id_del` (IN `id` VARCHAR(20))  NO SQL
+SELECT * from employee where auther_id = id$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_auther_name` (IN `name` VARCHAR(50))  NO SQL
+SELECT * from auther where auther_name = name$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `customer` (IN `s` VARCHAR(250))  begin
 select company,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s;
