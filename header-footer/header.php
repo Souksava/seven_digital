@@ -61,9 +61,8 @@
                 </li>
             </ul>
             <?php 
-                    if ($title == "ຂໍ້ມູນພະນັກງານ")
-                    {
-                    echo '"<form class="form-inline ml-3">
+                    if ($title == "ຂໍ້ມູນພະນັກງານ"){
+                    echo '<form class="form-inline ml-3">
                     <div class="input-group input-group-sm">
                       <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
                       <div class="input-group-append">
@@ -72,12 +71,61 @@
                         </button>
                       </div>
                     </div>
-                  </form>"';
+                  </form>';
                     }
-                    else
-                    { 
+                    else{ 
                       echo"";
                     }
+
+                    if ($title == "ຂໍ້ມູນລູກຄ້າ"){
+                        echo '<form class="form-inline ml-3">
+                        <div class="input-group input-group-sm">
+                          <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                          <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                              <i class="fas fa-search"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </form>';
+                        }
+                        else{ 
+                          echo"";
+                        }
+
+                        if ($title == "ຂໍ້ມູນຜູ້ສະໜອງ"){
+                            echo '<form class="form-inline ml-3">
+                            <div class="input-group input-group-sm">
+                              <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                              <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                  <i class="fas fa-search"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </form>';
+                            }
+                            else{ 
+                              echo"";
+                            }
+
+
+                        if ($title == "ຂໍ້ມູນສິນຄ້າ"){
+                                    echo '<form class="form-inline ml-3">
+                                    <div class="input-group input-group-sm">
+                                      <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                      <div class="input-group-append">
+                                        <button class="btn btn-navbar" type="submit">
+                                          <i class="fas fa-search"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </form>';
+                                    }
+                                    else{ 
+                                      echo"";
+                                    }
+
     ?>
 
             <!-- <form class="form-inline ml-3">
@@ -162,7 +210,7 @@
                                 <li class="nav-item">
                                     <a href="<?php echo $links ?>Management/supplier" class="nav-link">
                                         <i class="far fa fa-user nav-icon"></i>
-                                        <p>ຂໍ້ມູນຜູ້ສະໜອງ</p>
+                                        <p>ຂໍ້ມູນຜູ້ສະໜອງ</p>
                                     </a>
                                 </li>
                             </ul>

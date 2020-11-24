@@ -79,6 +79,18 @@
         </tr>
       </table>
     </div>
+
+    <!-- pagination -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
+  </ul>
+</nav>
+
   </div>
   <form action="auther.php" id="formupdate" method="POST" enctype="multipart/form-data">
       <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

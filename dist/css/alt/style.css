@@ -164,3 +164,7 @@ color: #2ecc71;
 visibility: visible;
 left: 10px;
 }
+
+.pagination a{
+    color:black!important;
+}

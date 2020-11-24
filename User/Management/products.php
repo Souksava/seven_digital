@@ -210,9 +210,46 @@
                     class="fa fa-trash toolcolor btnDelete_auther"></a>
             </td>
         </tr>
+        <tr>
+            <td>1</td>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+            <td>c</td>
+            <td>c</td>
+            <td>c</td>
+            <td>
+
+                <a href="../../image/image.jpeg" target="_blank">
+                    <img src="../../image/image.jpeg" class="img-circle elevation-2" alt="" width="30px">
+                </a>
+
+            </td>
+            <td>
+                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
+                    class="fa fa-pen toolcolor btnUpdate_auther"></a>&nbsp; &nbsp;
+                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
+                    class="fa fa-trash toolcolor btnDelete_auther"></a>
+            </td>
+        </tr>
+        
     </table>
 </div>
+
+<!-- pagination -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
+  </ul>
+</nav>
+
 </div>
+
+
 
 <form action="unit.php" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

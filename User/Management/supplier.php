@@ -1,5 +1,5 @@
 <?php
-  $title = "ຂໍ້ມູນຜູ້ສະນອງ";
+  $title = "ຂໍ້ມູນຜູ້ສະໜອງ";
   $path="../../";
   $links = "../";
   $session_path = "../../";
@@ -18,7 +18,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">ເພີ່ມຂໍ້ມູນຜູ້ສະນອງ</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">ເພີ່ມຂໍ້ມູນຜູ້ສະໜອງ</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                               </button>
@@ -26,8 +26,8 @@
                           <div class="modal-body">
                               <div class="row" align="left">
                                   <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ລະຫັດຜູ້ສະນອງ</label>
-                                      <input type="text" name="sup_id" id="sup_id" placeholder="ລະຫັດຜູ້ສະນອງ">
+                                      <label>ລະຫັດຜູ້ສະໜອງ</label>
+                                      <input type="text" name="sup_id" id="sup_id" placeholder="ລະຫັດຜູ້ສະໜອງ">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
@@ -90,7 +90,7 @@
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">ແກ້ໄຂຂໍ້ມູນຜູ້ສະນອງ</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">ແກ້ໄຂຂໍ້ມູນຜູ້ສະໜອງ</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                               </button>
@@ -156,7 +156,7 @@
     <div class="table-responsive">
       <table class="table font12" style="width: 1500px;">
         <tr>
-            <th>ລະຫັດ</th>
+            <th>ລະຫັດຜູ້ໜອງ</th>
             <th>ຊື່ບໍ່ລິສັດ</th>
             <th>ເບີໂທລະສັບ</th>
             <th>ເບີແຟັກ</th>
@@ -187,6 +187,18 @@
         </tr>
       </table>
     </div>
+
+    <!-- pagination -->
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
+  </ul>
+</nav>
+
   </div>
 
   <form action="supplier.php" id="formDelete" method="POST" enctype="multipart/form-data">

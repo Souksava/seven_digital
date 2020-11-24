@@ -11,37 +11,37 @@
           ຕຳແໜ່ງ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/employee" class="m-a">
       <div class="btn btn-light mainlink">
           ພະນັກງານ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/supplier" class="m-a">
       <div class="btn btn-light mainlink">
           ຜູ້ສະໜອງ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/customer_status" class="m-a">
       <div class="btn btn-light mainlink">
           ສະຖານະລູກຄ້າ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/customer" class="m-a">
       <div class="btn btn-light mainlink">
           ລູກຄ້າ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/category" class="m-a">
       <div class="btn btn-light mainlink">
           ປະເພດ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/unit" class="m-a">
       <div class="btn btn-light mainlink">
           ຫົວໜ່ວຍ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/products" class="m-a">
       <div class="btn btn-light mainlink">
           ສິນຄ້າ
       </div>
