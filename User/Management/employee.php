@@ -5,12 +5,12 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 ?>
-    <div style="width: 100%;">
-        <div style="width: 48%; float: left;">
-          <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
-        </div>
-        <div style="width: 46%; float: right;" align="right">
-          <form action="employee.php" id="form1" method="POST" enctype="multipart/form-data">
+<div style="width: 100%;">
+    <div style="width: 48%; float: left;">
+        <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+    </div>
+    <div style="width: 46%; float: right;" align="right">
+        <form action="employee.php" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalemp">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -49,21 +49,21 @@
                                   <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເພດ</label>
                                     <select name="gender" id="gender">
-                                      <option value="">--- ເລືອກເພດ ---</option>
-                                      <option value="ຍິງ">ຍິງ</option>
-                                      <option value="ຊາຍ">ຊາຍ</option>
+                                        <option value="">--- ເລືອກເພດ ---</option>
+                                        <option value="ຍິງ">ຍິງ</option>
+                                        <option value="ຊາຍ">ຊາຍ</option>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຕຳແໜ່ງ</label>
                                     <select name="auther_id" id="auther_id">
-                                      <option value="">--- ເລືອກເລືອກຕຳແໜ່ງ ---</option>
-                                      <option value="001">ໄອທີ</option>
-                                      <option value="002">ຜູ້ຈັດການ</option>
-                                      <option value="003">ບັນຊີ</option>
+                                        <option value="">--- ເລືອກເລືອກຕຳແໜ່ງ ---</option>
+                                        <option value="001">ໄອທີ</option>
+                                        <option value="002">ຜູ້ຈັດການ</option>
+                                        <option value="003">ບັນຊີ</option>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -103,8 +103,8 @@
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ສິດໃນການເຂົ້າໃຊ້ລະບົບ</label>
                                     <select name="auther_id" id="auther_id" >
                                       <option value="">--- ເລືອກສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
@@ -163,62 +163,65 @@
                                   <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເພດ</label>
                                     <select name="gender2" id="gender2">
-                                      <option value="">--- ເລືອກເພດ ---</option>
-                                      <option value="ຍິງ">ຍິງ</option>
-                                      <option value="ຊາຍ">ຊາຍ</option>
+                                        <option value="">--- ເລືອກເພດ ---</option>
+                                        <option value="ຍິງ">ຍິງ</option>
+                                        <option value="ຊາຍ">ຊາຍ</option>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຕຳແໜ່ງ</label>
                                     <select name="auther_id2" id="auther_id2">
-                                      <option value="">--- ເລືອກເລືອກຕຳແໜ່ງ ---</option>
-                                      <option value="001">ໄອທີ</option>
-                                      <option value="002">ຜູ້ຈັດການ</option>
-                                      <option value="003">ບັນຊີ</option>
+                                        <option value="">--- ເລືອກເລືອກຕຳແໜ່ງ ---</option>
+                                        <option value="001">ໄອທີ</option>
+                                        <option value="002">ຜູ້ຈັດການ</option>
+                                        <option value="003">ບັນຊີ</option>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ທີ່ຢູ່ປັດຈຸບັນ</label>
-                                      <textarea name="address2" id="address2" cols="3" rows="3" placeholder="ທີ່ຢູ່ປັດຈຸບັນ"></textarea>
-                                      <i class="fas fa-check-circle "></i>
-                                      <i class="fas fa-exclamation-circle "></i>
-                                      <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ເບີໂທລະສັບ</label>
-                                      <input type="text" name="tel2" id="tel2" placeholder="ເບີໂທລະສັບ">
-                                      <i class="fas fa-check-circle "></i>
-                                      <i class="fas fa-exclamation-circle "></i>
-                                      <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ທີ່ຢູ່ອີເມວ</label>
-                                      <input type="text" name="email2" id="email2" placeholder="ທີ່ຢູ່ອີເມວ">
-                                      <i class="fas fa-check-circle "></i>
-                                      <i class="fas fa-exclamation-circle "></i>
-                                      <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ລະຫັດຜູ້ໃຊ້ລະບົບ</label>
-                                      <input type="password" name="password2" id="password2" placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ">
-                                      <i class="fas fa-check-circle "></i>
-                                      <i class="fas fa-exclamation-circle "></i>
-                                      <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ຢືນຢັນລະຫັດ</label>
-                                    <input type="password" name="password_cf2" id="password_cf2" placeholder="ຢືນຢັນລະຫັດ">
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
+                                    <label>ທີ່ຢູ່ປັດຈຸບັນ</label>
+                                    <textarea name="address2" id="address2" cols="3" rows="3"
+                                        placeholder="ທີ່ຢູ່ປັດຈຸບັນ"></textarea>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
+                                    <label>ເບີໂທລະສັບ</label>
+                                    <input type="text" name="tel2" id="tel2" placeholder="ເບີໂທລະສັບ">
+                                    <i class="fas fa-check-circle "></i>
+                                    <i class="fas fa-exclamation-circle "></i>
+                                    <small class="">Error message</small>
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
+                                    <label>ທີ່ຢູ່ອີເມວ</label>
+                                    <input type="text" name="email2" id="email2" placeholder="ທີ່ຢູ່ອີເມວ">
+                                    <i class="fas fa-check-circle "></i>
+                                    <i class="fas fa-exclamation-circle "></i>
+                                    <small class="">Error message</small>
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
+                                    <label>ລະຫັດຜູ້ໃຊ້ລະບົບ</label>
+                                    <input type="password" name="password2" id="password2"
+                                        placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ">
+                                    <i class="fas fa-check-circle "></i>
+                                    <i class="fas fa-exclamation-circle "></i>
+                                    <small class="">Error message</small>
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
+                                    <label>ຢືນຢັນລະຫັດ</label>
+                                    <input type="password" name="password_cf2" id="password_cf2"
+                                        placeholder="ຢືນຢັນລະຫັດ">
+                                    <i class="fas fa-check-circle "></i>
+                                    <i class="fas fa-exclamation-circle "></i>
+                                    <small class="">Error message</small>
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ສິດໃນການເຂົ້າໃຊ້ລະບົບ</label>
                                     <select name="status2" id="status2" >
                                       <option value="">--- ເລືອກສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
@@ -229,29 +232,31 @@
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
-                                  </div>
-                                  <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ຮູບພາບ</label>
-                                      <input type="file" name="img_path2" id="img_path2">
-                                      <i class="fas fa-check-circle "></i>
-                                      <i class="fas fa-exclamation-circle "></i>
-                                      <small class="">Error message</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                              <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success" onclick="">ແກ້ໄຂ</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </form>
-        </div>
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
+                                    <label>ຮູບພາບ</label>
+                                    <input type="file" name="img_path2" id="img_path2">
+                                    <i class="fas fa-check-circle "></i>
+                                    <i class="fas fa-exclamation-circle "></i>
+                                    <small class="">Error message</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary"
+                                data-dismiss="modal">ຍົກເລີກ</button>
+                            <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success"
+                                onclick="">ແກ້ໄຂ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="clearfix"></div><br>
-    <div class="table-responsive">
-      <table class="table font12" style="width: 1500px;">
+</div>
+<div class="clearfix"></div><br>
+<div class="table-responsive">
+    <table class="table font12" style="width: 1500px;">
         <tr>
             <th>ລະຫັດ</th>
             <th>ຊື່ພະນັກງານ</th>
@@ -281,22 +286,35 @@
             <td style="display:none;">0001</td>
             <td>ຜູ້ເບີກສິນຄ້າ</td>
             <td>
-     
-                    <a href="../../image/image.jpeg" target="_blank">
-                      <img src="../../image/image.jpeg" class="img-circle elevation-2" alt="" width="30px">
-                    </a>
-    
+
+                <a href="../../image/image.jpeg" target="_blank">
+                    <img src="../../image/image.jpeg" class="img-circle elevation-2" alt="" width="30px">
+                </a>
+
             </td>
             <td>
-              <a href="#" data-toggle="modal" data-target="#exampleModalUpdate_emp" class="fa fa-pen toolcolor btnUpdate_emp"></a>&nbsp; &nbsp; 
-              <a href="delEmp.php" class="fa fa-trash toolcolor"></a>
+                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate_emp"
+                    class="fa fa-pen toolcolor btnUpdate_emp"></a>&nbsp; &nbsp;
+                <a href="delEmp.php" class="fa fa-trash toolcolor"></a>
             </td>
         </tr>
-      </table>
-    </div>
-  </div>
+    </table>
+</div>
 
- 
- <?php
+<!-- pagination -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
+  </ul>
+</nav>
+
+</div>
+
+
+<?php
     include ("../../header-footer/footer.php");
   ?>
