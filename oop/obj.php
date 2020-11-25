@@ -8,7 +8,7 @@ class obj{
         // method ຂອງການດຶງຂໍ້ມູນຕຳແໜ່ງມາສະແດງ
         global $resultauther;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
-        $resultauther = mysqli_query($conn,"call auther('$s');");
+        $resultauther = mysqli_query($conn,"call auther('$search');");
     }
     public static function insert_auther($auther_id,$auther_name){
         global $conn;
@@ -499,12 +499,168 @@ class obj{
       
     }
      //ສິ້ນສຸດການຈັດການຂໍ້ມູນຜູ້ສະໜອງ
+
+     //ຈັດການຂໍ້ມູນສະຖານະລູກຄ້າ
+    public static function select_customer_status($search){
+        // method ຂອງການດຶງຂໍ້ມູນສະຖານະມາສະແດງ
+        global $result_customer_status;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
+        global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+        $result_customer_status = mysqli_query($conn,"call customer_status('$search');");
+    }
+    public static function insert_customer_status($stt_id,$stt_name){//method ການບັນທຶກຂໍ້ມູນ
+        global $conn;
+        // method ຂອງການບັນທຶກຂໍ້ມູນສະຖານະລູກຄ້າ
+        $checkid = mysqli_query($conn,"select * from customer_status where stt_id='$stt_id'"); //ກວດສອບວ່າລະຫັດຕຳແໜ່ງນີ້ມີຫຼືຍັງ
+        $checkname = mysqli_query($conn,"select * from customer_status where stt_name='$stt_name'");// ກວດສອບວ່າຊື່ຕຳແໜ່ງນີ້ມີຫຼືຍັງ
+        if(mysqli_num_rows($checkid) > 0){  //ກວດສອບວ່າລະຫັດສະຖານະນີ້ມີຫຼືຍັງ
+            echo"<script>";
+            echo"window.location.href='customer-status?id=same';";
+            echo"</script>";
+        }
+        else if(mysqli_num_rows($checkname) > 0){// ກວດສອບວ່າຊື່ຕຳແໜ່ງນີ້ມີຫຼືຍັງ
+            echo"<script>";
+            echo"window.location.href='customer-status?sstname=same';";
+            echo"</script>";
+        }
+        else{
+            //ຄຳສັ່ງບັນທຶກຂໍ້ມູນຕຳແໜ່ງ
+            $result = mysqli_query($conn,"call insert_customer_status('$stt_id','$stt_name')");
+            if(!$result){ //ກວດສອບການບັນທຶກຂໍ້ມູນຖ້າເກີດຂໍ້ຜິດພາດໃຫ້ມາເຮັດວຽກຢູ່ນີ້
+                echo"<script>";
+                echo"window.location.href='customer-status?save=fail';";
+                echo"</script>";
+            }
+            else{//ກວດສອບການບັນທຶກຂໍ້ມູນຖ້າບໍ່ມີຂໍ້ຜິດພາດໃຫ້ມາເຮັດວຽກຢູ່ນີ້
+                echo"<script>";
+                echo"window.location.href='customer-status?save2=success';";
+                echo"</script>";
+            }
+        }
+
+    }
+    public static function update_customer_status($stt_id,$stt_name){// method ການແກ້ໄຂຂໍ້ມູນ
+        global $conn;
+        $checkname = mysqli_query($conn,"select * from customer_status where stt_name='$stt_name'");
+        if(mysqli_num_rows($checkname) > 0){//ກວດສອບວ່າຊື່ສະຖານະນີ້ມີແລ້ວຫຼືຍັງ
+            echo"<script>";
+            echo"window.location.href='customer-status?sstname=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call update_customer_status('$stt_id','$stt_name')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='customer-status?update=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='customer-status?update2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function delete_customer_status($stt_id){// method ການລົບຂໍ້ມູນ
+        global $conn;
+        $check_cus = mysqli_query($conn,"select * from customer where stt_id='$stt_id'");
+        if(mysqli_num_rows($check_cus) > 0){//ກວດສອບໄອດີຂອງສະຖານະຢູ່ຕາຕະລາງລູກຄ້າ
+            echo"<script>";
+            echo"window.location.href='customer-status?delete=fail';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call delete_customer_status('$stt_id')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='customer-status?del=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='customer-status?del2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    //ສິນສຸດການຈັດການສະຖານະລູກຄ້າ
+
+    //ຈັດການຂໍ້ມູນລູກຄ້າ
+    public static function select_customer($search){
+        global $conn;
+        global $resultcustomer;
+        $resultcustomer = mysqli_query($conn,"call customer('$search')");
+    }
+    public static function insert_customer($cus_id,$company,$tel,$address,$email,$stt_id){
+        global $conn;
+        $check_id = mysqli_query($conn,"select * from customer where cus_id='$cus_id'");
+        if(mysqli_num_rows($check_id) > 0){
+            echo"<script>";
+            echo"window.location.href='customer?id=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call insert_customer('$cus_id','$company','$tel','$address','$email','$stt_id')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='customer?save=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='customer?save2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function delete_customer($cus_id){
+        global $conn;
+        $check_form = mysqli_query($conn,"select * from form where cus_id='$cus_id'");
+        $check_putback = mysqli_query($conn,"select * from product_putback_stock where cus_id='$cus_id'");
+        if(mysqli_num_rows($check_form) > 0){
+            echo"<script>";
+            echo"window.location.href='customer?form=fail';";
+            echo"</script>";
+        }
+        else if(mysqli_num_rows($check_putback) > 0){
+            echo"<script>";
+            echo"window.location.href='customer?pps=fail';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call delete_customer('$cus_id')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='customer?del=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='customer?del2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function update_customer($cus_id,$company,$tel,$address,$email,$stt_id){
+        global $conn;
+        $result = mysqli_query($conn,"call update_customer('$cus_id','$company','$tel','$address','$email','$stt_id')");
+        if(!$result){
+            echo"<script>";
+            echo"window.location.href='customer?update=fail';";
+            echo"</script>";
+        }
+        else{
+            echo"<script>";
+            echo"window.location.href='customer?update2=success';";
+            echo"</script>";
+        }
+    }
+    //ສິ້ນສຸດການຈັດການຂໍ້ມູນລູກຄ້າ
 }
 $obj = new obj();
-$obj->update_supplier('2','d','0202','021','vt','test@hotmail.com','ee');
-// $obj->select_supplier('%%');
-// while($row = mysqli_fetch_array($resultsupplier,MYSQLI_ASSOC)){
-//     echo $row['sup_id'];
+$obj->delete_customer('1');
+// $obj->select_customer('%%');
+// while($row = mysqli_fetch_array($resultcustomer,MYSQLI_ASSOC)){
+//     echo $row['cus_id'];
 //     echo $row['company']."<br>";
 // }
 
