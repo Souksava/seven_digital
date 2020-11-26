@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2020 at 04:06 AM
+-- Generation Time: Nov 26, 2020 at 10:13 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -27,15 +27,15 @@ DELIMITER $$
 -- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `auther` (IN `s` VARCHAR(50), IN `page` INT(5))  Begin
-Select auther_id,auther_name from auther where auther_id like s or auther_name like s order by auther_name limit 15 OFFSET page;
+Select auther_id,auther_name from auther where auther_id like s or auther_name like s order by auther_name ASC limit 15 OFFSET page;
 End$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `brand` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select brand_id,brand_name from brand where brand_id like s or brand_name like s order by brand_name limit 15 OFFSET page;
+select brand_id,brand_name from brand where brand_id like s or brand_name like s order by brand_name ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `category` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select cate_id,cate_name from category where cate_id like s or cate_name like s order by cate_name limit 15 OFFSET page;
+select cate_id,cate_name from category where cate_id like s or cate_name like s order by cate_name ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `check_auther_id` (IN `id` VARCHAR(20))  NO SQL
@@ -48,11 +48,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `check_auther_name` (IN `name` VARCH
 SELECT * from auther where auther_name = name$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `customer` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select c.cus_id,company,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where c.cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s order by company limit 15 OFFSET page;
+select c.cus_id,company,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where c.cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s order by company ASC limit 15 OFFSET page;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `customer_status` (`s` VARCHAR(250))  begin
-select stt_id,stt_name from customer_status where stt_id like s or stt_name like s;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `customer_status` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
+select stt_id,stt_name from customer_status where stt_id like s or stt_name like s ORDER by stt_name ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_auther` (`autherid` VARCHAR(20))  Begin
@@ -107,7 +107,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_product_putback_stock` (IN `
 Delete from product_putback_stock where id=ppsid;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_rate` (`id` INT(11))  begin
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_rate` (IN `id` VARCHAR(20))  begin
 Delete from rate where rate_id=id;
 end$$
 
@@ -128,19 +128,19 @@ delete from unit where unit_id=id;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `distribute` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select id,d.code,serial,d.emp_id,d.form_id,dis_date,emp_name,pro_name,gen,stt_accept,emp_name,status from distribute d left join products p on d.code=p.code left join employee e on d.emp_id=e.emp_id left join form f on d.form_id=f.form_id where d.code like s or serial like s or d.emp_id like s or d.form_id like s or dis_date like s or emp_name like s or pro_name like s or gen like s or emp_name like s or stt_accept like s or status like s order by code limit 15 OFFSET page;
+select id,d.code,serial,d.emp_id,d.form_id,dis_date,emp_name,pro_name,gen,stt_accept,emp_name,status from distribute d left join products p on d.code=p.code left join employee e on d.emp_id=e.emp_id left join form f on d.form_id=f.form_id where d.code like s or serial like s or d.emp_id like s or d.form_id like s or dis_date like s or emp_name like s or pro_name like s or gen like s or emp_name like s or stt_accept like s or status like s order by d.code ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `employee` (IN `s` VARCHAR(250), IN `page` INT(5))  Begin
-select emp_id,emp_name,emp_surname,gender,tel,address,email,pass,e.auther_id,auther_name,e.stt_id,stt_name,img_path from employee e left join auther a on e.auther_id=a.auther_id left join emp_status s on e.stt_id=s.stt_id where emp_id like s or emp_name like s or emp_surname like s or gender like s or address like s or email like s or e.auther_id like s or e.stt_id like s or auther_name like s or stt_name like s order by emp_name limit 15 OFFSET page;
+select emp_id,emp_name,emp_surname,gender,tel,address,email,pass,e.auther_id,auther_name,e.stt_id,stt_name,img_path from employee e left join auther a on e.auther_id=a.auther_id left join emp_status s on e.stt_id=s.stt_id where emp_id like s or emp_name like s or emp_surname like s or gender like s or address like s or email like s or e.auther_id like s or e.stt_id like s or auther_name like s or stt_name like s order by emp_name ASC limit 15 OFFSET page;
 End$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `form` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select form_id,f.emp_id,f.cus_id,form_date,stt_accept,status,usr_acc,emp_name,company from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id where form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or usr_acc like s order by form_id limit 15 OFFSET page;
+select form_id,f.emp_id,f.cus_id,form_date,stt_accept,status,usr_acc,emp_name,company from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id where form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or usr_acc like s order by form_id ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `form_detail` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select id,fd.code,qty,fd.form_id from formdetail fd left join product p on fd.code=p.code left join form f on fd.form_id=f.form_id where id like s or fd.code like s or qty like s or fd.form_id like s order by code limit 15 OFFSET page;
+select id,fd.code,qty,fd.form_id from formdetail fd left join product p on fd.code=p.code left join form f on fd.form_id=f.form_id where id like s or fd.code like s or qty like s or fd.form_id like s order by fd.code ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_auther` (`autherid` VARCHAR(20), `authername` VARCHAR(50))  Begin
@@ -216,35 +216,35 @@ Insert into unit (unit_name) values(unit_name);
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `products` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select pro_name,gen,p.cate_id,p.unit_id,p.brand_id,cate_name,unit_name,brand_name,serial,qty,price from products p left join stocks sk on p.code=sk.code left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where pro_name like s or gen like s or p.cate_id like s or p.unit_id like s or p.brand_id like s or cate_name like s or unit_name like s or brand_name like s or serial like s or qty like s or price like s order by pro_name limit 15 OFFSET page;
+select p.code,pro_name,gen,p.cate_id,p.unit_id,p.brand_id,cate_name,unit_name,brand_name,serial,qty,price from products p left join stocks sk on p.code=sk.code left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where p.code like s or pro_name like s or gen like s or p.cate_id like s or p.unit_id like s or p.brand_id like s or cate_name like s or unit_name like s or brand_name like s or serial like s or qty like s or price like s order by pro_name ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `product_addr` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select pro_ad,addr_name from product_addr where pro_ad like s or addr_name like s order by addr_name limit 15 OFFSET page;
+select pro_ad,addr_name from product_addr where pro_ad like s or addr_name like s order by addr_name ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `product_putback_stock` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select pps.code,serial,pps.emp_id,pps.cus_id,pps.form_id,date_back,emp_name,company,stt_accept,status from product_putback_stock pps left join products p on pps.code=p.code left join employee e on pps.emp_id=e.emp_id left join customer c on pps.cus_id=c.cus_id left join form f on pps.form_id=f.form_id where pps.code like s or serial like s or pps.emp_id like s or pps.cus_id like s or pps.form_id like s or date_back like s or emp_name like s or company like s or stt_accept like s or status like s order by code limit 15 OFFSET page;
+select pps.code,serial,pps.emp_id,pps.cus_id,pps.form_id,date_back,emp_name,company,stt_accept,status from product_putback_stock pps left join products p on pps.code=p.code left join employee e on pps.emp_id=e.emp_id left join customer c on pps.cus_id=c.cus_id left join form f on pps.form_id=f.form_id where pps.code like s or serial like s or pps.emp_id like s or pps.cus_id like s or pps.form_id like s or date_back like s or emp_name like s or company like s or stt_accept like s or status like s order by pps.code ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `rate` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select rate_id,rate_buy,rate_sell from rate where rate_id like s or rate_buy like s or rate_sell like s order by rate_id limit 15 OFFSET page;
+select rate_id,rate_buy,rate_sell from rate where rate_id like s or rate_buy like s or rate_sell like s order by rate_id ASC limit 15 OFFSET page;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spare_part` (`s` VARCHAR(250))  begin
-select id,sp.emp_id,sp.code,serial,spare_part,pro_id,pro_serial,spare_date,spare_time,remark from spare_part sp left join employee e on sp.emp_id=e.emp_id left join product p on sp.code=p.code where id like s or sp.emp_id like s or sp.code like s or serial like s or spart_part like s or pro_id like s or pro_serial like s or spare_date like s or spare_time like s or remark like s;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spare_part` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
+select sp.id,sp.emp_id,sp.code,serial,spare_part,pro_id,pro_serial,spare_date,spare_time,remark from spare_part sp left join employee e on sp.emp_id=e.emp_id left join product p on sp.code=p.code where id like s or sp.emp_id like s or sp.code like s or serial like s or spart_part like s or pro_id like s or pro_serial like s or spare_date like s or spare_time like s or remark like s ORDER BY sp.id ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `stocks` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select serial,dnv,sk.emp_id,sk.sup_id,emp_name,company,rate_buy,rate_sell,qty from stocks sk left join products p on sk.code=p.code left join employee e on sk.emp_id=e.emp_id left join supplier s on sk.sup_id=s.sup_id left join rate r on sk.rate_id=r.rate_id where serial like s or qty like s or dnv like s or pro_no like s or sk.rate_id like s or sk.emp_id like s or sk.sup_id like s or emp_name like s or company like s or rate_buy like s or rate_sell like s order by code limit 15 OFFSET page;
+select serial,dnv,sk.emp_id,sk.sup_id,emp_name,company,rate_buy,rate_sell,qty from stocks sk left join products p on sk.code=p.code left join employee e on sk.emp_id=e.emp_id left join supplier s on sk.sup_id=s.sup_id left join rate r on sk.rate_id=r.rate_id where serial like s or qty like s or dnv like s or pro_no like s or sk.rate_id like s or sk.emp_id like s or sk.sup_id like s or emp_name like s or company like s or rate_buy like s or rate_sell like s order by s.code ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `supplier` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select sup_id,company,tel,fax,address,email,img_path from supplier where sup_id like s or company like s or tel like s or fax like s or address like s or email like s order by company limit 15 OFFSET page;
+select sup_id,company,tel,fax,address,email,img_path from supplier where sup_id like s or company like s or tel like s or fax like s or address like s or email like s order by company ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `unit` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select unit_id,unit_name from unit where unit_id like s or unit_name like s order by unit_name limit 15 OFFSET page;
+select unit_id,unit_name from unit where unit_id like s or unit_name like s order by unit_name ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_auther` (`autherid` VARCHAR(20), `authername` VARCHAR(50))  Begin

@@ -1,5 +1,5 @@
 <?php
-  $title = "ຂໍ້ມູນສະຖານະລູກຄ້າ";
+  $title = "ຂໍ້ມູນເລດເງີນ ";
   $path="../../";
   $links = "../";
   $session_path = "../../";
@@ -10,15 +10,15 @@
           <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
         </div>
         <div style="width: 46%; float: right;" align="right">
-          <form action="customer_status.php" id="form1" method="POST" enctype="multipart/form-data">
-            <a href="#" data-toggle="modal" data-target="#exampleModalcustomer_status">
+          <form action="rate.php" id="form1" method="POST" enctype="multipart/form-data">
+            <a href="#" data-toggle="modal" data-target="#exampleModalrate">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
-            <div class="modal fade" id="exampleModalcustomer_status" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModalrate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">ເພີ່ມຂໍ້ມູນສະຖານະລູກຄ້າ</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">ເພີ່ມຂໍ້ມູນເລດເງີນ</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                               </button>
@@ -26,15 +26,22 @@
                           <div class="modal-body">
                               <div class="row" align="left">
                                   <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ລະຫັດສະຖານະລູກຄ້າ</label>
-                                      <input type="text" name="stt_id" id="stt_id" placeholder="ລະຫັດສະຖານະລູກຄ້າ">
+                                      <label>ລະຫັດເລດເງີນ </label>
+                                      <input type="text" name="rate_id" id="rate_id" placeholder="ລະຫັດເລດເງີນ ">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ຊື່ສະຖານະລູກຄ້າ</label>
-                                      <input type="text" name="stt_name" id="stt_name" placeholder="ຊື່ສະຖານະລູກຄ້າ">
+                                      <label></label>
+                                      <input type="text" name="rate_buy" id="rate_buy" placeholder="ເລດເງິນຊື້">
+                                      <i class="fas fa-check-circle "></i>
+                                      <i class="fas fa-exclamation-circle "></i>
+                                      <small class="">Error message</small>
+                                  </div>
+                                  <div class="col-md-12 col-sm-6 form-control2">
+                                      <label></label>
+                                      <input type="text" name="rate_sell" id="rate_sell" placeholder="ເລດເງິນຂາຍ">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
@@ -50,12 +57,12 @@
               </div>
           </form>
 
-          <form action="customer_status.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+          <form action="rate.php" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">ແກ້ໄຂຂໍ້ມູນສະຖານະລູກຄ້າ</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">ແກ້ໄຂຂໍ້ມູນເລດເງີນ</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                               </button>
@@ -63,9 +70,16 @@
                           <div class="modal-body">
                               <div class="row" align="left">
                                   <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ຊື່ສະຖານະລູກຄ້າ</label>
-                                      <input type="hidden" name="stt_id_update" id="stt_id_update" placeholder="ລະຫັດສະຖານະລູກຄ້າ">
-                                      <input type="text" name="stt_name_update" id="stt_name_update" placeholder="ຊື່ສະຖານະລູກຄ້າ">
+                                      <label>ເລດເງີນຊື້</label>
+                                      <input type="hidden" name="rate_id_update" id="rate_id_update" placeholder="ລະຫັດເລດເງິນ">
+                                      <input type="text" name="rate_buy_update" id="rate_buy_update" placeholder="ເລດເງິນຊື້">
+                                      <i class="fas fa-check-circle "></i>
+                                      <i class="fas fa-exclamation-circle "></i>
+                                      <small class="">Error message</small>
+                                  </div>   
+                                  <div class="col-md-12 col-sm-6 form-control2">
+                                      <label>ເລດເງີນຂາຍ</label>
+                                      <input type="text" name="rate_sell_update" id="rate_sell_update" placeholder="ເລດເງິນຂາຍ">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
@@ -86,17 +100,18 @@
     <div class="table-responsive">
       <table class="table font12" style="width: 1500px;">
         <tr>
-            <th>ລະຫັດສະຖານະລູກຄ້າ</th>
-            <th>ຊື່ສະຖານະລູກຄ້າ</th>
-            <th></th>
+            <th>ລະຫັດເລດເງິນ</th>
+            <th>ເລດເງິນຊື້</th>
+            <th>ເລດເງິນຂາຍ</th>
 
         </tr>
         <tr>
             <td>1</td>
-            <td>c</td>
+            <td>1.10</td>
+            <td>1.20</td>
             <td>
-            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_customer_status"></a>&nbsp; &nbsp; 
-              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_customer_status"></a>
+            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_rate"></a>&nbsp; &nbsp; 
+              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_rate"></a>
             </td>
         </tr>
       </table>
@@ -141,55 +156,71 @@
 
   <script type="text/javascript">
         const myform = document.getElementById('form1');
-        const stt_id = document.getElementById('stt_id');
-        const stt_name = document.getElementById('stt_name');
+        const rate_id = document.getElementById('rate_id');
+        const rate_buy = document.getElementById('rate_buy');
+        const rate_sell = document.getElementById('rate_sell');
         myform.addEventListener('submit',(e) => {
           e.preventDefault();
         checkInputs();
         });
 
         function checkInputs(){
-          const stt_idValue = stt_id.value.trim();
-          const stt_nameValue = stt_name.value.trim();
-          
-          if(stt_idValue === ''){
-              setErrorFor(stt_id, 'ກະລຸນາປ້ອນລະຫັດສະຖານະລູກຄ້າ');
+          const rate_idValue = rate_id.value.trim();
+          const rate_buyValue = rate_buy.value.trim();
+          const rate_sellValue = rate_sell.value.trim();
+          if(rate_idValue === ''){
+              setErrorFor(rate_id, 'ກະລຸນາປ້ອນລະຫັດເລດເງິນ');
           }
           else{
-            setSuccessFor(stt_id);
+            setSuccessFor(rate_id);
           }
-          if(stt_nameValue === ''){
-            setErrorFor(stt_name, 'ກະລຸນາປ້ອນຊື່ສະຖານະລູກຄ້າ');
+          if(rate_buyValue === ''){
+            setErrorFor(rate_buy, 'ກະລຸນາປ້ອນເລດເງິນຊື້');
           }
           else{
-            setSuccessFor(stt_name);
-          }        
-          if(stt_nameValue !== ''  && stt_idValue !== ''){
-            document.getElementById("form1").action = "customer_status.php";
+            setSuccessFor(rate_buy);
+          }   
+          if(rate_sellValue === ''){
+            setErrorFor(rate_sell, 'ເລດເງິນຂາຍ');
+          }
+          else{
+            setSuccessFor(rate_sell);
+          }     
+          if(rate_idValue !== ''  && rate_buyValue !== '' && rate_sellValue !== ''){
+            document.getElementById("form1").action = "rate.php";
             document.getElementById("form1").submit();
           }         
         }
         
       </script>
 
+<!-- check update rate not null -->
     <script type="text/javascript">
         const myformUpdate = document.getElementById('formUpdate');
-        const stt_name_update = document.getElementById('stt_name_update');
+        const rate_buy_update = document.getElementById('rate_buy_update');
+        const rate_sell_update = document.getElementById('rate_sell_update');
         myformUpdate.addEventListener('submit',(e) => {
           e.preventDefault();
         checkInputsUpdate();
         });
 
         function checkInputsUpdate(){
-          const stt_name_updateValue = stt_name_update.value.trim();
-          if(stt_name_updateValue === ''){
-              setErrorFor(stt_name_update, 'ກະລຸນາປ້ອນສະຖານະລູກຄ້າ');
+          const rate_buy_updateValue = rate_buy_update.value.trim();
+          const rate_sell_updateValue = rate_sell_update.value.trim();
+          if(rate_buy_updateValue === ''){
+              setErrorFor(rate_buy_update, 'ກະລຸນາປ້ອນເລດເງິນຊື້');
           }
           else{
-            setSuccessFor(stt_name_update);
+            setSuccessFor(rate_buy_update);
           }
-          if(stt_name_updateValue !== '' ){
-            document.getElementById("formUpdate").action = "customer_status.php";
+          if(rate_sell_updateValue === ''){
+              setErrorFor(rate_sell_update, 'ເລດເງິນຂາຍ');
+          }
+          else{
+            setSuccessFor(rate_sell_update);
+          }
+          if(rate_buy_updateValue !== '' &&  rate_sell_updateValue !== ''){
+            document.getElementById("formUpdate").action = "rate.php";
             document.getElementById("formUpdate").submit();
           }
         }

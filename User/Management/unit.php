@@ -104,9 +104,9 @@
             <td>c</td>
             <td>
                 <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_auther"></a>&nbsp; &nbsp;
+                    class="fa fa-pen toolcolor btnUpdate_unit"></a>&nbsp; &nbsp;
                 <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_auther"></a>
+                    class="fa fa-trash toolcolor btnDelete_unit"></a>
             </td>
         </tr>
     </table>
@@ -222,7 +222,7 @@ function checkInputsUpdate() {
     </script>';
   }
   // check if unit_update exist
-  if(isset($_GET['unit'])=='same'){
+  if(isset($_GET['unit_update'])=='same'){
     echo'<script type="text/javascript">
     swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ຫົວໜ່ວຍສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
     </script>';

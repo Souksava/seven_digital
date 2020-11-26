@@ -77,10 +77,13 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບສິນຄ້າ</label>
-                                    <input type="text" name="img_path" id="img_path" placeholder="ຮູບພາບສິນຄ້າ">
+                                    <input type="file" name="img_path" id="img_path" placeholder="ຮູບພາບສິນຄ້າ" onchange="loadFile(event)">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
+                                    <img src="../../image/camera.jpg" id="output" width="100%" height="250">
                                 </div>
                             </div>
                         </div>
@@ -120,45 +123,48 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</label>
-                                    <input type="text" name="gen" id="gen" placeholder="ລຸ້ນເຄື່ອງຂອງສິນຄ້າ">
+                                    <input type="text" name="gen_update" id="gen_update" placeholder="ລຸ້ນເຄື່ອງຂອງສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດປະເພດສິນຄ້າ</label>
-                                    <input type="text" name="cate_id" id="cate_id" placeholder="ລະຫັດປະເພດສິນຄ້າ">
+                                    <input type="text" name="cate_id_updated" id="cate_id_update" placeholder="ລະຫັດປະເພດສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຫົວໜວ່ຍສິນຄ້າ</label>
-                                    <input type="text" name="unit_id" id="unit_id" placeholder="ລະຫັດຫົວໜວ່ຍສິນຄ້າ">
+                                    <input type="text" name="unit_id_update" id="unit_id_update" placeholder="ລະຫັດຫົວໜວ່ຍສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຍີ່ຫໍ້</label>
-                                    <input type="text" name="brand_id" id="brand_id" placeholder="ລະຫັດຍີ່ຫໍ້">
+                                    <input type="text" name="brand_id_update" id="brand_id_update" placeholder="ລະຫັດຍີ່ຫໍ້">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເງື່ອນໄຂການສັ່ງຊື້</label>
-                                    <input type="text" name="qtyalert" id="qtyalert" placeholder="ເງື່ອນໄຂການສັ່ງຊື້">
+                                    <input type="text" name="qtyalert_update" id="qtyalert_update" placeholder="ເງື່ອນໄຂການສັ່ງຊື້">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບສິນຄ້າ</label>
-                                    <input type="text" name="img_path" id="img_path" placeholder="ຮູບພາບສິນຄ້າ">
+                                    <input type="file" name="img_path_update" id="img_path_update" placeholder="ຮູບພາບສິນຄ້າ" >
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
+                                    <img src="../../image/camera.jpg" id="output2" width="100%" height="250">
                                 </div>
                             </div>
                         </div>
@@ -205,9 +211,9 @@
             </td>
             <td>
                 <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_auther"></a>&nbsp; &nbsp;
+                    class="fa fa-pen toolcolor btnUpdate_prod"></a>&nbsp; &nbsp;
                 <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_auther"></a>
+                    class="fa fa-trash toolcolor btnDelete_prod"></a>
             </td>
         </tr>
         <tr>
@@ -227,9 +233,9 @@
             </td>
             <td>
                 <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_auther"></a>&nbsp; &nbsp;
+                    class="fa fa-pen toolcolor btnUpdate_prod"></a>&nbsp; &nbsp;
                 <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_auther"></a>
+                    class="fa fa-trash toolcolor btnDelete_prod"></a>
             </td>
         </tr>
         
@@ -280,10 +286,6 @@
 const myform = document.getElementById('form1');
 const code = document.getElementById('code');
 const pro_name = document.getElementById('pro_name');
-const cate_id = document.getElementById('cate_id');
-const unit_id = document.getElementById('unit_id');
-const brand_id = document.getElementById('brand_id');
-const qtyalert = document.getElementById('qtyalert');
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
@@ -292,10 +294,7 @@ myform.addEventListener('submit', (e) => {
 function checkInputs() {
     const codeValue = code.value.trim();
     const pro_nameValue = pro_name.value.trim();
-    const cate_idValue = cate_id.value.trim();
-    const unit_idValue = unit_id.value.trim();
-    const brand_idValue = brand_id.value.trim();
-    const qtyalertValue = qtyalert.value.trim();
+
 
     if (codeValue === '') {
         setErrorFor(code, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າ');
@@ -426,7 +425,16 @@ function checkInputsUpdate() {
   }
 ?>
 
-
+<!-- script preview image before upload -->
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>
 
 
 <?php

@@ -10,7 +10,7 @@ RewriteRule ^User/Management/customer?$ User/Management/customer.php
 RewriteRule ^User/Management/category?$ User/Management/category.php
 RewriteRule ^User/Management/unit?$ User/Management/unit.php
 RewriteRule ^User/Management/products?$ User/Management/products.php
-RewriteRule ^User/Management/product-addr?$ User/Management/product_addr.php
+RewriteRule ^User/Management/product-address?$ User/Management/product_addr.php
 RewriteRule ^User/Management/brand?$ User/Management/brand.php
 RewriteRule ^User/Management/rate?$ User/Management/rate.php
 RewriteRule ^User/Form/form?$ User/Form/form.php

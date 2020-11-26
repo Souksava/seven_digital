@@ -216,7 +216,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/customer_status" class="nav-link">
+                                    <a href="<?php echo $links ?>Management/customer-status" class="nav-link">
                                         <i class="fas fa-stamp nav-icon"></i>
                                         <p>ຂໍ້ມູນສະຖານະລູກຄ້າ</p>
                                     </a>
@@ -256,7 +256,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/product_addr" class="nav-link">
+                                    <a href="<?php echo $links ?>Management/product-address" class="nav-link">
                                         <i class="fas fa-boxes nav-icon"></i>
                                         <p>ຂໍ້ມູນຂໍ້ມູນສາງ</p>
                                     </a>

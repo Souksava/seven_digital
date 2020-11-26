@@ -21,7 +21,7 @@
           ຜູ້ສະໜອງ
       </div>
     </a>
-    <a href="<?php echo $links ?>Management/customer_status" class="m-a">
+    <a href="<?php echo $links ?>Management/customer-status" class="m-a">
       <div class="btn btn-light mainlink">
           ສະຖານະລູກຄ້າ
       </div>
@@ -46,7 +46,7 @@
           ສິນຄ້າ
       </div>
     </a>
-    <a href="<?php echo $links ?>Management/product_addr" class="m-a">
+    <a href="<?php echo $links ?>Management/product-address" class="m-a">
       <div class="btn btn-light mainlink">
           ຂໍ້ມູນສາງ 
       </div>
