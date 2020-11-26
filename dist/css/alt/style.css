@@ -165,6 +165,12 @@ visibility: visible;
 left: 10px;
 }
 
-.pagination a{
+.pagination li a{
     color:black!important;
+    font-weight: 100!important;   
+}
+
+.pagination li button{
+    color:black!important;
+    font-weight: 100!important; 
 }

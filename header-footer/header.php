@@ -254,6 +254,30 @@
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $links ?>Management/product_addr" class="nav-link">
+                                        <i class="fas fa-boxes nav-icon"></i>
+                                        <p>ຂໍ້ມູນຂໍ້ມູນສາງ</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $links ?>Management/brand" class="nav-link">
+                                        <i class="fas fa-boxes nav-icon"></i>
+                                        <p>ຂໍ້ມູນຍີ່ຫໍ້</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?php echo $links ?>Management/rate" class="nav-link">
+                                        <i class="fas fa-boxes nav-icon"></i>
+                                        <p>ຂໍ້ມູນເລດເງີນ</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="<?php echo $links ?>Import/import" class="nav-link">

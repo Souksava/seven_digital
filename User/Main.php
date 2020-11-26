@@ -46,6 +46,21 @@
           ສິນຄ້າ
       </div>
     </a>
+    <a href="<?php echo $links ?>Management/product_addr" class="m-a">
+      <div class="btn btn-light mainlink">
+          ຂໍ້ມູນສາງ 
+      </div>
+    </a>
+    <a href="<?php echo $links ?>Management/brand" class="m-a">
+      <div class="btn btn-light mainlink">
+      ຍີ່ຫໍ້ 
+      </div>
+    </a>
+    <a href="<?php echo $links ?>Management/rate" class="m-a">
+      <div class="btn btn-light mainlink">
+        ເລດເງີນ  
+      </div>
+    </a>
     <a href="" class="m-a">
       <div class="btn btn-light mainlink">
           ນຳເຂົ້າສິນຄ້າ

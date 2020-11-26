@@ -5,11 +5,14 @@ RewriteRule ^User/Main?$ User/Main.php
 RewriteRule ^User/Management/auther?$ User/Management/auther.php
 RewriteRule ^User/Management/employee?$ User/Management/employee.php
 RewriteRule ^User/Management/supplier?$ User/Management/supplier.php
-RewriteRule ^User/Management/customer_status?$ User/Management/customer_status.php
+RewriteRule ^User/Management/customer-status?$ User/Management/customer_status.php
 RewriteRule ^User/Management/customer?$ User/Management/customer.php
 RewriteRule ^User/Management/category?$ User/Management/category.php
 RewriteRule ^User/Management/unit?$ User/Management/unit.php
 RewriteRule ^User/Management/products?$ User/Management/products.php
+RewriteRule ^User/Management/product-addr?$ User/Management/product_addr.php
+RewriteRule ^User/Management/brand?$ User/Management/brand.php
+RewriteRule ^User/Management/rate?$ User/Management/rate.php
 RewriteRule ^User/Form/form?$ User/Form/form.php
 RewriteRule ^User/Form/formdetail?$ User/Form/formdetail.php
 RewriteRule ^User/Import/import?$ User/Import/import.php

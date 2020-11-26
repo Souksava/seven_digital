@@ -194,6 +194,68 @@
           }
         }
           </script>
+
+<!-- sweetalert -->
+<?php
+  // check if stt_id exist
+  if(isset($_GET['sttid'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດສະຖານະລູກຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    </script>';
+  }
+    // check if stt_name exist
+    if(isset($_GET['sttname'])=='same'){
+      echo'<script type="text/javascript">
+      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ສະຖານະລູກຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+      </script>';
+    }
+  //check save
+  if(isset($_GET['save'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['save2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+    // check if stt_name_update exist
+    if(isset($_GET['sttname'])=='same'){
+      echo'<script type="text/javascript">
+      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ສະຖານະລູກຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+      </script>';
+    }
+  //check update
+  if(isset($_GET['update'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['update2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  // check if customer_status_id exist in customer
+  if(isset($_GET['delete'])=='warning'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນຜູ້ສະໜອງນີ້ໄ້ດເນື່ອງຈາກລະຫັດຜູ້ສະໜອງນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນັບສະຕ໋ອກ", "error");
+    </script>';
+  }
+  // check delete
+  if(isset($_GET['del'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['del2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+?>
+
  <?php
     include ("../../header-footer/footer.php");
   ?>

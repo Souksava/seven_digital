@@ -27,13 +27,6 @@
                         <div class="modal-body">
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດປະເພດສິນຄ້າ</label>
-                                    <input type="text" name="cate_id" id="cate_id" placeholder="ລະຫັດປະເພດສິນຄ້າ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ປະເພດສິນຄ້າ</label>
                                     <input type="text" name="cate_name" id="cate_name" placeholder="ຊື່ປະເພດສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
@@ -201,6 +194,65 @@ function checkInputsUpdate() {
     }
 }
 </script>
+
+<!-- sweetalert -->
+<?php
+  // check if name exist
+  if(isset($_GET['name'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ປະເພດສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    </script>';
+  }
+  //check save
+  if(isset($_GET['save'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['save2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  // check if name_update exist
+  if(isset($_GET['name_update'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ປະເພດສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    </script>';
+  }
+  //check update
+  if(isset($_GET['update'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['update2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  // check if category_id exist in product
+  if(isset($_GET['delete'])=='warning'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນຜູ້ສະໜອງນີ້ໄ້ດເນື່ອງຈາກລະຫັດຜູ້ສະໜອງນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນສິນຄ້າ", "error");
+    </script>';
+  }
+  // check delete
+  if(isset($_GET['del'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['del2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+?>
+
+
+
+
 <?php
     include ("../../header-footer/footer.php");
   ?>

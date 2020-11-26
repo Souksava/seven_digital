@@ -330,16 +330,105 @@ myformUpdate.addEventListener('submit', (e) => {
 function checkInputsUpdate() {
     const unit_name_updateValue = unit_name_update.value.trim();
     if (unit_name_updateValue === '') {
-        setErrorFor(unit_name_update, 'ກະລຸນາປ້ອນລະຫັດປະເພດສິນຄ້າ');
+        setErrorFor(unit_name_update, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າ');
     } else {
         setSuccessFor(unit_name_update);
     }
     if (unit_name_updateValue !== '') {
-        document.getElementById("formUpdate").action = "unit.php";
+        document.getElementById("formUpdate").action = "products.php";
         document.getElementById("formUpdate").submit();
     }
 }
 </script>
+
+<!-- sweetalert -->
+<?php
+  // check if code exist
+  if(isset($_GET['code'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    </script>';
+  }
+  //check save
+  if(isset($_GET['save'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['save2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  // check if code_update exist
+  if(isset($_GET['code_update'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    </script>';
+  }
+  //check update
+  if(isset($_GET['update'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['update2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  // check if product code exist in stock
+  if(isset($_GET['stock'])=='warning'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນສິນຄ້ານີ້ໄ້ດເນື່ອງຈາກລະຫັດສິນຄ້ານີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນສະຕ໋ອກສິນຄ້າ", "error");
+    </script>';
+  }
+  // check if product code exist in formDetails
+  if(isset($_GET['formdetails'])=='warning'){
+     echo'<script type="text/javascript">
+     swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນສິນຄ້ານີ້ໄ້ດເນື່ອງຈາກລະຫັດສິນຄ້ານີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນລາຍລະອຽດຟອມເບີກ", "error");
+     </script>';
+    }
+// check if product code exist in distribute
+    if(isset($_GET['dist'])=='warning'){
+        echo'<script type="text/javascript">
+        swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນສິນຄ້ານີ້ໄ້ດເນື່ອງຈາກລະຫັດສິນຄ້ານີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນລາຍເບີກຈ່າຍສິນຄ້າ", "error");
+        </script>';
+    }
+    // check if product code exist in product putback stock
+  if(isset($_GET['pps'])=='warning'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນສິນຄ້ານີ້ໄ້ດເນື່ອງຈາກລະຫັດສິນຄ້ານີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນຳສິນຄ້າກັບຄືນ", "error");
+    </script>';
+  }
+    // check if product code exist in check stock
+    if(isset($_GET['check'])=='warning'){
+        echo'<script type="text/javascript">
+        swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນສິນຄ້ານີ້ໄ້ດເນື່ອງຈາກລະຫັດສິນຄ້ານີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນັບສະຕ໋ອກ", "error");
+        </script>';
+      }  
+    // check if product code exist in spare parts
+    if(isset($_GET['spare'])=='warning'){
+        echo'<script type="text/javascript">
+        swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນສິນຄ້ານີ້ໄ້ດເນື່ອງຈາກລະຫັດສິນຄ້ານີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນປ່ຽນອາໄຫຼ່ສິນຄ້າ", "error");
+        </script>';
+      }        
+  // check delete
+  if(isset($_GET['del'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['del2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+?>
+
+
+
+
 <?php
     include ("../../header-footer/footer.php");
   ?>

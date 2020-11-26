@@ -85,6 +85,8 @@
               </div>
           </form>
 
+
+
           <form action="supplier.php" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -99,7 +101,7 @@
                               <div class="row" align="left">
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ຊື່ບໍລິສັດ</label>
-                                      <input type="hidden" name="sup_id_update" id="sup_id_update" placeholder="ລະຫັດຜູ້ສະໜອງ">
+                                      <input type="hidden" name="sup_id2" id="sup_id2" placeholder="ລະຫັດຜູ້ສະໜອງ">
                                       <input type="text" name="company_update" id="company_update" placeholder="ຊື່ຊື່ບໍລິສັດ">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
@@ -173,16 +175,15 @@
             <td>c</td>
             <td>d</td>
             <td>e@gmail.com</td>
-            <td>
-     
+            <td>    
                     <a href="../../image/image.jpeg" target="_blank">
                       <img src="../../image/image.jpeg" class="img-circle elevation-2" alt="" width="30px">
                     </a>
     
             </td>
             <td>
-            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_auther"></a>&nbsp; &nbsp; 
-              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_auther"></a>
+            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_supplier"></a>&nbsp; &nbsp; 
+              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_supplier"></a>
             </td>
         </tr>
       </table>
@@ -298,6 +299,67 @@
           }
         }
           </script>
+
+<!-- sweetalert -->
+<?php
+  // check if sup_id exist
+  if(isset($_GET['id'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດຕຳແໜ່ງນີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    </script>';
+  }
+    // check if company exist
+    if(isset($_GET['company'])=='same'){
+      echo'<script type="text/javascript">
+      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ບໍ່ລິສັດນີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ບໍ່ລິສັດທີ່ແຕກຕ່າງ !!", "info");
+      </script>';
+    }
+  //check save
+  if(isset($_GET['save'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['save2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  //check if company_update exist
+  if(isset($_GET['company'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ບໍ່ລິສັດນີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ບໍ່ລິສັດທີ່ແຕກຕ່າງ !!", "info");
+    </script>';
+  }
+  //check update
+  if(isset($_GET['update'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['update2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  // check if sup_id exist in stocks
+  if(isset($_GET['delete'])=='warning'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນຜູ້ສະໜອງນີ້ໄ້ດເນື່ອງຈາກລະຫັດຜູ້ສະໜອງນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນັບສະຕ໋ອກ", "error");
+    </script>';
+  }
+  // check delete
+  if(isset($_GET['del'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['del2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+?>
  <?php
     include ("../../header-footer/footer.php");
   ?>

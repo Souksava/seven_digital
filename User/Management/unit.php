@@ -201,6 +201,62 @@ function checkInputsUpdate() {
     }
 }
 </script>
+
+<!-- sweetalert -->
+<?php
+  // check if unit_name exist
+  if(isset($_GET['unit'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ຫົວໜ່ວຍສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    </script>';
+  }
+  //check save
+  if(isset($_GET['save'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['save2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  // check if unit_update exist
+  if(isset($_GET['unit'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ຫົວໜ່ວຍສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    </script>';
+  }
+  //check update
+  if(isset($_GET['update'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['update2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ແກ້ໄຂຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+  // check if unit_id exist in product
+  if(isset($_GET['delete'])=='warning'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນຫົວໜ່ວຍນີ້ໄ້ດເນື່ອງຈາກລະຫັດຫົວໜ່ວຍນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນສິນຄ້າ", "error");
+    </script>';
+  }
+  // check delete
+  if(isset($_GET['del'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['del2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    </script>';
+  }
+?>
+
 <?php
     include ("../../header-footer/footer.php");
   ?>
