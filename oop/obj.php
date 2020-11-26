@@ -881,7 +881,7 @@ class obj{
     //ສິນສຸດການຈັດການຂໍ້ມູນຍີ່ຫໍ້ສິນຄ້າ
 
     //ຈັດການຂໍ້ມູນອັດຕາແລກປ່ຽນ
-    public static function select_rate($serach,$page){
+    public static function select_rate($search,$page){
         global $conn;
         global $resultrate;
         $resultrate = mysqli_query($conn,"call rate('$search','$page')");
@@ -908,15 +908,269 @@ class obj{
             }
         }
     }
+    public static function update_rate($rate_id,$rate_buy,$rate_sell){
+        global $conn;
+        $result = mysqli_query($conn,"call update_rate('$rate_id','$rate_buy','$rate_sell')");
+        if(!$result){
+            echo"<script>";
+            echo"window.location.href='rate?update=fail';";
+            echo"</script>";
+        }
+        else{
+            echo"<script>";
+            echo"window.location.href='rate?update2=success';";
+            echo"</script>";
+        }
+    }
+    public static function delete_rate($rate_id){
+        global $conn;
+        $check_stock = mysqli_query($conn,"select * from stocks where rate_id='$rate_id'");
+        if(mysqli_num_rows($check_stock) > 0){
+            echo"<script>";
+            echo"window.location.href='rate?delete=fail';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call delete_rate('$rate_id')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='rate?del=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='rate?del2=success';";
+                echo"</script>";
+            }
+        }
+    }
 
     //ສິ້ນສຸດການຈັດການຂໍ້ມູນອັດຕາແລກປ່ຽນ
+
+    //ຈັດການຂໍ້ມູນສາງ
+    public static function select_pro_adr($search,$page){
+        global $conn;
+        global $result_pro_adr;
+        $result_pro_adr = mysqli_query($conn,"call product_addr('$search','$page')");
+    }
+    public static function insert_pro_addr($addr_name){
+        global $conn;
+        $check_name = mysqli_query($conn,"select * from product_addr where addr_name='$addr_name'");
+        if(mysqli_num_rows($check_name) > 0){
+            echo"<script>";
+            echo"window.location.href='product-address?name=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call insert_product_addr('$addr_name')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='product-address?save=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='product-address?save2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function update_pro_addr($pro_ad,$addr_name){
+        global $conn;
+        $check_name = mysqli_query($conn,"select * from product_addr where addr_name='$addr_name'");
+        if(mysqli_num_rows($check_name) > 0){
+            echo"<script>";
+            echo"window.location.href='product-address?name=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call update_product_addr('$pro_ad','$addr_name')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='product-address?update=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='product-address?update2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function delete_pro_addr($pro_ad){
+        global $conn;
+        $check_stock = mysqli_query($conn,"select * from check_stock where pro_ad='$pro_ad'");
+        if(mysqli_num_rows($check_stock) > 0){
+            echo"<script>";
+            echo"window.location.href='product-address?delete=fail';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call delete_product_addr('$pro_ad')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='product-address?del=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='product-address?del2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    //ສິ້ນສຸດຈັດການຂໍ້ມູນສາງ
+
+
+    //ຈັດການຂໍ້ມູນສິນຄ້າ
+    public static function select_product($search,$page){
+        global $conn;
+        global $resultproduct;
+        global $path;
+        $resultproduct = mysqli_query($conn,"call products('$search','$page')");
+    }
+    public static function insert_product($code,$pro_name,$gen,$cate_id,$unit_id,$brand_id,$qtyalert,$img_path){
+        global $conn;
+        $check_id = mysqli_query($conn,"select * from products where code='$code'");
+        if(mysqli_num_rows($check_id) > 0){
+            echo"<script>";
+            echo"window.location.href='products?code=same';";
+            echo"</script>";
+        }
+        else{
+            if($img_path == ""){//ກວດສອບຄ່າຟາຍຮູບມາວ່າເປັນຄ່າວ່າງ ຫຼື ບໍ່
+                $Pro_image = '';
+            }
+            else{//ຖ້າຄ່າຟາຍຮູບບໍ່ເປັນຄ່າວ່າງໃຫ້ເຮັດວຽກໃນຈຸດນີ້
+                $ext = pathinfo(basename($_FILES['img_path']['name']), PATHINFO_EXTENSION);
+                $new_image_name = 'seven_'.uniqid().".".$ext;
+                $image_path = $path.'image/';
+                $upload_path = $image_path.$new_image_name;
+                move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
+                $Pro_image = $new_image_name;
+            }
+            $result = mysqli_query($conn,"call insert_products('$code','$pro_name','$gen','$cate_id','$unit_id','$brand_id','$qtyalert','$Pro_image')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='products?save=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='products?save2=success';";
+                echo"</script>";
+            }
+        }
+
+    }
+    public static function update_product($code,$pro_name,$gen,$cate_id,$unit_id,$brand_id,$qtyalert,$img_path){
+        global $conn;
+        global $path;
+        $check_id = mysqli_query($conn,"select * from products where code='$code'");
+        if(mysqli_query($check_id) > 0){
+            echo"<script>";
+            echo"window.location.href='products?code=same';";
+            echo"</script>";
+        }
+        else{
+            $get_img = mysqli_query($conn, "select img_path from products where code='$code'");//ດຶງຊື່ຟາຍຮູບພາບໂດຍໃຊ້ໄອດີ
+            $data = mysqli_fetch_array($get_img, MYSQLI_ASSOC);
+            if($img_path == ""){//ກວດສອບຄ່າຟາຍຮູບມາວ່າເປັນຄ່າວ່າງ ຫຼື ບໍ່
+                $Pro_image = $data['img_path'];
+            }
+            else{//ຖ້າຄ່າຟາຍຮູບບໍ່ເປັນຄ່າວ່າງໃຫ້ເຮັດວຽກໃນຈຸດນີ້
+                $ext = pathinfo(basename($_FILES['img_path']['name']), PATHINFO_EXTENSION);
+                $new_image_name = 'seven_'.uniqid().".".$ext;
+                $image_path = $path.'image/';
+                $upload_path = $image_path.$new_image_name;
+                move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
+                $Pro_image = $new_image_name;
+                $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+                if(file_exists($path2) && !empty($data['img_path'])){
+                    unlink($path2);
+                    
+                }
+            }
+            $result = mysqli_query($conn,"call update_products('$code','$pro_name','$gen','$cate_id','$unit_id','$brand_id','$qtyalert','$Pro_image');");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='products?save=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='products?save2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function delete_product($code){
+        global $conn;
+        global $path;
+        $check_stocks = mysqli_query($conn,"select * from stocks where code='$code'");//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງສະຕ໋ອກ
+        $check_formdetail = mysqli_query($conn,"select * from formdetail where code='$code'");//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງລາຍລະອຽດຟອມ
+        $check_distribute = mysqli_query($conn,"select * from distribute where code='$code'");//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງເບີກຈ່າຍສິນຄ້າ
+        $check_pps = mysqli_query($conn,"select * from product_putback_stock where code='$code'");//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງສິນຄ້າເບີກຈ່າຍແລ້ວນຳກັບຄືນ
+        $check_stock = mysqli_query($conn,"select * from check_stock where code='$code'");//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງນັບສະຕ໋ອກ
+        $check_spare = mysqli_query($conn,"select * from spare_part where code='$code'");//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງປ່ຽນອາໄຫຼ່ສິນຄ້າ
+        if(mysqli_num_rows($check_stocks) > 0){//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງສະຕ໋ອກ
+            echo"<script>";
+            echo"window.location.href='products?stock=fail';";
+            echo"</script>";
+        }
+        else if(mysqli_num_rows($check_formdetail) > 0) {//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງລາຍລະອຽດຟອມ
+            echo"<script>";
+            echo"window.location.href='products?formdetail=fail';";
+            echo"</script>";
+        }
+        else if(mysqli_num_rows($check_distribute) > 0) {//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງເບີກຈ່າຍສິນຄ້າ
+            echo"<script>";
+            echo"window.location.href='products?dis=fail';";
+            echo"</script>";
+        }
+        else if(mysqli_num_rows($check_pps) > 0) {//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງສິນຄ້າເບີກຈ່າຍແລ້ວນຳກັບຄືນ
+            echo"<script>";
+            echo"window.location.href='products?pps=fail';";
+            echo"</script>";
+        }
+        else if(mysqli_num_rows($check_stock) > 0) {//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງນັບສະຕ໋ອກ
+            echo"<script>";
+            echo"window.location.href='products?check=fail';";
+            echo"</script>";
+        }
+        else if(mysqli_num_rows($check_spare) > 0) {//ກວດສອບລະຫັດສິນຄ້າຢູ່ໃນຕາຕະລາງປ່ຽນອາໄຫຼ່ສິນຄ້າ
+            echo"<script>";
+            echo"window.location.href='products?spare=fail';";
+            echo"</script>";
+        }
+        else{
+            $get_img = mysqli_query($conn, "select img_path from products where code='$code'");//ດຶງຊື່ຟາຍຮູບພາບໂດຍໃຊ້ໄອດີ
+            $data = mysqli_fetch_array($get_img, MYSQLI_ASSOC);
+            $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+            if(file_exists($path2) && !empty($data['img_path'])){
+                unlink($path2);
+            }
+            $result = mysqli_query($conn,"call delete_products('$code')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='products?del=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='products?del2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    //ສິ້ນສຸດການຈັດການຂໍ້ມູນສິນຄ້າ
 }
 $obj = new obj();
-$obj->delete_brand('1');
-// $obj->select_brand('%%','0');
-// while($row = mysqli_fetch_array($resultbrand,MYSQLI_ASSOC)){
-//     echo $row['brand_id']." ";
-//     echo $row['brand_name']."<br>";
+$obj->delete_product('1');
+// $obj->select_product('%%','0');
+// while($row = mysqli_fetch_array($resultproduct,MYSQLI_ASSOC)){
+//     echo $row['code']." ";
+//     echo $row['pro_name']."<br>";
 // }
 
 ?>
