@@ -97,9 +97,9 @@
             <td>c</td>
             <td>
                 <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_auther"></a>&nbsp; &nbsp;
+                    class="fa fa-pen toolcolor btnUpdate_cat"></a>&nbsp; &nbsp;
                 <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_auther"></a>
+                    class="fa fa-trash toolcolor btnDelete_cat"></a>
             </td>
         </tr>
     </table>

@@ -69,11 +69,14 @@
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ຮູບພາບ</label>
-                                      <input type="file" name="img_path" id="img_path">
+                                      <input type="file" name="img_path" id="img_path" onchange="loadFile(event)">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
+                                  <div class="col-md-12 col-sm-6 form-control2">
+                                    <img src="../../image/camera.jpg" id="output" width="100%" height="250">
+                                </div>
                               </div>
                           </div>
                           <div class="modal-footer">
@@ -101,7 +104,7 @@
                               <div class="row" align="left">
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ຊື່ບໍລິສັດ</label>
-                                      <input type="hidden" name="sup_id2" id="sup_id2" placeholder="ລະຫັດຜູ້ສະໜອງ">
+                                      <input type="hidden" name="sup_id_update" id="sup_id_update" placeholder="ລະຫັດຜູ້ສະໜອງ">
                                       <input type="text" name="company_update" id="company_update" placeholder="ຊື່ຊື່ບໍລິສັດ">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
@@ -137,11 +140,14 @@
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ຮູບພາບ</label>
-                                      <input type="file" name="img_path_update" id="img_path_update">
+                                      <input type="file" name="img_path_update" id="img_path_update" onchange="loadFile(event)">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
+                                  <div class="col-md-12 col-sm-6 form-control2">
+                                    <img src="../../image/camera.jpg" id="output2" width="100%" height="250">
+                                </div>
                               </div>
                           </div>
                           <div class="modal-footer">
@@ -182,8 +188,8 @@
     
             </td>
             <td>
-            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_supplier"></a>&nbsp; &nbsp; 
-              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_supplier"></a>
+            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_sup"></a>&nbsp; &nbsp; 
+              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_sup"></a>
             </td>
         </tr>
       </table>
@@ -326,7 +332,7 @@
     </script>';
   }
   //check if company_update exist
-  if(isset($_GET['company'])=='same'){
+  if(isset($_GET['company_update'])=='same'){
     echo'<script type="text/javascript">
     swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ບໍ່ລິສັດນີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ບໍ່ລິສັດທີ່ແຕກຕ່າງ !!", "info");
     </script>';
@@ -363,3 +369,15 @@
  <?php
     include ("../../header-footer/footer.php");
   ?>
+
+  <!-- script preview image before upload -->
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+
+</script>

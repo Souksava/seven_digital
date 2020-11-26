@@ -239,7 +239,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບ</label>
-                                    <input type="file" name="img_path2" id="img_path2 onchange="loadFile(event)">
+                                    <input type="file" name="img_path2" id="img_path2" onchange="loadFile(event)">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -271,9 +271,8 @@
                       </button>
                   </div>
                   <div class="modal-body" align="center">
-                          <input type="hidden" name="del_id" id="del_id">
-                          ທ່ານຕ້ອງການລົບຂໍ້ມູນ ຫຼື ບໍ່ ?
-              
+                          <input type="hidden" name="id" id="id">
+                          ທ່ານຕ້ອງການລົບຂໍ້ມູນ ຫຼື ບໍ່ ?           
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
@@ -406,7 +405,7 @@
           else{
             setSuccessFor(status);
           }
-          if(emp_idValue !== '' || emp_nameValue !== '' || genderValue !== '' || telValue !== '' || auther_idValue !== '' || statusValue !== ''){
+          if(emp_idValue !== '' && emp_nameValue !== '' && genderValue !== '' && telValue !== '' && auther_idValue !== '' && statusValue !== ''){
             document.getElementById("form1").action = "employee.php";
             document.getElementById("form1").submit();
           }

@@ -63,6 +63,7 @@
                 $('#auther_name2').val(data[1]);
 
           });
+// update employee
           $('.btnUpdate_emp').on('click', function(){
               $('#exampleModalUpdate').modal('show');
                 $tr = $(this).closest('tr');
@@ -83,13 +84,162 @@
                 $('#password2').val(data[9]);
                 $('#password_cf2').val(data[9]);
                 $('#status2').val(data[10]);
+          });
+// update supplier
+          $('.btnUpdate_sup').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
 
+                console.log(data); 
 
+                $('#sup_id_update').val(data[0]);
+                $('#company_update').val(data[1]);
+                $('#tel_update').val(data[2]);
+                $('#fax_update').val(data[3]);
+                $('#address_update').val(data[4]);
+                $('#email_update').val(data[5]);
+                $('#img_path_update').val(data[6]);
+          });
+// update customer status
+          $('.btnUpdate_customer_status').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
 
+                console.log(data); 
+
+                $('#stt_id_update').val(data[0]);
+                $('#stt_name_update').val(data[1]);
+          });
+// update customer status
+          $('.btnUpdate_customer_status').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#stt_id_update').val(data[0]);
+                $('#stt_name_update').val(data[1]);
+          });
+// update customer
+          $('.btnUpdate_customer').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#cus_id_update').val(data[0]);
+                $('#company_update').val(data[1]);
+                $('#tel_update').val(data[2]);
+                $('#address_update').val(data[3]);
+                $('#email_update').val(data[4]);
+                $('#stt_id_update').val(data[5]);
           });
 
+          // update category
+          $('.btnUpdate_cat').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
 
-          // Delete Modal
+                console.log(data); 
+
+                $('#cate_id_update').val(data[0]);
+                $('#cate_name_update').val(data[1]);
+          });
+
+                    // update unit
+                    $('.btnUpdate_unit').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#unit_id_update').val(data[0]);
+                $('#unit_name_update').val(data[1]);
+          });
+
+                              // update product
+                              $('.btnUpdate_prod').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#code_update').val(data[0]);
+                $('#pro_name_update').val(data[1]);
+                $('#gen_update').val(data[2]);
+                $('#cate_id_update').val(data[3]);
+                $('#unit_id_update').val(data[4]);
+                $('#brand_id_update').val(data[5]);
+                $('#qtyalert_update').val(data[6]);
+                $('#img_path_update').val(data[7]);
+          });
+
+          
+// update product address
+              $('.btnUpdate_addr').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#pro_ad_update').val(data[0]);
+                $('#addr_name_update').val(data[1]);
+          });
+
+// update brand
+               $('.btnUpdate_brand').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#brand_id_update').val(data[0]);
+                $('#brand_name_update').val(data[1]);
+          });
+// update rate
+$('.btnUpdate_rate').on('click', function(){
+              $('#exampleModalUpdate').modal('show');
+                $tr = $(this).closest('tr');
+                var data = $tr.children("td").map(function() {
+                  return $(this).text();
+                }).get();
+
+                console.log(data); 
+
+                $('#rate_id_update').val(data[0]);
+                $('#rate_buy_update').val(data[1]);
+                $('#rate_sell_update').val(data[2]);
+          });          
+
+          // Delete Modal________________________________________________________________________________________________
+          // delete auther
           $('.btnDelete_auther').on('click', function(){
                 $('#exampleModalDelete').modal('show');
                   $tr = $(this).closest('tr');
@@ -101,6 +251,135 @@
 
                   $('#del_id').val(data[0]);
           });
+          // delete employee
+          $('.btnDelete_emp').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });
+                    // delete supplier
+                    $('.btnDelete_sup').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });
+
+                              // delete customer_status
+                              $('.btnDelete_customer_status').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });
+
+                              // delete customer
+                              $('.btnDelete_cust').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });
+
+
+                                        // delete category
+                                        $('.btnDelete_cat').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });
+
+                                                  // delete unit
+                                                  $('.btnDelete_unit').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });
+
+// delete product
+                $('.btnDelete_prod').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });
+
+
+// delete product address
+                $('.btnDelete_addr').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });
+
+          // delete brand
+          $('.btnDelete_brand').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });
+          // delete rate
+          $('.btnDelete_rate').on('click', function(){
+                $('#exampleModalDelete').modal('show');
+                  $tr = $(this).closest('tr');
+                  var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                  }).get();
+
+                  console.log(data); 
+
+                  $('#id').val(data[0]);
+          });          
       });
   </script>
 </body>
