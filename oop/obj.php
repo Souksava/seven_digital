@@ -4,11 +4,11 @@ class obj{
     public $conn;
     public $search;
     //ຈັດການຂໍ້ມູນຕຳແໜ່ງ
-    public static function select_auther($search){
+    public static function select_auther($search,$page){
         // method ຂອງການດຶງຂໍ້ມູນຕຳແໜ່ງມາສະແດງ
         global $resultauther;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
-        $resultauther = mysqli_query($conn,"call auther('$search');");
+        $resultauther = mysqli_query($conn,"call auther('$search','$page');");
     }
     public static function insert_auther($auther_id,$auther_name){
         global $conn;
@@ -88,10 +88,10 @@ class obj{
     //ສິ້ນສຸດການຈັດການຂໍ້ມູນຕຳແໜ່ງ
 
     // ຈັດການຂໍ້ມູນພະນັກງານ
-    public static function select_employee($search){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+    public static function select_employee($search,$page){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
         global $conn;
         global $resultemployee; 
-        $resultemployee = mysqli_query($conn,"call employee('$search')");
+        $resultemployee = mysqli_query($conn,"call employee('$search','$page')");
     }
     public static function insert_employee($emp_id,$name,$surname,$gender,$tel,$address,$email,$pass,$auther_id,$sttid,$img_path){//method ທີ່ໃຊ້ໃນການໃນການບັນທຶກຂໍ້ມູນພະນັກງານ
         global $conn;
@@ -348,10 +348,10 @@ class obj{
 
 
     //ຈັດການຂໍ້ມູນຜູ້ສະໜອງ
-    public static function select_supplier($search){//method ດຶງຂໍ້ມູນຜູ້ສະໜອງມາສະແດງ
+    public static function select_supplier($search,$page){//method ດຶງຂໍ້ມູນຜູ້ສະໜອງມາສະແດງ
         global $conn;
         global $resultsupplier;
-        $resultsupplier = mysqli_query($conn,"call supplier('$search')");
+        $resultsupplier = mysqli_query($conn,"call supplier('$search','$page')");
     }
     public static function insert_supplier($sup_id,$company,$tel,$fax,$address,$email,$img_path){
         global $conn;
@@ -501,11 +501,11 @@ class obj{
      //ສິ້ນສຸດການຈັດການຂໍ້ມູນຜູ້ສະໜອງ
 
      //ຈັດການຂໍ້ມູນສະຖານະລູກຄ້າ
-    public static function select_customer_status($search){
+    public static function select_customer_status($search,$page){
         // method ຂອງການດຶງຂໍ້ມູນສະຖານະມາສະແດງ
         global $result_customer_status;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
-        $result_customer_status = mysqli_query($conn,"call customer_status('$search');");
+        $result_customer_status = mysqli_query($conn,"call customer_status('$search','$page');");
     }
     public static function insert_customer_status($stt_id,$stt_name){//method ການບັນທຶກຂໍ້ມູນ
         global $conn;
@@ -585,10 +585,10 @@ class obj{
     //ສິນສຸດການຈັດການສະຖານະລູກຄ້າ
 
     //ຈັດການຂໍ້ມູນລູກຄ້າ
-    public static function select_customer($search){
+    public static function select_customer($search,$page){
         global $conn;
         global $resultcustomer;
-        $resultcustomer = mysqli_query($conn,"call customer('$search')");
+        $resultcustomer = mysqli_query($conn,"call customer('$search','$page')");
     }
     public static function insert_customer($cus_id,$company,$tel,$address,$email,$stt_id){
         global $conn;
@@ -655,13 +655,268 @@ class obj{
         }
     }
     //ສິ້ນສຸດການຈັດການຂໍ້ມູນລູກຄ້າ
+
+    //ຈັດການຂໍ້ມູນປະເພດສິນຄ້າ
+    public static function select_category($search,$page){
+        global $conn;
+        global $resultcategory;
+        $resultcategory = mysqli_query($conn,"call category('$search','$page')");
+    }
+    public static function insert_category($cate_name){
+        global $conn;
+        $check_id = mysqli_query($conn,"select * from category where cate_name='$cate_name'");
+        if(mysqli_num_rows($check_id) > 0){
+            echo"<script>";
+            echo"window.location.href='category?name=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call insert_category('$cate_name')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='category?save=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='category?save2=success';";
+                echo"</script>";
+            }
+        }
+    }   
+    public static function update_category($cate_id,$cate_name){
+        global $conn;
+        $check_id = mysqli_query($conn,"select * from category where cate_name='$cate_name'");
+        if(mysqli_num_rows($check_id) > 0){
+            echo"<script>";
+            echo"window.location.href='category?name=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call update_category('$cate_id','$cate_name')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='category?update=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='category?update2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function delete_category($cate_id){
+        global $conn;
+        $check_product = mysqli_query($conn,"select * from products where cate_id='$cate_id'");
+        if(mysqli_num_rows($check_product) > 0){
+            echo"<script>";
+            echo"window.location.href='category?delete=fail';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call delete_category('$cate_id')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='category?del=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='category?del2=success';";
+                echo"</script>";
+            }
+        }
+    }
+
+    //ສິ້ນສຸດການຈັດການຂໍ້ມູນປະເພດສິນຄ້າ
+
+
+    //ຈັດການຂໍ້ມູນຫົວໜ່ວຍສິນຄ້າ
+    public static function select_unit($search,$page){
+        global $conn;
+        global $resultunit;
+        $resultunit = mysqli_query($conn,"call unit('$search','$page')");
+    }
+    public static function insert_unit($unit_name){
+        global $conn;
+        $check_name = mysqli_query($conn,"select * from unit where unit_name='$unit_name'");
+        if(mysqli_num_rows($check_name) > 0){
+            echo"<script>";
+            echo"window.location.href='unit?name=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call insert_unit('$unit_name');");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='unit?save=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='unit?save2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function update_unit($unit_id,$unit_name){
+        global $conn;
+        $check_name = mysqli_query($conn,"select * from unit where unit_name='$unit_name'");
+        if(mysqli_num_rows($check_name) > 0){
+            echo"<script>";
+            echo"window.location.href='unit?name=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call update_unit('$unit_id','$unit_name');");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='unit?update=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='unit?update2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function delete_unit($unit_id){
+        global $conn;
+        $check_product = mysqli_query($conn,"select * from products where unit_id='$unit_id'");
+        if(mysqli_num_rows($check_product) > 0){
+            echo"<script>";
+            echo"window.location.href='unit?delete=fail';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call delete_unit('$unit_id')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='unit?del=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='unit?del2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    //ສິນສຸດການຈັດການຂໍ້ມູນຫົວໜ່ວຍສິນຄ້າ
+
+    //ຈັດການຂໍ້ມູນຍີ່ຫໍ້ສິນຄ້າ
+    public static function select_brand($search,$page){
+        global $conn;
+        global $resultbrand;
+        $resultbrand = mysqli_query($conn,"call brand('$search','$page')");
+    }
+    public static function insert_brand($brand_name){
+        global $conn;
+        $check_name = mysqli_query($conn,"select * from brand where brand_name='$brand_name'");
+        if(mysqli_num_rows($check_name) > 0){
+            echo"<script>";
+            echo"window.location.href='brand?name=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call insert_brand('$brand_name');");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='brand?save=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='brand?save2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function update_brand($brand_id,$brand_name){
+        global $conn;
+        $check_name = mysqli_query($conn,"select * from brand where brand_name='$brand_name'");
+        if(mysqli_num_rows($check_name) > 0){
+            echo"<script>";
+            echo"window.location.href='brand?name=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call update_brand('$brand_id','$brand_name')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='brand?update=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='brand?update2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function delete_brand($brand_id){
+        global $conn;
+        $check_product = mysqli_query($conn,"select * from products where brand_id='$brand_id'");
+        if(mysqli_num_rows($check_product) > 0){
+            echo"<script>";
+            echo"window.location.href='brand?delete=fail';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call delete_brand('$brand_id')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='brand?del=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='brand?del2=success';";
+                echo"</script>";
+            }
+        }
+    }
+    //ສິນສຸດການຈັດການຂໍ້ມູນຍີ່ຫໍ້ສິນຄ້າ
+
+    //ຈັດການຂໍ້ມູນອັດຕາແລກປ່ຽນ
+    public static function select_rate($serach,$page){
+        global $conn;
+        global $resultrate;
+        $resultrate = mysqli_query($conn,"call rate('$search','$page')");
+    }
+    public static function insert_rate($rate_id,$rate_buy,$rate_sell){
+        global $conn;
+        $check_id = mysqli_query($conn,"select * from rate where rate_id='$rate_id'");
+        if(mysqli_num_rows($check_id) > 0){
+            echo"<script>";
+            echo"window.location.href='rate?rate=same';";
+            echo"</script>";
+        }
+        else{
+            $result = mysqli_query($conn,"call insert_rate('$rate_id','$rate_buy','$rate_sell')");
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='rate?save=fail';";
+                echo"</script>";
+            }
+            else{
+                echo"<script>";
+                echo"window.location.href='rate?save2=success';";
+                echo"</script>";
+            }
+        }
+    }
+
+    //ສິ້ນສຸດການຈັດການຂໍ້ມູນອັດຕາແລກປ່ຽນ
 }
 $obj = new obj();
-$obj->delete_customer('1');
-// $obj->select_customer('%%');
-// while($row = mysqli_fetch_array($resultcustomer,MYSQLI_ASSOC)){
-//     echo $row['cus_id'];
-//     echo $row['company']."<br>";
+$obj->delete_brand('1');
+// $obj->select_brand('%%','0');
+// while($row = mysqli_fetch_array($resultbrand,MYSQLI_ASSOC)){
+//     echo $row['brand_id']." ";
+//     echo $row['brand_name']."<br>";
 // }
 
 ?>
