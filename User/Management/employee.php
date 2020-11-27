@@ -239,7 +239,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບ</label>
-                                    <input type="file" name="img_path2" id="img_path" onchange="loadFile2(event)">
+                                    <input type="file" name="img_path2" id="img_path2" onchange="loadFile2(event)">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -317,6 +317,7 @@
             <td>D23dSDf24f23fsnfls</td>
             <td style="display:none;">0001</td>
             <td>ຜູ້ເບີກສິນຄ້າ</td>
+            <td style="display:none;">../../image/logo.png</td>
             <td>
 
                 <a href="../../image/image.jpeg" target="_blank">

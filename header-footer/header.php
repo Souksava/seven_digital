@@ -307,7 +307,7 @@
                                 <li class="nav-item">
                                     <a href="<?php echo $links ?>" class="nav-link">
                                         <i class="fas fa-vote-yea nav-icon"></i>
-                                        <p>ອະນຸມັດຟອມເບີກສິນຄ້າ</p>
+                                        <p>ອະນຸມັດຟອມເບີກສິນຄ້າ</p><sup class="badge badge-danger">3</sup>
                                     </a>
                                 </li>
                             </ul>

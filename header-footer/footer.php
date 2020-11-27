@@ -84,6 +84,7 @@
                 $('#password2').val(data[9]);
                 $('#password_cf2').val(data[9]);
                 $('#status2').val(data[10]);
+                document.getElementById("output2").src = (data[12]);
           });
 // update supplier
           $('.btnUpdate_sup').on('click', function(){
@@ -162,7 +163,7 @@
           });
 
                     // update unit
-                    $('.btnUpdate_unit').on('click', function(){
+          $('.btnUpdate_unit').on('click', function(){
               $('#exampleModalUpdate').modal('show');
                 $tr = $(this).closest('tr');
                 var data = $tr.children("td").map(function() {
