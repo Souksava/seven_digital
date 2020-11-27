@@ -84,6 +84,7 @@
                 $('#password2').val(data[9]);
                 $('#password_cf2').val(data[9]);
                 $('#status2').val(data[10]);
+                $('#img_path2').src(data[12]);
           });
 // update supplier
           $('.btnUpdate_sup').on('click', function(){

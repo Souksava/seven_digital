@@ -239,13 +239,14 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບ</label>
-                                    <input type="file" name="img_path2" id="img_path2" onchange="loadFile(event)">
+                                    <input type="file" name="img_path2" id="img_path2" onchange="loadFile2(event)">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <img src="../../image/camera.jpg" id="img_path2" width="100%" height="250">
+                                    <img src="../../image/camera.jpg" id="output2" width="100%" height="250">
+
                                 </div>
                             </div>
                         </div>
@@ -317,7 +318,7 @@
             <td>D23dSDf24f23fsnfls</td>
             <td style="display:none;">0001</td>
             <td>ຜູ້ເບີກສິນຄ້າ</td>
-            <td style="display:none;">logo.png</td>
+            <td style="display:none;">../../image/logo.png</td>
             <td>
 
                 <a href="../../image/image.jpeg" target="_blank">
@@ -581,6 +582,13 @@
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
       URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+  var loadFile2 = function(event) {
+    var output2 = document.getElementById('output2');
+    output2.src = URL.createObjectURL(event.target.files[0]);
+    output2.onload = function() {
+      URL.revokeObjectURL(output2.src) // free memory
     }
   };
 </script>
