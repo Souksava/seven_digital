@@ -245,7 +245,7 @@
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <img src="../../image/camera.jpg" id="output" width="100%" height="250">
+                                    <img src="../../image/camera.jpg" id="img_path2" width="100%" height="250">
                                 </div>
                             </div>
                         </div>
@@ -317,6 +317,7 @@
             <td>D23dSDf24f23fsnfls</td>
             <td style="display:none;">0001</td>
             <td>ຜູ້ເບີກສິນຄ້າ</td>
+            <td style="display:none;">logo.png</td>
             <td>
 
                 <a href="../../image/image.jpeg" target="_blank">

@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບສິນຄ້າ</label>
-                                    <input type="file" name="img_path_update" id="img_path_update" placeholder="ຮູບພາບສິນຄ້າ" >
+                                    <input type="file" name="img_path_update" id="img_path_update" placeholder="ຮູບພາບສິນຄ້າ" onchange="loadFile(event2)">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -432,6 +432,14 @@ function checkInputsUpdate() {
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
       URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+
+  var loadFile2 = function(event2) {
+    var output2 = document.getElementById('output');
+    output2.src = URL.createObjectURL(event2.target.files[0]);
+    output2.onload2 = function() {
+      URL.revokeObjectURL(output2.src) // free memory
     }
   };
 </script>
