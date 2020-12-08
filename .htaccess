@@ -13,6 +13,15 @@ RewriteRule ^User/Management/products?$ User/Management/products.php
 RewriteRule ^User/Management/product-address?$ User/Management/product_addr.php
 RewriteRule ^User/Management/brand?$ User/Management/brand.php
 RewriteRule ^User/Management/rate?$ User/Management/rate.php
+RewriteRule ^User/Management/report-employee?$ User/Management/report_employee.php
+RewriteRule ^User/Management/report-customer?$ User/Management/report_customer.php
+RewriteRule ^User/Management/report-supplier?$ User/Management/report_supplier.php
+RewriteRule ^User/Management/report-product?$ User/Management/report_product.php
+RewriteRule ^User/Management/report-stock?$ User/Management/report_stock.php
+RewriteRule ^User/Management/report-check-stock?$ User/Management/report_check_stock.php
+RewriteRule ^User/Management/report-warehouse?$ User/Management/report_warehouse.php
+RewriteRule ^User/Management/report-distribute?$ User/Management/report_distribute.php
+RewriteRule ^User/Management/report-product-putback?$ User/Management/report_product_putback.php
 RewriteRule ^User/Form/form?$ User/Form/form.php
 RewriteRule ^User/Form/formdetail?$ User/Form/formdetail.php
 RewriteRule ^User/Import/import?$ User/Import/import.php

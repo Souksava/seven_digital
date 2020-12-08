@@ -246,6 +246,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <img src="../../image/camera.jpg" id="output2" width="100%" height="250">
+
                                 </div>
                             </div>
                         </div>

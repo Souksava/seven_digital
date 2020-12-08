@@ -177,3 +177,29 @@ left: 10px;
 sup{
     color: red;
 }
+
+.table-responsive{
+    overflow-y: scroll; 
+    height:700px;
+}
+
+.table-responsive2{
+    overflow-y: scroll; 
+    height:500px;
+}
+
+.table-responsive th{
+    position: sticky!important;
+    top: 0!important;
+    background-color: white;
+    border-top: 1px;
+}
+
+.table-responsive2 th{
+    position: sticky!important;
+    top: 0!important;
+    background-color: white;
+    border-top: 1px;
+}
+
+

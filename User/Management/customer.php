@@ -138,6 +138,7 @@
           </form>
         </div>
     </div>
+    
     <div class="clearfix"></div><br>
     <div class="table-responsive">
       <table class="table font12" style="width: 1500px;">
@@ -159,8 +160,8 @@
             <td>1</td>
             <td>c</td>
             <td>
-            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_customer"></a>&nbsp; &nbsp; 
-              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_customer"></a>
+            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cust"></a>&nbsp; &nbsp; 
+              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_cust"></a>
             </td>
         </tr>
       </table>
@@ -179,7 +180,7 @@
 
   </div>
 
-  <form action="customer_status.php" id="formDelete" method="POST" enctype="multipart/form-data">
+  <form action="customer.php" id="formDelete" method="POST" enctype="multipart/form-data">
       <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
