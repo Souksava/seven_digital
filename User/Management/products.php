@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບສິນຄ້າ</label>
-                                    <input type="file" name="img_path_update" id="img_path_update" placeholder="ຮູບພາບສິນຄ້າ" onchange="loadFile(event2)">
+                                    <input type="file" name="img_path_update" id="img_path_update" placeholder="ຮູບພາບສິນຄ້າ" onchange="loadFile2(event)">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -202,6 +202,7 @@
             <td>c</td>
             <td>c</td>
             <td>c</td>
+            <td style="display:none;">../../image/image.jpeg</td>
             <td>
 
                 <a href="../../image/image.jpeg" target="_blank">
@@ -224,6 +225,7 @@
             <td>c</td>
             <td>c</td>
             <td>c</td>
+            <td style="display:none;">../../image/image.jpeg</td>
             <td>
 
                 <a href="../../image/image.jpeg" target="_blank">
@@ -435,10 +437,10 @@ function checkInputsUpdate() {
     }
   };
 
-  var loadFile2 = function(event2) {
-    var output2 = document.getElementById('output');
-    output2.src = URL.createObjectURL(event2.target.files[0]);
-    output2.onload2 = function() {
+  var loadFile2 = function(event) {
+    var output2 = document.getElementById('output2');
+    output2.src = URL.createObjectURL(event.target.files[0]);
+    output2.onload = function() {
       URL.revokeObjectURL(output2.src) // free memory
     }
   };

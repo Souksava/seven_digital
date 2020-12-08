@@ -5,31 +5,27 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 ?>
-<div style="width: 100%;">
-    <div style="width: 48%; float: left;">
-        <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
-    </div>
-    <div style="width: 46%; float: right;" align="right">
 
-    <button type="button" class="btn btn-sm btn-primary">Word </button>
-    <button type="button" class="btn btn-sm btn-success">Excel</button>
-    <button type="button" class="btn btn-sm btn-danger"> &nbsp; PDF &nbsp;</button> <br><br>
-    </div>
+<div class="card">
+  <div class="card-header">
+  <?php echo $title ?>
+  </div>
+  <div class="card-body">
+    <div class="row">
+    <div class="col-md-6">
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 
-
+  </div>
+  <div class="col-md-6 text">
+    <p class="card-text text-right">With supporting text below as a natural lead-in to additional content.</p>
+  </div>
+  </div>
+  <br>
+  <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
 </div>
 
-<div class="clearfix">
-<!-- button search report -->
-<form action="print_employee.php" method="POST" class="form-inline ml-3">
-    <div class="input-group input-group-sm">                                         
-        <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search" >  
-        <div class="input-group-append"> 
-        <button type="submit" class="btn btn-sm btn-outline-warning">&nbsp;&nbsp; ສະແດງລາຍການ &nbsp;&nbsp;</button>
-        </div>
-    </div>
-</form>
-</div><br>
+
 
 <div class="table-responsive">
 
@@ -99,19 +95,7 @@
     </table>
 </div>
 
-<!-- pagination -->
-<nav aria-label="Page navigation example">
-<ul class="pagination">
-<?php 
 
-?>
-    <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-  </ul>
-</nav>
 
 </div>
 

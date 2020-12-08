@@ -1,5 +1,5 @@
 <?php
-  $title = "ລາຍງານສິນຄ້າ";
+  $title = "ລາຍງານສິນຄ້າເບີກຈ່າຍແລ້ວນຳກັບເຂົ້າສາງຄືນ";
   $path="../../";
   $links = "../";
   $session_path = "../../";
@@ -22,6 +22,8 @@
     <!-- button search report -->
     <form class="form-inline ml-3">
         <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="date" aria-label="Search">
+        <input class="form-control form-control-navbar" type="date"aria-label="Search">
             <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
             <div class="input-group-append">
                 <button type="button" class="btn btn-sm btn-outline-warning">&nbsp;&nbsp; ສະແດງລາຍການ
@@ -39,13 +41,17 @@
 
         <tr>
             <th>ລະຫັດສິນຄ້າ</th>
-            <th>ຊື່ສິນຄ້າ</th>
-            <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-            <th>ລະຫັດປະເພດສິນຄ້າ</th>
-            <th>ລະຫັດຫົວໜວ່ຍສິນຄ້າ</th>
-            <th>ລະຫັດຍີ່ຫໍ້</th>
-            <th>ເງື່ອນໄຂການສັ່ງຊື້</th>
-            <th>ຮູບພາບສິນຄ້າ</th>
+            <th>ລະຫັດນຳສິນຄ້າກັບຄືນ</th>
+            <th>ລະຫັດສິນຄ້າ</th>
+            <th>ໝາຍເລກ Serial Number</th>
+            <th>ຈຳນວນ</th>
+            <th>ລະຫັດພະນັກງານຜູ້ຮັບເຄື່ອງ</th>
+            <th>ລະຫັດລູກຄ້າ</th>
+            <th>ເລກທີຟອມເບີກ</th>
+            <th>ວັນທີນຳສິນຄ້າກັບຄືນ</th>
+            <th>ເວລານຳສິນຄ້າກັບຄືນ</th>
+            <th>ໝາຍເຫດ</th>
+
         </tr>
         <tr>
             <td>1</td>
@@ -55,6 +61,9 @@
             <td>1</td>
             <td>c</td>
             <td>1</td>
+            <td>c</td>
+            <td>1</td>
+            <td>c</td>
             <td>c</td>
         </tr>
     </table>

@@ -86,47 +86,47 @@
           ສິນຄ້າເບີກແລ້ວເກັບເຂົ້າສາງ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/report-supplier" class="m-a">
       <div class="btn btn-light mainlink">
           ລາຍງານຜູ້ສະໜອງ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/report-customer" class="m-a">
       <div class="btn btn-light mainlink">
           ລາຍງານລູກຄ້າ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/report-employee" class="m-a">
       <div class="btn btn-light mainlink">
           ລາຍງານພະນັກງານ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/report-product" class="m-a">
       <div class="btn btn-light mainlink">
           ລາຍງານສິນຄ້າ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/report-stock" class="m-a">
       <div class="btn btn-light mainlink">
           ລາຍງານສະຕ໋ອກ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/report-check-stock" class="m-a">
       <div class="btn btn-light mainlink">
           ລາຍງານການນັບສະຕ໋ອກ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/report-warehouse" class="m-a">
       <div class="btn btn-light mainlink">
           ລາຍງານສາງເກັບຮັກສາ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/report-distribute" class="m-a">
       <div class="btn btn-light mainlink">
           ລາຍງານການເບີກຈ່າຍສິນຄ້າ
       </div>
     </a>
-    <a href="" class="m-a">
+    <a href="<?php echo $links ?>Management/report-product-putback" class="m-a">
       <div class="btn btn-light mainlink">
           ລາຍງານສິນຄ້າກັບເຂົ້າສາງຄືນ
       </div>

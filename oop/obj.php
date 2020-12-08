@@ -1164,13 +1164,40 @@ class obj{
         }
     }
     //ສິ້ນສຸດການຈັດການຂໍ້ມູນສິນຄ້າ
+
+    public static function cookie_stock($item_id,$item_name,$item_price,$item_quantity){
+        global $conn;
+        global $item_data;
+        $item_array = arrary(
+            "item_id" -> $item_id,
+            "item_name" -> $item_name,
+            "item_price" -> $item_price,
+            "item_quantity" -> $item_quantity,
+        );
+        $cart_data[] = $item_array;
+        $item_data = json_encode($cart_data);
+        setcookie('stock',$item_data,time() + (86400 * 30));
+        echo $item_data['item_id'];
+    }
 }
 $obj = new obj();
-$obj->delete_product('1');
+// $obj->cookie_stock('1','2','3','4');
 // $obj->select_product('%%','0');
 // while($row = mysqli_fetch_array($resultproduct,MYSQLI_ASSOC)){
 //     echo $row['code']." ";
 //     echo $row['pro_name']."<br>";
 // }
-
+$item_id = '1';
+$item_name = '2';
+$item_price = '3';
+$item_quantity = '4';
+$item_array = arrary(
+    "item_id" -> $item_id,
+    "item_name" -> $item_name,
+    "item_price" -> $item_price,
+    "item_quantity" -> $item_quantity,
+);
+$cart_data[] = $item_array;
+$item_data = json_encode($cart_data);
+setcookie('stock',$item_data,time() + (86400 * 30));
 ?>
