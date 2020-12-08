@@ -1166,38 +1166,119 @@ class obj{
     //ສິ້ນສຸດການຈັດການຂໍ້ມູນສິນຄ້າ
 
     public static function cookie_stock($item_id,$item_name,$item_price,$item_quantity){
-        global $conn;
-        global $item_data;
-        $item_array = arrary(
-            "item_id" -> $item_id,
-            "item_name" -> $item_name,
-            "item_price" -> $item_price,
-            "item_quantity" -> $item_quantity,
-        );
-        $cart_data[] = $item_array;
-        $item_data = json_encode($cart_data);
-        setcookie('stock',$item_data,time() + (86400 * 30));
-        echo $item_data['item_id'];
     }
 }
 $obj = new obj();
 // $obj->cookie_stock('1','2','3','4');
+// foreach($cart_data as $keys => $values){
+//     echo $values["item_id"]."<br>";
+// }
 // $obj->select_product('%%','0');
 // while($row = mysqli_fetch_array($resultproduct,MYSQLI_ASSOC)){
 //     echo $row['code']." ";
 //     echo $row['pro_name']."<br>";
 // }
-$item_id = '1';
-$item_name = '2';
-$item_price = '3';
-$item_quantity = '4';
-$item_array = arrary(
-    "item_id" -> $item_id,
-    "item_name" -> $item_name,
-    "item_price" -> $item_price,
-    "item_quantity" -> $item_quantity,
-);
-$cart_data[] = $item_array;
-$item_data = json_encode($cart_data);
-setcookie('stock',$item_data,time() + (86400 * 30));
+
+if(isset($_POST['add'])){
+    if(isset($_COOKIE['shopping_cart'])){
+        $cookie_data = stripcslashes($_COOKIE['shopping_cart']);
+        $cart_data = json_decode($cookie_data, true);
+    }
+    else{
+        $cart_data = array();
+    }
+    $item_id_list = array_column($cart_data,'item_id');
+    if(in_array($_POST['hidden_id'],$item_id_list)){
+        foreach($cart_data as $keys => $values){
+            if($cart_data[$keys]["item_id"] == $_POST['hidden_id']){
+                $cart_data[$keys]["item_quantity"] = $cart_data[$keys]["item_quantity"] + $_POST["quantity"];
+            }
+        }
+    }
+    else{
+        $item_array = [
+            "item_id" => $_POST['hidden_id'],
+            "item_name" => $_POST['hidden_name'],
+            "item_price" => $_POST['hidden_price'],
+            "item_quantity" => $_POST['quantity']
+        ];
+        $cart_data[] = $item_array;
+    }
+    
+    
+    $item_data = json_encode($cart_data);
+    setcookie('shopping_cart',$item_data,time() + (86400 * 30));
+    header("location:obj.php?success=1");
+}
+if(isset($_GET['id'])){
+    // if($_GET["action"] == "delete"){
+        $cookie_data = stripcslashes($_COOKIE['shopping_cart']);
+        $cart_data = json_decode($cookie_data, true);
+        foreach($cart_data as $keys => $values){
+            if($cart_data[$keys]['item_id'] == $_GET['id']){
+                unset($cart_data[$keys]);
+                $item_data = json_encode($cart_data);
+                setcookie('shopping_cart',$item_data,time() + (86400 * 30));
+                header("location:obj.php?remove=1");
+            }
+        }
+    // }
+}
+if(isset($_GET['clear'])){
+     setcookie("shopping_cart","",time() - 3600);
+     header("location:obj.php");
+}
+if(isset($_COOKIE['shopping_cart'])){
+    $cookie_data = stripslashes($_COOKIE['shopping_cart']);
+    $cart_data = json_decode($cookie_data, true);
+}
+
+
+// foreach($cart_data as $keys => $values){
+//     echo $values["item_id"]." ";
+//     echo $values["item_name"]." ";
+//     echo $values["item_price"]." ";
+//     echo $values["item_quantity"]."<br>";
+    
+// }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="obj.php" method="post" id="form1">
+        <input type="hidden" name="hidden_id" value="6">
+        <input type="hidden" name="hidden_name" value="samsung">
+        <input type="hidden" name="hidden_price" value="3000">
+        <input type="hidden" name="quantity" value="2">
+        <button type="submit" name="add">submit</button>
+    </form>
+    <a href="obj.php?clear=clear">clear</a>
+    <?php
+        if(isset($_COOKIE['shopping_cart'])){
+    ?>
+    <table>
+        <?php
+            foreach($cart_data as $keys => $values){
+        ?>
+        <tr>
+            <td><?php echo $values["item_id"] ?></td>
+            <td><?php echo $values["item_name"] ?></td>
+            <td><?php echo $values["item_price"] ?></td>
+            <td><?php echo $values["item_quantity"] ?></td>
+            <td><a href="obj.php?id=<?php echo $values["item_id"]; ?>">delete</a></td>
+        </tr>
+        <?php
+        }
+        ?>
+    </table>
+    <?php
+        }
+    ?>
+</body>
+</html>
