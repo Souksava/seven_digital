@@ -69,6 +69,13 @@
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
+                                    <label>ໝາຍເລກເຄືອງ</label>
+                                    <input type="text" class="form-control" placeholder="ໝາຍເລກເຄືອງ">
+                                    <i class="fas fa-check-circle "></i>
+                                    <i class="fas fa-exclamation-circle "></i>
+                                    <small class="">Error message</small>
+                                </div>
+                                <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ໝາຍເຫດ</label>
                                     <input type="text" name="pro_id" placeholder="ໝາຍເຫດ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
@@ -137,6 +144,8 @@
                         <th style="width: 110px;" scope="col">ສິນຄ້າ</th>
                         <th style="width: 180px;" scope="col">ຊື່ສິນຄ້າ</th>
                         <th style="width: 180px;" scope="col">ລຸ້ນເຄື່ອງ</th>
+                        <th style="width: 180px;" scope="col">ໝາຍເລກ Serial Number</th>
+                        <th style="width: 180px;" scope="col">ໝາຍເລກເຄືອງ</th>
                         <th style="width: 60px;" scope="col">ຈຳນວນ</th>
                         <th style="width: 60px;" scope="col">ລາຄາ</th>
                         <th style="width: 60px;" scope="col">ລວມ</th>
@@ -150,15 +159,13 @@
                         </td>
                         <td>FUJI</td>
                         <td>2020</td>
-                        <td>
-                            99
-                        </td>
-                        <td>
-                            10,000 ກີບ
-                        </td>
-                        <td>
-                            990,000 ກີບ
-                        </td>
+                        <td>2020</td>
+                        <td>2020</td>
+                        <td>99</td>
+                        <td>10,000 ກີບ</td>
+                        <td>990,000 ກີບ</td>
+                        <td style="display:none">9/12/2020</td>
+                        <td style="display:none">9:10:50</td>
                         <td>
                         <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
                                 class="fa fa-trash toolcolor btnDelete_sup"></a>&nbsp; &nbsp;
@@ -188,6 +195,17 @@
                                         <label>ທີ່ຢູ່ຂອງສາງ</label>
                                         <select name="emp_id" id="emp_id">
                                             <option value="" disabled selected>--- ເລືອກຜູ້ສະໜອງ ---</option>
+                                            <option value="">ສາງ A</option>
+                                            <option value="">ສາງ B</option>
+                                        </select>
+                                        <i class="fas fa-check-circle "></i>
+                                        <i class="fas fa-exclamation-circle "></i>
+                                        <small class="">Error message</small>
+                                    </div>
+                                    <div class="col-md-12 form-control2">
+                                        <label>ເລດເງີນ</label>
+                                        <select name="emp_id" id="emp_id">
+                                            <option value="" disabled selected>--- ເລືອກເລດເງີນ ---</option>
                                             <option value="">ສາງ A</option>
                                             <option value="">ສາງ B</option>
                                         </select>
