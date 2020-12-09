@@ -209,10 +209,10 @@
                             <form action="#" id="formSave" method="POST">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        ເລກທີບິນ: 1
+                                    ຍອມລວມ
                                     </div>
                                     <div class="col-md-6" align="right">
-                                        <p style="color: #CE3131;">ຍອມລວມ 990,000 ກີບ</p>
+                                        <p style="color: #CE3131;"> 990,000 ກີບ</p>
                                     </div>
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">

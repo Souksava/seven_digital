@@ -202,7 +202,7 @@
                                         ປ່ຽນອາໄຫຼ່
                                     </div>
                                     <div class="col-md-6 " align="right">
-                                        ຍອມລວມ <p style="color: #CE3131;"> 990</p>
+                                         <p style="color: #CE3131;">ຍອມລວມ 990</p>
                                     </div>
 
                                     <hr size="3" align="center" width="100%">
