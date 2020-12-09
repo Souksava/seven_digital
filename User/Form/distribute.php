@@ -49,13 +49,22 @@
                 </table>
                 <hr size="3" align="center" width="100%">
             </div>
-            <div align="right">
-                <div class="col-md-12 ">
-                    ຍອມລວມ
-                </div>
-                <div class="col-md-12">
-                    <br>
-                    <h4 style="color: #CE3131;"> 9 ສິນຄ້າ</h4>
+
+            <div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- pagination -->
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,8 +78,11 @@
                             <p class="card-text">
                             <form action="export.php" id="form1" method="POST">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         ເລກທີບິນ: 1
+                                    </div>
+                                    <div class="col-md-6" align="right">
+                                         <p style="color: #CE3131;">ຍອມລວມ 9 ສິນຄ້າ</p>
                                     </div>
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">

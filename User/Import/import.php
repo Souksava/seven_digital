@@ -141,14 +141,18 @@
             <div class="table-responsive">
                 <table class="table" style="width: 1100px;">
                     <tr>
+                        <th style="width: 110px;" scope="col">ລະຫັດສິນຄ້າ</th>
                         <th style="width: 110px;" scope="col">ສິນຄ້າ</th>
                         <th style="width: 180px;" scope="col">ຊື່ສິນຄ້າ</th>
+                        <th style="width: 180px;" scope="col">Serial Number</th>
                         <th style="width: 180px;" scope="col">ລຸ້ນເຄື່ອງ</th>
-                        <th style="width: 180px;" scope="col">ໝາຍເລກ Serial Number</th>
-                        <th style="width: 180px;" scope="col">ໝາຍເລກເຄືອງ</th>
                         <th style="width: 60px;" scope="col">ຈຳນວນ</th>
                         <th style="width: 60px;" scope="col">ລາຄາ</th>
                         <th style="width: 60px;" scope="col">ລວມ</th>
+                        <th style="width: 180px;" scope="col">ເລກທີໃບສັ່ງຊື້ D.N.V</th>
+                        <th style="width: 180px;" scope="col">ເລກທີບິນນຳເຂົ້າສິນຄ້າ</th>
+                        <th style="width: 180px;" scope="col">ໝາຍເລກເຄືອງ</th>
+                        <th style="width: 180px;" scope="col">ໝາຍເຫດ</th>
                         <th style="width: 75px;"></th>
                     </tr>
                     <tr>
@@ -158,6 +162,10 @@
                             </a>
                         </td>
                         <td>FUJI</td>
+                        <td>2020</td>
+                        <td>2020</td>
+                        <td>2020</td>
+                        <td>2020</td>
                         <td>2020</td>
                         <td>2020</td>
                         <td>2020</td>
@@ -174,7 +182,23 @@
                 </table>
                 <hr size="3" align="center" width="100%">
             </div>
+            <br>
+            <!-- pagination -->
+<nav aria-label="Page navigation example">
+<ul class="pagination">
+    <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
+  </ul>
+</nav>
         </div>
+
+
+
+
+
         <div class="col-lg-3 font12">
             <div class="row row-cols-1 row-cols-md-1">
                 <div class="col mb-4">

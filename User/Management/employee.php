@@ -338,9 +338,6 @@
 <!-- pagination -->
 <nav aria-label="Page navigation example">
 <ul class="pagination">
-<?php 
-
-?>
     <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
     <li class="page-item"><a class="page-link" href="#">1</a></li>
     <li class="page-item"><a class="page-link" href="#">2</a></li>

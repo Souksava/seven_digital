@@ -41,8 +41,8 @@
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>Serial Number</label>
-                                    <input type="text" class="form-control" placeholder="Serial Number">
+                                    <label>Serial Number ສິນຄ້າທີ່ຖອດອາໄຫຼ່</label>
+                                    <input type="text" class="form-control" placeholder="Serial Number ສິນຄ້າທີ່ຖອດອາໄຫຼ່">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -76,8 +76,9 @@
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ໝາຍເລກ Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່</label>
-                                    <input type="text" class="form-control" placeholder="ໝາຍເລກ Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່">
+                                    <label>Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່</label>
+                                    <input type="text" class="form-control"
+                                        placeholder="ໝາຍເລກ Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -149,37 +150,44 @@
                 <table class="table" style="width: 1100px;">
                     <tr>
                         <th style="width: 180px;" scope="col">ລະຫັດປ່ຽນອາໄຫຼ່</th>
-                        <th style="width: 180px;" scope="col">ລະຫັດພະນັກງານຜູ້ນຳອາໄຫຼ່ໄປປ່ຽນ</th>
-                        <th style="width: 60px;" scope="col">ລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່</th>
-                        <th style="width: 60px;" scope="col">ໝາຍເລກ Serial Number ສິນຄ້າທີ່ຖອດອາໄຫຼ່</th>
-                        <th style="width: 60px;" scope="col">ຊື່ອາໄຫຼ່</th>
-                        <th style="width: 75px;">ລະຫັດສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່</th>
-                        <th style="width: 75px;">ຊື່ສິນຄ້າ</th>
-                        <th style="width: 75px;">ໝາຍເລກ Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່</th>
-                        <th style="width: 75px;">ໝາຍເຫດ</th>
+                        <th style="width: 100px;" scope="col">ລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່</th>
+                        <th style="width: 200px;" scope="col">Serial Number ຖອດ</th>
+                        <th style="width: 100px;" scope="col">ຊື່ອາໄຫຼ່</th>
+                        <th style="width: 75px;" scope="col">ລະຫັດສິນຄ້າ</th>
+                        <th style="width: 75px;" scope="col">ຊື່ສິນຄ້າ</th>
+                        <th style="width: 75px;" scope="col">Serial Number ໃສ່</th>
+                        <th style="width: 75px;" scope="col">ໝາຍເຫດ</th>
                     </tr>
                     <tr>
                         <td>2525252525</td>
                         <td>2625125152</td>
                         <td>50</td>
                         <td>sfklglskfdglksdfgsdfg</td>
+                        <td>sfklglskfdglksdfgsdfg</td>
+                        <td>sfklglskfdglksdfgsdfg</td>
+                        <td>sfklglskfdglksdfgsdfg</td>
+                        <td>sfklglskfdglksdfgsdfg</td>
+                        
                         <td>
-                        <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
+                            <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
                                 class="fa fa-trash toolcolor btnDelete_sup"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
                 </table>
                 <hr size="3" align="center" width="100%">
             </div>
-            <div align="right">
-                <div class="col-md-12 ">
-                    ຍອມລວມ
-                </div>
-                <div class="col-md-12">
-                    <br>
-                    <h4 style="color: #CE3131;"> 990</h4>
-                </div>
-            </div>
+            <!-- pagination -->
+            <br>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
+                </ul>
+            </nav>
+
         </div>
         <div class="col-lg-3 font12">
             <div class="row row-cols-1 row-cols-md-1">
@@ -190,16 +198,20 @@
                             <p class="card-text">
                             <form action="#" id="formSave" method="POST">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                    ປ່ຽນອາໄຫຼ່
+                                    <div class="col-md-6">
+                                        ປ່ຽນອາໄຫຼ່
                                     </div>
-                                    
+                                    <div class="col-md-6 " align="right">
+                                        ຍອມລວມ <p style="color: #CE3131;"> 990</p>
+                                    </div>
+
                                     <hr size="3" align="center" width="100%">
 
                                     <div class="col-md-12" align="center">
-                                    
+
                                         <button type="button" name="btnAdd" class="btn btn-outline-success"
-                                            data-toggle="modal" data-target="#exampleModal2">ບັນທຶກການປ່ຽນອາໄຫຼ່</button>
+                                            data-toggle="modal"
+                                            data-target="#exampleModal2">ບັນທຶກການປ່ຽນອາໄຫຼ່</button>
                                         <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

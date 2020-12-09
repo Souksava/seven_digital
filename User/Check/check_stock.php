@@ -134,15 +134,18 @@
                 </table>
                 <hr size="3" align="center" width="100%">
             </div>
-            <div align="right">
-                <div class="col-md-12 ">
-                    ຍອມລວມ
-                </div>
-                <div class="col-md-12">
-                    <br>
-                    <h4 style="color: #CE3131;"> 990</h4>
-                </div>
-            </div>
+            <!-- pagination -->
+            <br>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
+                </ul>
+            </nav>
+
         </div>
         <div class="col-lg-3 font12">
             <div class="row row-cols-1 row-cols-md-1">
@@ -153,9 +156,12 @@
                             <p class="card-text">
                             <form action="#" id="formSave" method="POST">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         ການນັບສະຕ໋ອກ
                                     </div>
+                                        <div class="col-md-6 " align="right">
+                                             <p style="color: #CE3131;">ຍອມລວມ 990</p>
+                                        </div>
 
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">
