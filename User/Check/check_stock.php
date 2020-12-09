@@ -1,5 +1,5 @@
 <?php
-  $title = "ນຳເຂົ້າສິນຄ້າ";
+  $title = "ການນັບສະຕ໋ອກ";
   $path="../../";
   $links = "../";
   $session_path = "../../";
@@ -19,7 +19,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">ນຳເຂົ້າສິນຄ້າ</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">ການນັບສະຕ໋ອກ</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -43,27 +43,6 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຈຳນວນ</label>
                                     <input type="text" class="form-control" placeholder="ຈຳນວນ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລາຄາ</label>
-                                    <input type="text" class="form-control" placeholder="ລາຄາ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ເລກທີໃບສັ່ງຊື້ D.N.V</label>
-                                    <input type="text" class="form-control" placeholder="ເລກທີໃບສັ່ງຊື້ D.N.V">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ເລກທີບິນນຳເຂົ້າສິນຄ້າ</label>
-                                    <input type="text" class="form-control" placeholder="ເລກທີບິນນຳເຂົ້າສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -134,38 +113,35 @@
             <div class="table-responsive">
                 <table class="table" style="width: 1100px;">
                     <tr>
-                        <th style="width: 110px;" scope="col">ສິນຄ້າ</th>
-                        <th style="width: 180px;" scope="col">ຊື່ສິນຄ້າ</th>
-                        <th style="width: 180px;" scope="col">ລຸ້ນເຄື່ອງ</th>
+                        <th style="width: 180px;" scope="col">ລະຫັດສິນຄ້າ</th>
+                        <th style="width: 180px;" scope="col">ໝາຍເລກ Serial Number</th>
                         <th style="width: 60px;" scope="col">ຈຳນວນ</th>
-                        <th style="width: 60px;" scope="col">ລາຄາ</th>
-                        <th style="width: 60px;" scope="col">ລວມ</th>
+                        <th style="width: 60px;" scope="col">ໝາຍເຫດ</th>
                         <th style="width: 75px;"></th>
                     </tr>
                     <tr>
+                        <td>2525252525</td>
+                        <td>2625125152</td>
+                        <td>50</td>
+                        <td style="display:none;">9/12/2020</td>
+                        <td style="display:none;">9:10:50</td>
+                        <td>sfklglskfdglksdfgsdfg</td>
                         <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>FUJI</td>
-                        <td>2020</td>
-                        <td>
-                            99
-                        </td>
-                        <td>
-                            10,000 ກີບ
-                        </td>
-                        <td>
-                            990,000 ກີບ
-                        </td>
-                        <td>
-                        <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
+                            <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
                                 class="fa fa-trash toolcolor btnDelete_sup"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
                 </table>
                 <hr size="3" align="center" width="100%">
+            </div>
+            <div align="right">
+                <div class="col-md-12 ">
+                    ຍອມລວມ
+                </div>
+                <div class="col-md-12">
+                    <br>
+                    <h4 style="color: #CE3131;"> 990</h4>
+                </div>
             </div>
         </div>
         <div class="col-lg-3 font12">
@@ -177,17 +153,15 @@
                             <p class="card-text">
                             <form action="#" id="formSave" method="POST">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        ເລກທີບິນ: 1
+                                    <div class="col-md-12">
+                                        ການນັບສະຕ໋ອກ
                                     </div>
-                                    <div class="col-md-6" align="right">
-                                        <p style="color: #CE3131;">ຍອມລວມ 990,000 ກີບ</p>
-                                    </div>
+
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">
                                         <label>ທີ່ຢູ່ຂອງສາງ</label>
                                         <select name="emp_id" id="emp_id">
-                                            <option value="" disabled selected>--- ເລືອກຜູ້ສະໜອງ ---</option>
+                                            <option value="" disabled selected>--- ເລືອກທີ່ຢູ່ຂອງສາງ ---</option>
                                             <option value="">ສາງ A</option>
                                             <option value="">ສາງ B</option>
                                         </select>
@@ -196,9 +170,9 @@
                                         <small class="">Error message</small>
                                     </div>
                                     <div class="col-md-12" align="center">
-                                    
+
                                         <button type="button" name="btnAdd" class="btn btn-outline-success"
-                                            data-toggle="modal" data-target="#exampleModal2">ບັນທຶກການນຳເຂົ້າ</button>
+                                            data-toggle="modal" data-target="#exampleModal2">ບັນທຶກການນັບສະຕ໋ອກ</button>
                                         <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -211,7 +185,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body" align="center">
-                                                        ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນການຜະລິດນ້ຳດື່ມເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
+                                                        ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນການນັບສະຕ໋ອກເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary"
@@ -287,8 +261,6 @@
     </script>';
   }
 ?>
-
-
 
 <?php
     include ("../../header-footer/footer.php");

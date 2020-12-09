@@ -309,7 +309,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="fab fa-product-hunt nav-icon"></i>
                                 <p>
                                     ສ້າງຟອມ ແລະ ເບີກຈ່າຍສິນຄ້າ
@@ -326,7 +326,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>" class="nav-link">
+                                    <a href="<?php echo $links ?>Form/accept" class="nav-link">
                                         <i class="fas fa-vote-yea nav-icon"></i>
                                         <p>ອະນຸມັດຟອມເບີກສິນຄ້າ</p>
                                     </a>
@@ -342,7 +342,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>" class="nav-link">
+                                    <a href="<?php echo $links ?>Form/product-putback" class="nav-link">
                                         <i class="fas fa-undo nav-icon"></i>
                                         <p>ສິນຄ້າເບີກແລ້ວນຳກັບເຂົ້າສາງຄືນ</p>
                                     </a>
@@ -350,7 +350,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo $links ?>" class="nav-link">
+                            <a href="<?php echo $links ?>Check/check-stock" class="nav-link">
                                 <i class="fas fa fa-cubes nav-icon"></i>
                                 <p>
                                     ນັບສະຕ໋ອກສິນຄ້າ
@@ -358,7 +358,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?php echo $links ?>" class="nav-link">
+                            <a href="<?php echo $links ?>Spare/spare-part" class="nav-link">
                                 <i class="fas fa-undo nav-icon"></i>
                                 <p>
                                     ປ່ຽນອາໄຫຼ່
@@ -375,7 +375,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/report-employee" class="nav-link">
+                                    <a href="<?php echo $links ?>Report/report-employee" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນພະນັກງານ</p>
                                     </a>
@@ -383,7 +383,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/report-customer" class="nav-link">
+                                    <a href="<?php echo $links ?>Report/report-customer" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນລູກຄ້າ</p>
                                     </a>
@@ -391,7 +391,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/report-supplier" class="nav-link">
+                                    <a href="<?php echo $links ?>Report/report-supplier" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນຜູ້ສະໜອງ</p>
                                     </a>
@@ -399,7 +399,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/report-product" class="nav-link">
+                                    <a href="<?php echo $links ?>Report/report-product" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນສິນຄ້າ</p>
                                     </a>
@@ -407,7 +407,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/report-stock" class="nav-link">
+                                    <a href="<?php echo $links ?>Report/report-stock" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນສະຕ໋ອກສິນຄ້າ</p>
                                     </a>
@@ -415,7 +415,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/report-check-stock" class="nav-link">
+                                    <a href="<?php echo $links ?>Report/report-check-stock" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນການນັບສະຕ໋ອກ</p>
                                     </a>
@@ -423,7 +423,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/report-warehouse" class="nav-link">
+                                    <a href="<?php echo $links ?>Report/report-warehouse" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນສາງເກັບຮັກສາ</p>
                                     </a>
@@ -431,7 +431,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/report-distribute" class="nav-link">
+                                    <a href="<?php echo $links ?>Report/report-distribute" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນການເບີກຈ່າຍສິນຄ້າ</p>
                                     </a>
@@ -439,7 +439,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/report-product-putback" class="nav-link">
+                                    <a href="<?php echo $links ?>Report/report-product-putback" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານສິນຄ້າເບີກແລ້ວເກັບເຂົ້າສາງ</p>
                                     </a>

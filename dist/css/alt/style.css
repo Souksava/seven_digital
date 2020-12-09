@@ -203,4 +203,7 @@ sup{
     border-top: 1px;
 }
 
+select{
+    text-align-last: center;
+}
 
