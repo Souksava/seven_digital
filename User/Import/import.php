@@ -10,7 +10,7 @@
         <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
-        <form action="unit.php" id="form1" method="POST" enctype="multipart/form-data">
+        <form action="import.php" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalemp">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
