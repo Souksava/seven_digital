@@ -1,5 +1,9 @@
 <?php
 $conn = mysqli_connect("Localhost", "root", "", "seven");
+date_default_timezone_set("Asia/Bangkok");
+$datenow = time();
+$Date = date("Y-m-d",$datenow);
+$Time = date("H:i:s",$datenow);
 class obj{
     public $conn;
     public $search;
@@ -1165,82 +1169,147 @@ class obj{
     }
     //ສິ້ນສຸດການຈັດການຂໍ້ມູນສິນຄ້າ
 
-    public static function cookie_stock($item_id,$item_name,$item_price,$item_quantity){
+    // Stock
+    public static function cookie_stock($code,$serial,$qty,$price,$pro_no,$dnv,$import_no,$remark){
+        global $conn;
+        $check_code = mysqli_query($conn,"select * from products where code='$code'");
+        $check_serail_stock = mysqli_query($conn,"select * from stocks where serial='$serial'");
+        $check_pro_no = mysqli_query($conn,"select * from stocks where pro_no='$pro_no'");
+       if(mysqli_num_rows($check_code) <= 0){
+            echo"<script>";
+            echo"window.location.href='import?code=null';";
+            echo"</script>";
+       }
+       else if(mysqli_num_rows($check_serail_stock) > 0){
+            echo"<script>";
+            echo"window.location.href='import?serial=stock';";
+            echo"</script>";
+       }
+       else if(mysqli_num_rows($check_pro_no) > 0){
+        echo"<script>";
+        echo"window.location.href='import?no=has';";
+        echo"</script>";
+   }
+       else{
+            $get_info = mysqli_fetch_array($check_code,MYSQLI_ASSOC);
+            $img_path = $get_info['img_path'];
+            $name = $get_info['pro_name'];
+            $gen = $get_info['gen'];
+            if(isset($_COOKIE['stock_list'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
+                $cookie_data = stripcslashes($_COOKIE['stock_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+                $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
+            }
+            else{
+                $cart_data = array();//ຖ້າຄຸກກີ້ບໍ່ມີຄ່າຂໍ້ມູນແລ້ວຕັ້ງໂຕປ່ຽນໃຫ້ເປັນອາເລ
+            }
+            $item_id_list = array_column($cart_data,'serial');//ຕັ້ງຄ່າ item_id_list ໃຫ້ມີຄ່າເທົ່າກັບ array $cart_data['serial']
+            $item_pro_no = array_column($cart_data,'pro_no');
+            if(in_array($serial,$item_id_list)){//ຖ້າວ່າ Serial ທີ່ປ້ອນມາທາງຄີບອດຕົງກັນກັບ Serial ທີ່ຢູ່ໃນ Array Cart_data ໃຫ້ເຮັດວຽກຈຸດນີ້
+                echo"<script>";
+                echo"window.location.href='import?serial-list=same';";
+                echo"</script>";
+            }
+            else if(in_array($pro_no,$item_pro_no)){//ຖ້າວ່າ Serial ທີ່ປ້ອນມາທາງຄີບອດຕົງກັນກັບ Serial ທີ່ຢູ່ໃນ Array Cart_data ໃຫ້ເຮັດວຽກຈຸດນີ້
+                echo"<script>";
+                echo"window.location.href='import?list-no=same';";
+                echo"</script>";
+            }
+            else{ // ຖ້າວ່າໄອດີບໍ່ຕົງກັນໃຫ້ເພີ່ມຂໍ້ມູນເຂົ້າໃນຄຸກກີ້
+                $item_array = [//ເພີ່ມຂໍ້ມູນທີ່ຮັບມາຈາກຄີບອດເຂົ້າໄວ້ໃນຕົວປ່ຽນອາເລ $item_array
+                    "code" => $code,
+                    "serial" => $serial,
+                    "img_path" => $img_path,
+                    "name" => $name,
+                    "gen" => $gen,
+                    "qty" => $qty,
+                    "price" => $price,
+                    "pro_no" => $pro_no,
+                    "dnv" => $dnv,
+                    "import_no" => $import_no,
+                    "remark" => $remark
+                ];
+                $cart_data[] = $item_array;//ເພີ່ມຂໍ້ມູນຈາກ $item_array ເຂົ້າໄປໃນ $cart_data
+            }
+            
+            
+            $item_data = json_encode($cart_data);//ປັບ item_data ໃຫ້ມັນສິ້ນສຸດການຮັບຂໍ້ມູນຈາກ $cart_data
+            setcookie('stock_list',$item_data,time() + (86400 * 30));//ຕັ້ງຄ່າເວລາຄຸກກີ້
+            echo"<script>";
+            echo"window.location.href='import';";
+            echo"</script>";
+       }
     }
+    public static function select_stock_list(){
+        global $cart_data;
+        if(isset($_COOKIE['stock_list'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
+            $cookie_data = stripslashes($_COOKIE['stock_list']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
+        }
+    }
+    public static function del_stock($serial){
+        $cookie_data = stripcslashes($_COOKIE['stock_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
+        foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
+            if($cart_data[$keys]['serial'] == $serial){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
+                unset($cart_data[$keys]);//ລົບຂໍ້ມູນຢູ່ຄຸກກີ້ໝົດແຖວທີ່ມີໄອດີຕົງກັນ
+                $item_data = json_encode($cart_data);//ໃຫ້ຈົບການສ້າງອາເລໃນຮູບແບບ json
+                setcookie('stock_list',$item_data,time() + (86400 * 30));//ຕັ້ງເວລາຄຸກກີ້
+                echo"<script>";
+                echo"window.location.href='import';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function clear_stock(){
+        setcookie("stock_list","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+        echo"<script>";
+        echo"window.location.href='import';";
+        echo"</script>";
+    }
+    public static function save_stock($sup_id,$rate_id,$emp_id){
+        global $conn;
+        global $Date;
+        global $Time;
+        $get_rate = mysqli_query($conn,"select * from rate");
+        $rate = mysqli_fetch_array($get_rate,MYSQLI_ASSOC);
+        $rate_buy = $rate['rate_buy'];
+        if(isset($_COOKIE['stock_list'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
+            $cookie_data = stripcslashes($_COOKIE['stock_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
+            foreach($cart_data as $data){
+                $code = $data['code'];
+                $serial = $data['serial'];
+                $qty = $data['qty'];
+                $price = $data['price'];
+                $dnv = $data['dnv'];
+                $imp_no = $data['import_no'];
+                $pro_no = $data['pro_no'];
+                $remark = $data['remark'];
+                $result = mysqli_query($conn,"insert into stocks(code,serial,qty,price,dnv,imp_no,imp_date,imp_time,pro_no,rate_id,rate,emp_id,sup_id,remark) values('$code','$serial','$qty','$price','$dnv','$imp_no','$Date','$Time','$pro_no','$rate_id','$rate_buy','$emp_id','$sup_id','$remark')");
+            }
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='import?save=fail';";
+                echo"</script>";
+            }
+            else{
+                setcookie("stock_list","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                echo"<script>";
+                echo"window.location.href='import?save2=success';";
+                echo"</script>";
+            }
+        }
+        else{
+            echo"<script>";
+            echo"window.location.href='import?list=null';";
+            echo"</script>";
+        }
+
+    }
+    // End Stock
 }
 $obj = new obj();
-// $obj->cookie_stock('1','2','3','4');
-// foreach($cart_data as $keys => $values){
-//     echo $values["item_id"]."<br>";
-// }
-// $obj->select_product('%%','0');
-// while($row = mysqli_fetch_array($resultproduct,MYSQLI_ASSOC)){
-//     echo $row['code']." ";
-//     echo $row['pro_name']."<br>";
-// }
 
-if(isset($_POST['add'])){
-    if(isset($_COOKIE['shopping_cart'])){
-        $cookie_data = stripcslashes($_COOKIE['shopping_cart']);
-        $cart_data = json_decode($cookie_data, true);
-    }
-    else{
-        $cart_data = array();
-    }
-    $item_id_list = array_column($cart_data,'item_id');
-    if(in_array($_POST['hidden_id'],$item_id_list)){
-        foreach($cart_data as $keys => $values){
-            if($cart_data[$keys]["item_id"] == $_POST['hidden_id']){
-                $cart_data[$keys]["item_quantity"] = $cart_data[$keys]["item_quantity"] + $_POST["quantity"];
-            }
-        }
-    }
-    else{
-        $item_array = [
-            "item_id" => $_POST['hidden_id'],
-            "item_name" => $_POST['hidden_name'],
-            "item_price" => $_POST['hidden_price'],
-            "item_quantity" => $_POST['quantity']
-        ];
-        $cart_data[] = $item_array;
-    }
-    
-    
-    $item_data = json_encode($cart_data);
-    setcookie('shopping_cart',$item_data,time() + (86400 * 30));
-    header("location:obj.php?success=1");
-}
-if(isset($_GET['id'])){
-    // if($_GET["action"] == "delete"){
-        $cookie_data = stripcslashes($_COOKIE['shopping_cart']);
-        $cart_data = json_decode($cookie_data, true);
-        foreach($cart_data as $keys => $values){
-            if($cart_data[$keys]['item_id'] == $_GET['id']){
-                unset($cart_data[$keys]);
-                $item_data = json_encode($cart_data);
-                setcookie('shopping_cart',$item_data,time() + (86400 * 30));
-                header("location:obj.php?remove=1");
-            }
-        }
-    // }
-}
-if(isset($_GET['clear'])){
-     setcookie("shopping_cart","",time() - 3600);
-     header("location:obj.php");
-}
-if(isset($_COOKIE['shopping_cart'])){
-    $cookie_data = stripslashes($_COOKIE['shopping_cart']);
-    $cart_data = json_decode($cookie_data, true);
-}
-
-
-// foreach($cart_data as $keys => $values){
-//     echo $values["item_id"]." ";
-//     echo $values["item_name"]." ";
-//     echo $values["item_price"]." ";
-//     echo $values["item_quantity"]."<br>";
-    
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -1252,32 +1321,61 @@ if(isset($_COOKIE['shopping_cart'])){
 </head>
 <body>
     <form action="obj.php" method="post" id="form1">
-        <input type="hidden" name="hidden_id" value="6">
-        <input type="hidden" name="hidden_name" value="samsung">
-        <input type="hidden" name="hidden_price" value="3000">
-        <input type="hidden" name="quantity" value="2">
+        <input type="text" name="code" placeholder="code">
+        <input type="text" name="serial" placeholder="serial">
+        <input type="text" name="qty" placeholder="qty">
+        <input type="text" name="price" placeholder="price">
+        <input type="text" name="pro_no" placeholder="pro_no">
+        <input type="text" name="dnv" placeholder="dnv">
+        <input type="text" name="import_no" placeholder="import_no">
+        <input type="text" name="remark" placeholder="remark">
         <button type="submit" name="add">submit</button>
+        <button type="submit" name="save">save</button>
     </form>
     <a href="obj.php?clear=clear">clear</a>
     <?php
-        if(isset($_COOKIE['shopping_cart'])){
+        if(isset($_POST['save'])){
+            $obj->save_stock('1','1','001');
+        }
+        if(isset($_GET['clear'])){
+            $obj->clear_stock();
+        }
+        if(isset($_GET['id'])){
+            $obj->del_stock($_GET['id']);
+        }
+        if(isset($_POST['add'])){
+            $obj->cookie_stock($_POST['code'],$_POST['serial'],$_POST['qty'],$_POST['price'],$_POST['pro_no'],$_POST['dnv'],$_POST['import_no'],$_POST['remark']);
+        }
+        $obj->select_stock_list();
+        if(isset($_COOKIE['stock_list'])){
     ?>
     <table>
         <?php
             foreach($cart_data as $keys => $values){
+                $total = $values["price"] * $values["qty"];
         ?>
         <tr>
-            <td><?php echo $values["item_id"] ?></td>
-            <td><?php echo $values["item_name"] ?></td>
-            <td><?php echo $values["item_price"] ?></td>
-            <td><?php echo $values["item_quantity"] ?></td>
-            <td><a href="obj.php?id=<?php echo $values["item_id"]; ?>">delete</a></td>
+            <td><?php echo $values["code"] ?></td>
+            <td><?php echo $values["serial"] ?></td>
+            <td><?php echo $values["name"] ?></td>
+            <td><?php echo $values["gen"] ?></td>
+            <td><?php echo $values["qty"] ?></td>
+            <td><?php echo $values["price"] ?></td>
+            <td><?php echo number_format($total) ?></td>
+            <td><?php echo $values["pro_no"] ?></td>
+            <td><?php echo $values["import_no"] ?></td>
+            <td><?php echo $values["dnv"] ?></td>
+            <td><?php echo $values["remark"] ?></td>
+            <td><a href="obj.php?id=<?php echo $values["serial"]; ?>">delete</a></td>
         </tr>
         <?php
         }
         ?>
     </table>
     <?php
+        }
+        else{
+            echo '<br> NO Data';
         }
     ?>
 </body>
