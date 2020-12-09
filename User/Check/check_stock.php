@@ -157,10 +157,10 @@
                             <form action="#" id="formSave" method="POST">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        ການນັບສະຕ໋ອກ
+                                    ຍອມລວມ
                                     </div>
                                         <div class="col-md-6 " align="right">
-                                             <p style="color: #CE3131;">ຍອມລວມ 990</p>
+                                             <p style="color: #CE3131;"> 990</p>
                                         </div>
 
                                     <hr size="3" align="center" width="100%">

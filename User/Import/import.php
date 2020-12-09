@@ -28,56 +28,56 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດສິນຄ້າ</label>
-                                    <input type="text" placeholder="ລະຫັດສິນຄ້າ">
+                                    <input type="text" name="code" id="code" placeholder="ລະຫັດສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>Serial Number</label>
-                                    <input type="text" class="form-control" placeholder="Serial Number">
+                                    <input type="text" name="serial" id="serial" class="form-control" placeholder="Serial Number">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຈຳນວນ</label>
-                                    <input type="text" class="form-control" placeholder="ຈຳນວນ">
+                                    <input type="text" name="qty" id="qty" class="form-control" placeholder="ຈຳນວນ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລາຄາ</label>
-                                    <input type="text" class="form-control" placeholder="ລາຄາ">
+                                    <input type="text" name="price" id="price" class="form-control" placeholder="ລາຄາ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເລກທີໃບສັ່ງຊື້ D.N.V</label>
-                                    <input type="text" class="form-control" placeholder="ເລກທີໃບສັ່ງຊື້ D.N.V">
+                                    <input type="text" name="dnv" id="dnv" class="form-control" placeholder="ເລກທີໃບສັ່ງຊື້ D.N.V">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເລກທີບິນນຳເຂົ້າສິນຄ້າ</label>
-                                    <input type="text" class="form-control" placeholder="ເລກທີບິນນຳເຂົ້າສິນຄ້າ">
+                                    <input type="text" name="imp_no" id="imp_no" class="form-control" placeholder="ເລກທີບິນນຳເຂົ້າສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ໝາຍເລກເຄືອງ</label>
-                                    <input type="text" class="form-control" placeholder="ໝາຍເລກເຄືອງ">
+                                    <input type="text" name="pro_no" id="pro_no" class="form-control" placeholder="ໝາຍເລກເຄືອງ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ໝາຍເຫດ</label>
-                                    <input type="text" name="pro_id" placeholder="ໝາຍເຫດ" class="form-control">
+                                    <input type="text" name="remark" id="remark" placeholder="ໝາຍເຫດ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -141,15 +141,15 @@
             <div class="table-responsive">
                 <table class="table" style="width: 1100px;">
                     <tr>
-                        <th style="width: 110px;" scope="col">ລະຫັດສິນຄ້າ</th>
                         <th style="width: 110px;" scope="col">ສິນຄ້າ</th>
+                        <th style="width: 110px;" scope="col">ລະຫັດສິນຄ້າ</th>
                         <th style="width: 180px;" scope="col">ຊື່ສິນຄ້າ</th>
-                        <th style="width: 180px;" scope="col">Serial Number</th>
+                        <th style="width: 180px;" scope="col">Serial</th>
                         <th style="width: 180px;" scope="col">ລຸ້ນເຄື່ອງ</th>
                         <th style="width: 60px;" scope="col">ຈຳນວນ</th>
                         <th style="width: 60px;" scope="col">ລາຄາ</th>
                         <th style="width: 60px;" scope="col">ລວມ</th>
-                        <th style="width: 180px;" scope="col">ເລກທີໃບສັ່ງຊື້ D.N.V</th>
+                        <th style="width: 180px;" scope="col">D.N.V</th>
                         <th style="width: 180px;" scope="col">ເລກທີບິນນຳເຂົ້າສິນຄ້າ</th>
                         <th style="width: 180px;" scope="col">ໝາຍເລກເຄືອງ</th>
                         <th style="width: 180px;" scope="col">ໝາຍເຫດ</th>
@@ -194,11 +194,6 @@
   </ul>
 </nav>
         </div>
-
-
-
-
-
         <div class="col-lg-3 font12">
             <div class="row row-cols-1 row-cols-md-1">
                 <div class="col mb-4">
@@ -212,15 +207,15 @@
                                     ຍອມລວມ
                                     </div>
                                     <div class="col-md-6" align="right">
-                                        <p style="color: #CE3131;"> 990,000 ກີບ</p>
+                                        <h4 style="color: #CE3131;"> 990,000 ກີບ</h4>
                                     </div>
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">
                                         <label>ທີ່ຢູ່ຂອງສາງ</label>
-                                        <select name="emp_id" id="emp_id">
+                                        <select name="sup_id" id="sup_id">
                                             <option value="" disabled selected>--- ເລືອກຜູ້ສະໜອງ ---</option>
-                                            <option value="">ສາງ A</option>
-                                            <option value="">ສາງ B</option>
+                                            <option value="a">ສາງ A</option>
+                                            <option value="a">ສາງ B</option>
                                         </select>
                                         <i class="fas fa-check-circle "></i>
                                         <i class="fas fa-exclamation-circle "></i>
@@ -228,10 +223,10 @@
                                     </div>
                                     <div class="col-md-12 form-control2">
                                         <label>ເລດເງີນ</label>
-                                        <select name="emp_id" id="emp_id">
+                                        <select name="rate_id" id="rate_id">
                                             <option value="" disabled selected>--- ເລືອກເລດເງີນ ---</option>
-                                            <option value="">ສາງ A</option>
-                                            <option value="">ສາງ B</option>
+                                            <option value="a">ສາງ A</option>
+                                            <option value="a">ສາງ B</option>
                                         </select>
                                         <i class="fas fa-check-circle "></i>
                                         <i class="fas fa-exclamation-circle "></i>
@@ -258,7 +253,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             data-dismiss="modal">ຍົກເລີກ</button>
-                                                        <button type="submit" name="btnSave"
+                                                        <button type="submit" name="btnSave" 
                                                             class="btn btn-outline-success">ບັນທຶກ</button>
                                                     </div>
                                                 </div>
@@ -303,6 +298,95 @@
         </div>
     </div>
 </form>
+
+
+<!-- check form import input not null -->
+<script type="text/javascript">
+        const myform = document.getElementById('form1');
+        const code = document.getElementById('code');
+        const serial = document.getElementById('serial');
+        const qty = document.getElementById('qty');
+        const price = document.getElementById('price');
+        const pro_no = document.getElementById('pro_no');
+        myform.addEventListener('submit',(e) => {
+          e.preventDefault();
+        checkInputs();
+        });
+        function checkInputs(){
+          const codeValue = code.value.trim();
+          const serialValue = serial.value.trim();
+          const qtyValue = qty.value.trim();
+          const priceValue = price.value.trim();
+          const pro_noValue = pro_no.value.trim();
+          if(codeValue === ''){
+            setErrorFor(code, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າ');
+          }
+          else{
+            setSuccessFor(code);
+          }
+          if(serialValue === ''){
+            setErrorFor(serial, 'ກະລຸນາປ້ອນໝາຍເລກ Serial Number');
+          }
+          else{
+            setSuccessFor(serial);
+          }
+          if(qtyValue === ''){
+            setErrorFor(qty, 'ກະລຸນາປ້ອນຈຳນວນ');
+          }
+          else{
+            setSuccessFor(qty);
+          }
+          if(priceValue === ''){
+            setErrorFor(price, 'ກະລຸນາປ້ອນລາຄາ');
+          }
+          else{
+            setSuccessFor(price);
+          }
+          if(pro_noValue === ''){
+            setErrorFor(pro_no, 'ກະລຸນາປ້ອນໝາຍເລກເຄືອງ');
+          }
+          else{
+            setSuccessFor(pro_no);
+          }        
+          if(codeValue !== '' && serial !=='' && serialValue !== '' && qtyValue !== '' && priceValue !== '' && pro_noValue !== '' ){
+            document.getElementById("form1").action = "import";
+            document.getElementById("form1").submit();
+          }
+        }
+</script>
+
+<!-- check save form import input not null -->
+<script type="text/javascript">
+        const myform2 = document.getElementById('formSave');
+        const sup_id = document.getElementById('sup_id');
+        const rate_id = document.getElementById('rate_id');
+        myform2.addEventListener('submit',(e) => {
+          e.preventDefault();
+        checkInputs2();
+        });
+        function checkInputs2(){
+          const sup_idValue = sup_id.value.trim();
+          const rate_idValue = rate_id.value.trim();
+          if(sup_idValue === ''){
+            setErrorFor(sup_id, 'ກະລຸນາປ້ອນລະຫັດຜູ້ສະໜອງຜູ້ນຳເຂົ້າ');
+          }
+          else{
+            setSuccessFor(sup_id);
+          }
+          if(rate_idValue === ''){
+            setErrorFor(rate_id, 'ກະລຸນາປ້ອນເລດເງີນ');
+          }
+          else{
+            setSuccessFor(rate_id);
+          }        
+          if(sup_idValue !== '' && rate_idValue !==''){
+            document.getElementById("formSave").action = "import";
+            document.getElementById("formSave").submit();
+          }
+        }
+</script>
+
+
 
 <!-- sweetalert -->
 <?php

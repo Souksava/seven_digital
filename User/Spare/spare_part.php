@@ -69,13 +69,6 @@
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ຊື່ສິນຄ້າ</label>
-                                    <input type="text" class="form-control" placeholder="ຊື່ສິນຄ້າ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
                                     <label>Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່</label>
                                     <input type="text" class="form-control"
                                         placeholder="ໝາຍເລກ Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່">
@@ -151,7 +144,7 @@
                     <tr>
                         <th style="width: 180px;" scope="col">ລະຫັດປ່ຽນອາໄຫຼ່</th>
                         <th style="width: 100px;" scope="col">ລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່</th>
-                        <th style="width: 200px;" scope="col">Serial Number ຖອດ</th>
+                        <th style="width: 300px;" scope="col">Serial Number ຖອດ</th>
                         <th style="width: 100px;" scope="col">ຊື່ອາໄຫຼ່</th>
                         <th style="width: 75px;" scope="col">ລະຫັດສິນຄ້າ</th>
                         <th style="width: 75px;" scope="col">ຊື່ສິນຄ້າ</th>
@@ -167,6 +160,8 @@
                         <td>sfklglskfdglksdfgsdfg</td>
                         <td>sfklglskfdglksdfgsdfg</td>
                         <td>sfklglskfdglksdfgsdfg</td>
+                        <td style="display:none">12/09/2020</td>
+                        <td style="display:none">12:10:50</td>
                         
                         <td>
                             <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
@@ -198,17 +193,7 @@
                             <p class="card-text">
                             <form action="#" id="formSave" method="POST">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        ປ່ຽນອາໄຫຼ່
-                                    </div>
-                                    <div class="col-md-6 " align="right">
-                                         <p style="color: #CE3131;">ຍອມລວມ 990</p>
-                                    </div>
-
-                                    <hr size="3" align="center" width="100%">
-
                                     <div class="col-md-12" align="center">
-
                                         <button type="button" name="btnAdd" class="btn btn-outline-success"
                                             data-toggle="modal"
                                             data-target="#exampleModal2">ບັນທຶກການປ່ຽນອາໄຫຼ່</button>
