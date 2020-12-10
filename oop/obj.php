@@ -1307,6 +1307,139 @@ class obj{
 
     }
     // End Stock
+
+    //Distribute Form
+    public static function cookie_distribute($code,$serial,$qty,$form_id,$remark){
+        global $conn;
+        $check_code = mysqli_query($conn,"select * from products where code='$code'");
+        $check_serail_stock = mysqli_query($conn,"select * from stocks where serial='$serial'");
+        $stock_qty = mysqli_fetch_array($check_serail_stock,MYSQLI_ASSOC);
+        $check_form = mysqli_query($conn,"select * from form where form_id='$form_id' and stt_accept='ອະນຸມັດ'");
+        if(mysqli_num_rows($check_code) <= 0){
+            echo"<script>";
+            echo"window.location.href='distribute?code=null';";
+            echo"</script>";
+       }
+       else if(mysqli_num_rows($check_serail_stock) <= 0){
+            echo"<script>";
+            echo"window.location.href='distribute?serial=null';";
+            echo"</script>";
+       }
+       else if($stock_qty['qty'] < $qty){
+        echo"<script>";
+        echo"window.location.href='distribute?qty=than';";
+        echo"</script>";
+        }
+        else if(mysqli_num_rows($check_form) <= 0){
+            echo"<script>";
+            echo"window.location.href='distribute?form=false';";
+            echo"</script>";
+       }
+        else{
+            if(isset($_COOKIE['distribute_list'])){//ກວດສອບວ່າຄຸກກີ້ distribute_list ນັ້ນມີຄ່າຫຼືບໍ່
+                $cookie_data = stripcslashes($_COOKIE['distribute_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+                $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
+            }
+            else{
+                $cart_data = array();//ຖ້າຄຸກກີ້ບໍ່ມີຄ່າຂໍ້ມູນແລ້ວຕັ້ງໂຕປ່ຽນໃຫ້ເປັນອາເລ
+            }
+            $item_id_list = array_column($cart_data,'serial');//ຕັ້ງຄ່າ serial ໃຫ້ມີຄ່າເທົ່າກັບ array $cart_data['serial']
+            if(in_array($serial,$item_id_list)){//ຖ້າວ່າ Serial ທີ່ປ້ອນມາທາງຄີບອດຕົງກັນກັບ Serial ທີ່ຢູ່ໃນ Array Cart_data ໃຫ້ເຮັດວຽກຈຸດນີ້
+                echo"<script>";
+                echo"window.location.href='distribute?serial-list=same';";
+                echo"</script>";
+            }
+            else{ // ຖ້າວ່າໄອດີບໍ່ຕົງກັນໃຫ້ເພີ່ມຂໍ້ມູນເຂົ້າໃນຄຸກກີ້
+                $get_info = mysqli_fetch_array($check_code,MYSQLI_ASSOC);
+                $name = $get_info['pro_name'];
+                $gen = $get_info['gen'];
+                $img_path = $get_info['img_path'];
+                $item_array = [//ເພີ່ມຂໍ້ມູນທີ່ຮັບມາຈາກຄີບອດເຂົ້າໄວ້ໃນຕົວປ່ຽນອາເລ $item_array
+                    "code" => $code,
+                    "serial" => $serial,
+                    "img_path" => $img_path,
+                    "name" => $name,
+                    "gen" => $gen,
+                    "qty" => $qty,
+                    "form_id" => $form_id,
+                    "remark" => $remark
+                ];
+                $cart_data[] = $item_array;//ເພີ່ມຂໍ້ມູນຈາກ $item_array ເຂົ້າໄປໃນ $cart_data
+            }
+            $item_data = json_encode($cart_data);//ປັບ item_data ໃຫ້ມັນສິ້ນສຸດການຮັບຂໍ້ມູນຈາກ $cart_data
+            setcookie('distribute_list',$item_data,time() + (86400 * 30));//ຕັ້ງຄ່າເວລາຄຸກກີ້
+            echo"<script>";
+            echo"window.location.href='distribute';";
+            echo"</script>";
+        }
+    }
+    public static function select_distribute_list(){
+        global $cart_data;
+        if(isset($_COOKIE['distribute_list'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
+            $cookie_data = stripslashes($_COOKIE['distribute_list']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
+        }
+    }
+    public static function del_distribute($serial){
+        $cookie_data = stripcslashes($_COOKIE['distribute_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
+        foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
+            if($cart_data[$keys]['serial'] == $serial){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
+                unset($cart_data[$keys]);//ລົບຂໍ້ມູນຢູ່ຄຸກກີ້ໝົດແຖວທີ່ມີໄອດີຕົງກັນ
+                $item_data = json_encode($cart_data);//ໃຫ້ຈົບການສ້າງອາເລໃນຮູບແບບ json
+                setcookie('distribute_list',$item_data,time() + (86400 * 30));//ຕັ້ງເວລາຄຸກກີ້
+                echo"<script>";
+                echo"window.location.href='distribute';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function clear_distribute(){
+        setcookie("distribute_list","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+        echo"<script>";
+        echo"window.location.href='distribute';";
+        echo"</script>";
+    }
+    public static function save_distribute($emp_id){
+        global $conn;
+        global $Date;
+        global $Time;
+        if(isset($_COOKIE['distribute_list'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
+            $cookie_data = stripcslashes($_COOKIE['distribute_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
+            foreach($cart_data as $data){
+                $code = $data['code'];
+                $serial = $data['serial'];
+                $qty = $data['qty'];
+                $form_id = $data['form_id'];
+                $remark = $data['remark'];
+                $result = mysqli_query($conn,"call insert_distribute('$code','$serial','$qty','$emp_id','$form_id','$Date','$Time','$remark')");
+                $update = mysqli_query($conn,"update stocks set qty=qty-'$qty' where code='$code' and serial='$serial'; ");
+            }
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='distribute?save=fail';";
+                echo"</script>";
+            }
+            else{
+                setcookie("distribute_list","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                echo"<script>";
+                echo"window.location.href='distribute?save2=success';";
+                echo"</script>";
+            }
+        }
+        else{
+            echo"<script>";
+            echo"window.location.href='import?list=null';";
+            echo"</script>";
+        }
+    }
+    // End Distribute
+
+    //Check_Stock
+    public static function cookie_check_stock(){
+        
+    }
 }
 $obj = new obj();
 
@@ -1324,35 +1457,31 @@ $obj = new obj();
         <input type="text" name="code" placeholder="code">
         <input type="text" name="serial" placeholder="serial">
         <input type="text" name="qty" placeholder="qty">
-        <input type="text" name="price" placeholder="price">
-        <input type="text" name="pro_no" placeholder="pro_no">
-        <input type="text" name="dnv" placeholder="dnv">
-        <input type="text" name="import_no" placeholder="import_no">
+        <input type="text" name="form_id" placeholder="form_id">
         <input type="text" name="remark" placeholder="remark">
-        <button type="submit" name="add">submit</button>
+        <button type="submit" name="add">add</button>
         <button type="submit" name="save">save</button>
     </form>
     <a href="obj.php?clear=clear">clear</a>
     <?php
         if(isset($_POST['save'])){
-            $obj->save_stock('1','1','001');
+            $obj->save_distribute('001');
         }
         if(isset($_GET['clear'])){
-            $obj->clear_stock();
+            $obj->clear_distribute();
         }
         if(isset($_GET['id'])){
-            $obj->del_stock($_GET['id']);
+            $obj->del_distribute($_GET['id']);
         }
         if(isset($_POST['add'])){
-            $obj->cookie_stock($_POST['code'],$_POST['serial'],$_POST['qty'],$_POST['price'],$_POST['pro_no'],$_POST['dnv'],$_POST['import_no'],$_POST['remark']);
+            $obj->cookie_distribute($_POST['code'],$_POST['serial'],$_POST['qty'],$_POST['form_id'],$_POST['remark']);
         }
-        $obj->select_stock_list();
-        if(isset($_COOKIE['stock_list'])){
+        $obj->select_distribute_list();
+        if(isset($_COOKIE['distribute_list'])){
     ?>
     <table>
         <?php
             foreach($cart_data as $keys => $values){
-                $total = $values["price"] * $values["qty"];
         ?>
         <tr>
             <td><?php echo $values["code"] ?></td>
@@ -1360,11 +1489,6 @@ $obj = new obj();
             <td><?php echo $values["name"] ?></td>
             <td><?php echo $values["gen"] ?></td>
             <td><?php echo $values["qty"] ?></td>
-            <td><?php echo $values["price"] ?></td>
-            <td><?php echo number_format($total) ?></td>
-            <td><?php echo $values["pro_no"] ?></td>
-            <td><?php echo $values["import_no"] ?></td>
-            <td><?php echo $values["dnv"] ?></td>
             <td><?php echo $values["remark"] ?></td>
             <td><a href="obj.php?id=<?php echo $values["serial"]; ?>">delete</a></td>
         </tr>
