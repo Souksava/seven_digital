@@ -164,7 +164,7 @@
                                                         <span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <div class="modal-body" align="center">
-                                                    ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນຟອມເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
+                                                    ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນຟອມເບີກເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-secondary"

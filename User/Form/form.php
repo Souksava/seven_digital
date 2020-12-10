@@ -301,7 +301,7 @@
             <div class="card-body">
                 <h5 align="center" class="card-title"></h5>
                 <p class="card-text">
-                <form action="#" id="formadd" method="POST">
+                <form action="form" id="formsave" method="POST">
                     <div>
                         ເລກທີບິນ: 1
                     </div>
@@ -309,19 +309,23 @@
                         <div class="col-md-4">
                             <div class="form-control2">
                                 <br>
-                                <input type="number" min="1" name="empid" id="empid" placeholder="ໝາຍເລກ">
+                                <select name="cus_id" id="cus_id" class="selectcenter" >
+                                            <option value="" disabled selected>--- ເລືອກລູກຄ້າ ---</option>
+                                            <option value="a"> A</option>
+                                            <option value="b"> B</option>
+                                        </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-control2">
                                 <br>
-                                <input type="number" min="1" name="packing" id="packing" placeholder="ໝາຍເລກສົ່ງສິນຄ້າ">
+                                <input type="text" name="packing" id="packing" class="form-control2" placeholder="Packing No">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <br>
                             <div align="center-right">
-                                <button type="button" name="btnAdd" class="btn btn-outline-success" data-toggle="modal"
+                                <button type="button" name="btnAdd" class="btn btn-outline-success btn-lg" data-toggle="modal"
                                     data-target="#exampleModal2">ບັນທຶກຟອມເບີກ</button>
                                 <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -640,7 +644,7 @@
                         </div>
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຈຳນວນ</label>
-                            <input type="number" min="1" name="num_update" id="num_update" placeholder="ຈຳນວນ">
+                            <input type="number" min="1" name="qty" id="qty" placeholder="ຈຳນວນ">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
                             <small class="">Error message</small>
@@ -656,6 +660,63 @@
         </div>
     </div>
 </form>
+
+<!-- check form input not null -->
+<script type="text/javascript">
+const myform = document.getElementById('formUpdate');
+const qty = document.getElementById('qty');
+
+myform.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs();
+});
+
+function checkInputs() {
+    const qtyValue = qty.value.trim();
+    if (qtyValue === '') {
+        setErrorFor(qty, 'ກະລຸນາປ້ອນຈຳນວນ');
+    } else {
+        setSuccessFor(qty);
+    }
+    if (qtyValue !== '') {
+        document.getElementById("formUpdate").action = "form";
+        document.getElementById("formUpdate").submit();
+    }
+}
+</script>
+
+<!-- check form input not null -->
+<script type="text/javascript">
+const myform2 = document.getElementById('formsave');
+const cus_id = document.getElementById('cus_id');
+const packing = document.getElementById('packing');
+myform2.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs2();
+});
+
+function checkInputs2() {
+    const cus_idValue = cus_id.value.trim();
+    const packingValue = packing.value.trim();
+    if (cus_idValue === '') {
+        setErrorFor(cus_id, 'ກະລຸນາປ້ອນລູກຄ້າ');
+    } else {
+        setSuccessFor(cus_id);
+    }
+    if (packingValue === '') {
+        setErrorFor(packing, 'ກະລຸນາປ້ອນ Packing No');
+    } else {
+        setSuccessFor(packing);
+    }
+    if (cus_idValue !== '' && packingValue !== '') {
+        document.getElementById("formsave").action = "form";
+        document.getElementById("formsave").submit();
+    }
+}
+</script>
+
+
+
 
 
 

@@ -205,3 +205,11 @@ sup{
 .selectcenter{
 text-align-last: center;
 }
+
+.nav-link{
+    color: #9f9e9a;
+}
+
+.nav-link:hover{
+        color: #353232;
+}

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2020 at 10:13 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Dec 10, 2020 at 09:15 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -128,7 +127,7 @@ delete from unit where unit_id=id;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `distribute` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select id,d.code,serial,d.emp_id,d.form_id,dis_date,emp_name,pro_name,gen,stt_accept,emp_name,status from distribute d left join products p on d.code=p.code left join employee e on d.emp_id=e.emp_id left join form f on d.form_id=f.form_id where d.code like s or serial like s or d.emp_id like s or d.form_id like s or dis_date like s or emp_name like s or pro_name like s or gen like s or emp_name like s or stt_accept like s or status like s order by d.code ASC limit 15 OFFSET page;
+select id,d.code,serial,d.emp_id,d.form_id,dis_date,emp_name,pro_name,gen,stt_accept,status,c.company from distribute d left join products p on d.code=p.code left join employee e on d.emp_id=e.emp_id left join form f on d.form_id=f.form_id left join customer c on f.cus_id=c.cus_id WHERE id like s or d.code like s or serial like s or d.emp_id like s or d.form_id like s or dis_date like s or emp_name like s or pro_name like s or gen like s or stt_accept like s or emp_name like s or status like s or c.company like s order by d.code ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `employee` (IN `s` VARCHAR(250), IN `page` INT(5))  Begin
@@ -241,6 +240,11 @@ end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `supplier` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
 select sup_id,company,tel,fax,address,email,img_path from supplier where sup_id like s or company like s or tel like s or fax like s or address like s or email like s order by company ASC limit 15 OFFSET page;
+end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `test` ()  NO SQL
+begin
+select id,d.code,serial,d.emp_id,d.form_id,dis_date,emp_name,pro_name,gen,stt_accept,status,c.company from distribute d left join products p on d.code=p.code left join employee e on d.emp_id=e.emp_id left join form f on d.form_id=f.form_id left join customer c on f.cus_id=c.cus_id;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `unit` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
@@ -530,6 +534,7 @@ CREATE TABLE `form` (
   `emp_id` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cus_id` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `amount` decimal(11,2) DEFAULT NULL,
+  `packing_no` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `form_date` date DEFAULT NULL,
   `form_time` time DEFAULT NULL,
   `stt_accept` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -541,9 +546,9 @@ CREATE TABLE `form` (
 -- Dumping data for table `form`
 --
 
-INSERT INTO `form` (`form_id`, `emp_id`, `cus_id`, `amount`, `form_date`, `form_time`, `stt_accept`, `status`, `usr_acc`) VALUES
-(1, '001', '1', '10.00', '2020-11-13', '09:26:00', 'a', 'b', 'c'),
-(2, '001', '2', '10.00', '0000-00-00', '09:23:00', 'a', 'b', 'c');
+INSERT INTO `form` (`form_id`, `emp_id`, `cus_id`, `amount`, `packing_no`, `form_date`, `form_time`, `stt_accept`, `status`, `usr_acc`) VALUES
+(1, '001', '1', '10.00', NULL, '2020-11-13', '09:26:00', 'a', 'b', 'c'),
+(2, '001', '2', '10.00', NULL, '0000-00-00', '09:23:00', 'a', 'b', 'c');
 
 -- --------------------------------------------------------
 

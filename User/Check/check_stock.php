@@ -28,7 +28,7 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດສິນຄ້າ</label>
-                                    <input type="text" name="code" id="code" placeholder="ລະຫັດສິນຄ້າ">
+                                    <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -114,10 +114,11 @@
                 <table class="table" style="width: 1100px;">
                     <tr>
                         <th style="width: 180px;" scope="col">ລະຫັດສິນຄ້າ</th>
-                        <th style="width: 180px;" scope="col">ໝາຍເລກ Serial Number</th>
+                        <th style="width: 180px;" scope="col">ຊື່ສິນຄ້າ</th>
+                        <th style="width: 180px;" scope="col">Serial Number</th>
                         <th style="width: 60px;" scope="col">ຈຳນວນ</th>
-                        <th style="width: 60px;" scope="col">ໝາຍເຫດ</th>
-                        <th style="width: 75px;"></th>
+                        <th style="width: 100px;" scope="col">ໝາຍເຫດ</th>
+                        <th style="width: 50px;"></th>
                     </tr>
                     <tr>
                         <td>2525252525</td>
@@ -125,6 +126,7 @@
                         <td>50</td>
                         <td style="display:none;">9/12/2020</td>
                         <td style="display:none;">9:10:50</td>
+                        <td>50</td>
                         <td>sfklglskfdglksdfgsdfg</td>
                         <td>
                             <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
@@ -281,14 +283,35 @@
           else{
             setSuccessFor(remark);
           }        
-          if(codeValue !== '' && serial !=='' && serialValue !== '' && qtyValue !== '' && pro_addrValue !== '' ){
-            document.getElementById("form1").action = "distribute";
+          if(codeValue !== '' && serial !=='' && serialValue !== '' && qtyValue !== ''){
+            document.getElementById("form1").action = "check-stock";
             document.getElementById("form1").submit();
           }
         }
 </script>
 
-
+<!-- check form import input not null -->
+<script type="text/javascript">
+        const myform2 = document.getElementById('formSave');
+        const pro_addr = document.getElementById('pro_addr');
+        myform2.addEventListener('submit',(e) => {
+          e.preventDefault();
+        checkInputs2();
+        });
+        function checkInputs2(){
+          const pro_addrValue = pro_addr.value.trim();
+          if(pro_addrValue === ''){
+            setErrorFor(pro_addr, 'ກະລຸນາປ້ອນເລືອກທີ່ຢູ່ຂອງສາງ');
+          }
+          else{
+            setSuccessFor(pro_addr);
+          }      
+          if(pro_addrValue !== '' ){
+            document.getElementById("formSave").action = "check-stock";
+            document.getElementById("formSave").submit();
+          }
+        }
+</script>
 
 
 <!-- sweetalert -->
