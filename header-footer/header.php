@@ -59,7 +59,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?php echo $path; ?>Main.php" class="nav-link"><?php echo $title; ?></a>
+                    <a class="nav-link"><?php echo $title; ?></a>
                 </li>
             </ul>
 
@@ -129,22 +129,41 @@
                                     else{ 
                                       echo"";
                                     }
-
-                                    if ($title == "ສ້າງຟອມ"){
-                                        echo '<form class="form-inline ml-3">
-                                        <div class="input-group input-group-sm">
-                                          <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
-                                          <div class="input-group-append">
-                                            <button class="btn btn-navbar" type="submit">
-                                              <i class="fas fa-search"></i>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </form>';
-                                        }
-                                        else{ 
-                                          echo"";
-                                        }            
+        
+                                        if ($title == "ສ້າງຟອມ"){
+                                            echo '<form class="form-inline ml-3">
+                                            <div class="input-group input-group-sm">
+                                              <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                              <div class="input-group-append">
+                                                <button class="btn btn-navbar" type="submit">
+                                                  <i class="fas fa-search"></i>
+                                                </button>
+                                              </div>
+                                            </div>
+                                          </form>
+                                          <a href="#" class="nav-link">ກອດສອບສິນຄ້າ</a>
+                                          ';
+                                            }
+                                            else{ 
+                                              echo"";
+                                            }   
+                                            
+                                            if ($title == "ເບີກສິນຄ້າ"){
+                                                echo '<form class="form-inline ml-3">
+                                                <div class="input-group input-group-sm">
+                                                  <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                                  <div class="input-group-append">
+                                                    <button class="btn btn-navbar" type="submit">
+                                                      <i class="fas fa-search"></i>
+                                                    </button>
+                                                  </div>
+                                                </div>
+                                              </form>
+                                              ';
+                                                }
+                                                else{ 
+                                                  echo"";
+                                                } 
 
 
     ?>

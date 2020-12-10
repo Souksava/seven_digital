@@ -5,22 +5,6 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 ?>
-<div class="row">
-    <div class="col-md-8">
-        <form action="export.php" id="formadd" method="POST">
-            <div class="input-group">
-                <input type="text" name="pro_id" placeholder="ລະຫັດສິນຄ້າ" class="form-control" autofocus>
-                <input type="text" min="0" name="qty" placeholder="Serial Number" class="form-control">
-                <input type="text" name="cus_id" placeholder="ລະຫັດລູກຄ້າ" class="form-control">
-                <input type="number" min="0" name="qty" placeholder="ຈຳນວນ" class="form-control">
-                <div class="input-group-prepend">
-                    <button type="submit" name="btnAdd" class="btn btn-outline-primary">ເພີ່ມລາຍການ</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<br>
 
 <div class="container-fluid font12">
     <div class="row">
@@ -67,7 +51,6 @@
                     <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
                 </ul>
             </nav>
-
         </div>
 
         <div class="col-lg-3 font12">
@@ -79,9 +62,11 @@
                             <p class="card-text">
                             <form action="export.php" id="form1" method="POST">
                                 <div class="row">
-  
-                                    <div class="col-md-12" align="right">
-                                         <p style="color: #CE3131;">ຍອມລວມ 9 ສິນຄ້າ</p>
+                                <div class="col-md-6">
+                                ຍອມລວມ
+                                </div>
+                                    <div class="col-md-6" align="right">
+                                         <p style="color: #CE3131;"> 9 ສິນຄ້າ</p>
                                     </div>
                                     <hr size="3" align="center" width="100%">
 

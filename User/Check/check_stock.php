@@ -28,28 +28,28 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດສິນຄ້າ</label>
-                                    <input type="text" placeholder="ລະຫັດສິນຄ້າ">
+                                    <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>Serial Number</label>
-                                    <input type="text" class="form-control" placeholder="Serial Number">
+                                    <input type="text" name="serial" id="serial" class="form-control" placeholder="Serial Number">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຈຳນວນ</label>
-                                    <input type="text" class="form-control" placeholder="ຈຳນວນ">
+                                    <input type="text" name="qty" id="qty" class="form-control" placeholder="ຈຳນວນ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ໝາຍເຫດ</label>
-                                    <input type="text" name="pro_id" placeholder="ໝາຍເຫດ" class="form-control">
+                                    <input type="text" name="remark" id="remark" placeholder="ໝາຍເຫດ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -114,10 +114,11 @@
                 <table class="table" style="width: 1100px;">
                     <tr>
                         <th style="width: 180px;" scope="col">ລະຫັດສິນຄ້າ</th>
-                        <th style="width: 180px;" scope="col">ໝາຍເລກ Serial Number</th>
+                        <th style="width: 180px;" scope="col">ຊື່ສິນຄ້າ</th>
+                        <th style="width: 180px;" scope="col">Serial Number</th>
                         <th style="width: 60px;" scope="col">ຈຳນວນ</th>
-                        <th style="width: 60px;" scope="col">ໝາຍເຫດ</th>
-                        <th style="width: 75px;"></th>
+                        <th style="width: 100px;" scope="col">ໝາຍເຫດ</th>
+                        <th style="width: 50px;"></th>
                     </tr>
                     <tr>
                         <td>2525252525</td>
@@ -125,6 +126,7 @@
                         <td>50</td>
                         <td style="display:none;">9/12/2020</td>
                         <td style="display:none;">9:10:50</td>
+                        <td>50</td>
                         <td>sfklglskfdglksdfgsdfg</td>
                         <td>
                             <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
@@ -160,16 +162,15 @@
                                     ຍອມລວມ
                                     </div>
                                         <div class="col-md-6 " align="right">
-                                             <p style="color: #CE3131;"> 990</p>
+                                             <h4 style="color: #CE3131;"> 990</h4>
                                         </div>
-
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">
                                         <label>ທີ່ຢູ່ຂອງສາງ</label>
-                                        <select name="emp_id" id="emp_id">
+                                        <select name="pro_addr" id="pro_addr" class="selectcenter">
                                             <option value="" disabled selected>--- ເລືອກທີ່ຢູ່ຂອງສາງ ---</option>
-                                            <option value="">ສາງ A</option>
-                                            <option value="">ສາງ B</option>
+                                            <option value="a">ສາງ A</option>
+                                            <option value="a">ສາງ B</option>
                                         </select>
                                         <i class="fas fa-check-circle "></i>
                                         <i class="fas fa-exclamation-circle "></i>
@@ -241,6 +242,77 @@
         </div>
     </div>
 </form>
+
+<!-- check form import input not null -->
+<script type="text/javascript">
+        const myform = document.getElementById('form1');
+        const code = document.getElementById('code');
+        const serial = document.getElementById('serial');
+        const qty = document.getElementById('qty');
+        const remark = document.getElementById('remark');
+        myform.addEventListener('submit',(e) => {
+          e.preventDefault();
+        checkInputs();
+        });
+        function checkInputs(){
+          const codeValue = code.value.trim();
+          const serialValue = serial.value.trim();
+          const qtyValue = qty.value.trim();
+          const remarkValue = remark.value.trim();
+          if(codeValue === ''){
+            setErrorFor(code, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າ');
+          }
+          else{
+            setSuccessFor(code);
+          }
+          if(serialValue === ''){
+            setErrorFor(serial, 'ກະລຸນາປ້ອນໝາຍເລກ Serial Number');
+          }
+          else{
+            setSuccessFor(serial);
+          }
+          if(qtyValue === ''){
+            setErrorFor(qty, 'ກະລຸນາປ້ອນຈຳນວນ');
+          }
+          else{
+            setSuccessFor(qty);
+          }
+          if(remarkValue === ''){
+            setErrorFor(remark, 'ກະລຸນາປ້ອນເລກທີຟອມເບີກ');
+          }
+          else{
+            setSuccessFor(remark);
+          }        
+          if(codeValue !== '' && serial !=='' && serialValue !== '' && qtyValue !== ''){
+            document.getElementById("form1").action = "check-stock";
+            document.getElementById("form1").submit();
+          }
+        }
+</script>
+
+<!-- check form import input not null -->
+<script type="text/javascript">
+        const myform2 = document.getElementById('formSave');
+        const pro_addr = document.getElementById('pro_addr');
+        myform2.addEventListener('submit',(e) => {
+          e.preventDefault();
+        checkInputs2();
+        });
+        function checkInputs2(){
+          const pro_addrValue = pro_addr.value.trim();
+          if(pro_addrValue === ''){
+            setErrorFor(pro_addr, 'ກະລຸນາປ້ອນເລືອກທີ່ຢູ່ຂອງສາງ');
+          }
+          else{
+            setSuccessFor(pro_addr);
+          }      
+          if(pro_addrValue !== '' ){
+            document.getElementById("formSave").action = "check-stock";
+            document.getElementById("formSave").submit();
+          }
+        }
+</script>
+
 
 <!-- sweetalert -->
 <?php
