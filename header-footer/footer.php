@@ -250,6 +250,23 @@ $(document).ready(function() {
 
         document.getElementById("output2").src = (data[0]);
     });
+
+    // update dist
+    $('.btnUpdate_dist').on('click', function() {
+        $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+
+        document.getElementById("output2").src = (data[0]);
+        $('#code').val(data[2]);
+        $('#qty').val(data[3]);
+        $('#form_id').val(data[7]);
+        $('#remark').val(data[9]);
+    });
+
     // Delete Modal________________________________________________________________________________________________
     // delete auther
     $('.btnDelete_auther').on('click', function() {

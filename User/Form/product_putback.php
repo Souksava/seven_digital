@@ -67,7 +67,6 @@
                     <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
                 </ul>
             </nav>
-
         </div>
 
         <div class="col-lg-3 font12">
@@ -79,9 +78,11 @@
                             <p class="card-text">
                             <form action="export.php" id="form1" method="POST">
                                 <div class="row">
-  
-                                    <div class="col-md-12" align="right">
-                                         <p style="color: #CE3131;">ຍອມລວມ 9 ສິນຄ້າ</p>
+                                <div class="col-md-6">
+                                ຍອມລວມ
+                                </div>
+                                    <div class="col-md-6" align="right">
+                                         <p style="color: #CE3131;"> 9 ສິນຄ້າ</p>
                                     </div>
                                     <hr size="3" align="center" width="100%">
 

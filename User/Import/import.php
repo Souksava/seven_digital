@@ -212,7 +212,7 @@
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">
                                         <label>ທີ່ຢູ່ຂອງສາງ</label>
-                                        <select name="sup_id" id="sup_id">
+                                        <select name="sup_id" id="sup_id" class="selectcenter">
                                             <option value="" disabled selected>--- ເລືອກຜູ້ສະໜອງ ---</option>
                                             <option value="a">ສາງ A</option>
                                             <option value="a">ສາງ B</option>
@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="col-md-12 form-control2">
                                         <label>ເລດເງີນ</label>
-                                        <select name="rate_id" id="rate_id">
+                                        <select name="rate_id" id="rate_id" class="selectcenter">
                                             <option value="" disabled selected>--- ເລືອກເລດເງີນ ---</option>
                                             <option value="a">ສາງ A</option>
                                             <option value="a">ສາງ B</option>
