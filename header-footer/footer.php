@@ -59,8 +59,8 @@ $(document).ready(function() {
 
         console.log(data);
 
-        $('#auther_id2').val(data[0]);
-        $('#auther_name2').val(data[1]);
+        $('#auther_id_update').val(data[0]);
+        $('#auther_name_update').val(data[1]);
 
     });
     // update employee
