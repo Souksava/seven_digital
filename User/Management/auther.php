@@ -10,7 +10,7 @@
           <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
         </div>
         <div style="width: 46%; float: right;" align="right">
-          <form action="auther.php" id="form1" method="POST" enctype="multipart/form-data">
+          <form action="auther" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalauther">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -92,7 +92,7 @@
 </nav>
 
   </div>
-  <form action="auther.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+  <form action="auther" id="formUpdate" method="POST" enctype="multipart/form-data">
       <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -123,7 +123,7 @@
         </div>
       </form>
       
-      <form action="auther.php" id="formDelete" method="POST" enctype="multipart/form-data">
+      <form action="auther" id="formDelete" method="POST" enctype="multipart/form-data">
       <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -246,12 +246,12 @@
   // check delete
   if(isset($_GET['del'])=='fail'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
     </script>';
   }
   if(isset($_GET['del2'])=='success'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
 ?>

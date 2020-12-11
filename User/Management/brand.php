@@ -10,7 +10,7 @@
           <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
         </div>
         <div style="width: 46%; float: right;" align="right">
-          <form action="brand.php" id="form1" method="POST" enctype="multipart/form-data">
+          <form action="brand" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalbrand">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -115,7 +115,7 @@
         </div>
       </form>
       
-      <form action="brand.php" id="formDelete" method="POST" enctype="multipart/form-data">
+      <form action="brand" id="formDelete" method="POST" enctype="multipart/form-data">
       <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">

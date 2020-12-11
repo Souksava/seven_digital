@@ -7,10 +7,10 @@
 ?>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b>ລາຍການສິນຄ້ານຳກັບເຂົ້າສາງຄືນ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
-        <form action="spare-part" id="form1" method="POST" enctype="multipart/form-data">
+        <form action="product-putback" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalemp">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -19,7 +19,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">ຂໍ້ມູນປ່ຽນອາໄຫຼ່</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">ຂໍ້ມູນນຳສິນຄ້າກັບເຂົ້າສາງຄືນ</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -27,36 +27,29 @@
                         <div class="modal-body">
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່</label>
-                                    <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່">
+                                    <label>ລະຫັດສິນຄ້າ</label>
+                                    <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>Serial Number ສິນຄ້າທີ່ຖອດອາໄຫຼ່</label>
-                                    <input type="text" name="serialout" id="serialout" class="form-control" placeholder="Serial Number">
+                                    <label>Serial Number</label>
+                                    <input type="text" name="serial" id="serial" class="form-control" placeholder="Serial Number">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ຊື່ອາໄຫຼ່</label>
-                                    <input type="text" name="spare_part" id="spare_part" class="form-control" placeholder="ຊື່ອາໄຫຼ່">
+                                    <label>ຈຳນວນ</label>
+                                    <input type="text" name="qty" id="qty" class="form-control" placeholder="ຈຳນວນ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່</label>
-                                    <input type="text" name="pro_id" id="pro_id" class="form-control" placeholder="ລະຫັດສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່</label>
-                                    <input type="text" name="serialin" id="serialin" class="form-control" placeholder="Serial Number">
+                                    <label>ເລກທີຟອມເບີກ</label>
+                                    <input type="text" name="form_id" id="form_id" class="form-control" placeholder="ເລກທີຟອມເບີກ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -127,30 +120,27 @@
             <div class="table-responsive">
                 <table class="table" style="width: 1100px;">
                     <tr>
-                        <th style="width: 180px;" scope="col">ລະຫັດປ່ຽນອາໄຫຼ່</th>
-                        <th style="width: 100px;" scope="col">ລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່</th>
-                        <th style="width: 300px;" scope="col">Serial Number ຖອດ</th>
-                        <th style="width: 100px;" scope="col">ຊື່ອາໄຫຼ່</th>
-                        <th style="width: 75px;" scope="col">ລະຫັດສິນຄ້າ</th>
-                        <th style="width: 75px;" scope="col">ຊື່ສິນຄ້າ</th>
-                        <th style="width: 75px;" scope="col">Serial Number ໃສ່</th>
+                        <th style="width: 150px;" scope="col">ລະຫັດສິນຄ້າ</th>
+                        <th style="width: 150px;" scope="col">ຊື່ສິນຄ້າ</th>
+                        <th style="width: 150px;" scope="col">Serial Number</th>
+                        <th style="width: 80px;" scope="col">ຈຳນວນ</th>
+                        <th style="width: 80px;" scope="col">ເລກທີຟອມເບີກ</th>
                         <th style="width: 75px;" scope="col">ໝາຍເຫດ</th>
+                        <th style="width: 50px;" scope="col"></th>
                     </tr>
                     <tr>
+                    <td style="display:none">1</td>
                         <td>2525252525</td>
                         <td>2625125152</td>
                         <td>50</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
+                        <td>200</td>
+                        <td>001</td>
                         <td>sfklglskfdglksdfgsdfg</td>
                         <td style="display:none">12/09/2020</td>
                         <td style="display:none">12:10:50</td>
-                        
                         <td>
                             <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                                class="fa fa-trash toolcolor btnDelete_sup"></a>&nbsp; &nbsp;
+                                class="fa fa-trash toolcolor btnDelete_pps"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
                 </table>
@@ -178,10 +168,22 @@
                             <p class="card-text">
                             <form action="#" id="formSave" method="POST">
                                 <div class="row">
+                                <div class="col-md-12 form-control2">
+                                        <label>ລູກຄ້າ</label>
+                                        <select name="sup_id" id="sup_id" class="selectcenter">
+                                            <option value="" disabled selected>--- ລູກຄ້າ ---</option>
+                                            <option value="a">ສາງ A</option>
+                                            <option value="a">ສາງ B</option>
+                                        </select>
+                                        <i class="fas fa-check-circle "></i>
+                                        <i class="fas fa-exclamation-circle "></i>
+                                        <small class="">Error message</small>
+                                    </div>
                                     <div class="col-md-12" align="center">
+                                    
                                         <button type="button" name="btnAdd" class="btn btn-outline-success"
                                             data-toggle="modal"
-                                            data-target="#exampleModal2">ບັນທຶກການປ່ຽນອາໄຫຼ່</button>
+                                            data-target="#exampleModal2">ບັນທຶກການນຳສິນຄ້າກັບເຂົ້າສາງຄືນ</button>
                                         <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -194,7 +196,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body" align="center">
-                                                        ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນການປ່ຽນອາໄຫຼ່ເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
+                                                        ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນການນຳສິນຄ້າກັບເຂົ້າສາງຄືນເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary"
@@ -221,7 +223,7 @@
 <br>
 
 <!-- modal form delete -->
-<form action="form" id="formDelete" method="POST" enctype="multipart/form-data">
+<form action="product-putback" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -249,10 +251,9 @@
 <script type="text/javascript">
 const myform = document.getElementById('form1');
 const code = document.getElementById('code');
-const serialout = document.getElementById('serialout');
-const spare_part = document.getElementById('spare_part');
-const pro_id = document.getElementById('pro_id');
-const serialin = document.getElementById('serialin');
+const serial = document.getElementById('serial');
+const qty = document.getElementById('qty');
+const form_id = document.getElementById('form_id');
 
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -261,37 +262,31 @@ myform.addEventListener('submit', (e) => {
 
 function checkInputs() {
     const codeValue = code.value.trim();
-    const serialoutValue = serialout.value.trim();
-    const spare_partValue = spare_part.value.trim();
-    const pro_idValue = pro_id.value.trim();
-    const serialinValue = serialin.value.trim();
+    const serialValue = serial.value.trim();
+    const qtyValue = qty.value.trim();
+    const form_idValue = form_id.value.trim();
     if (codeValue === '') {
-        setErrorFor(code, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່');
+        setErrorFor(code, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າ');
     } else {
         setSuccessFor(code);
     }
-    if (serialoutValue === '') {
-        setErrorFor(serialout, 'ກະລຸນາປ້ອນໝາຍເລກ Serial Number ສິນຄ້າທີ່ຖອດອາໄຫຼ່');
+    if (serialValue === '') {
+        setErrorFor(serial, 'ກະລຸນາປ້ອນໝາຍເລກ Serial Number');
     } else {
         setSuccessFor(serialout);
     }
-    if (spare_partValue === '') {
-        setErrorFor(spare_part, 'ກະລຸນາປ້ອນຊື່ອາໄຫຼ່');
+    if (qtyValue === '') {
+        setErrorFor(qty, 'ກະລຸນາຈຳນວນ');
     } else {
-        setSuccessFor(spare_part);
+        setSuccessFor(qty);
     }
-    if (pro_idValue === '') {
-        setErrorFor(pro_id, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່');
+    if (form_idValue === '') {
+        setErrorFor(form_id, 'ກະລຸນາປ້ອນເລກທີຟອມເບີກ');
     } else {
-        setSuccessFor(pro_id);
+        setSuccessFor(form_id);
     }
-    if (serialinValue === '') {
-        setErrorFor(serialin, 'ກະລຸນາປ້ອນໝາຍເລກ Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່');
-    } else {
-        setSuccessFor(serialin);
-    }
-    if (codeValue !== '' && serialoutValue !== '' && spare_partValue !== '' && pro_idValue !== '' && serialinValue !== '') {
-        document.getElementById("form1").action = "spare-part";
+    if (codeValue !== '' && serialValue !== '' && qtyValue !== '' && form_idValue !== '' && form_idValue !== '') {
+        document.getElementById("form1").action = "product-putback";
         document.getElementById("form1").submit();
     }
 }
@@ -313,12 +308,12 @@ function checkInputs() {
   // check delete
   if(isset($_GET['del'])=='fail'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
     </script>';
   }
   if(isset($_GET['del2'])=='success'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
 ?>

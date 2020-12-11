@@ -404,9 +404,77 @@ $(document).ready(function() {
         var data = $tr.children("td").map(function() {
             return $(this).text();
         }).get();
-
         console.log(data);
-
+        $('#id').val(data[0]);
+    });
+    // delete import
+    $('.btnDelete_import').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[0]);
+    });
+    // delete form
+    $('.btnDelete_form').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[0]);
+    });
+    // delete accept
+    $('.btnDelete_accept').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[0]);
+    });
+    // delete distribute
+    $('.btnDelete_dist').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[8]);
+    });
+    // delete pps
+    $('.btnDelete_pps').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[0]);
+    });
+    // delete check
+    $('.btnDelete_check').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[0]);
+    });
+    // delete spare-part
+    $('.btnDelete_sp').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
         $('#id').val(data[0]);
     });
 });

@@ -77,10 +77,10 @@
 </form>
 
 
-
+<br>
 <div style="width: 100%;">
     <b>ລາຍການ<?php echo $title ?></b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
-</div><br>
+</div>
 
 <div class="container-fluid font12">
     <div class="row">
@@ -112,6 +112,8 @@
                         <td>9</td>
                         <td>remarkabcd</td>
                         <td>9</td>
+                        <td style="display:none;">11/12/2020</td>
+                        <td style="display:none;">9:10:50</td>
                         <td>
                             <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
                                 class="fa fa-plus toolcolor btnUpdate_dist"></a>&nbsp; &nbsp;
@@ -200,9 +202,10 @@
                         <td>2020</td>
                         <td>2020</td>
                         <td>remarkabcd</td>
+                        <td style="display:none;">1</td>
                         <td>
                         <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                                class="fa fa-trash toolcolor btnDelete_sup"></a>&nbsp; &nbsp;
+                                class="fa fa-trash toolcolor btnDelete_dist"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
                             </table>
@@ -223,7 +226,7 @@
 </div>
 
 <!-- modal form delete -->
-<form action="form" id="formDelete" method="POST" enctype="multipart/form-data">
+<form action="distribute" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -309,12 +312,12 @@ function checkInputs() {
   // check delete
   if(isset($_GET['del'])=='fail'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
     </script>';
   }
   if(isset($_GET['del2'])=='success'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
 ?>
