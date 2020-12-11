@@ -278,7 +278,7 @@ $(document).ready(function() {
 
         console.log(data);
 
-        $('#del_id').val(data[0]);
+        $('#id').val(data[0]);
     });
     // delete employee
     $('.btnDelete_emp').on('click', function() {

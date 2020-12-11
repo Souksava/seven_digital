@@ -86,7 +86,7 @@ class obj{
                 echo"<script>";
                 echo"window.location.href='auther?del2=success';";
                 echo"</script>";
-            }
+            }yj
         }
     }
     //ສິ້ນສຸດການຈັດການຂໍ້ມູນຕຳແໜ່ງ
