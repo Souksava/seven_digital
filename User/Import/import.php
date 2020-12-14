@@ -5,12 +5,13 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 ?>
+<br>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b>ລາຍການສິນຄ້າ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
-        <form action="import.php" id="form1" method="POST" enctype="multipart/form-data">
+        <form action="import" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalemp">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -95,7 +96,7 @@
         </form>
     </div>
 </div>
-<div class="clearfix"></div><br>
+<div class="clearfix"></div>
 <!-- <form action="make2.php" id="form1" method="POST">
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
@@ -133,11 +134,11 @@
             </div>
         </div>
     </form> -->
-<br>
+
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-8">
-            ລາຍການສິນຄ້າ
+            
             <div class="table-responsive">
                 <table class="table" style="width: 1100px;">
                     <tr>
@@ -161,6 +162,7 @@
                                 <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
                             </a>
                         </td>
+                        <td style="display:none">1</td>
                         <td>FUJI</td>
                         <td>2020</td>
                         <td>2020</td>
@@ -176,7 +178,7 @@
                         <td style="display:none">9:10:50</td>
                         <td>
                         <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                                class="fa fa-trash toolcolor btnDelete_sup"></a>&nbsp; &nbsp;
+                                class="fa fa-trash toolcolor btnDelete_import"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
                 </table>
@@ -211,7 +213,7 @@
                                     </div>
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">
-                                        <label>ທີ່ຢູ່ຂອງສາງ</label>
+                                        <label>ຜູ້ສະໜອງ</label>
                                         <select name="sup_id" id="sup_id" class="selectcenter">
                                             <option value="" disabled selected>--- ເລືອກຜູ້ສະໜອງ ---</option>
                                             <option value="a">ສາງ A</option>
@@ -275,7 +277,7 @@
 <br>
 
 <!-- modal form delete -->
-<form action="form" id="formDelete" method="POST" enctype="multipart/form-data">
+<form action="import" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -404,12 +406,12 @@
   // check delete
   if(isset($_GET['del'])=='fail'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
     </script>';
   }
   if(isset($_GET['del2'])=='success'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
 ?>

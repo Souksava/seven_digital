@@ -104,6 +104,7 @@
                   </div>
               </div>
           </form>
+          
         </div>
     </div>
     <div class="clearfix"></div><br>
@@ -258,18 +259,12 @@
 
 <!-- sweetalert -->
 <?php
-  // check if stt_id exist
-  if(isset($_GET['sttid'])=='same'){
+  // check if rate_id exist
+  if(isset($_GET['rate'])=='same'){
     echo'<script type="text/javascript">
-    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດສະຖານະລູກຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດເລດເງິນນີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
     </script>';
   }
-    // check if stt_name exist
-    if(isset($_GET['sttname'])=='same'){
-      echo'<script type="text/javascript">
-      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ສະຖານະລູກຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
-      </script>';
-    }
   //check save
   if(isset($_GET['save'])=='fail'){
     echo'<script type="text/javascript">
@@ -281,10 +276,10 @@
     swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
-    // check if stt_name_update exist
-    if(isset($_GET['sttname'])=='same'){
+    // check if rate_id_update exist
+    if(isset($_GET['rate'])=='same'){
       echo'<script type="text/javascript">
-      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ສະຖານະລູກຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດເລດເງິນນີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
       </script>';
     }
   //check update
@@ -301,7 +296,7 @@
   // check if customer_status_id exist in customer
   if(isset($_GET['delete'])=='warning'){
     echo'<script type="text/javascript">
-    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນຜູ້ສະໜອງນີ້ໄ້ດເນື່ອງຈາກລະຫັດຜູ້ສະໜອງນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນັບສະຕ໋ອກ", "error");
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນນີ້ໄ້ດເນື່ອງຈາກລະຫັດລະຫັດເລດເງິນນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນັບສະຕ໋ອກ", "error");
     </script>';
   }
   // check delete

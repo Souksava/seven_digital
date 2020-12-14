@@ -5,9 +5,10 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 ?>
+<br>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b>ລາຍການປ່ຽນອາໄຫຼ່</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
         <form action="spare-part" id="form1" method="POST" enctype="multipart/form-data">
@@ -81,7 +82,7 @@
         </form>
     </div>
 </div>
-<div class="clearfix"></div><br>
+<div class="clearfix"></div>
 <!-- <form action="make2.php" id="form1" method="POST">
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
@@ -119,11 +120,10 @@
             </div>
         </div>
     </form> -->
-<br>
+
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-8">
-            ລາຍການສິນຄ້າ
             <div class="table-responsive">
                 <table class="table" style="width: 1100px;">
                     <tr>
@@ -137,6 +137,7 @@
                         <th style="width: 75px;" scope="col">ໝາຍເຫດ</th>
                     </tr>
                     <tr>
+                        <td style="display:none">1</td>
                         <td>2525252525</td>
                         <td>2625125152</td>
                         <td>50</td>
@@ -150,7 +151,7 @@
                         
                         <td>
                             <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                                class="fa fa-trash toolcolor btnDelete_sup"></a>&nbsp; &nbsp;
+                                class="fa fa-trash toolcolor btnDelete_sp"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
                 </table>
@@ -176,7 +177,7 @@
                         <div class="card-body">
                             <h5 align="center" class="card-title"></h5>
                             <p class="card-text">
-                            <form action="#" id="formSave" method="POST">
+                            <form action="spare-part" id="formSave" method="POST">
                                 <div class="row">
                                     <div class="col-md-12" align="center">
                                         <button type="button" name="btnAdd" class="btn btn-outline-success"
@@ -221,7 +222,7 @@
 <br>
 
 <!-- modal form delete -->
-<form action="form" id="formDelete" method="POST" enctype="multipart/form-data">
+<form action="spare-part" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -313,12 +314,12 @@ function checkInputs() {
   // check delete
   if(isset($_GET['del'])=='fail'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
     </script>';
   }
   if(isset($_GET['del2'])=='success'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
 ?>

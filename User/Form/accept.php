@@ -5,9 +5,10 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 ?>
+<br>
 <div style="width: 100%;">
-    <b><?php echo $title ?></b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
-</div><br>
+    <b>ລາຍການຟອມເບີກ</b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
+</div>
 <div class="row">
     <div class="col-md-7">
         <div class="table-responsive" style="text-align: center;">
@@ -302,7 +303,7 @@
             <div class="card-body">
                 <h5 align="center" class="card-title"></h5>
                 <p class="card-text">
-                <form action="#" id="formadd" method="POST">
+                <form action="accept" id="formadd" method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <div>
@@ -357,13 +358,14 @@
                                 <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
                             </a>
                         </td>
+                        <td style="display:none">1</td>
                         <td>12345678</td>
                         <td>FUJI</td>
                         <td>SF235SGW2</td>
                         <td>30</td>
                         <td>
                             <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                                class="fa fa-trash toolcolor btnDelete_sup"></a>&nbsp; &nbsp;
+                                class="fa fa-trash toolcolor btnDelete_accept"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
                     <tr>
@@ -580,7 +582,7 @@
 </div>
 
 <!-- modal form delete -->
-<form action="form" id="formDelete" method="POST" enctype="multipart/form-data">
+<form action="accept" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -604,34 +606,6 @@
     </div>
 </form>
 
-<!-- modal form accept -->
-<form action="form" id="formUpdate" method="POST" enctype="multipart/form-data">
-    <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ອະນຸມັດຟອມເບີກ</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row" align="center">
-                        <div class="col-md-12 col-sm-6 form-control2">
-                            <label>ທ່ານຕ້ອງການອະນຸມັດຟອມເບີກນີ້ ຫຼື ບໍ່ ?</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success"
-                        onclick="">ອະນຸມັດ</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
 
 
 
@@ -651,12 +625,12 @@
   // check delete
   if(isset($_GET['del'])=='fail'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
     </script>';
   }
   if(isset($_GET['del2'])=='success'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
 ?>
