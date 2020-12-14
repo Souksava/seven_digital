@@ -4,6 +4,17 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  include (''.$path.'oop/obj.php');
+
+  if(isset($_POST['btnDelete'])){
+    $obj->delete_customer(trim($_POST['id']));
+  }
+  if(isset($_POST['cus_id_update'])){
+    $obj->insert_customer(trim($_POST['cus_id']),trim($_POST['company']),trim($_POST['tel']),trim($_POST['email']),trim($_POST['stt_id']));
+  }
+  if(isset($_POST['cus_id_update'])){
+    $obj->update_customer(trim($_POST['cus_id_update']),trim($_POST['company_update']),trim($_POST['tel_update']),trim($_POST['email_update']),trim($_POST['stt_id_update']));
+  }
 ?>
     <div style="width: 100%;">
         <div style="width: 48%; float: left;">
@@ -78,7 +89,7 @@
               </div>
           </form>
 
-          <form action="customer.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+          <form action="customer" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -138,9 +149,10 @@
           </form>
         </div>
     </div>
-    
+    <div id="result"></div> 
     <div class="clearfix"></div><br>
-    <div class="table-responsive">
+    
+    <!-- <div class="table-responsive">
       <table class="table font12" style="width: 1500px;">
         <tr>
             <th>ລະຫັດສະຖານະລູກຄ້າ</th>
@@ -165,18 +177,10 @@
             </td>
         </tr>
       </table>
-    </div>
+    </div> -->
 
-    <!-- pagination -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
-  </ul>
-</nav>
+  
+
 
   </div>
 
@@ -246,7 +250,7 @@
             setSuccessFor(stt_id);
           }    
           if(cus_idValue !== ''  && companyValue !== '' && telValue !== '' && stt_idValue !== ''){
-            document.getElementById("form1").action = "customer.php";
+            document.getElementById("form1").action = "customer";
             document.getElementById("form1").submit();
           }         
         }
@@ -255,6 +259,7 @@
 
     <script type="text/javascript">
         const myformUpdate = document.getElementById('formUpdate');
+        const cus_id_update = document.getElementById('cus_id_update');
         const company_update = document.getElementById('company_update');
         const tel_update = document.getElementById('tel_update');
         const stt_id_update = document.getElementById('stt_id_update');
@@ -264,6 +269,7 @@
         });
 
         function checkInputsUpdate(){
+            const cus_id_updateValue = cus_id_update.value.trim();
             const company_updateValue = company_update.value.trim();
             const tel_updateValue = tel_update.value.trim();
             const stt_id_updateValue = stt_id_update.value.trim();
@@ -288,7 +294,7 @@
             setSuccessFor(stt_id_update);
           }
           if(cus_id_updateValue !== ''  && company_updateValue !== '' && tel_updateValue !== '' && stt_id_updateValue !== ''){
-            document.getElementById("formUpdate").action = "customer.php";
+            document.getElementById("formUpdate").action = "customer";
             document.getElementById("formUpdate").submit();
           }
         }

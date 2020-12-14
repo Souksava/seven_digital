@@ -12,8 +12,14 @@ class obj{
         // method ຂອງການດຶງຂໍ້ມູນຕຳແໜ່ງມາສະແດງ
         global $resultauther;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
-        $resultauther = mysqli_query($conn,"call auther('$search','$page');");
+        $resultauther = mysqli_query($conn,"call auther('$search','$page');"); 
     }
+    // public static function select_auther2($search,$page){
+    //     // method ຂອງການດຶງຂໍ້ມູນຕຳແໜ່ງມາສະແດງ
+    //     global $resultauther;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
+    //     global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+    //     $resultauther = mysqli_query($conn,"select * from auther order by auther_name asc;"); 
+    // }
     public static function insert_auther($auther_id,$auther_name){
         global $conn;
         // method ຂອງການບັນທຶກຂໍ້ມູນຕຳແໜ່ງ
@@ -90,13 +96,13 @@ class obj{
         }
     }
     //ສິ້ນສຸດການຈັດການຂໍ້ມູນຕຳແໜ່ງ
-
     // ຈັດການຂໍ້ມູນພະນັກງານ
     public static function select_employee($search,$page){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
         global $conn;
         global $resultemployee; 
-        $resultemployee = mysqli_query($conn,"call employee('$search','$page')");
+        $resultemployee = mysqli_query($conn,"call employee('$search','$page')");      
     }
+    
     public static function insert_employee($emp_id,$name,$surname,$gender,$tel,$address,$email,$pass,$auther_id,$sttid,$img_path){//method ທີ່ໃຊ້ໃນການໃນການບັນທຶກຂໍ້ມູນພະນັກງານ
         global $conn;
         global $path;
@@ -148,8 +154,8 @@ class obj{
         global $path;
         $resultmp = mysqli_query($conn,"select * from employee where emp_id='$emp_id'");//ດຶງຄ່າອີເມວ ແລະ ລະຫັດຜ່ານ ໂດຍໃຊ້ໄອດີພະນັກງານ
         $rowmp = mysqli_fetch_array($resultmp,MYSQLI_ASSOC);
-        $get_img = mysqli_query($get_img, "select  img_path from employee where emp_id='$emp_id'");
-        $data = mysqli_fetch_array($get_img, MYSQLI_ASSOC);
+        $get_img = mysqli_query($conn, "select img_path from employee where emp_id='$emp_id'");
+        $data = mysqli_fetch_array($get_img,MYSQLI_ASSOC);
         if($email == $rowmp['email'] && $pass == $rowmp['pass']){//ຖ້າອີເມວ ແລະ ລະຫັດຜ່ານທັງ 2 ຄືກັນກັບອີເມວ ແລະ ລະຫັດຜ່ານຂອງລະໄອດີພະນັກງານ ແມ່ນທຳການອັບເດດຂໍ້ມູນ
             if($img_path == ""){//ກວດສອບຄ່າຟາຍຮູບມາວ່າເປັນຄ່າວ່າງ ຫຼື ບໍ່
                 $Pro_image = $data['img_path'];
@@ -161,21 +167,21 @@ class obj{
                 $upload_path = $image_path.$new_image_name;
                 move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
                 $Pro_image = $new_image_name;
-                $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+                // $path2 = __DIR__.DIRECTORY_SEPARATOR.$image_path.DIRECTORY_SEPARATOR.$data['img_path']; //cant find path
+                $path2 = $image_path.$data['img_path'];
                 if(file_exists($path2) && !empty($data['img_path'])){
-                    unlink($path2);
-                    
+                    unlink($path2);                  
                 }
             }
             $result = mysqli_query($conn,"call update_employee('$emp_id','$name','$surname','$gender','$tel','$address','$email','$pass','$auther_id','$sttid','$Pro_image')");
             if(!$result){
                 echo"<script>";
-                echo"window.location.href='employee?save=fail';";
+                echo"window.location.href='employee?update=fail';";
                 echo"</script>";
             }
             else{
                 echo"<script>";
-                echo"window.location.href='employee?save2=success';";
+                echo"window.location.href='employee?update2=success';";
                 echo"</script>";
             }
         }
@@ -209,12 +215,12 @@ class obj{
                         $result = mysqli_query($conn,"call update_employee('$emp_id','$name','$surname','$gender','$tel','$address','$email','$pass','$auther_id','$sttid','$Pro_image')");
                         if(!$result){
                             echo"<script>";
-                            echo"window.location.href='employee?save=fail';";
+                            echo"window.location.href='employee?update=fail';";
                             echo"</script>";
                         }
                         else{
                             echo"<script>";
-                            echo"window.location.href='employee?save2=success';";
+                            echo"window.location.href='employee?update2=success';";
                             echo"</script>";
                         }
                     }
@@ -245,12 +251,12 @@ class obj{
                         $result = mysqli_query($conn,"call update_employee('$emp_id','$name','$surname','$gender','$tel','$address','$email','$pass','$auther_id','$sttid','$Pro_image')");
                         if(!$result){
                             echo"<script>";
-                            echo"window.location.href='employee?save=fail';";
+                            echo"window.location.href='employee?update=fail';";
                             echo"</script>";
                         }
                         else{
                             echo"<script>";
-                            echo"window.location.href='employee?save2=success';";
+                            echo"window.location.href='employee?update2=success';";
                             echo"</script>";
                         }
                     }
@@ -275,12 +281,12 @@ class obj{
                     $result = mysqli_query($conn,"call update_employee('$emp_id','$name','$surname','$gender','$tel','$address','$email','$pass','$auther_id','$sttid','$Pro_image')");
                     if(!$result){
                         echo"<script>";
-                        echo"window.location.href='employee?save=fail';";
+                        echo"window.location.href='employee?update=fail';";
                         echo"</script>";
                     }
                     else{
                         echo"<script>";
-                        echo"window.location.href='employee?save2=success';";
+                        echo"window.location.href='employee?update2=success';";
                         echo"</script>";
                     }
                 }
@@ -592,6 +598,10 @@ class obj{
     public static function select_customer($search,$page){
         global $conn;
         global $resultcustomer;
+        // if($search == ''){
+        //     $search = mysqli_real_escape_string($conn, $search);
+        // }
+        $search = "%".$search."%";
         $resultcustomer = mysqli_query($conn,"call customer('$search','$page')");
     }
     public static function insert_customer($cus_id,$company,$tel,$address,$email,$stt_id){

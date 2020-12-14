@@ -45,6 +45,8 @@
     <link rel="stylesheet" href="<?php echo $path ?>plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="<?php echo $path ?>dist/js/sweetalert.min.js"></script>
 </head>
 
@@ -66,9 +68,9 @@
             <?php 
             // input text search in header for main data
                     if ($title == "ຂໍ້ມູນພະນັກງານ"){
-                    echo '<form class="form-inline ml-3">
+                    echo '<form action="employee" class="form-inline ml-3">
                     <div class="input-group input-group-sm">
-                      <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                      <input class="form-control form-control-navbar" name="search" id="search" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
                       <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
                           <i class="fas fa-search"></i>
@@ -84,7 +86,7 @@
                     if ($title == "ຂໍ້ມູນລູກຄ້າ"){
                         echo '<form class="form-inline ml-3">
                         <div class="input-group input-group-sm">
-                          <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                          <input class="form-control form-control-navbar" name="search" id="search" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
                           <div class="input-group-append">
                             <button class="btn btn-navbar" type="submit">
                               <i class="fas fa-search"></i>

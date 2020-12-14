@@ -118,7 +118,7 @@
             <th>ລະຫັດເລດເງິນ</th>
             <th>ເລດເງິນຊື້</th>
             <th>ເລດເງິນຂາຍ</th>
-
+            <th></th>
         </tr>
         <?php
             foreach($resultrate as $row){
