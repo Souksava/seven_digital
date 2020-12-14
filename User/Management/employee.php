@@ -76,8 +76,6 @@
                                         <option value="" disabled selected>--- ເລືອກຕຳແໜ່ງ ---</option>
                                         <?php
                                         $obj->select_auther('%%','0');
-                                            // $resultauther = mysqli_query($conn,"select * from auther order by auther_name asc;"); 
-                                            // while($rows = mysqli_fetch_array($resultauther)){
                                             foreach($resultauther as $rows){
                                         ?>
                                             <option value="<?php echo $rows['auther_id'] ?>"><?php echo $rows['auther_name'] ?></option>

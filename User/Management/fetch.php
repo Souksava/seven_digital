@@ -33,7 +33,7 @@ if(mysqli_num_rows($resultcustomer) > 0)
      <th>Tel</th>
      <th>Address</th>
      <th>Email</th>
-     <th>Status ID</th>
+     <th>Status</th>
      <th></th>
     </tr>
  ';
@@ -46,7 +46,8 @@ if(mysqli_num_rows($resultcustomer) > 0)
     <td>'.$row["tel"].'</td>
     <td>'.$row["address"].'</td>
     <td>'.$row["email"].'</td>
-    <td>'.$row["stt_id"].'</td>
+    <td style="display: none;">'.$row["stt_id"].'</td>
+    <td>'.$row["stt_name"].'</td>
     <td>
     <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cust"></a>&nbsp; &nbsp; 
       <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_cust"></a>
@@ -66,3 +67,23 @@ else
 }
 
 ?>
+
+<script type="text/javascript">
+    // update customer
+    $('.btnUpdate_cust').on('click', function() {
+        $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+
+        $('#cus_id_update').val(data[0]);
+        $('#company_update').val(data[1]);
+        $('#tel_update').val(data[2]);
+        $('#address_update').val(data[3]);
+        $('#email_update').val(data[4]);
+        $('#stt_id_update').val(data[5]);
+    });
+</script>

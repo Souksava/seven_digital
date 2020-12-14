@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2020 at 09:15 AM
+-- Generation Time: Dec 14, 2020 at 08:12 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.25
 
@@ -47,7 +47,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `check_auther_name` (IN `name` VARCH
 SELECT * from auther where auther_name = name$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `customer` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select c.cus_id,company,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where c.cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s order by company ASC limit 15 OFFSET page;
+select c.cus_id,company,tel,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where c.cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s order by company ASC limit 15 OFFSET page;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `customer_status` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
@@ -341,9 +341,9 @@ CREATE TABLE `auther` (
 --
 
 INSERT INTO `auther` (`auther_id`, `auther_name`) VALUES
-('001', 'it'),
-('002', 'acc'),
-('003', 'marketting');
+('001', 'IT'),
+('002', 'accounting'),
+('003', 'Marketing');
 
 -- --------------------------------------------------------
 
@@ -502,7 +502,8 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`emp_id`, `emp_name`, `emp_surname`, `gender`, `tel`, `address`, `email`, `pass`, `auther_id`, `stt_id`, `img_path`) VALUES
-('001', 'ta', 'ss', 's', '0203213', 'lao', 'f@hotmail.com', 'asw', '002', 2, 'test');
+('001', 'ta', 'ss', 'ຍິງ', '0203213', 'lao', 'f@hotmail.com', 'asw', '002', 2, 'seven_5fd33f6a7a882.jpg'),
+('jghj', '45645', '45645', 'ຍິງ', 's', 't', 'a@dg/.com', '54', '001', 1, 'seven_5fd3419c8430e.jpg');
 
 -- --------------------------------------------------------
 
@@ -659,8 +660,7 @@ CREATE TABLE `rate` (
 --
 
 INSERT INTO `rate` (`rate_id`, `rate_buy`, `rate_sell`) VALUES
-('1', '1.10', '1.20'),
-('2', '1.30', '1.00');
+('1', '1.10', '1.20');
 
 -- --------------------------------------------------------
 

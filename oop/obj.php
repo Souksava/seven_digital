@@ -14,12 +14,6 @@ class obj{
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
         $resultauther = mysqli_query($conn,"call auther('$search','$page');"); 
     }
-    // public static function select_auther2($search,$page){
-    //     // method ຂອງການດຶງຂໍ້ມູນຕຳແໜ່ງມາສະແດງ
-    //     global $resultauther;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
-    //     global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
-    //     $resultauther = mysqli_query($conn,"select * from auther order by auther_name asc;"); 
-    // }
     public static function insert_auther($auther_id,$auther_name){
         global $conn;
         // method ຂອງການບັນທຶກຂໍ້ມູນຕຳແໜ່ງ

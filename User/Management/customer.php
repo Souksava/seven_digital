@@ -9,11 +9,11 @@
   if(isset($_POST['btnDelete'])){
     $obj->delete_customer(trim($_POST['id']));
   }
-  if(isset($_POST['cus_id_update'])){
-    $obj->insert_customer(trim($_POST['cus_id']),trim($_POST['company']),trim($_POST['tel']),trim($_POST['email']),trim($_POST['stt_id']));
+  if(isset($_POST['cus_id'])){
+    $obj->insert_customer(trim($_POST['cus_id']),trim($_POST['company']),trim($_POST['tel']),trim($_POST['email']),trim($_POST['address']),trim($_POST['stt_id']));
   }
   if(isset($_POST['cus_id_update'])){
-    $obj->update_customer(trim($_POST['cus_id_update']),trim($_POST['company_update']),trim($_POST['tel_update']),trim($_POST['email_update']),trim($_POST['stt_id_update']));
+    $obj->update_customer(trim($_POST['cus_id_update']),trim($_POST['company_update']),trim($_POST['tel_update']),trim($_POST['email_update']),trim($_POST['address_update']),trim($_POST['stt_id_update']));
   }
 ?>
     <div style="width: 100%;">
@@ -72,8 +72,20 @@
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ລະຫັດສະຖານະລູກຄ້າ</label>
-                                      <input type="text" name="stt_id" id="stt_id" placeholder="ລະຫັດສະຖານະລູກຄ້າ">
+                                  <label>ສະຖານະລູກຄ້າ</label>
+                                    <select name="stt_id" id="stt_id">
+                                        <option value="" disabled selected>--- ເລືອກສະຖານະລູກຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_customer_status('%%','0');
+                                            foreach($result_customer_status as $row2){
+                                        ?>
+                                            <option value="<?php echo $row2['stt_id'] ?>"><?php echo $row2['stt_name'] ?></option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($result_customer_status);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
@@ -131,9 +143,21 @@
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ລະຫັດສະຖານະລູກຄ້າ</label>
-                                      <input type="text" name="stt_id_update" id="stt_id_update" placeholder="ລະຫັດສະຖານະລູກຄ້າ">
-                                      <i class="fas fa-check-circle "></i>
+                                  <label>ສະຖານະລູກຄ້າ</label>
+                                    <select name="stt_id_update" id="stt_id_update">
+                                        <option value="" disabled selected>--- ເລືອກສະຖານະລູກຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_customer_status('%%','0');
+                                            foreach($result_customer_status as $row2){
+                                        ?>
+                                            <option value="<?php echo $row2['stt_id'] ?>"><?php echo $row2['stt_name'] ?></option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($result_customer_status);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
+                                    <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>                                         
@@ -184,7 +208,7 @@
 
   </div>
 
-  <form action="customer.php" id="formDelete" method="POST" enctype="multipart/form-data">
+  <form action="customer" id="formDelete" method="POST" enctype="multipart/form-data">
       <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -355,7 +379,36 @@
   }
 ?>
 
+<script>
+$(document).ready(function(){
 
+load_data();
+
+ function load_data(query)
+ {
+   $.ajax({
+   url:"fetch.php",
+   method:"POST",
+   data:{query:query},
+   success:function(data)
+   {
+     $('#result').html(data);
+   }
+   });
+ }
+ $('#search').keyup(function(){
+   var search = $(this).val();
+   if(search != '')
+   {
+   load_data(search);
+   }
+   else
+   {
+   load_data();
+   }
+ });
+});
+</script>
 
 
  <?php
