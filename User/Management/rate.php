@@ -109,7 +109,7 @@
     </div>
     <div class="clearfix"></div><br>
     <?php
-      $obj->select_rate('%%','0');
+      $obj->select_rate("%%","0");
       if(mysqli_num_rows($resultrate) > 0){
     ?>
     <div class="table-responsive">
