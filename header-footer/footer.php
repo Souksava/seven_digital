@@ -131,7 +131,7 @@ $(document).ready(function() {
         $('#stt_name_update').val(data[1]);
     });
     // update customer
-    $('.btnUpdate_customer').on('click', function() {
+    $('.btnUpdate_cust').on('click', function() {
         $('#exampleModalUpdate').modal('show');
         $tr = $(this).closest('tr');
         var data = $tr.children("td").map(function() {
