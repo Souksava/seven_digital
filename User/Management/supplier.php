@@ -4,13 +4,15 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  include (''.$path.'oop/obj.php');
+  
 ?>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
         <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
-        <form action="supplier.php" id="form1" method="POST" enctype="multipart/form-data">
+        <form action="supplier" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalsupplier">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -172,7 +174,63 @@
     </div>
 </div>
 <div class="clearfix"></div><br>
-<div class="table-responsive">
+<div id="result">result</div>
+    <?php
+  $obj->select_supplier("%".$_POST['search']."%",'0');
+  $output = '';
+  if(mysqli_num_rows($resultsupplier) > 0){
+    $output .= '
+    <div class="table-responsive">
+    <table class="table font12" style="width: 1500px;">
+        <tr>
+            <th>ລະຫັດຜູ້ໜອງ</th>
+            <th>ຊື່ບໍ່ລິສັດ</th>
+            <th>ເບີໂທລະສັບ</th>
+            <th>ເບີແຟັກ</th>
+            <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
+            <th>ທີ່ຢູ່ອີເມວ</th>
+            <th>ຮູບພາບ</th>
+            <th></th>
+
+        </tr>
+    ';
+    foreach($resultsupplier as $row){
+    $output .='
+        <tr>
+            <td>'.$row["sup_id"].'</td>
+            <td>'.$row["company"].'</td>
+            <td>'.$row["tel"].'</td>
+            <td>'.$row["fax"].'</td>
+            <td>'.$row["address"].'</td>
+            <td>'.$row["email"].'</td>
+            <td style="display:none;">'.$path.''.$row['img_path'].'</td>
+            <td>
+                <a href="../../image/image.jpeg" target="_blank">
+                    <img src="../../image/image.jpeg" class="img-circle elevation-2" alt="" width="30px">
+                </a>
+
+            </td>
+            <td>
+                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
+                    class="fa fa-pen toolcolor btnUpdate_sup"></a>&nbsp; &nbsp;
+                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
+                    class="fa fa-trash toolcolor btnDelete_sup"></a>
+            </td>
+        </tr>
+        ';
+        }
+        $output .='
+    </table>
+</div>
+    ';
+    echo $output;
+  }
+  else{
+      echo "No Data";
+  }
+    ?>
+<!-- </div> -->
+<!-- <div class="table-responsive">
     <table class="table font12" style="width: 1500px;">
         <tr>
             <th>ລະຫັດຜູ້ໜອງ</th>
@@ -207,7 +265,7 @@
             </td>
         </tr>
     </table>
-</div>
+</div> -->
 
 <!-- pagination -->
 <nav aria-label="Page navigation example">
@@ -381,18 +439,46 @@ function checkInputsUpdate() {
 
 <!-- script preview image before upload -->
 <script>
-var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-        URL.revokeObjectURL(output.src) // free memory
-    }
-};
-var loadFile2 = function(event) {
-    var output2 = document.getElementById('output2');
-    output2.src = URL.createObjectURL(event.target.files[0]);
-    output2.onload = function() {
-        URL.revokeObjectURL(output2.src) // free memory
-    }
-};
+// var loadFile = function(event) {
+//     var output = document.getElementById('output');
+//     output.src = URL.createObjectURL(event.target.files[0]);
+//     output.onload = function() {
+//         URL.revokeObjectURL(output.src) // free memory
+//     }
+// };
+// var loadFile2 = function(event) {
+//     var output2 = document.getElementById('output2');
+//     output2.src = URL.createObjectURL(event.target.files[0]);
+//     output2.onload = function() {
+//         URL.revokeObjectURL(output2.src) // free memory
+//     }
+// };
+$(document).ready(function(){
+    $('#search_text').keyup(function(){
+        var txt = $(this).val();
+        if(txt != ''){
+            $.ajax({
+                url:"supplier.php",
+                method="post",
+                data:{search:txt},
+                dataType:"text",
+                success:fun ction(data){
+                    $('#result').html(data);
+                }
+            });
+        }
+        else{
+            $('#result').html('');
+            $.ajax({
+                url:"supplier.php",
+                method="post",
+                data:{search:txt},
+                dataType:"text",
+                success:function(data){
+                    $('#result').html(data);
+                }
+            });
+        }
+    });
+});
 </script>

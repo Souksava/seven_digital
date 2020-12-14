@@ -1498,7 +1498,6 @@ class obj{
     }
 }
 $obj = new obj();
-
 ?>
 <!-- <!DOCTYPE html>
 <html lang="en">
