@@ -117,21 +117,8 @@ $(document).ready(function() {
         $('#stt_id_update').val(data[0]);
         $('#stt_name_update').val(data[1]);
     });
-    // update customer status
-    $('.btnUpdate_customer_status').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
-
-        console.log(data);
-
-        $('#stt_id_update').val(data[0]);
-        $('#stt_name_update').val(data[1]);
-    });
     // update customer
-    $('.btnUpdate_customer').on('click', function() {
+    $('.btnUpdate_cust').on('click', function() {
         $('#exampleModalUpdate').modal('show');
         $tr = $(this).closest('tr');
         var data = $tr.children("td").map(function() {
@@ -478,7 +465,37 @@ $(document).ready(function() {
         $('#id').val(data[0]);
     });
 });
+$(document).ready(function(){
+
+load_data();
+
+ function load_data(query)
+ {
+   $.ajax({
+   url:"fetch.php",
+   method:"POST",
+   data:{query:query},
+   success:function(data)
+   {
+     $('#result').html(data);
+   }
+   });
+ }
+ $('#search').keyup(function(){
+   var search = $(this).val();
+   if(search != '')
+   {
+   load_data(search);
+   }
+   else
+   {
+   load_data();
+   }
+ });
+});
 </script>
+
+
 </body>
 
 </html>
