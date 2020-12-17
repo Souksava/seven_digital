@@ -69,7 +69,7 @@
 </div>
 <div class="clearfix"></div><br>
 <?php
-      $obj->select_auther('%%','0');
+      $obj->select_auther('%%');
       if(mysqli_num_rows($resultauther) > 0){
     ?>
 <div class="table-responsive">

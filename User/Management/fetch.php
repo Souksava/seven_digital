@@ -12,13 +12,19 @@ $output = '';
 // {
 //  $query = "SELECT * FROM employee ORDER BY emp_id";
 // }
+if(isset($_GET['page']) == '' || isset($_GET['page']) =='1'){
+$page = 0;
+}
+else{
+ $page = ($page*15)-15;
+}
 if(isset($_POST["query"]))
 {
-   $obj->select_customer($_POST['query'],"0");
+   $obj->select_customer($_POST['query'],$page);
 }
 else
 {
-   $obj->select_customer("%%","0");
+   $obj->select_customer("%%",$page);
 }
 // $result = mysqli_query($connect, $query);
 // if(mysqli_num_rows($result) > 0)
@@ -55,7 +61,32 @@ if(mysqli_num_rows($resultcustomer) > 0)
    </tr>
   ';
  }
+ mysqli_free_result($resultcustomer);  
+ mysqli_next_result($conn);
+ $output .='
+   </table>
+</div>
+ ';
  echo $output;
+ 
+ if(isset($_POST["query"]))
+ {
+   $obj->select_customer_count($_POST['query']);
+ }
+ else
+ {
+    $obj->select_customer_count("%%");
+ }
+echo $count = mysqli_num_rows($resultcustomer_count);
+$a = $count/15;
+$a = ceil($a);
+for($b=1;$b<=$a;$b++){
+   echo '
+   <a href="customer?page='.$b.'" id="page">
+      '.$b.'
+      
+    </a>';
+}
 }
 else
 {

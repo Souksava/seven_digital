@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 14, 2020 at 08:12 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.25
+-- Host: localhost
+-- Generation Time: Dec 17, 2020 at 04:19 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,8 +26,8 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `auther` (IN `s` VARCHAR(50), IN `page` INT(5))  Begin
-Select auther_id,auther_name from auther where auther_id like s or auther_name like s order by auther_name ASC limit 15 OFFSET page;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `auther` (IN `s` VARCHAR(50))  Begin
+Select auther_id,auther_name from auther where auther_id like s or auther_name like s order by auther_name ASC;
 End$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `brand` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
@@ -47,7 +48,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `check_auther_name` (IN `name` VARCH
 SELECT * from auther where auther_name = name$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `customer` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select c.cus_id,company,tel,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where c.cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s order by company ASC limit 15 OFFSET page;
+select c.cus_id,company,tel,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where c.cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s order by company ASC limit page,15;
+end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `customer_count` (IN `s` VARCHAR(50))  NO SQL
+begin
+select c.cus_id,company,tel,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where c.cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s order by company ASC;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `customer_status` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
@@ -430,7 +436,25 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`cus_id`, `company`, `tel`, `address`, `email`, `stt_id`) VALUES
 ('1', 'a', 'b', 'c', 'd', '1'),
-('2', 'aa', 'bb', 'cc', 'dd', '1');
+('10', 'tes', 's', 's', 's', '1'),
+('11', 'tes', 's', 's', 's', '1'),
+('12', 'tes', 's', 's', 's', '1'),
+('13', 'tes', 's', 's', 's', '1'),
+('14', 'tes', 's', 's', 's', '1'),
+('15', 'tes', 's', 's', 's', '1'),
+('16', 'tes', 's', 's', 's', '1'),
+('17', 'tes', 's', 's', 's', '1'),
+('18', 'tes', 's', 's', 's', '1'),
+('19', 'tes', 's', 's', 's', '1'),
+('2', 'b', 'bb', 'cc', 'dd', '1'),
+('20', 'tes', 's', 's', 's', '1'),
+('3', 'c', 'asdf', 'asfd', 'safa', '1'),
+('4', 'd', 'asfasf', 'safd', 'safsa', '1'),
+('5', 'e', 'asdf', 'safd', 'safd', '1'),
+('6', 'f', 'dgffsdg', 'dsgfdf', 'dsfg', '2'),
+('7', 'g', 'dsgdsfg', 'dsgds', 'dsgdsg', '2'),
+('8', 'tes', 's', 's', 's', '1'),
+('9', 'tes', 's', 's', 's', '1');
 
 -- --------------------------------------------------------
 
