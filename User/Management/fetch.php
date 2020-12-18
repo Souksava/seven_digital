@@ -92,6 +92,9 @@ if(mysqli_num_rows($resultcustomer) > 0)
    if(isset($_POST['page'])){
       $page_next = $_POST['page'];
       $page_next2 = $_POST['page'];
+      if($_POST['page'] == 0 || $_POST['page'] == ''){
+         $page_next2 = 1;
+      }
    }
    for($b=1;$b<=$a;$b++){
       $i = $b;
@@ -107,7 +110,9 @@ if(mysqli_num_rows($resultcustomer) > 0)
          ';
       }
    }
-     
+     if($page_next == 0){
+        $page_next = 1;
+     }
       if($page_next < $i){
          if($page_next == 0){
             $page_next += 1;
