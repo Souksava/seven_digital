@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 17, 2020 at 04:19 AM
+-- Generation Time: Dec 18, 2020 at 03:21 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -48,7 +48,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `check_auther_name` (IN `name` VARCH
 SELECT * from auther where auther_name = name$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `customer` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select c.cus_id,company,tel,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where c.cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s order by company ASC limit page,15;
+select c.cus_id,company,tel,address,email,c.stt_id,stt_name from customer c left join customer_status cs on c.stt_id=cs.stt_id where c.cus_id like s or company like s or tel like s or address like s or email like s or c.stt_id like s or stt_name like s order by company ASC limit page,2;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `customer_count` (IN `s` VARCHAR(50))  NO SQL
@@ -348,7 +348,7 @@ CREATE TABLE `auther` (
 
 INSERT INTO `auther` (`auther_id`, `auther_name`) VALUES
 ('001', 'IT'),
-('002', 'accounting'),
+('002', 'accountings'),
 ('003', 'Marketing');
 
 -- --------------------------------------------------------
@@ -448,6 +448,7 @@ INSERT INTO `customer` (`cus_id`, `company`, `tel`, `address`, `email`, `stt_id`
 ('19', 'tes', 's', 's', 's', '1'),
 ('2', 'b', 'bb', 'cc', 'dd', '1'),
 ('20', 'tes', 's', 's', 's', '1'),
+('21', 'tese', 'asdf', 'sgmlbv', 's', '2'),
 ('3', 'c', 'asdf', 'asfd', 'safa', '1'),
 ('4', 'd', 'asfasf', 'safd', 'safsa', '1'),
 ('5', 'e', 'asdf', 'safd', 'safd', '1'),

@@ -47,6 +47,7 @@ $.widget.bridge('uibutton', $.ui.button)
 <!-- AdminLTE App -->
 <script src="<?php echo $path ?>dist/js/adminlte.js"></script>
 <script src="<?php echo $path ?>dist/js/style.js"></script>
+<script src="<?php echo $path ?>dist/js/jquery.highlight.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     // Update Modal
@@ -265,7 +266,7 @@ $(document).ready(function() {
 
         console.log(data);
 
-        $('#id').val(data[0]);
+        $('#id').val(data[4]);
     });
     // delete employee
     $('.btnDelete_emp').on('click', function() {

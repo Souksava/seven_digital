@@ -3,31 +3,28 @@
   include (''.$path.'oop/obj.php');
 //fetch.php
 $output = '';
-// if(isset($_POST["query"]))
-// {
-//  $search = mysqli_real_escape_string($connect, $_POST["query"]);
-//  $query = "SELECT * FROM employee WHERE emp_id LIKE '%".$search."%'";
-// }
-// else
-// {
-//  $query = "SELECT * FROM employee ORDER BY emp_id";
-// }
-if(isset($_GET['page']) == '' || isset($_GET['page']) =='1'){
-$page = 0;
+if(isset($_POST['page'])){
+   $page = $_POST['page'];
+   if($page == '' || $page == 0 || $page == 1){
+      $page = 0;
+      }
+      else{
+         $page = ($page*2)-2;
+      }
 }
 else{
- $page = ($page*15)-15;
+   $page = 0;
 }
+echo $page;
 if(isset($_POST["query"]))
 {
+   $highlight = $_POST['query'];
    $obj->select_customer($_POST['query'],$page);
 }
 else
 {
    $obj->select_customer("%%",$page);
 }
-// $result = mysqli_query($connect, $query);
-// if(mysqli_num_rows($result) > 0)
 if(mysqli_num_rows($resultcustomer) > 0)
 {
  $output .= '
@@ -46,7 +43,7 @@ if(mysqli_num_rows($resultcustomer) > 0)
  while($row = mysqli_fetch_array($resultcustomer))
  {
   $output .= '
-   <tr>
+   <tr  class="result">
     <td>'.$row["cus_id"].'</td>
     <td>'.$row["company"].'</td>
     <td>'.$row["tel"].'</td>
@@ -77,16 +74,45 @@ if(mysqli_num_rows($resultcustomer) > 0)
  {
     $obj->select_customer_count("%%");
  }
-echo $count = mysqli_num_rows($resultcustomer_count);
-$a = $count/15;
-$a = ceil($a);
-for($b=1;$b<=$a;$b++){
-   echo '
-   <a href="customer?page='.$b.'" id="page">
-      '.$b.'
-      
-    </a>';
-}
+   $count = mysqli_num_rows($resultcustomer_count);
+   mysqli_free_result($resultcustomer_count);  
+   mysqli_next_result($conn);
+   $a = ceil($count/2);
+   if(isset($_POST['page'])){
+      if($_POST['page'] > 1){
+         $previous = $_POST['page'] - 1;
+         echo '      
+         <a href="#" id="'.$previous.'" class="page-links" value="'.$previous.'" >
+            Previous
+         </a>';
+      }
+   }
+   $i = 0;
+   for($b=1;$b<=$a;$b++){
+      $i = $b;
+      // echo"<style>a{color: red;}</style>";
+      echo '
+      <a href="#" id="'.$b.'" class="page-links" value="'.$b.'" >'.$b.'</a>
+      ';
+   }
+      $page_next = 0;
+      if(isset($_POST['page'])){
+         $page_next = $_POST['page'];
+      }
+      if($page_next < $i){
+         if($page_next == 0){
+            $page_next += 1;
+         }
+         $next = $page_next + 1;
+         echo '      
+               <a href="#" id="'.$next.'" class="page-links" value="'.$next.'" >
+                  Next
+               </a>';
+      }
+      else{
+         echo'';
+      }
+   
 }
 else
 {
@@ -96,25 +122,26 @@ else
 <hr size="1" width="90%">
  ';
 }
-
 ?>
 
 <script type="text/javascript">
-    // update customer
-    $('.btnUpdate_cust').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
+var highlight = "<?php echo $_POST['query']; ?>";
+$('.result').highlight([highlight]);
+// update customer
+$('.btnUpdate_cust').on('click', function() {
+    $('#exampleModalUpdate').modal('show');
+    $tr = $(this).closest('tr');
+    var data = $tr.children("td").map(function() {
+        return $(this).text();
+    }).get();
 
-        console.log(data);
+    console.log(data);
 
-        $('#cus_id_update').val(data[0]);
-        $('#company_update').val(data[1]);
-        $('#tel_update').val(data[2]);
-        $('#address_update').val(data[3]);
-        $('#email_update').val(data[4]);
-        $('#stt_id_update').val(data[5]);
-    });
+    $('#cus_id_update').val(data[0]);
+    $('#company_update').val(data[1]);
+    $('#tel_update').val(data[2]);
+    $('#address_update').val(data[3]);
+    $('#email_update').val(data[4]);
+    $('#stt_id_update').val(data[5]);
+});
 </script>

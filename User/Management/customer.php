@@ -173,6 +173,7 @@
           </form>
         </div>
     </div>
+    
     <div id="result"></div> 
     <div class="clearfix"></div><br>
     
@@ -233,6 +234,9 @@
 
 
   <script type="text/javascript">
+  // const hightlight = document.getElementById('hightlight');
+  // console.log(hightlight);
+   $('.result').highlight([hightlight]);
         const myform = document.getElementById('form1');
         const cus_id = document.getElementById('cus_id');
         const company = document.getElementById('company');
@@ -382,31 +386,46 @@
 <script>
 $(document).ready(function(){
 
-load_data();
+  load_data();
 
- function load_data(query)
- {
-   $.ajax({
-   url:"fetch.php",
-   method:"POST",
-   data:{query:query},
-   success:function(data)
-   {
-     $('#result').html(data);
-   }
-   });
- }
- $('#search').keyup(function(){
-   var search = $(this).val();
-   if(search != '')
-   {
-   load_data(search);
-   }
-   else
-   {
-   load_data();
-   }
- });
+  function load_data(query,page)
+  {
+    $.ajax({
+      url:"fetch.php",
+      method:"POST",
+      data:{query:query,page:page},
+      success:function(data)
+      {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search').keyup(function(){
+    var page = "0";
+    var search = $(this).val();
+    if(search != '')
+    {
+    load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+  $(document).on('click', '.page-links', function(){    
+    var page = this.id;
+    console.log(page);
+    var search = $('#search').val();
+    if(search != '')
+    {
+      load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+
 });
 
 </script>
