@@ -9,13 +9,12 @@ if(isset($_POST['page'])){
       $page = 0;
       }
       else{
-         $page = ($page*2)-2;
+         $page = ($page*15)-15;
       }
 }
 else{
    $page = 0;
 }
-echo $page;
 if(isset($_POST["query"]))
 {
    $highlight = $_POST['query'];
@@ -77,7 +76,7 @@ if(mysqli_num_rows($resultcustomer) > 0)
    $count = mysqli_num_rows($resultcustomer_count);
    mysqli_free_result($resultcustomer_count);  
    mysqli_next_result($conn);
-   $a = ceil($count/2);
+   $a = ceil($count/15);
    if(isset($_POST['page'])){
       if($_POST['page'] > 1){
          $previous = $_POST['page'] - 1;
@@ -88,17 +87,27 @@ if(mysqli_num_rows($resultcustomer) > 0)
       }
    }
    $i = 0;
+   $page_next = 0;
+   $page_next2 = 1;
+   if(isset($_POST['page'])){
+      $page_next = $_POST['page'];
+      $page_next2 = $_POST['page'];
+   }
    for($b=1;$b<=$a;$b++){
       $i = $b;
       // echo"<style>a{color: red;}</style>";
-      echo '
-      <a href="#" id="'.$b.'" class="page-links" value="'.$b.'" >'.$b.'</a>
-      ';
-   }
-      $page_next = 0;
-      if(isset($_POST['page'])){
-         $page_next = $_POST['page'];
+      if($page_next2 == $b){
+         echo '
+         <a href="#" id="'.$b.'" style="color: red;" class="page-links" value="'.$b.'" >'.$b.'</a>
+         ';
       }
+      else{
+         echo '
+         <a href="#" id="'.$b.'" class="page-links" value="'.$b.'" >'.$b.'</a>
+         ';
+      }
+   }
+     
       if($page_next < $i){
          if($page_next == 0){
             $page_next += 1;
