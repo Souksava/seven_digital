@@ -64,7 +64,7 @@ $(document).ready(function() {
         $('#auther_name_update').val(data[1]);
 
     });
-    // update employee
+   // update employee
     $('.btnUpdate_emp').on('click', function() {
         $('#exampleModalUpdate').modal('show');
         $tr = $(this).closest('tr');
@@ -305,7 +305,23 @@ $(document).ready(function() {
 
         $('#id').val(data[0]);
     });
+    // update customer
+    $('.btnUpdate_cust').on('click', function() {
+      $('#exampleModalUpdate').modal('show');
+      $tr = $(this).closest('tr');
+      var data = $tr.children("td").map(function() {
+         return $(this).text();
+      }).get();
 
+      console.log(data);
+
+      $('#cus_id_update').val(data[0]);
+      $('#company_update').val(data[1]);
+      $('#tel_update').val(data[2]);
+      $('#address_update').val(data[3]);
+      $('#email_update').val(data[4]);
+      $('#stt_id_update').val(data[5]);
+   });
     // delete customer
     $('.btnDelete_cust').on('click', function() {
         $('#exampleModalDelete').modal('show');

@@ -78,7 +78,8 @@
                                         $obj->select_auther('%%','0');
                                             foreach($resultauther as $rows){
                                         ?>
-                                            <option value="<?php echo $rows['auther_id'] ?>"><?php echo $rows['auther_name'] ?></option>
+                                        <option value="<?php echo $rows['auther_id'] ?>">
+                                            <?php echo $rows['auther_name'] ?></option>
                                         <?php
                                            }
                                            mysqli_free_result($resultauther);  
@@ -129,7 +130,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ສິດໃນການເຂົ້າໃຊ້ລະບົບ</label>
                                     <select name="status" id="status">
-                                        <option value="">--- ເລືອກສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>                                      
+                                        <option value="">--- ເລືອກສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
                                         <option value="1">ຜູ້ຈັດການ</option>
                                         <option value="2">ຜູ້ນັບສະຕ໋ອກ</option>
                                     </select>
@@ -159,8 +160,12 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+<div id="result"></div>
+<div class="clearfix"></div><br>
 
-        <form action="employee" id="formUpdate" method="POST" enctype="multipart/form-data">
+<form action="employee" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -209,7 +214,8 @@
                                             // while($rows = mysqli_fetch_array($resultauther)){
                                             foreach($resultauther as $rows){
                                         ?>
-                                            <option value="<?php echo $rows['auther_id'] ?>"><?php echo $rows['auther_name'] ?></option>
+                                        <option value="<?php echo $rows['auther_id'] ?>">
+                                            <?php echo $rows['auther_name'] ?></option>
                                         <?php
                                            }
                                            mysqli_free_result($resultauther);  
@@ -316,109 +322,6 @@
                 </div>
             </div>
         </form>
-
-
-    </div>
-</div>
-<div class="clearfix"></div><br>
-<?php
-  $obj->select_employee('%%','0');
-        if(mysqli_num_rows($resultemployee) > 0){
-    ?>
-<div class="table-responsive">
-    <table class="table font12" style="width: 1500px;">
-        <tr>
-            <th>ລະຫັດ</th>
-            <th>ຊື່ພະນັກງານ</th>
-            <th>ນາມສະກຸນ</th>
-            <th>ເພດ</th>
-            <th>ເບີໂທລະສັບ</th>
-            <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
-            <th>ຕຳແໜ່ງ</th>
-            <th>ທີ່ຢູ່ອີເມວ</th>
-            <th>ລະຫັດຜູ້ໃຊ້ລະບົບ</th>
-            <th>ສິດຂົ້າໃຊ້ລະບົບ</th>
-            <th>ຮູບພາບ</th>
-            <th></th>
-        </tr>
-        <?php
-            foreach($resultemployee as $row){
-        ?>
-        <tr>
-            <td><?php echo $row['emp_id'] ?></td>
-            <td><?php echo $row['emp_name'] ?></td>
-            <td><?php echo $row['emp_surname'] ?></td>
-            <td><?php echo $row['gender'] ?></td>
-            <td><?php echo $row['tel'] ?></td>
-            <td><?php echo $row['address'] ?></td>
-            <td style="display:none;"><?php echo $row['auther_id'] ?></td>
-            <td><?php echo $row['auther_name'] ?></td>
-            <td><?php echo $row['email'] ?></td>
-            <td><?php echo $row['pass'] ?></td>
-            <td style="display:none;"><?php echo $row['stt_id'] ?></td>
-            <td><?php echo $row['stt_name'] ?></td>
-            <td style="display:none;"><?php echo $path?>image/<?php echo $row['img_path'] ?></td>
-            <?php 
-            if($row['img_path'] != ''){
-              ?>
-            <td>
-                <a href="<?php echo $path?>image/<?php echo $row['img_path'] ?>" target="_blank">
-                    <img src="<?php echo $path?>image/<?php echo $row['img_path'] ?>" class="img-circle elevation-2"
-                        alt="" width="55px">
-                </a>
-
-            </td>
-            <?php
-            }
-            else{
-            ?>
-             <td>
-                <a href="<?php echo $path?>image/image.jpeg" target="_blank">
-                    <img src="<?php echo $path?>image/image.jpeg" class="img-circle elevation-2"
-                        alt="" width="55px">
-                </a>
-
-            </td>
-            <?php
-            }
-            ?>
-            <td>
-                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate_emp"
-                    class="fa fa-pen toolcolor btnUpdate_emp"></a>&nbsp; &nbsp;
-                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_emp"></a>
-            </td>
-        </tr>
-        <?php
-            }
-        ?>
-    </table>
-</div>
-<?php
-          } 
-          else{
-        ?>
-<hr size="1" width="90%">
-<p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
-<hr size="1" width="90%">
-<?php
-          }
-          mysqli_free_result($resultemployee);  
-          mysqli_next_result($conn);
-        ?>
-      
-<!-- pagination -->
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-    </ul>
-</nav>
-
-</div>
 
 <!-- check form save input not null -->
 <script type="text/javascript">
@@ -641,20 +544,59 @@ function checkInputs2() {
 
 <!-- script preview image before upload -->
 <script>
-var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-        URL.revokeObjectURL(output.src) // free memory
-    }
-};
-var loadFile2 = function(event) {
-    var output2 = document.getElementById('output2');
-    output2.src = URL.createObjectURL(event.target.files[0]);
-    output2.onload = function() {
-        URL.revokeObjectURL(output2.src) // free memory
-    }
-};
+// var loadFile = function(event) {
+//     var output = document.getElementById('output');
+//     output.src = URL.createObjectURL(event.target.files[0]);
+//     output.onload = function() {
+//         URL.revokeObjectURL(output.src) // free memory
+//     }
+// };
+// var loadFile2 = function(event) {
+//     var output2 = document.getElementById('output2');
+//     output2.src = URL.createObjectURL(event.target.files[0]);
+//     output2.onload = function() {
+//         URL.revokeObjectURL(output2.src) // free memory
+//     }
+// };
 </script>
+<script>
+$(document).ready(function() {
+
+    load_data();
+
+    function load_data(query, page) {
+        $.ajax({
+            url: "fetch_employee.php",
+            method: "POST",
+            data: {
+                query: query,
+                page: page
+            },
+            success: function(data) {
+                $('#result').html(data);
+            }
+        });
+    }
+    $('#search').keyup(function() {
+        var page = "0";
+        var search = $(this).val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
+        }
+    });
+    $(document).on('click', '.page-links', function() {
+        var page = this.id;
+        console.log(page);
+        var search = $('#search').val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
+        }
+    });
+});
 
 
+</script>

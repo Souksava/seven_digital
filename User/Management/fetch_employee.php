@@ -18,46 +18,79 @@ else{
 if(isset($_POST["query"]))
 {
    $highlight = $_POST['query'];
-   $obj->select_customer("%".$_POST['query']."%",$page);
+   $obj->select_employee("%".$_POST['query']."%",$page);
 }
 else
 {
-   $obj->select_customer("%%",$page);
+   $obj->select_employee("%%",$page);
 }
-if(mysqli_num_rows($resultcustomer) > 0)
+if(mysqli_num_rows($resultemployee) > 0)
 {
  $output .= '
   <div class="table-responsive">
    <table class="table font12" style="width: 1500px;">
     <tr>
-     <th>ລະຫັດລູກຄ້າ</th>
-     <th>ຊື່ບໍລິສັດ</th>
-     <th>ເບີໂທລະສັບ</th>
-     <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
-     <th>ອີເມວ</th>
-     <th>ສະຖານະລູກຄ້າ</th>
-     <th></th>
+        <th>ລະຫັດ</th>
+        <th>ຊື່ພະນັກງານ</th>
+        <th>ນາມສະກຸນ</th>
+        <th>ເພດ</th>
+        <th>ເບີໂທລະສັບ</th>
+        <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
+        <th>ຕຳແໜ່ງ</th>
+        <th>ທີ່ຢູ່ອີເມວ</th>
+        <th>ລະຫັດເຂົ້າໃຊ້ລະບົບ</th>
+        <th>ສິດເຂົ້າໃຊ້ລະບົບ</th>
+        <th>ຮູບພາບ</th>
+        <th></th>
     </tr>
  ';
- while($row = mysqli_fetch_array($resultcustomer))
+ while($row = mysqli_fetch_array($resultemployee))
  {
   $output .= '
    <tr  class="result">
-    <td>'.$row["cus_id"].'</td>
-    <td>'.$row["company"].'</td>
+    <td>'.$row["emp_id"].'</td>
+    <td>'.$row["emp_name"].'</td>
+    <td>'.$row["emp_surname"].'</td>
+    <td>'.$row["gender"].'</td>
     <td>'.$row["tel"].'</td>
     <td>'.$row["address"].'</td>
+    <td style="display: none;">'.$row["auther_id"].'</td>
+    <td>'.$row["auther_name"].'</td>
     <td>'.$row["email"].'</td>
+    <td>'.$row["pass"].'</td>
     <td style="display: none;">'.$row["stt_id"].'</td>
     <td>'.$row["stt_name"].'</td>
+    <td style="display: none;">'.$row["img_path"].'</td>
+    ';
+    if($row['img_path'] != ''){
+    $output .= '
     <td>
-      <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cust"></a>&nbsp; &nbsp; 
-      <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_cust"></a>
+        <a href="'.$path.'image/'.$row['img_path'].'" target="_blank">
+            <img src="'.$path.'image/'.$row['img_path'].'" class="img-circle elevation-2"
+                alt="" width="55px">
+        </a>
     </td>
+    ';
+    }
+    else{
+    $output .= '
+    <td>
+        <a href="'.$path.'image/image.jpeg" target="_blank">
+            <img src="'.$path.'image/image.jpeg" class="img-circle elevation-2"
+                alt="" width="55px">
+        </a>
+    </td>
+    ';
+    }
+    $output .='
+        <td>
+            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_emp"></a>&nbsp; &nbsp; 
+            <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_emp"></a>
+        </td>
    </tr>
   ';
  }
- mysqli_free_result($resultcustomer);  
+ mysqli_free_result($resultemployee);  
  mysqli_next_result($conn);
  $output .='
    </table>
@@ -67,14 +100,14 @@ if(mysqli_num_rows($resultcustomer) > 0)
  
  if(isset($_POST["query"]))
  {
-   $obj->select_customer_count("%".$_POST['query']."%");
+   $obj->select_employee_count("%".$_POST['query']."%");
  }
  else
  {
-    $obj->select_customer_count("%%");
+    $obj->select_employee_count("%%");
  }
-   $count = mysqli_num_rows($resultcustomer_count);
-   mysqli_free_result($resultcustomer_count);  
+   $count = mysqli_num_rows($resultemployee_count);
+   mysqli_free_result($resultemployee_count);  
    mysqli_next_result($conn);
    $a = ceil($count/15);
    if(isset($_POST['page'])){
@@ -107,11 +140,6 @@ if(mysqli_num_rows($resultcustomer) > 0)
          $page_next2 = 1;
       }
    }
-   // <a href="#" id="'.$b.'" style="color: red;" class="page-links" value="'.$b.'" >'.$b.'</a>    
-   // <a href="#" id="'.$b.'" class="page-links" value="'.$b.'" >'.$b.'</a>
-   // <a href="#" id="'.$next.'" class="page-links" value="'.$next.'" >
-   //    Next
-   // </a>
    for($b=1;$b<=$a;$b++){
       $i = $b;
       if($page_next2 == $b){
@@ -164,9 +192,7 @@ else
  ';
 }
 ?>
-
 <script type="text/javascript">
 var highlight = "<?php echo $_POST['query']; ?>";
 $('.result').highlight([highlight]);
-
 </script>
