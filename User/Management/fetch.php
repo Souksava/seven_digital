@@ -81,10 +81,21 @@ if(mysqli_num_rows($resultcustomer) > 0)
       if($_POST['page'] > 1){
          $previous = $_POST['page'] - 1;
          echo '      
-         <a href="#" id="'.$previous.'" class="page-links" value="'.$previous.'" >
-            Previous
-         </a>';
+         <nav aria-label="...">
+            <ul class="pagination">
+               <li class="page-item">
+                  <a href="#" class="btn btn-danger page-links" id="'.$previous.'" style="color: white!important;" value="'.$previous.'">Previous</a>
+               </li>
+       ';
       }
+      else{
+         echo' <nav aria-label="...">
+                  <ul class="pagination">';
+      }
+   }
+   else{
+      echo' <nav aria-label="...">
+               <ul class="pagination">';
    }
    $i = 0;
    $page_next = 0;
@@ -96,17 +107,28 @@ if(mysqli_num_rows($resultcustomer) > 0)
          $page_next2 = 1;
       }
    }
+   // <a href="#" id="'.$b.'" style="color: red;" class="page-links" value="'.$b.'" >'.$b.'</a>    
+   // <a href="#" id="'.$b.'" class="page-links" value="'.$b.'" >'.$b.'</a>
+   // <a href="#" id="'.$next.'" class="page-links" value="'.$next.'" >
+   //    Next
+   // </a>
    for($b=1;$b<=$a;$b++){
       $i = $b;
-      // echo"<style>a{color: red;}</style>";
       if($page_next2 == $b){
          echo '
-         <a href="#" id="'.$b.'" style="color: red;" class="page-links" value="'.$b.'" >'.$b.'</a>
+         <li class="page-item active" aria-current="page">
+            <span class="page-link">
+            '.$b.'
+            <span class="sr-only">(current)</span>
+            </span>
+         </li>
          ';
       }
       else{
          echo '
-         <a href="#" id="'.$b.'" class="page-links" value="'.$b.'" >'.$b.'</a>
+         <li class="page-item">
+            <a href="#" id="'.$b.'" class="btn btn-danger page-link page-links" value="'.$b.'">'.$b.'</a>
+         </li>
          ';
       }
    }
@@ -119,9 +141,14 @@ if(mysqli_num_rows($resultcustomer) > 0)
          }
          $next = $page_next + 1;
          echo '      
-               <a href="#" id="'.$next.'" class="page-links" value="'.$next.'" >
-                  Next
-               </a>';
+
+                     <li class="page-item">
+                        <a href="#" class="btn btn-success page-links" id="'.$next.'" value="'.$next.'" style="color: white!important;" href="#">Next</a>
+                     </li>
+                  </ul>
+               </nav>
+';
+
       }
       else{
          echo'';
