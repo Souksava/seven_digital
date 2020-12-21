@@ -96,6 +96,11 @@ class obj{
         global $resultemployee; 
         $resultemployee = mysqli_query($conn,"call employee('$search','$page')");      
     }
+    public static function select_employee_count($search){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultemployee_count; 
+        $resultemployee_count = mysqli_query($conn,"call employee_count('$search')");      
+    }
     
     public static function insert_employee($emp_id,$name,$surname,$gender,$tel,$address,$email,$pass,$auther_id,$sttid,$img_path){//method ທີ່ໃຊ້ໃນການໃນການບັນທຶກຂໍ້ມູນພະນັກງານ
         global $conn;
@@ -595,7 +600,6 @@ class obj{
         // if($search == ''){
         //     $search = mysqli_real_escape_string($conn, $search);
         // }
-        $search = "%".$search."%";
         $resultcustomer = mysqli_query($conn,"call customer('$search','$page')");
     }
     public static function select_customer_count($search){

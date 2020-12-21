@@ -428,8 +428,10 @@ $(document).ready(function(){
       load_data('%%',page);
     }
   });
+  
 
 });
+
 
 </script>
 
