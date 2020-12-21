@@ -85,7 +85,13 @@ $(document).ready(function() {
         $('#password2').val(data[9]);
         $('#password_cf2').val(data[9]);
         $('#status2').val(data[10]);
-        document.getElementById("output2").src = (data[12]);
+        if(data[12] === ''){
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        }
+        else{
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[12]);
+        }
+     
     });
     // update supplier
     $('.btnUpdate_sup').on('click', function() {

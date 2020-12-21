@@ -60,7 +60,7 @@ if(mysqli_num_rows($resultemployee) > 0)
     <td>'.$row["pass"].'</td>
     <td style="display: none;">'.$row["stt_id"].'</td>
     <td>'.$row["stt_name"].'</td>
-    <td style="display: none;">'.$path.'image/'.$row["img_path"].'</td>
+    <td style="display: none;">'.$row["img_path"].'</td>
     ';
     if($row['img_path'] != ''){
     $output .= '
