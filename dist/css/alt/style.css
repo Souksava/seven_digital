@@ -221,15 +221,7 @@ text-align-last: center;
 .nav-link:hover{
     color: #353232;
 }
-<<<<<<< HEAD
-
-
-
-/* TEST files ---------------------------------------------------------------------------------------------------------------------------- */
-
-
-=======
->>>>>>> ba289a6f186bca1407b26f80ea279b688b3d3476
+ /* Start Number button */
 .number-input input[type="number"] {
     -webkit-appearance: textfield;
     -moz-appearance: textfield;
@@ -320,16 +312,16 @@ text-align-last: center;
     }
     
     @media not all and (min-resolution:.001dpcm) {
-    @supports (-webkit-appearance: none) and (stroke-color:transparent) {
-    
-    .number-input.def-number-input.safari_only button:before,
-    .number-input.def-number-input.safari_only button:after {
-    margin-top: -.3rem;
-    }
-    }
-    }
+        @supports (-webkit-appearance: none) and (stroke-color:transparent) {
+        
+            .number-input.def-number-input.safari_only button:before,
+            .number-input.def-number-input.safari_only button:after {
+            margin-top: -.3rem;
+            }
+        }
+        }
 
-<<<<<<< HEAD
+
     tr.hide-table-padding td {
         padding: 0;
       }
@@ -349,11 +341,11 @@ text-align-last: center;
       .accordion-toggle.collapsed .expand-button:after
       {
         content: '+';
-=======
+      }
+      /* End number button */
     .highlight{
         background-color: yellow;
       }
       em.important{
         background-color: red;
->>>>>>> ba289a6f186bca1407b26f80ea279b688b3d3476
       }

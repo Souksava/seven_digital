@@ -394,7 +394,7 @@ $(document).ready(function(){
   function load_data(query,page)
   {
     $.ajax({
-      url:"fetch.php",
+      url:"fetch_customer.php",
       method:"POST",
       data:{query:query,page:page},
       success:function(data)
