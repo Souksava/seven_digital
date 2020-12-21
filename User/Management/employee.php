@@ -160,168 +160,165 @@
                 </div>
             </div>
         </form>
+        <br>
     </div>
 </div>
 <div id="result"></div>
 <div class="clearfix"></div><br>
 
 <form action="employee" id="formUpdate" method="POST" enctype="multipart/form-data">
-            <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">ແກ້ໄຂຂໍ້ມູນພະນັກງານ</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+    <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ແກ້ໄຂຂໍ້ມູນພະນັກງານ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" align="left">
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ຊື່ພະນັກງານ</label>
+                            <input type="hidden" name="emp_id2" id="emp_id2" placeholder="ລະຫັດພະນັກງານ">
+                            <input type="text" name="emp_name2" id="emp_name2" placeholder="ຊື່ພະນັກງານ">
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
                         </div>
-                        <div class="modal-body">
-                            <div class="row" align="left">
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ຊື່ພະນັກງານ</label>
-                                    <input type="hidden" name="emp_id2" id="emp_id2" placeholder="ລະຫັດພະນັກງານ">
-                                    <input type="text" name="emp_name2" id="emp_name2" placeholder="ຊື່ພະນັກງານ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ນາມສະກຸນ</label>
-                                    <input type="text" name="emp_surname2" id="emp_surname2" placeholder="ນາມສະກຸນ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ເພດ</label>
-                                    <select name="gender2" id="gender2">
-                                        <option value="">--- ເລືອກເພດ ---</option>
-                                        <option value="ຍິງ">ຍິງ</option>
-                                        <option value="ຊາຍ">ຊາຍ</option>
-                                    </select>
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ຕຳແໜ່ງ</label>
-                                    <select name="auther_id2" id="auther_id2">
-                                        <option value="">--- ເລືອກຕຳແໜ່ງ ---</option>
-                                        <?php
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ນາມສະກຸນ</label>
+                            <input type="text" name="emp_surname2" id="emp_surname2" placeholder="ນາມສະກຸນ">
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
+                        </div>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ເພດ</label>
+                            <select name="gender2" id="gender2">
+                                <option value="">--- ເລືອກເພດ ---</option>
+                                <option value="ຍິງ">ຍິງ</option>
+                                <option value="ຊາຍ">ຊາຍ</option>
+                            </select>
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
+                        </div>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ຕຳແໜ່ງ</label>
+                            <select name="auther_id2" id="auther_id2">
+                                <option value="">--- ເລືອກຕຳແໜ່ງ ---</option>
+                                <?php
                                         $obj->select_auther('%%','0');
                                             // $resultauther = mysqli_query($conn,"select * from auther order by auther_name asc;"); 
                                             // while($rows = mysqli_fetch_array($resultauther)){
                                             foreach($resultauther as $rows){
                                         ?>
-                                        <option value="<?php echo $rows['auther_id'] ?>">
-                                            <?php echo $rows['auther_name'] ?></option>
-                                        <?php
+                                <option value="<?php echo $rows['auther_id'] ?>">
+                                    <?php echo $rows['auther_name'] ?></option>
+                                <?php
                                            }
                                            mysqli_free_result($resultauther);  
                                             mysqli_next_result($conn);
                                         ?>
-                                    </select>
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ທີ່ຢູ່ປັດຈຸບັນ</label>
-                                    <textarea name="address2" id="address2" cols="3" rows="3"
-                                        placeholder="ທີ່ຢູ່ປັດຈຸບັນ"></textarea>
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ເບີໂທລະສັບ</label>
-                                    <input type="text" name="tel2" id="tel2" placeholder="ເບີໂທລະສັບ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ທີ່ຢູ່ອີເມວ</label>
-                                    <input type="text" name="email2" id="email2" placeholder="ທີ່ຢູ່ອີເມວ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດຜູ້ໃຊ້ລະບົບ</label>
-                                    <input type="password" name="password2" id="password2"
-                                        placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ຢືນຢັນລະຫັດ</label>
-                                    <input type="password" name="password_cf2" id="password_cf2"
-                                        placeholder="ຢືນຢັນລະຫັດ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ສິດໃນການເຂົ້າໃຊ້ລະບົບ</label>
-                                    <select name="status2" id="status2">
-                                        <option value="">--- ເລືອກສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
-                                        <option value="1">ຜູ້ຈັດການ</option>
-                                        <option value="2">ຜູ້ນັບສະຕ໋ອກ</option>
-                                    </select>
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ຮູບພາບ</label>
-                                    <input type="file" name="img_path" id="img_path2" onchange="loadFile2(event)">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <img src="../../image/camera.jpg" id="output2" width="100%" height="250">
-                                </div>
-                            </div>
+                            </select>
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary"
-                                data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success"
-                                onclick="">ແກ້ໄຂ</button>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ທີ່ຢູ່ປັດຈຸບັນ</label>
+                            <textarea name="address2" id="address2" cols="3" rows="3"
+                                placeholder="ທີ່ຢູ່ປັດຈຸບັນ"></textarea>
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
+                        </div>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ເບີໂທລະສັບ</label>
+                            <input type="text" name="tel2" id="tel2" placeholder="ເບີໂທລະສັບ">
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
+                        </div>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ທີ່ຢູ່ອີເມວ</label>
+                            <input type="text" name="email2" id="email2" placeholder="ທີ່ຢູ່ອີເມວ">
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
+                        </div>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ລະຫັດຜູ້ໃຊ້ລະບົບ</label>
+                            <input type="password" name="password2" id="password2" placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ">
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
+                        </div>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ຢືນຢັນລະຫັດ</label>
+                            <input type="password" name="password_cf2" id="password_cf2" placeholder="ຢືນຢັນລະຫັດ">
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
+                        </div>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ສິດໃນການເຂົ້າໃຊ້ລະບົບ</label>
+                            <select name="status2" id="status2">
+                                <option value="">--- ເລືອກສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
+                                <option value="1">ຜູ້ຈັດການ</option>
+                                <option value="2">ຜູ້ນັບສະຕ໋ອກ</option>
+                            </select>
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
+                        </div>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <label>ຮູບພາບ</label>
+                            <input type="file" name="img_path" id="img_path2" onchange="loadFile2(event)">
+                            <i class="fas fa-check-circle "></i>
+                            <i class="fas fa-exclamation-circle "></i>
+                            <small class="">Error message</small>
+                        </div>
+                        <div class="col-md-12 col-sm-6 form-control2">
+                            <img src="../../image/camera.jpg" id="output2" width="100%" height="250">
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success"
+                        onclick="">ແກ້ໄຂ</button>
+                </div>
             </div>
-        </form>
+        </div>
+    </div>
+</form>
 
-        <form action="employee" id="formDelete" method="POST" enctype="multipart/form-data">
-            <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">ຢືນຢັນການລົບຂໍ້ມູນ</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" align="center">
-                            <input type="hidden" name="id" id="id">
-                            ທ່ານຕ້ອງການລົບຂໍ້ມູນ ຫຼື ບໍ່ ?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary"
-                                data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
-                        </div>
-                    </div>
+<form action="employee" id="formDelete" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ຢືນຢັນການລົບຂໍ້ມູນ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" align="center">
+                    <input type="hidden" name="id" id="id">
+                    ທ່ານຕ້ອງການລົບຂໍ້ມູນ ຫຼື ບໍ່ ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
                 </div>
             </div>
-        </form>
+        </div>
+    </div>
+</form>
 
 <!-- check form save input not null -->
 <script type="text/javascript">
@@ -597,6 +594,4 @@ $(document).ready(function() {
         }
     });
 });
-
-
 </script>
