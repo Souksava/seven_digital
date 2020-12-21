@@ -60,7 +60,7 @@ if(mysqli_num_rows($resultemployee) > 0)
     <td>'.$row["pass"].'</td>
     <td style="display: none;">'.$row["stt_id"].'</td>
     <td>'.$row["stt_name"].'</td>
-    <td style="display: none;">'.$row["img_path"].'</td>
+    <td style="display: none;">'.$path.'image/'.$row["img_path"].'</td>
     ';
     if($row['img_path'] != ''){
     $output .= '
@@ -195,4 +195,27 @@ else
 <script type="text/javascript">
 var highlight = "<?php echo $_POST['query']; ?>";
 $('.result').highlight([highlight]);
+$('.btnUpdate_emp2').on('click', function() {
+    // $('#exampleModalUpdate').modal('show');
+    // $tr = $(this).closest('tr');
+    // var data = $tr.children("td").map(function() {
+    //     return $(this).text();
+    // }).get();
+
+    // console.log(data);
+    console.log('hello');
+
+    // $('#emp_id2').val(data[0]);
+    // $('#emp_name2').val(data[1]);
+    // $('#emp_surname2').val(data[2]);
+    // $('#gender2').val(data[3]);
+    // $('#tel2').val(data[4]);
+    // $('#address2').val(data[5]);
+    // $('#auther_id2').val(data[6]);
+    // $('#email2').val(data[8]);
+    // $('#password2').val(data[9]);
+    // $('#password_cf2').val(data[9]);
+    // $('#status2').val(data[10]);
+    // document.getElementById("output2").src = (data[12]);
+});
 </script>

@@ -71,7 +71,7 @@ $(document).ready(function() {
         var data = $tr.children("td").map(function() {
             return $(this).text();
         }).get();
-
+    
         console.log(data);
 
         $('#emp_id2').val(data[0]);
