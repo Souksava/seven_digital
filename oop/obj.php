@@ -8,11 +8,11 @@ class obj{
     public $conn;
     public $search;
     //ຈັດການຂໍ້ມູນຕຳແໜ່ງ
-    public static function select_auther($search,$page){
+    public static function select_auther($search){
         // method ຂອງການດຶງຂໍ້ມູນຕຳແໜ່ງມາສະແດງ
         global $resultauther;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
-        $resultauther = mysqli_query($conn,"call auther('$search','$page');"); 
+        $resultauther = mysqli_query($conn,"call auther('$search');"); 
     }
     public static function insert_auther($auther_id,$auther_name){
         global $conn;
@@ -597,6 +597,15 @@ class obj{
         // }
         $search = "%".$search."%";
         $resultcustomer = mysqli_query($conn,"call customer('$search','$page')");
+    }
+    public static function select_customer_count($search){
+        global $conn;
+        global $resultcustomer_count;
+        // if($search == ''){
+        //     $search = mysqli_real_escape_string($conn, $search);
+        // }
+        $search = "%".$search."%";
+        $resultcustomer_count = mysqli_query($conn,"call customer_count('$search')");
     }
     public static function insert_customer($cus_id,$company,$tel,$address,$email,$stt_id){
         global $conn;

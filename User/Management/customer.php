@@ -18,13 +18,16 @@
 ?>
     <div style="width: 100%;">
         <div style="width: 48%; float: left;">
-          <b><?php echo $title    ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+          <b>ລາຍການລູກຄ້າ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
         </div>
         <div style="width: 46%; float: right;" align="right">
           <form action="customer.php" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalcustomer">
+
                 <img src="../../icon/add.ico" alt="" width="25px">
+
             </a>
+
             <div class="modal fade" id="exampleModalcustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -100,7 +103,7 @@
                   </div>
               </div>
           </form>
-
+          <br>
           <form action="customer" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -173,6 +176,7 @@
           </form>
         </div>
     </div>
+    
     <div id="result"></div> 
     <div class="clearfix"></div><br>
     
@@ -233,6 +237,9 @@
 
 
   <script type="text/javascript">
+  // const hightlight = document.getElementById('hightlight');
+  // console.log(hightlight);
+   $('.result').highlight([hightlight]);
         const myform = document.getElementById('form1');
         const cus_id = document.getElementById('cus_id');
         const company = document.getElementById('company');
@@ -382,22 +389,48 @@
 <script>
 $(document).ready(function(){
 
-load_data();
+  load_data();
 
- function load_data(query)
- {
-   $.ajax({
-   url:"fetch.php",
-   method:"POST",
-   data:{query:query},
-   success:function(data)
-   {
-     $('#result').html(data);
-   }
-   });
- }
+  function load_data(query,page)
+  {
+    $.ajax({
+      url:"fetch.php",
+      method:"POST",
+      data:{query:query,page:page},
+      success:function(data)
+      {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search').keyup(function(){
+    var page = "0";
+    var search = $(this).val();
+    if(search != '')
+    {
+    load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+  $(document).on('click', '.page-links', function(){    
+    var page = this.id;
+    console.log(page);
+    var search = $('#search').val();
+    if(search != '')
+    {
+      load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
 
 });
+
 </script>
 
 
