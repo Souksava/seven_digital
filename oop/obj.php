@@ -200,7 +200,7 @@ class obj{
                             $upload_path = $image_path.$new_image_name;
                             move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
                             $Pro_image = $new_image_name;
-                            $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+                            $path2 = $image_path.$data['img_path'];
                             if(file_exists($path2) && !empty($data['img_path'])){
                                 unlink($path2);
                                 
@@ -236,7 +236,7 @@ class obj{
                             $upload_path = $image_path.$new_image_name;
                             move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
                             $Pro_image = $new_image_name;
-                            $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+                            $path2 = $image_path.$data['img_path'];
                             if(file_exists($path2) && !empty($data['img_path'])){
                                 unlink($path2);
                                 
@@ -266,7 +266,7 @@ class obj{
                         $upload_path = $image_path.$new_image_name;
                         move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
                         $Pro_image = $new_image_name;
-                        $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+                        $path2 = $image_path.$data['img_path'];
                         if(file_exists($path2) && !empty($data['img_path'])){
                             unlink($path2);
                             
@@ -331,7 +331,7 @@ class obj{
         else{
             $get_img = mysqli_query($get_img, "select  img_path from employee where emp_id='$emp_id'");
             $data = mysqli_fetch_array($get_img, MYSQLI_ASSOC);
-            $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+            $path2 = $image_path.$data['img_path'];
             if(file_exists($path2) && !empty($data['img_path'])){
                 unlink($path2);        
             }
@@ -409,7 +409,7 @@ class obj{
         else{
             $get_img = mysqli_query($get_img, "select  img_path from supplier where sup_id='$sup_id'");
             $data = mysqli_fetch_array($get_img, MYSQLI_ASSOC);
-            $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+            $path2 = $image_path.$data['img_path'];
             if(file_exists($path2) && !empty($data['img_path'])){
                 unlink($path2);    
             }
@@ -445,7 +445,7 @@ class obj{
                 $upload_path = $image_path.$new_image_name;
                 move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
                 $Pro_image = $new_image_name;
-                $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+                $path2 = $image_path.$data['img_path'];
                 if(file_exists($path2) && !empty($data['img_path'])){
                     unlink($path2);
                     
@@ -481,7 +481,7 @@ class obj{
                     $upload_path = $image_path.$new_image_name;
                     move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
                     $Pro_image = $new_image_name;
-                    $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+                    $path2 = $image_path.$data['img_path'];
                     if(file_exists($path2) && !empty($data['img_path'])){
                         unlink($path2);
                         
@@ -1093,7 +1093,7 @@ class obj{
                 $upload_path = $image_path.$new_image_name;
                 move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
                 $Pro_image = $new_image_name;
-                $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+                $path2 = $image_path.$data['img_path'];
                 if(file_exists($path2) && !empty($data['img_path'])){
                     unlink($path2);
                     
@@ -1154,7 +1154,7 @@ class obj{
         else{
             $get_img = mysqli_query($conn, "select img_path from products where code='$code'");//ດຶງຊື່ຟາຍຮູບພາບໂດຍໃຊ້ໄອດີ
             $data = mysqli_fetch_array($get_img, MYSQLI_ASSOC);
-            $path2 = __DIR__.DIRECTORY_SEPARATOR.$path.'image'.DIRECTORY_SEPARATOR.$data['img_path'];
+            $path2 = $image_path.$data['img_path'];
             if(file_exists($path2) && !empty($data['img_path'])){
                 unlink($path2);
             }

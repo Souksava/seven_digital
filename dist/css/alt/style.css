@@ -8,8 +8,15 @@
     font-weight: normal;
     font-style: normal;
   }
+  @font-face {
+    font-family: '10B Muc Zeit';
+    src: 
+    url(Muc-Zeit-Medium.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
 body{
-    font-family: 'Poppins','Noto Sans Lao','Phetsarath OT',sans-serif;
+    font-family: '10B Muc Zeit','Noto Sans Lao','Phetsarath OT',sans-serif;
 }
 .mainlink{
     font-size: 14px;
@@ -213,3 +220,128 @@ text-align-last: center;
 .nav-link:hover{
         color: #353232;
 }
+
+
+
+/* TEST files ---------------------------------------------------------------------------------------------------------------------------- */
+
+
+.number-input input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    }
+    
+    .number-input input[type=number]::-webkit-inner-spin-button,
+    .number-input input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    }
+    
+    .number-input {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    
+    .number-input button {
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    }
+    
+    .number-input button:before,
+    .number-input button:after {
+    display: inline-block;
+    position: absolute;
+    content: '';
+    height: 2px;
+    transform: translate(-50%, -50%);
+    background-color: red!important;
+    }
+    .number-input button:before,
+    .number-input button.plus:after {
+    display: inline-block;
+    position: absolute;
+    content: '';
+    height: 2px;
+    transform: translate(-50%, -50%);
+    background-color: #19EB1C!important;
+    }
+    .number-input button.plus:after {
+    transform: translate(-50%, -50%) rotate(90deg);
+    background-color: #19EB1C!important;
+    }
+    
+    .number-input input[type=number] {
+    text-align: center;
+    }
+    
+    .number-input.number-input {
+    /* border: 1px solid grey; */
+    width: 10rem;
+    border-radius: 25px;
+    background-color: white;
+    }
+    
+    .number-input.number-input button {
+    width: 2.6rem;
+    height: .7rem;
+    border: none;
+    outline: none;
+    }
+    
+    .number-input.number-input button.minus {
+    padding-left: 10px;
+    }
+    
+    .number-input.number-input button:before,
+    .number-input.number-input button:after {
+    width: .7rem;
+    background-color: #495057;
+    }
+    
+    .number-input.number-input input[type=number] {
+    max-width: 4rem;
+    padding: .5rem;
+    border: 1px solid white;
+    border-width: 0 1px;
+    font-size: 1rem;
+    height: 2rem;
+    color: #495057;
+    }
+    
+    @media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance: none) and (stroke-color:transparent) {
+    
+    .number-input.def-number-input.safari_only button:before,
+    .number-input.def-number-input.safari_only button:after {
+    margin-top: -.3rem;
+    }
+    }
+    }
+
+    tr.hide-table-padding td {
+        padding: 0;
+      }
+      
+      .expand-button {
+          position: relative;
+      }
+      
+      .accordion-toggle .expand-button:after
+      {
+        position: absolute;
+        left:.75rem;
+        top: 50%;
+        transform: translate(0, -50%);
+        content: '-';
+      }
+      .accordion-toggle.collapsed .expand-button:after
+      {
+        content: '+';
+      }
