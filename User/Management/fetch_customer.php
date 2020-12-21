@@ -18,7 +18,7 @@ else{
 if(isset($_POST["query"]))
 {
    $highlight = $_POST['query'];
-   $obj->select_customer("%".$_POST['query']."%",$page);
+   $obj->select_customer($_POST['query'],$page);
 }
 else
 {
@@ -30,12 +30,12 @@ if(mysqli_num_rows($resultcustomer) > 0)
   <div class="table-responsive">
    <table class="table font12" style="width: 1500px;">
     <tr>
-     <th>ລະຫັດລູກຄ້າ</th>
-     <th>ຊື່ບໍລິສັດ</th>
-     <th>ເບີໂທລະສັບ</th>
-     <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
-     <th>ອີເມວ</th>
-     <th>ສະຖານະລູກຄ້າ</th>
+     <th>Customer ID</th>
+     <th>Company</th>
+     <th>Tel</th>
+     <th>Address</th>
+     <th>Email</th>
+     <th>Status</th>
      <th></th>
     </tr>
  ';
@@ -51,7 +51,7 @@ if(mysqli_num_rows($resultcustomer) > 0)
     <td style="display: none;">'.$row["stt_id"].'</td>
     <td>'.$row["stt_name"].'</td>
     <td>
-      <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cust"></a>&nbsp; &nbsp; 
+    <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cust"></a>&nbsp; &nbsp; 
       <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_cust"></a>
     </td>
    </tr>
@@ -67,7 +67,7 @@ if(mysqli_num_rows($resultcustomer) > 0)
  
  if(isset($_POST["query"]))
  {
-   $obj->select_customer_count("%".$_POST['query']."%");
+   $obj->select_customer_count($_POST['query']);
  }
  else
  {

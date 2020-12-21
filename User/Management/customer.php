@@ -239,7 +239,6 @@
   <script type="text/javascript">
   // const hightlight = document.getElementById('hightlight');
   // console.log(hightlight);
-   $('.result').highlight([hightlight]);
         const myform = document.getElementById('form1');
         const cus_id = document.getElementById('cus_id');
         const company = document.getElementById('company');
