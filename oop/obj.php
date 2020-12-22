@@ -558,7 +558,7 @@ class obj{
         $checkname = mysqli_query($conn,"select * from customer_status where stt_name='$stt_name'");
         if(mysqli_num_rows($checkname) > 0){//ກວດສອບວ່າຊື່ສະຖານະນີ້ມີແລ້ວຫຼືຍັງ
             echo"<script>";
-            echo"window.location.href='customer-status?sstname=same';";
+            echo"window.location.href='customer-status?sttname=same';";
             echo"</script>";
         }
         else{

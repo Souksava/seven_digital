@@ -69,7 +69,7 @@
 </div>
 <div class="clearfix"></div><br>
 <?php
-      $obj->select_auther('%%');
+      $obj->select_auther('%%','0');
       if(mysqli_num_rows($resultauther) > 0){
     ?>
 <div class="table-responsive">
@@ -84,7 +84,7 @@
             foreach($resultauther as $row){
         ?>
         <tr>
-            <td><?php echo $row['auther_id'] ?></td>
+            <td><?php echo $row['stt_id'] ?></td>
             <td><?php echo $row['auther_name'] ?></td>
             <td>
                 <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
@@ -94,7 +94,9 @@
             </td>
         </tr>
         <?php
-            }
+            }   
+            mysqli_free_result($resultauther);  
+            mysqli_next_result($conn);
         ?>
     </table>
 </div>
