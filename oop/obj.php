@@ -148,6 +148,11 @@ class obj{
             }
         }
     }
+    public static function select_status(){
+        global $conn;
+        global $resutlstatus;
+        $resutlstatus = mysqli_query($conn,"select * from emp_status order by stt_name;");
+    }
     public static function update_employee($emp_id,$name,$surname,$gender,$tel,$address,$email,$pass,$auther_id,$sttid,$img_path){
         global $conn;
         global $path;
@@ -172,7 +177,8 @@ class obj{
                     unlink($path2);                  
                 }
             }
-            $result = mysqli_query($conn,"call update_employee('$emp_id','$name','$surname','$gender','$tel','$address','$email','$pass','$auther_id','$sttid','$Pro_image')");
+            $result = mysqli_query($conn,"call update_employee('$emp_id','$name','$surname','$gender','$tel','$address','$email',$pass,'$auther_id','$sttid','$Pro_image')");
+            // $result = mysqli_query($conn,"update employee set emp_name='$name',emp_surname='$surname',gender='$gender',tel='$tel',address='$address',email='$email',pass='$pass',auther_id='$auther_id',stt_id='$sttid',img_path='$Pro_image' where emp_id ='$emp_id'");
             if(!$result){
                 echo"<script>";
                 echo"window.location.href='employee?update=fail';";
@@ -334,9 +340,9 @@ class obj{
             echo"</script>";
         }
         else{
-            $get_img = mysqli_query($get_img, "select  img_path from employee where emp_id='$emp_id'");
+            $get_img = mysqli_query($conn, "select  img_path from employee where emp_id='$emp_id'");
             $data = mysqli_fetch_array($get_img, MYSQLI_ASSOC);
-            $path2 = $image_path.$data['img_path'];
+            $path2 = $path.'image/'.$data['img_path'];
             if(file_exists($path2) && !empty($data['img_path'])){
                 unlink($path2);        
             }

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 04:45 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.25
+-- Host: localhost
+-- Generation Time: Dec 21, 2020 at 10:28 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -147,7 +148,7 @@ select id,d.code,serial,d.emp_id,d.form_id,dis_date,emp_name,pro_name,gen,stt_ac
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `employee` (IN `s` VARCHAR(250), IN `page` INT(5))  Begin
-select emp_id,emp_name,emp_surname,gender,tel,address,email,pass,e.auther_id,auther_name,e.stt_id,stt_name,img_path from employee e left join auther a on e.auther_id=a.auther_id left join emp_status s on e.stt_id=s.stt_id where emp_id like s or emp_name like s or emp_surname like s or gender like s or address like s or email like s or auther_name like s or stt_name like s order by emp_name ASC limit page,15;
+select emp_id,emp_name,emp_surname,gender,tel,address,email,md5(pass) as pass,e.auther_id,auther_name,e.stt_id,stt_name,img_path from employee e left join auther a on e.auther_id=a.auther_id left join emp_status s on e.stt_id=s.stt_id where emp_id like s or emp_name like s or emp_surname like s or gender like s or address like s or email like s or auther_name like s or stt_name like s order by emp_name ASC limit page,15;
 End$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `employee_count` (IN `s` VARCHAR(50))  NO SQL
@@ -191,8 +192,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_distribute` (IN `code` VARCH
 insert into distribute (code,serial,qty,emp_id,form_id,dis_date,dis_time,remark) values(code,serial,qty,emp_id,form_id,dis_date,dis_time,remark);
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_employee` (`empid` VARCHAR(20), `name` VARCHAR(50), `surname` VARCHAR(50), `gender` VARCHAR(10), `tel` VARCHAR(30), `address` VARCHAR(250), `email` VARCHAR(100), `pass` VARCHAR(24), `autherid` VARCHAR(20), `sttid` INT, `imgpath` VARCHAR(50))  Begin
-Insert into employee values(empid,name,surname,gender,tel,address,email,pass,autherid,sttid,imgpath);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_employee` (IN `empid` VARCHAR(20), IN `name` VARCHAR(50), IN `surname` VARCHAR(50), IN `gender` VARCHAR(10), IN `tel` VARCHAR(30), IN `address` VARCHAR(250), IN `email` VARCHAR(100), IN `pass` VARCHAR(100), IN `autherid` VARCHAR(20), IN `sttid` INT, IN `imgpath` VARCHAR(50))  Begin
+Insert into employee values(empid,name,surname,gender,tel,address,email,md5(pass),autherid,sttid,imgpath);
 End$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_form` (`form_id` INT(11), `emp_id` VARCHAR(20), `cus_id` VARCHAR(20), `amount` DECIMAL(11,2), `form_date` DATE, `form_time` TIME, `stt_accept` VARCHAR(50), `status` VARCHAR(50), `usr_acc` VARCHAR(50))  begin
@@ -315,8 +316,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `update_distribute` (IN `id_update` 
 Update distribute set code=code_update,serial=serial_update,qty=qty_update,emp_id=emp_id_update,form_id=form_id_update,dis_date=dis_date_update,dis_time=dis_time_update,remark=remark_update where id=id_update;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_employee` (`empid` VARCHAR(20), `name` VARCHAR(50), `surname` VARCHAR(50), `genders` VARCHAR(10), `tels` VARCHAR(30), `addresst` VARCHAR(250), `emails` VARCHAR(100), `passw` VARCHAR(24), `autherid` VARCHAR(20), `sttid` INT, `imgpath` VARCHAR(50))  Begin
-update employee set emp_name=name,emp_surname=surname,gender=genders,address=addresst,email=emails,pass=passw,auther_id=autherid,stt_id=sttid,img_path=imgpath where emp_id=empid;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_employee` (IN `empid` VARCHAR(20), IN `name` VARCHAR(50), IN `surname` VARCHAR(50), IN `genders` VARCHAR(10), IN `tels` VARCHAR(30), IN `addresst` VARCHAR(250), IN `emails` VARCHAR(100), IN `passw` VARCHAR(100), IN `autherid` VARCHAR(20), IN `sttid` INT, IN `imgpath` VARCHAR(50))  Begin
+update employee set emp_name=name,emp_surname=surname,gender=genders,tel=tels,address=addresst,email=emails,pass=md5(passw),auther_id=autherid,stt_id=sttid,img_path=imgpath where emp_id=empid;
 End$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_form` (IN `form_id_update` INT(11), IN `emp_id_update` VARCHAR(20), IN `cus_id_update` VARCHAR(20), IN `amount_update` DECIMAL(11,2), IN `form_date_update` DATE, IN `form_time_update` TIME, IN `stt_accept_update` VARCHAR(50), IN `status_update` VARCHAR(50), IN `usr_acc_update` VARCHAR(50))  begin
@@ -465,7 +466,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cus_id`, `company`, `tel`, `address`, `email`, `stt_id`) VALUES
-('1', 'a', 'b', 'c', 'd', '1'),
+('1', 'test', 'test', 'd@test.com', 'test', '2'),
 ('10', 'tes', 's', 's', 's', '1'),
 ('11', 'tes', 's', 's', 's', '1'),
 ('12', 'tes', 's', 's', 's', '1'),
@@ -546,7 +547,7 @@ CREATE TABLE `employee` (
   `tel` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `address` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `pass` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pass` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `auther_id` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `stt_id` int(11) DEFAULT NULL,
   `img_path` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
@@ -557,8 +558,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`emp_id`, `emp_name`, `emp_surname`, `gender`, `tel`, `address`, `email`, `pass`, `auther_id`, `stt_id`, `img_path`) VALUES
-('001', 'ta', 'ss', 'ຍິງ', '0203213', 'lao', 'f@hotmail.com', 'asw', '002', 2, 'seven_5fd33f6a7a882.jpg'),
-('jghj', '45645', '45645', 'ຍິງ', 's', 't', 'a@dg/.com', '54', '001', 1, 'seven_5fd3419c8430e.jpg');
+('001', 'test', 'test', 'ຍິງ', '0203213', 'test', 'test', 'a46ae8d094a190cf890a3d54df54b59c', '001', 2, 'seven_5fe06a663b562.jpeg');
 
 -- --------------------------------------------------------
 

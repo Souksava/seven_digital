@@ -15,11 +15,10 @@
   if(isset($_POST['emp_name2'])){
     $obj->update_employee(trim($_POST['emp_id2']),trim($_POST['emp_name2']),trim($_POST['emp_surname2']),trim($_POST['gender2']),trim($_POST['tel2']),trim($_POST['address2']),trim($_POST['email2']),trim($_POST['password2']),trim($_POST['auther_id2']),trim($_POST['status2']),$_FILES['img_path']['name']);
   }
-
 ?>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b>ລາຍການລູກຄ້າ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b><?php echo substr($title,'18'); ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
         <form action="employee" id="form1" method="POST" enctype="multipart/form-data">
@@ -133,9 +132,19 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ສິດໃນການເຂົ້າໃຊ້ລະບົບ</label>
                                     <select name="status" id="status">
-                                        <option value="">--- ເລືອກສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
-                                        <option value="1">ຜູ້ຈັດການ</option>
-                                        <option value="2">ຜູ້ນັບສະຕ໋ອກ</option>
+                                    <option value="">--- ສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
+                                    <?php
+                                        $obj->select_status();
+                                        foreach($resutlstatus as $rowstt){
+                                        ?>
+                                        <option value="<?php echo $rowstt['stt_id'] ?>">
+                                            <?php echo $rowstt['stt_name'] ?>
+                                        </option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($resutlstatus);  
+                                            mysqli_next_result($conn);
+                                        ?>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -209,8 +218,6 @@
                                         <option value="">--- ເລືອກຕຳແໜ່ງ ---</option>
                                         <?php
                                         $obj->select_auther('%%','0');
-                                        // $resultauther = mysqli_query($conn,"select * from auther order by auther_name asc;"); 
-                                        // while($rows = mysqli_fetch_array($resultauther)){
                                         foreach($resultauther as $rows){
                                         ?>
                                         <option value="<?php echo $rows['auther_id'] ?>">
@@ -266,9 +273,19 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ສິດໃນການເຂົ້າໃຊ້ລະບົບ</label>
                                     <select name="status2" id="status2">
-                                        <option value="">--- ເລືອກສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
-                                        <option value="1">ຜູ້ຈັດການ</option>
-                                        <option value="2">ຜູ້ນັບສະຕ໋ອກ</option>
+                                    <option value="">--- ສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
+                                    <?php
+                                        $obj->select_status();
+                                        foreach($resutlstatus as $rowstt){
+                                        ?>
+                                        <option value="<?php echo $rowstt['stt_id'] ?>">
+                                            <?php echo $rowstt['stt_name'] ?>
+                                        </option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($resutlstatus);  
+                                            mysqli_next_result($conn);
+                                        ?>
                                     </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -300,38 +317,6 @@
 </div>
 
 <div id="result"></div>
-<div class="clearfix"></div><br>
-
-<!-- <div class="table-responsive">
-      <table class="table font12" style="width: 1500px;">
-        <tr>
-            <th>ລະຫັດສະຖານະລູກຄ້າ</th>
-            <th>ຊື່ສະຖານະລູກຄ້າ</th>
-            <th>ລະຫັດສະຖານະລູກຄ້າ</th>
-            <th>ຊື່ສະຖານະລູກຄ້າ</th>
-            <th>ລະຫັດສະຖານະລູກຄ້າ</th>
-            <th>ຊື່ສະຖານະລູກຄ້າ</th>
-            <th></th>
-
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>
-            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cust"></a>&nbsp; &nbsp; 
-              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_cust"></a>
-            </td>
-        </tr>
-      </table>
-    </div> -->
-
-
-
-
 </div>
 
 <form action="employee" id="formDelete" method="POST" enctype="multipart/form-data">
@@ -346,7 +331,7 @@
                     </button>
                 </div>
                 <div class="modal-body" align="center">
-                    <input type="" name="id" id="id">
+                    <input type="hidden" name="id" id="id">
                     ທ່ານຕ້ອງການລົບຂໍ້ມູນ ຫຼື ບໍ່ ?
                 </div>
                 <div class="modal-footer">
@@ -576,10 +561,6 @@ function checkInputs2() {
 };
 var loadFile2 = function(event) {
     var output2 = document.getElementById('output2');
-    output2Value = output2.value.trim();
-    // if(output2Value !== ''){
-    //     output2 = '../../image/camera.jpg';
-    // }
     output2.src = URL.createObjectURL(event.target.files[0]);
     output2.onload = function() {
         URL.revokeObjectURL(output2.src) // free memory
