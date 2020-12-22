@@ -108,7 +108,13 @@ $(document).ready(function() {
         $('#fax_update').val(data[3]);
         $('#address_update').val(data[4]);
         $('#email_update').val(data[5]);
-        document.getElementById("output2").src = (data[6]);
+        if(data[6] === ''){
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        }
+        else{
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[6]);
+        }
+        // document.getElementById("output2").src = (data[6]);
     });
     // update customer status
     $('.btnUpdate_customer_status').on('click', function() {

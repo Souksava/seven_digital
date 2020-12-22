@@ -18,49 +18,39 @@ else{
 if(isset($_POST["query"]))
 {
    $highlight = $_POST['query'];
-   $obj->select_employee("%".$_POST['query']."%",$page);
+   $obj->select_supplier("%".$_POST['query']."%",$page);
 }
 else
 {
-   $obj->select_employee("%%",$page);
+   $obj->select_supplier("%%",$page);
 }
-if(mysqli_num_rows($resultemployee) > 0)
+if(mysqli_num_rows($resultsupplier) > 0)
 {
  $output .= '
   <div class="table-responsive">
    <table class="table font12" style="width: 1500px;">
     <tr>
-        <th>ລະຫັດ</th>
-        <th>ຊື່ພະນັກງານ</th>
-        <th>ນາມສະກຸນ</th>
-        <th>ເພດ</th>
+        <th>ລະຫັດຜູ້ໜອງ</th>
+        <th>ຊື່ບໍ່ລິສັດ</th>
         <th>ເບີໂທລະສັບ</th>
+        <th>ເບີແຟັກ</th>
         <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
-        <th>ຕຳແໜ່ງ</th>
         <th>ທີ່ຢູ່ອີເມວ</th>
-        <th>ລະຫັດເຂົ້າໃຊ້ລະບົບ</th>
-        <th>ສິດເຂົ້າໃຊ້ລະບົບ</th>
         <th>ຮູບພາບ</th>
         <th></th>
     </tr>
  ';
- while($row = mysqli_fetch_array($resultemployee))
+ while($row = mysqli_fetch_array($resultsupplier))
  {
   $output .= '
    <tr  class="result">
-    <td>'.$row["emp_id"].'</td>
-    <td>'.$row["emp_name"].'</td>
-    <td>'.$row["emp_surname"].'</td>
-    <td>'.$row["gender"].'</td>
-    <td>'.$row["tel"].'</td>
-    <td>'.$row["address"].'</td>
-    <td style="display: none;">'.$row["auther_id"].'</td>
-    <td>'.$row["auther_name"].'</td>
-    <td>'.$row["email"].'</td>
-    <td>'.$row["pass"].'</td>
-    <td style="display: none;">'.$row["stt_id"].'</td>
-    <td>'.$row["stt_name"].'</td>
-    <td style="display: none;">'.$row["img_path"].'</td>
+   <td>'.$row["sup_id"].'</td>
+   <td>'.$row["company"].'</td>
+   <td>'.$row["tel"].'</td>
+   <td>'.$row["fax"].'</td>
+   <td>'.$row["address"].'</td>
+   <td>'.$row["email"].'</td>
+   <td style="display:none;">'.$row['img_path'].'</td>
     ';
     if($row['img_path'] != ''){
     $output .= '
@@ -84,13 +74,13 @@ if(mysqli_num_rows($resultemployee) > 0)
     }
     $output .='
         <td>
-            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_emp"></a>&nbsp; &nbsp; 
-            <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_emp"></a>
+            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_sup"></a>&nbsp; &nbsp; 
+            <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_sup"></a>
         </td>
    </tr>
   ';
  }
- mysqli_free_result($resultemployee);  
+ mysqli_free_result($resultsupplier);  
  mysqli_next_result($conn);
  $output .='
    </table>
@@ -100,14 +90,14 @@ if(mysqli_num_rows($resultemployee) > 0)
  
  if(isset($_POST["query"]))
  {
-   $obj->select_employee_count("%".$_POST['query']."%");
+   $obj->select_supplier_count("%".$_POST['query']."%");
  }
  else
  {
-    $obj->select_employee_count("%%");
+    $obj->select_supplier_count("%%");
  }
-   $count = mysqli_num_rows($resultemployee_count);
-   mysqli_free_result($resultemployee_count);  
+   $count = mysqli_num_rows($resultsupplier_count);
+   mysqli_free_result($resultsupplier_count);  
    mysqli_next_result($conn);
    $a = ceil($count/15);
    if(isset($_POST['page'])){
