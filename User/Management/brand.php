@@ -4,97 +4,115 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  include (''.$path.'oop/obj.php');
+  if(isset($_POST['btnDelete'])){
+    $obj->delete_brand(trim($_POST['id']));
+  }
+  if(isset($_POST['brand_name'])){
+    $obj->insert_brand(trim($_POST['brand_name']));
+  }
+  if(isset($_POST['brand_id_update'])){
+    $obj->update_brand(trim($_POST['brand_id_update']),trim($_POST['brand_name_update']));
+  }
 ?>
-    <div style="width: 100%;">
-        <div style="width: 48%; float: left;">
-          <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
-        </div>
-        <div style="width: 46%; float: right;" align="right">
-          <form action="brand" id="form1" method="POST" enctype="multipart/form-data">
+<div style="width: 100%;">
+    <div style="width: 48%; float: left;">
+        <b>ລາຍການ<?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+    </div>
+    <div style="width: 46%; float: right;" align="right">
+        <form action="brand" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalbrand">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
-            <div class="modal fade" id="exampleModalbrand" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">ເພີ່ມຂໍ້ມູນຍີ່ຫໍ້ </h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                          </div>
-                          <div class="modal-body">
-                              <div class="row" align="left">
-                                  <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ຊື່ຍີ່ຫໍ້</label>
-                                      <input type="text" name="brand_name" id="brand_name" placeholder="ຊື່ຍີ່ຫໍ້">
-                                      <i class="fas fa-check-circle "></i>
-                                      <i class="fas fa-exclamation-circle "></i>
-                                      <small class="">Error message</small>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                              <button type="submit" name="btnSave" class="btn btn-outline-primary">ບັນທຶກ</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </form>
-        </div>
+            <div class="modal fade" id="exampleModalbrand" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ເພີ່ມຂໍ້ມູນຍີ່ຫໍ້ </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row" align="left">
+                                <div class="col-md-12 col-sm-6 form-control2">
+                                    <label>ຊື່ຍີ່ຫໍ້</label>
+                                    <input type="text" name="brand_name" id="brand_name" placeholder="ຊື່ຍີ່ຫໍ້">
+                                    <i class="fas fa-check-circle "></i>
+                                    <i class="fas fa-exclamation-circle "></i>
+                                    <small class="">Error message</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary"
+                                data-dismiss="modal">ຍົກເລີກ</button>
+                            <button type="submit" name="btnSave" class="btn btn-outline-primary">ບັນທຶກ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="clearfix"></div><br>
-    <div class="table-responsive">
-      <table class="table font12" style="width: 100%;">
+</div>
+<div class="clearfix"></div><br>
+<?php
+      $obj->select_brand('%%','0');
+      if(mysqli_num_rows($resultbrand) > 0){
+    ?>
+<div class="table-responsive">
+    <table class="table font12" style="width: 100%;">
         <tr>
             <th>ລະຫັດຍີ່ຫໍ້</th>
             <th>ຊື່ຍີ່ຫໍ້</th>
             <th></th>
 
         </tr>
+        <?php
+            foreach($resultbrand as $row){
+        ?>
         <tr>
-            <td>1</td>
-            <td>a</td>
+            <td><?php echo $row['brand_id'] ?></td>
+            <td><?php echo $row['brand_name'] ?></td>
             <td>
-              <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_brand"></a>&nbsp; &nbsp; 
-              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_brand"></a>
+                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
+                    class="fa fa-pen toolcolor btnUpdate_brand"></a>&nbsp; &nbsp;
+                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
+                    class="fa fa-trash toolcolor btnDelete_brand"></a>
             </td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>b</td>
-            <td>
-              <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_brand"></a>&nbsp; &nbsp; 
-              <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_brand"></a>
-            </td>
-        </tr>
-      </table>
-    </div>
+        <?php
+            }   
+            mysqli_free_result($resultbrand);  
+            mysqli_next_result($conn);
+        ?>
+    </table>
+</div>
+<?php
+          } 
+          else{
+        ?>
+<hr size="1" width="90%">
+<p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
+<hr size="1" width="90%">
+<?php
+          }
+        ?>
 
-    <!-- pagination -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
-  </ul>
-</nav>
 
-  </div>
-  <form action="brand.php" id="formUpdate" method="POST" enctype="multipart/form-data">
-      <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
+<form action="brand" id="formUpdate" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">ແກ້ໄຂຂໍ້ມູນຍີ່ຫໍ້ </h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
+                    </button>
+                </div>
+                <div class="modal-body">
                     <div class="row" align="left">
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຊື່ຍີ່ຫໍ້</label>
@@ -105,85 +123,87 @@
                             <small class="">Error message</small>
                         </div>
                     </div>
-                  </div>
-                  <div class="modal-footer">
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
                     <button type="submit" name="btnUpdate" class="btn btn-outline-success">ແກ້ໄຂ</button>
-                   </div>
                 </div>
             </div>
         </div>
-      </form>
-      
-      <form action="brand" id="formDelete" method="POST" enctype="multipart/form-data">
-      <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
+    </div>
+</form>
+
+<form action="brand" id="formDelete" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">ຢືນຢັນການລົບຂໍ້ມູນ</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body" align="center">
-                          <input type="hidden" name="id" id="id">
-                          ທ່ານຕ້ອງການລົບຂໍ້ມູນ ຫຼື ບໍ່ ?
-              
-                  </div>
-                  <div class="modal-footer">
+                    </button>
+                </div>
+                <div class="modal-body" align="center">
+                    <input type="hidden" name="id" id="id">
+                    ທ່ານຕ້ອງການລົບຂໍ້ມູນ ຫຼື ບໍ່ ?
+
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
                     <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
-                   </div>
                 </div>
             </div>
         </div>
-      </form>
+    </div>
+</form>
 
 <!-- check form input not null -->
 <script type="text/javascript">
-        const myform = document.getElementById('form1');
-        const brand_name = document.getElementById('brand_name');
-        myform.addEventListener('submit',(e) => {
-          e.preventDefault();
-        checkInputs();
-        });
-        function checkInputs(){
-          const brand_nameValue = brand_name.value.trim();
-          if(brand_nameValue === ''){
-            setErrorFor(brand_name, 'ກະລຸນາປ້ອນຊື່ຍີ່ຫໍ້');
-          }
-          else{
-            setSuccessFor(brand_name);
-          }
+const myform = document.getElementById('form1');
+const brand_name = document.getElementById('brand_name');
+myform.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs();
+});
 
-          if(brand_nameValue !== ''){
-            document.getElementById("form1").action = "brand.php";
-            document.getElementById("form1").submit();
-          }
-        }
+function checkInputs() {
+    const brand_nameValue = brand_name.value.trim();
+    if (brand_nameValue === '') {
+        setErrorFor(brand_name, 'ກະລຸນາປ້ອນຊື່ຍີ່ຫໍ້');
+    } else {
+        setSuccessFor(brand_name);
+    }
+
+    if (brand_nameValue !== '') {
+        document.getElementById("form1").action = "brand";
+        document.getElementById("form1").submit();
+    }
+}
 </script>
 
 <script type="text/javascript">
-        const myformupdate = document.getElementById('formUpdate');
-        const brand_name_update = document.getElementById('brand_name_update');
-        myformupdate.addEventListener('submit',(e) => {
-          e.preventDefault();
-        checkInputs2();
-        });
-        function checkInputs2(){
-          const brand_name_updateValue = brand_name_update.value.trim();
-          if(brand_name_updateValue === ''){
-            setErrorFor(brand_name_update, 'ກະລຸນາປ້ອນຊື່ຍີ່ຫໍ້');
-          }
-          else{
-            setSuccessFor(brand_name_update);
-          }
+const myformupdate = document.getElementById('formUpdate');
+const brand_id_update = document.getElementById('brand_id_update');
+const brand_name_update = document.getElementById('brand_name_update');
+myformupdate.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs2();
+});
 
-          if(brand_name_updateValue !== ''){
-            document.getElementById("formUpdate").action = "brand.php";
-            document.getElementById("formUpdate").submit();
-          }
-        }
+function checkInputs2() {
+    const brand_name_updateValue = brand_name_update.value.trim();
+    if (brand_name_updateValue === '') {
+        setErrorFor(brand_name_update, 'ກະລຸນາປ້ອນຊື່ຍີ່ຫໍ້');
+    } else {
+        setSuccessFor(brand_name_update);
+    }
+
+    if (brand_name_updateValue !== '') {
+        document.getElementById("formUpdate").action = "brand";
+        document.getElementById("formUpdate").submit();
+    }
+}
 </script>
 
 

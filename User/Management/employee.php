@@ -610,4 +610,4 @@ $(document).ready(function() {
 
 <?php
     include ("../../header-footer/footer.php");
-  ?>
+?>

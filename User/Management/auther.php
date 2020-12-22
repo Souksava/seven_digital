@@ -84,7 +84,7 @@
             foreach($resultauther as $row){
         ?>
         <tr>
-            <td><?php echo $row['stt_id'] ?></td>
+            <td><?php echo $row['auther_id'] ?></td>
             <td><?php echo $row['auther_name'] ?></td>
             <td>
                 <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"

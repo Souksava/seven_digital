@@ -975,10 +975,10 @@ class obj{
     //ສິ້ນສຸດການຈັດການຂໍ້ມູນອັດຕາແລກປ່ຽນ
 
     //ຈັດການຂໍ້ມູນສາງ
-    public static function select_pro_adr($search,$page){
+    public static function select_pro_addr($search,$page){
         global $conn;
-        global $result_pro_adr;
-        $result_pro_adr = mysqli_query($conn,"call product_addr('$search','$page')");
+        global $result_pro_addr;
+        $result_pro_addr = mysqli_query($conn,"call product_addr('$search','$page')");
     }
     public static function insert_pro_addr($addr_name){
         global $conn;

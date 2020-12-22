@@ -148,16 +148,7 @@
           }
         ?>
 
-    <!-- pagination -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
-  </ul>
-</nav>
+
 
   </div>
 
@@ -228,6 +219,7 @@
 <!-- check update rate not null -->
     <script type="text/javascript">
         const myformUpdate = document.getElementById('formUpdate');
+        const rate_id_update = document.getElementById('rate_id_update');
         const rate_buy_update = document.getElementById('rate_buy_update');
         const rate_sell_update = document.getElementById('rate_sell_update');
         myformUpdate.addEventListener('submit',(e) => {
@@ -276,12 +268,7 @@
     swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
-    // check if rate_id_update exist
-    if(isset($_GET['rate'])=='same'){
-      echo'<script type="text/javascript">
-      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດເລດເງິນນີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
-      </script>';
-    }
+
   //check update
   if(isset($_GET['update'])=='fail'){
     echo'<script type="text/javascript">
@@ -293,10 +280,10 @@
     swal("", "ແກ້ໄຂຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
-  // check if customer_status_id exist in customer
+  // check if rateid exist in stock
   if(isset($_GET['delete'])=='warning'){
     echo'<script type="text/javascript">
-    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນນີ້ໄ້ດເນື່ອງຈາກລະຫັດລະຫັດເລດເງິນນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນັບສະຕ໋ອກ", "error");
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນນີ້ໄ້ດເນື່ອງຈາກລະຫັດເລດເງິນນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນັບສະຕ໋ອກ", "error");
     </script>';
   }
   // check delete

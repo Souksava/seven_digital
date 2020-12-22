@@ -4,13 +4,23 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  include (''.$path.'oop/obj.php');
+  if(isset($_POST['btnDelete'])){
+    $obj->delete_unit(trim($_POST['id']));
+  }
+  if(isset($_POST['unit_name'])){
+    $obj->insert_unit(trim($_POST['unit_name']));
+  }
+  if(isset($_POST['unit_name_update'])){
+    $obj->update_unit(trim($_POST['unit_id_update']),trim($_POST['unit_name_update']));
+  }
 ?>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b><?php echo $title?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b>ລາຍການ<?php echo $title?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
-        <form action="unit.php" id="form1" method="POST" enctype="multipart/form-data">
+        <form action="unit" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalunit">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -26,13 +36,6 @@
                         </div>
                         <div class="modal-body">
                             <div class="row" align="left">
-                                <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດຫົວໜ່ວຍສິນຄ້າ</label>
-                                    <input type="text" name="unit_id" id="unit_id" placeholder="ລະຫັດຫົວໜ່ວຍສິນຄ້າ">
-                                    <i class="fas fa-check-circle "></i>
-                                    <i class="fas fa-exclamation-circle "></i>
-                                    <small class="">Error message</small>
-                                </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ຫົວໜ່ວຍສິນຄ້າ</label>
                                     <input type="text" name="unit_name" id="unit_name" placeholder="ຊື່ຫົວໜ່ວຍສິນຄ້າ">
@@ -53,7 +56,7 @@
             </div>
         </form>
 
-        <form action="unit.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+        <form action="unit" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -91,6 +94,10 @@
     </div>
 </div>
 <div class="clearfix"></div><br>
+<?php
+      $obj->select_unit('%%','0');
+      if(mysqli_num_rows($resultunit) > 0){
+    ?>
 <div class="table-responsive">
     <table class="table font12" style="width: 1500px;">
         <tr>
@@ -99,9 +106,12 @@
             <th></th>
 
         </tr>
+        <?php
+            foreach($resultunit as $row){
+        ?>
         <tr>
-            <td>1</td>
-            <td>c</td>
+            <td><?php echo $row['unit_id'] ?></td>
+            <td><?php echo $row['unit_name'] ?></td>
             <td>
                 <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
                     class="fa fa-pen toolcolor btnUpdate_unit"></a>&nbsp; &nbsp;
@@ -109,23 +119,26 @@
                     class="fa fa-trash toolcolor btnDelete_unit"></a>
             </td>
         </tr>
+        <?php
+            }   
+            mysqli_free_result($resultunit);  
+            mysqli_next_result($conn);
+        ?>
     </table>
 </div>
+<?php
+          } 
+          else{
+        ?>
+                    <hr size="1" width="90%">
+              <p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
+            <hr size="1" width="90%">
+        <?php
+          }
+        ?>
 
-<!-- pagination -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
-  </ul>
-</nav>
 
-</div>
-
-<form action="unit.php" id="formDelete" method="POST" enctype="multipart/form-data">
+<form action="unit" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -152,7 +165,6 @@
 
 <script type="text/javascript">
 const myform = document.getElementById('form1');
-const unit_id = document.getElementById('unit_id');
 const unit_name = document.getElementById('unit_name');
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -160,21 +172,16 @@ myform.addEventListener('submit', (e) => {
 });
 
 function checkInputs() {
-    const unit_idValue = unit_id.value.trim();
+
     const unit_nameValue = unit_name.value.trim();
 
-    if (unit_idValue === '') {
-        setErrorFor(unit_id, 'ກະລຸນາປ້ອນລະຫັດປະເພດສິນຄ້າ');
-    } else {
-        setSuccessFor(unit_id);
-    }
     if (unit_nameValue === '') {
         setErrorFor(unit_name, 'ກະລຸນາປ້ອນຊື່ປະເພດສິນຄ້າ');
     } else {
         setSuccessFor(unit_name);
     }
-    if (unit_nameValue !== '' && unit_idValue !== '') {
-        document.getElementById("form1").action = "unit.php";
+    if (unit_nameValue !== '') {
+        document.getElementById("form1").action = "unit";
         document.getElementById("form1").submit();
     }
 }
@@ -182,6 +189,7 @@ function checkInputs() {
 
 <script type="text/javascript">
 const myformUpdate = document.getElementById('formUpdate');
+const unit_id_update = document.getElementById('unit_id_update');
 const unit_name_update = document.getElementById('unit_name_update');
 myformUpdate.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -196,7 +204,7 @@ function checkInputsUpdate() {
         setSuccessFor(unit_name_update);
     }
     if (unit_name_updateValue !== '') {
-        document.getElementById("formUpdate").action = "unit.php";
+        document.getElementById("formUpdate").action = "unit";
         document.getElementById("formUpdate").submit();
     }
 }
@@ -205,9 +213,9 @@ function checkInputsUpdate() {
 <!-- sweetalert -->
 <?php
   // check if unit_name exist
-  if(isset($_GET['unit'])=='same'){
+  if(isset($_GET['name'])=='same'){
     echo'<script type="text/javascript">
-    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ຫົວໜ່ວຍສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ຫົວໜ່ວຍສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນ !!", "info");
     </script>';
   }
   //check save
@@ -224,7 +232,7 @@ function checkInputsUpdate() {
   // check if unit_update exist
   if(isset($_GET['unit_update'])=='same'){
     echo'<script type="text/javascript">
-    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ຫົວໜ່ວຍສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ຫົວໜ່ວຍສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນ !!", "info");
     </script>';
   }
   //check update

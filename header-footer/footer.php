@@ -15,7 +15,6 @@
 </div>
 <!-- ./wrapper -->
 
-</script>
 <!-- jQuery -->
 <script src="<?php echo $path ?>plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
