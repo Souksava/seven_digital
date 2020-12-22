@@ -4,13 +4,23 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  include (''.$path.'oop/obj.php');
+  if(isset($_POST['btnDelete'])){
+    $obj->delete_category(trim($_POST['id']));
+  }
+  if(isset($_POST['cate_name'])){
+    $obj->insert_category(trim($_POST['cate_name']));
+  }
+  if(isset($_POST['cate_name_update'])){
+    $obj->update_category(trim($_POST['cate_id_update']),trim($_POST['cate_name_update']));
+  }
 ?>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
         <b><?php echo $title?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
-        <form action="category.php" id="form1" method="POST" enctype="multipart/form-data">
+        <form action="category" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalcategory">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -46,7 +56,7 @@
             </div>
         </form>
 
-        <form action="category.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+        <form action="category" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -84,6 +94,10 @@
     </div>
 </div>
 <div class="clearfix"></div><br>
+<?php
+      $obj->select_category('%%','0');
+      if(mysqli_num_rows($resultcategory) > 0){
+    ?>
 <div class="table-responsive">
     <table class="table font12" style="width: 1500px;">
         <tr>
@@ -92,9 +106,12 @@
             <th></th>
 
         </tr>
+        <?php
+            foreach($resultcategory as $row){
+        ?>
         <tr>
-            <td>1</td>
-            <td>c</td>
+            <td><?php echo $row['cate_id'] ?></td>
+            <td><?php echo $row['cate_name'] ?></td>
             <td>
                 <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
                     class="fa fa-pen toolcolor btnUpdate_cat"></a>&nbsp; &nbsp;
@@ -102,23 +119,26 @@
                     class="fa fa-trash toolcolor btnDelete_cat"></a>
             </td>
         </tr>
+        <?php
+            }   
+            mysqli_free_result($resultcategory);  
+            mysqli_next_result($conn);
+        ?>
     </table>
 </div>
+<?php
+          } 
+          else{
+        ?>
+                    <hr size="1" width="90%">
+              <p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
+            <hr size="1" width="90%">
+        <?php
+          }
+        ?>
 
-<!-- pagination -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
-  </ul>
-</nav>
 
-</div>
-
-<form action="category.php" id="formDelete" method="POST" enctype="multipart/form-data">
+<form action="category" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -145,7 +165,6 @@
 
 <script type="text/javascript">
 const myform = document.getElementById('form1');
-const cate_id = document.getElementById('cate_id');
 const cate_name = document.getElementById('cate_name');
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -153,21 +172,15 @@ myform.addEventListener('submit', (e) => {
 });
 
 function checkInputs() {
-    const cate_idValue = cate_id.value.trim();
     const cate_nameValue = cate_name.value.trim();
 
-    if (cate_idValue === '') {
-        setErrorFor(cate_id, 'ກະລຸນາປ້ອນລະຫັດປະເພດສິນຄ້າ');
-    } else {
-        setSuccessFor(cate_id);
-    }
     if (cate_nameValue === '') {
         setErrorFor(cate_name, 'ກະລຸນາປ້ອນຊື່ປະເພດສິນຄ້າ');
     } else {
         setSuccessFor(cate_name);
     }
-    if (cate_nameValue !== '' && cate_idValue !== '') {
-        document.getElementById("form1").action = "category.php";
+    if (cate_nameValue !== '') {
+        document.getElementById("form1").action = "category";
         document.getElementById("form1").submit();
     }
 }
@@ -175,6 +188,7 @@ function checkInputs() {
 
 <script type="text/javascript">
 const myformUpdate = document.getElementById('formUpdate');
+const cate_id_update = document.getElementById('cate_id_update');
 const cate_name_update = document.getElementById('cate_name_update');
 myformUpdate.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -189,7 +203,7 @@ function checkInputsUpdate() {
         setSuccessFor(cate_name_update);
     }
     if (cate_name_updateValue !== '') {
-        document.getElementById("formUpdate").action = "category.php";
+        document.getElementById("formUpdate").action = "category";
         document.getElementById("formUpdate").submit();
     }
 }
@@ -200,7 +214,7 @@ function checkInputsUpdate() {
   // check if name exist
   if(isset($_GET['name'])=='same'){
     echo'<script type="text/javascript">
-    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ປະເພດສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ປະເພດສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນ !!", "info");
     </script>';
   }
   //check save
@@ -217,7 +231,7 @@ function checkInputsUpdate() {
   // check if name_update exist
   if(isset($_GET['name_update'])=='same'){
     echo'<script type="text/javascript">
-    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ປະເພດສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ປະເພດສິນຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນ !!", "info");
     </script>';
   }
   //check update

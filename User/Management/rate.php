@@ -3,14 +3,24 @@
   $path="../../";
   $links = "../";
   $session_path = "../../";
-  include ("../../header-footer/header.php");
+  include ('../../header-footer/header.php');
+  include (''.$path.'oop/obj.php');
+  if(isset($_POST['btnDelete'])){
+    $obj->delete_rate(trim($_POST['id']));
+  }
+  if(isset($_POST['rate_id'])){
+    $obj->insert_rate(trim($_POST['rate_id']),trim($_POST['rate_buy']),trim($_POST['rate_sell']));
+  }
+  if(isset($_POST['rate_id_update'])){
+    $obj->update_rate(trim($_POST['rate_id_update']),trim($_POST['rate_buy_update']),trim($_POST['rate_sell_update']));
+  }
 ?>
     <div style="width: 100%;">
         <div style="width: 48%; float: left;">
           <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
         </div>
         <div style="width: 46%; float: right;" align="right">
-          <form action="rate.php" id="form1" method="POST" enctype="multipart/form-data">
+          <form action="rate" id="formSave" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalrate">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -57,7 +67,7 @@
               </div>
           </form>
 
-          <form action="rate.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+          <form action="rate" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -88,34 +98,55 @@
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                              <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success" onclick="">ແກ້ໄຂ</button>
+                              <button type="submit" name="update" id="btnUpdate" class="btn btn-outline-success">ແກ້ໄຂ</button>
                           </div>
                       </div>
                   </div>
               </div>
           </form>
+          
         </div>
     </div>
     <div class="clearfix"></div><br>
+    <?php
+      $obj->select_rate("%%","0");
+      if(mysqli_num_rows($resultrate) > 0){
+    ?>
     <div class="table-responsive">
       <table class="table font12" style="width: 1500px;">
         <tr>
             <th>ລະຫັດເລດເງິນ</th>
             <th>ເລດເງິນຊື້</th>
             <th>ເລດເງິນຂາຍ</th>
-
+            <th></th>
         </tr>
+        <?php
+            foreach($resultrate as $row){
+        ?>
         <tr>
-            <td>1</td>
-            <td>1.10</td>
-            <td>1.20</td>
+            <td><?php echo $row['rate_id'] ?></td>
+            <td><?php echo $row['rate_buy'] ?></td>
+            <td><?php echo $row['rate_sell'] ?></td>
             <td>
             <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_rate"></a>&nbsp; &nbsp; 
               <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_rate"></a>
             </td>
         </tr>
+        <?php
+            }
+        ?>
       </table>
     </div>
+    <?php
+          } 
+          else{
+        ?>
+            <hr size="1" width="90%">
+              <p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
+            <hr size="1" width="90%">
+        <?php
+          }
+        ?>
 
     <!-- pagination -->
 <nav aria-label="Page navigation example">
@@ -130,7 +161,7 @@
 
   </div>
 
-  <form action="customer_status.php" id="formDelete" method="POST" enctype="multipart/form-data">
+  <form action="rate" id="formDelete" method="POST" enctype="multipart/form-data">
       <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -155,7 +186,7 @@
 
 
   <script type="text/javascript">
-        const myform = document.getElementById('form1');
+        const myform = document.getElementById('formSave');
         const rate_id = document.getElementById('rate_id');
         const rate_buy = document.getElementById('rate_buy');
         const rate_sell = document.getElementById('rate_sell');
@@ -187,8 +218,8 @@
             setSuccessFor(rate_sell);
           }     
           if(rate_idValue !== ''  && rate_buyValue !== '' && rate_sellValue !== ''){
-            document.getElementById("form1").action = "rate.php";
-            document.getElementById("form1").submit();
+            document.getElementById("formSave").action = "rate";
+            document.getElementById("formSave").submit();
           }         
         }
         
@@ -220,7 +251,7 @@
             setSuccessFor(rate_sell_update);
           }
           if(rate_buy_updateValue !== '' &&  rate_sell_updateValue !== ''){
-            document.getElementById("formUpdate").action = "rate.php";
+            document.getElementById("formUpdate").action = "rate";
             document.getElementById("formUpdate").submit();
           }
         }
@@ -228,18 +259,12 @@
 
 <!-- sweetalert -->
 <?php
-  // check if stt_id exist
-  if(isset($_GET['sttid'])=='same'){
+  // check if rate_id exist
+  if(isset($_GET['rate'])=='same'){
     echo'<script type="text/javascript">
-    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດສະຖານະລູກຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
+    swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດເລດເງິນນີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
     </script>';
   }
-    // check if stt_name exist
-    if(isset($_GET['sttname'])=='same'){
-      echo'<script type="text/javascript">
-      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ສະຖານະລູກຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
-      </script>';
-    }
   //check save
   if(isset($_GET['save'])=='fail'){
     echo'<script type="text/javascript">
@@ -251,10 +276,10 @@
     swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
-    // check if stt_name_update exist
-    if(isset($_GET['sttname'])=='same'){
+    // check if rate_id_update exist
+    if(isset($_GET['rate'])=='same'){
       echo'<script type="text/javascript">
-      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກຊື່ສະຖານະລູກຄ້ານີ້ມີແລ້ວ ກະລຸນາໃສ່ຊື່ອື່ນທີ່ແຕກຕ່າງ !!", "info");
+      swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດເລດເງິນນີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
       </script>';
     }
   //check update
@@ -271,7 +296,7 @@
   // check if customer_status_id exist in customer
   if(isset($_GET['delete'])=='warning'){
     echo'<script type="text/javascript">
-    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນຜູ້ສະໜອງນີ້ໄ້ດເນື່ອງຈາກລະຫັດຜູ້ສະໜອງນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນັບສະຕ໋ອກ", "error");
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນນີ້ໄ້ດເນື່ອງຈາກລະຫັດລະຫັດເລດເງິນນີ້ເຄີຍໝູນໃຊ້ໃນຂໍ້ມູນນັບສະຕ໋ອກ", "error");
     </script>';
   }
   // check delete

@@ -16,7 +16,6 @@
     <button type="button" class="btn btn-sm btn-danger"> &nbsp; PDF &nbsp;</button> <br><br>
     </div>
 
-
 </div>
 
 <div class="clearfix">
@@ -38,12 +37,12 @@
     <table class="table font12" style="width: 1500px;">
 
     <tr>
+            <th>ລະຫັດລູກຄ້າ</th>
+            <th>ຊື່ບໍລີສັດ</th>
+            <th>ເບີໂທລະສັບ</th>
+            <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
+            <th>ອີເມວ</th>
             <th>ລະຫັດສະຖານະລູກຄ້າ</th>
-            <th>ຊື່ສະຖານະລູກຄ້າ</th>
-            <th>ລະຫັດສະຖານະລູກຄ້າ</th>
-            <th>ຊື່ສະຖານະລູກຄ້າ</th>
-            <th>ລະຫັດສະຖານະລູກຄ້າ</th>
-            <th>ຊື່ສະຖານະລູກຄ້າ</th>
 
         </tr>
         <tr>

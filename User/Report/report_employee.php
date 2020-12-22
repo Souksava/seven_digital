@@ -21,11 +21,11 @@
 
 <div class="clearfix">
 <!-- button search report -->
-<form class="form-inline ml-3">
+<form action="print_employee.php" method="POST" class="form-inline ml-3">
     <div class="input-group input-group-sm">                                         
         <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search" >  
         <div class="input-group-append"> 
-        <button type="button" class="btn btn-sm btn-outline-warning">&nbsp;&nbsp; ສະແດງລາຍການ &nbsp;&nbsp;</button>
+        <button type="submit" class="btn btn-sm btn-outline-warning">&nbsp;&nbsp; ສະແດງລາຍການ &nbsp;&nbsp;</button>
         </div>
     </div>
 </form>

@@ -4,16 +4,30 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  include (''.$path.'oop/obj.php');
+
+  if(isset($_POST['btnDelete'])){
+    $obj->delete_customer(trim($_POST['id']));
+  }
+  if(isset($_POST['cus_id'])){
+    $obj->insert_customer(trim($_POST['cus_id']),trim($_POST['company']),trim($_POST['tel']),trim($_POST['email']),trim($_POST['address']),trim($_POST['stt_id']));
+  }
+  if(isset($_POST['cus_id_update'])){
+    $obj->update_customer(trim($_POST['cus_id_update']),trim($_POST['company_update']),trim($_POST['tel_update']),trim($_POST['email_update']),trim($_POST['address_update']),trim($_POST['stt_id_update']));
+  }
 ?>
     <div style="width: 100%;">
         <div style="width: 48%; float: left;">
-          <b><?php echo $title    ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+          <b>ລາຍການລູກຄ້າ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
         </div>
         <div style="width: 46%; float: right;" align="right">
           <form action="customer.php" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalcustomer">
+
                 <img src="../../icon/add.ico" alt="" width="25px">
+
             </a>
+
             <div class="modal fade" id="exampleModalcustomer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -61,8 +75,20 @@
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ລະຫັດສະຖານະລູກຄ້າ</label>
-                                      <input type="text" name="stt_id" id="stt_id" placeholder="ລະຫັດສະຖານະລູກຄ້າ">
+                                  <label>ສະຖານະລູກຄ້າ</label>
+                                    <select name="stt_id" id="stt_id">
+                                        <option value="" disabled selected>--- ເລືອກສະຖານະລູກຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_customer_status('%%','0');
+                                            foreach($result_customer_status as $row2){
+                                        ?>
+                                            <option value="<?php echo $row2['stt_id'] ?>"><?php echo $row2['stt_name'] ?></option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($result_customer_status);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
@@ -77,8 +103,8 @@
                   </div>
               </div>
           </form>
-
-          <form action="customer.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+          <br>
+          <form action="customer" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -120,9 +146,21 @@
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
-                                      <label>ລະຫັດສະຖານະລູກຄ້າ</label>
-                                      <input type="text" name="stt_id_update" id="stt_id_update" placeholder="ລະຫັດສະຖານະລູກຄ້າ">
-                                      <i class="fas fa-check-circle "></i>
+                                  <label>ສະຖານະລູກຄ້າ</label>
+                                    <select name="stt_id_update" id="stt_id_update">
+                                        <option value="" disabled selected>--- ເລືອກສະຖານະລູກຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_customer_status('%%','0');
+                                            foreach($result_customer_status as $row2){
+                                        ?>
+                                            <option value="<?php echo $row2['stt_id'] ?>"><?php echo $row2['stt_name'] ?></option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($result_customer_status);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
+                                    <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>                                         
@@ -139,8 +177,10 @@
         </div>
     </div>
     
+    <div id="result"></div> 
     <div class="clearfix"></div><br>
-    <div class="table-responsive">
+    
+    <!-- <div class="table-responsive">
       <table class="table font12" style="width: 1500px;">
         <tr>
             <th>ລະຫັດສະຖານະລູກຄ້າ</th>
@@ -165,22 +205,14 @@
             </td>
         </tr>
       </table>
-    </div>
+    </div> -->
 
-    <!-- pagination -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
-  </ul>
-</nav>
+  
+
 
   </div>
 
-  <form action="customer.php" id="formDelete" method="POST" enctype="multipart/form-data">
+  <form action="customer" id="formDelete" method="POST" enctype="multipart/form-data">
       <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -205,6 +237,9 @@
 
 
   <script type="text/javascript">
+  // const hightlight = document.getElementById('hightlight');
+  // console.log(hightlight);
+   $('.result').highlight([hightlight]);
         const myform = document.getElementById('form1');
         const cus_id = document.getElementById('cus_id');
         const company = document.getElementById('company');
@@ -246,7 +281,7 @@
             setSuccessFor(stt_id);
           }    
           if(cus_idValue !== ''  && companyValue !== '' && telValue !== '' && stt_idValue !== ''){
-            document.getElementById("form1").action = "customer.php";
+            document.getElementById("form1").action = "customer";
             document.getElementById("form1").submit();
           }         
         }
@@ -255,6 +290,7 @@
 
     <script type="text/javascript">
         const myformUpdate = document.getElementById('formUpdate');
+        const cus_id_update = document.getElementById('cus_id_update');
         const company_update = document.getElementById('company_update');
         const tel_update = document.getElementById('tel_update');
         const stt_id_update = document.getElementById('stt_id_update');
@@ -264,6 +300,7 @@
         });
 
         function checkInputsUpdate(){
+            const cus_id_updateValue = cus_id_update.value.trim();
             const company_updateValue = company_update.value.trim();
             const tel_updateValue = tel_update.value.trim();
             const stt_id_updateValue = stt_id_update.value.trim();
@@ -288,7 +325,7 @@
             setSuccessFor(stt_id_update);
           }
           if(cus_id_updateValue !== ''  && company_updateValue !== '' && tel_updateValue !== '' && stt_id_updateValue !== ''){
-            document.getElementById("formUpdate").action = "customer.php";
+            document.getElementById("formUpdate").action = "customer";
             document.getElementById("formUpdate").submit();
           }
         }
@@ -349,7 +386,54 @@
   }
 ?>
 
+<script>
+$(document).ready(function(){
 
+  load_data();
+
+  function load_data(query,page)
+  {
+    $.ajax({
+      url:"fetch_customer.php",
+      method:"POST",
+      data:{query:query,page:page},
+      success:function(data)
+      {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search').keyup(function(){
+    var page = "0";
+    var search = $(this).val();
+    if(search != '')
+    {
+    load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+  $(document).on('click', '.page-links', function(){    
+    var page = this.id;
+    console.log(page);
+    var search = $('#search').val();
+    if(search != '')
+    {
+      load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+  
+
+});
+
+
+</script>
 
 
  <?php
