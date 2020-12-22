@@ -368,6 +368,11 @@ class obj{
         global $resultsupplier;
         $resultsupplier = mysqli_query($conn,"call supplier('$search','$page')");
     }
+    public static function select_supplier_count($search){//method ດຶງຂໍ້ມູນຜູ້ສະໜອງມາສະແດງ
+        global $conn;
+        global $resultsupplier_count;
+        $resultsupplier_count = mysqli_query($conn,"call supplier_count('$search')");
+    }
     public static function insert_supplier($sup_id,$company,$tel,$fax,$address,$email,$img_path){
         global $conn;
         global $path;
@@ -403,7 +408,7 @@ class obj{
             }
             else{
                 echo"<script>";
-                echo"window.location.href='supplier?save=success';";
+                echo"window.location.href='supplier?save2=success';";
                 echo"</script>";
             }
         }
@@ -418,9 +423,9 @@ class obj{
             echo"</script>";
         }
         else{
-            $get_img = mysqli_query($get_img, "select  img_path from supplier where sup_id='$sup_id'");
+            $get_img = mysqli_query($conn, "select  img_path from supplier where sup_id='$sup_id'");
             $data = mysqli_fetch_array($get_img, MYSQLI_ASSOC);
-            $path2 = $image_path.$data['img_path'];
+            $path2 = $path."image/".$data['img_path'];
             if(file_exists($path2) && !empty($data['img_path'])){
                 unlink($path2);    
             }
@@ -456,10 +461,10 @@ class obj{
                 $upload_path = $image_path.$new_image_name;
                 move_uploaded_file($_FILES['img_path']['tmp_name'], $upload_path);
                 $Pro_image = $new_image_name;
+                // $path2 = __DIR__.DIRECTORY_SEPARATOR.$image_path.DIRECTORY_SEPARATOR.$data['img_path']; //cant find path
                 $path2 = $image_path.$data['img_path'];
                 if(file_exists($path2) && !empty($data['img_path'])){
-                    unlink($path2);
-                    
+                    unlink($path2);                  
                 }
             }
             $result = mysqli_query($conn,"call update_supplier('$sup_id','$company','$tel','$fax','$address','$email','$Pro_image')");
@@ -494,8 +499,7 @@ class obj{
                     $Pro_image = $new_image_name;
                     $path2 = $image_path.$data['img_path'];
                     if(file_exists($path2) && !empty($data['img_path'])){
-                        unlink($path2);
-                        
+                        unlink($path2);                  
                     }
                 }
                 $result = mysqli_query($conn,"call update_supplier('$sup_id','$company','$tel','$fax','$address','$email','$Pro_image')");

@@ -5,29 +5,39 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
   include (''.$path.'oop/obj.php');
-  
+
+  if(isset($_POST['btnDelete'])){
+    $obj->delete_supplier(trim($_POST['id']));
+  }
+  if(isset($_POST['sup_id'])){
+    $obj->insert_supplier(trim($_POST['sup_id']),trim($_POST['company']),trim($_POST['tel']),trim($_POST['fax']),trim($_POST['address']),trim($_POST['email']),$_FILES['img_path']['name']);
+  }
+  if(isset($_POST['company_update'])){
+    $obj->update_supplier(trim($_POST['sup_id_update']),trim($_POST['company_update']),trim($_POST['company_update']),trim($_POST['tel_update']),trim($_POST['fax_update']),trim($_POST['address_update']),trim($_POST['email_update']),$_FILES['img_path']['name']);
+  }
 ?>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b><?php echo substr($title,'18'); ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
         <form action="supplier" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalsupplier">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
+
             <div class="modal fade" id="exampleModalsupplier" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">ເພີ່ມຂໍ້ມູນຜູ້ສະໜອງ</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">ເພີ່ມຂໍ້ມູນຜູ້ສະໜອງ</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row" align="left">
+                        <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຜູ້ສະໜອງ</label>
                                     <input type="text" name="sup_id" id="sup_id" placeholder="ລະຫັດຜູ້ສະໜອງ">
@@ -93,22 +103,20 @@
                 </div>
             </div>
         </form>
-
-
-
-        <form action="supplier.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+        <br>
+        <form action="supplier" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">ແກ້ໄຂຂໍ້ມູນຜູ້ສະໜອງ</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">ແກ້ໄຂຂໍ້ມູນຜູ້ສະໜອງ</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div class="row" align="left">
+                        <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ບໍລິສັດ</label>
                                     <input type="hidden" name="sup_id_update" id="sup_id_update"
@@ -150,7 +158,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບ</label>
-                                    <input type="file" name="img_path_update" id="img_path_update"
+                                    <input type="file" name="img_path" id="img_path_update"
                                         onchange="loadFile2(event)">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -173,114 +181,11 @@
         </form>
     </div>
 </div>
-<div class="clearfix"></div><br>
-<div id="result">result</div>
-    <?php
-  $obj->select_supplier("%".$_POST['search']."%",'0');
-  $output = '';
-  if(mysqli_num_rows($resultsupplier) > 0){
-    $output .= '
-    <div class="table-responsive">
-    <table class="table font12" style="width: 1500px;">
-        <tr>
-            <th>ລະຫັດຜູ້ໜອງ</th>
-            <th>ຊື່ບໍ່ລິສັດ</th>
-            <th>ເບີໂທລະສັບ</th>
-            <th>ເບີແຟັກ</th>
-            <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
-            <th>ທີ່ຢູ່ອີເມວ</th>
-            <th>ຮູບພາບ</th>
-            <th></th>
 
-        </tr>
-    ';
-    foreach($resultsupplier as $row){
-    $output .='
-        <tr>
-            <td>'.$row["sup_id"].'</td>
-            <td>'.$row["company"].'</td>
-            <td>'.$row["tel"].'</td>
-            <td>'.$row["fax"].'</td>
-            <td>'.$row["address"].'</td>
-            <td>'.$row["email"].'</td>
-            <td style="display:none;">'.$path.''.$row['img_path'].'</td>
-            <td>
-                <a href="../../image/image.jpeg" target="_blank">
-                    <img src="../../image/image.jpeg" class="img-circle elevation-2" alt="" width="30px">
-                </a>
-
-            </td>
-            <td>
-                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_sup"></a>&nbsp; &nbsp;
-                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_sup"></a>
-            </td>
-        </tr>
-        ';
-        }
-        $output .='
-    </table>
-</div>
-    ';
-    echo $output;
-  }
-  else{
-      echo "No Data";
-  }
-    ?>
-<!-- </div> -->
-<!-- <div class="table-responsive">
-    <table class="table font12" style="width: 1500px;">
-        <tr>
-            <th>ລະຫັດຜູ້ໜອງ</th>
-            <th>ຊື່ບໍ່ລິສັດ</th>
-            <th>ເບີໂທລະສັບ</th>
-            <th>ເບີແຟັກ</th>
-            <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
-            <th>ທີ່ຢູ່ອີເມວ</th>
-            <th>ຮູບພາບ</th>
-            <th></th>
-
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>d</td>
-            <td>e@gmail.com</td>
-            <td style="display:none;">../../image/image.jpeg</td>
-            <td>
-                <a href="../../image/image.jpeg" target="_blank">
-                    <img src="../../image/image.jpeg" class="img-circle elevation-2" alt="" width="30px">
-                </a>
-
-            </td>
-            <td>
-                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_sup"></a>&nbsp; &nbsp;
-                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_sup"></a>
-            </td>
-        </tr>
-    </table>
-</div> -->
-
-<!-- pagination -->
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
-    </ul>
-</nav>
-
+<div id="result"></div>
 </div>
 
-<form action="supplier.php" id="formDelete" method="POST" enctype="multipart/form-data">
+<form action="supplier" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -337,13 +242,10 @@ function checkInputs() {
         setSuccessFor(tel);
     }
     if (companyValue !== '' && telValue !== '' && sup_idValue !== '') {
-        document.getElementById("form1").action = "supplier.php";
+        document.getElementById("form1").action = "supplier";
         document.getElementById("form1").submit();
     }
 }
-</script>
-
-<script type="text/javascript">
 const myformUpdate = document.getElementById('formUpdate');
 const sup_id_update = document.getElementById('sup_id_update');
 const company_update = document.getElementById('company_update');
@@ -354,6 +256,7 @@ myformUpdate.addEventListener('submit', (e) => {
 });
 
 function checkInputsUpdate() {
+    const sup_id_updateValue = sup_id_update.value.trim();
     const company_updateValue = company_update.value.trim();
     const tel_updateValue = tel_update.value.trim();
     if (company_updateValue === '') {
@@ -367,7 +270,7 @@ function checkInputsUpdate() {
         setSuccessFor(tel_update);
     }
     if (company_updateValue !== '' && tel_updateValue !== '' && sup_id_updateValue !== '') {
-        document.getElementById("formUpdate").action = "supplier.php";
+        document.getElementById("formUpdate").action = "supplier";
         document.getElementById("formUpdate").submit();
     }
 }
@@ -375,8 +278,7 @@ function checkInputsUpdate() {
 
 <!-- sweetalert -->
 <?php
-  // check if sup_id exist
-  if(isset($_GET['id'])=='same'){
+ if(isset($_GET['id'])=='same'){
     echo'<script type="text/javascript">
     swal("", "ບໍ່ສາມາດເພີ່ມຂໍ້ມູນໄດ້ເນື່ອງຈາກລະຫັດຕຳແໜ່ງນີ້ມີແລ້ວ ກະລຸນາໃສ່ລະຫັດອື່ນທີ່ແຕກຕ່າງ !!", "info");
     </script>';
@@ -432,53 +334,63 @@ function checkInputsUpdate() {
     swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
-?>
-<?php
-    include ("../../header-footer/footer.php");
   ?>
 
-<!-- script preview image before upload -->
 <script>
-// var loadFile = function(event) {
-//     var output = document.getElementById('output');
-//     output.src = URL.createObjectURL(event.target.files[0]);
-//     output.onload = function() {
-//         URL.revokeObjectURL(output.src) // free memory
-//     }
-// };
-// var loadFile2 = function(event) {
-//     var output2 = document.getElementById('output2');
-//     output2.src = URL.createObjectURL(event.target.files[0]);
-//     output2.onload = function() {
-//         URL.revokeObjectURL(output2.src) // free memory
-//     }
-// };
-$(document).ready(function(){
-    $('#search_text').keyup(function(){
-        var txt = $(this).val();
-        if(txt != ''){
-            $.ajax({
-                url:"supplier.php",
-                method="post",
-                data:{search:txt},
-                dataType:"text",
-                success:fun ction(data){
-                    $('#result').html(data);
-                }
-            });
+    var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+        URL.revokeObjectURL(output.src) // free memory
+    }
+};
+var loadFile2 = function(event) {
+    var output2 = document.getElementById('output2');
+    output2.src = URL.createObjectURL(event.target.files[0]);
+    output2.onload = function() {
+        URL.revokeObjectURL(output2.src) // free memory
+    }
+};
+$(document).ready(function() {
+
+    load_data();
+
+    function load_data(query,page) {
+        $.ajax({
+            url: "fetch_supplier.php",
+            method: "POST",
+            data: {
+                query: query,
+                page: page
+            },
+            success: function(data) {
+                $('#result').html(data);
+            }
+        });
+    }
+    $('#search').keyup(function() {
+        var page = "0";
+        var search = $(this).val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
         }
-        else{
-            $('#result').html('');
-            $.ajax({
-                url:"supplier.php",
-                method="post",
-                data:{search:txt},
-                dataType:"text",
-                success:function(data){
-                    $('#result').html(data);
-                }
-            });
+    });
+    $(document).on('click', '.page-links', function() {
+        var page = this.id;
+        console.log(page);
+        var search = $('#search').val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
         }
     });
 });
 </script>
+
+
+<?php
+    include ("../../header-footer/footer.php");
+  ?>

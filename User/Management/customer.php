@@ -21,7 +21,7 @@
           <b>ລາຍການລູກຄ້າ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
         </div>
         <div style="width: 46%; float: right;" align="right">
-          <form action="customer.php" id="form1" method="POST" enctype="multipart/form-data">
+          <form action="customer" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalcustomer">
 
                 <img src="../../icon/add.ico" alt="" width="25px">
@@ -237,9 +237,6 @@
 
 
   <script type="text/javascript">
-  // const hightlight = document.getElementById('hightlight');
-  // console.log(hightlight);
-   $('.result').highlight([hightlight]);
         const myform = document.getElementById('form1');
         const cus_id = document.getElementById('cus_id');
         const company = document.getElementById('company');
