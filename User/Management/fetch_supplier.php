@@ -107,7 +107,7 @@ if(mysqli_num_rows($resultsupplier) > 0)
          <nav aria-label="...">
             <ul class="pagination">
                <li class="page-item">
-                  <a href="#" class="btn btn-danger page-links" id="'.$previous.'" style="color: white!important;" value="'.$previous.'">Previous</a>
+                  <a href="#" class="btn btn-danger page-links" id="'.$previous.'" style="color: white!important;" value="'.$previous.'">ກັບຄືນ</a>
                </li>
        ';
       }
@@ -161,7 +161,7 @@ if(mysqli_num_rows($resultsupplier) > 0)
          echo '      
 
                      <li class="page-item">
-                        <a href="#" class="btn btn-success page-links" id="'.$next.'" value="'.$next.'" style="color: white!important;" href="#">Next</a>
+                        <a href="#" class="btn btn-success page-links" id="'.$next.'" value="'.$next.'" style="color: white!important;" href="#">ໜ້າຖັດໄປ</a>
                      </li>
                   </ul>
                </nav>
