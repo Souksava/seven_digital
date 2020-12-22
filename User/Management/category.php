@@ -17,7 +17,7 @@
 ?>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b><?php echo $title?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b>ລາຍການ<?php echo $title?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
         <form action="category" id="form1" method="POST" enctype="multipart/form-data">
