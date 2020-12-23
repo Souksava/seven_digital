@@ -1758,6 +1758,13 @@ class obj{
     //ສິ້ນສຸດການປ່ຽນອາໄຫຼ່
 
     //form
+    public static function select_form_cookie(){
+        global $cart_data;
+        if(isset($_COOKIE['list_form'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
+            $cookie_data = stripslashes($_COOKIE['list_form']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
+        }
+    }
     public static function cookie_form($code,$qty){
         global $conn;
         $check_qty = mysqli_query($conn,"select sum(qty) as qty from products p left join stocks s on p.code=s.code where s.code='$code' group by s.code");
@@ -1810,13 +1817,6 @@ class obj{
             echo"window.location.href='form';";
             echo"</script>";
         
-        }
-    }
-    public static function select_form(){
-        global $cart_data;
-        if(isset($_COOKIE['list_form'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
-            $cookie_data = stripslashes($_COOKIE['list_form']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
-            $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
         }
     }
     public static function clear_form(){
@@ -1893,7 +1893,7 @@ class obj{
 }
 $obj = new obj();
 ?>
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1922,7 +1922,7 @@ $obj = new obj();
         if(isset($_POST['add'])){
             $obj->cookie_form($_POST['code'],$_POST['qty']);
         }
-        $obj->select_form();
+        $obj->select_form_cookie();
         if(isset($_COOKIE['list_form'])){
     ?>
     <table>
@@ -1949,4 +1949,4 @@ $obj = new obj();
         // echo implode("|",$cart_data);
     ?>
 </body>
-</html> -->
+</html>
