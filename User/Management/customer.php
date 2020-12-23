@@ -179,7 +179,7 @@
     
     <div id="result"></div> 
     <div class="clearfix"></div><br>
-    
+
     <!-- <div class="table-responsive">
       <table class="table font12" style="width: 1500px;">
         <tr>

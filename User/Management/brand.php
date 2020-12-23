@@ -57,48 +57,8 @@
     </div>
 </div>
 <div class="clearfix"></div><br>
-<?php
-      $obj->select_brand('%%','0');
-      if(mysqli_num_rows($resultbrand) > 0){
-    ?>
-<div class="table-responsive">
-    <table class="table font12" style="width: 100%;">
-        <tr>
-            <th>ລະຫັດຍີ່ຫໍ້</th>
-            <th>ຊື່ຍີ່ຫໍ້</th>
-            <th></th>
+<div id="result"></div> 
 
-        </tr>
-        <?php
-            foreach($resultbrand as $row){
-        ?>
-        <tr>
-            <td><?php echo $row['brand_id'] ?></td>
-            <td><?php echo $row['brand_name'] ?></td>
-            <td>
-                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_brand"></a>&nbsp; &nbsp;
-                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_brand"></a>
-            </td>
-        </tr>
-        <?php
-            }   
-            mysqli_free_result($resultbrand);  
-            mysqli_next_result($conn);
-        ?>
-    </table>
-</div>
-<?php
-          } 
-          else{
-        ?>
-<hr size="1" width="90%">
-<p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
-<hr size="1" width="90%">
-<?php
-          }
-        ?>
 
 
 <form action="brand" id="formUpdate" method="POST" enctype="multipart/form-data">
@@ -267,6 +227,36 @@ function checkInputs2() {
     </script>';
   }
 ?>
+
+<script>
+$(document).ready(function(){
+
+  load_data();
+
+  function load_data(page)
+  {
+    $.ajax({
+      url:"fetch_brand.php",
+      method:"POST",
+      data:{page:page},
+      success:function(data)
+      {
+        $('#result').html(data);
+      }
+    });
+  }
+
+  $(document).on('click', '.page-links', function(){    
+    var page = this.id;
+    console.log(page);
+      load_data(page);
+  });
+  
+
+});
+
+
+</script>
 
 <?php
     include ("../../header-footer/footer.php");
