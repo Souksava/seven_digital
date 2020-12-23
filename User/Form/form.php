@@ -4,296 +4,20 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  include (''.$path.'oop/obj.php');
 ?>
-<br>
+
 <div style="width: 100%;">
     <b>ລາຍການຟອມ</b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
 </div>
+<br>
 <div class="row">
     <div class="col-md-7">
-        <div class="table-responsive" style="text-align: center;">
-            <table class="table font12" style="width: 900px">
-                <tr>
-                    <th style="width: 50px">ສິນຄ້າ</th>
-                    <th style="width: 150px">ລະຫັດສິນຄ້າ</th>
-                    <th>ຊື່ສິນຄ້າ</th>
-                    <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-                    <th style="width: 50px">ຈຳນວນ</th>
-                    <th style="width: 120px">ເງື່ອນໄຂການຜະລິດ</th>
-                    <th style="width: 30px"></th>
-                </tr>
-                <tr>
-                    <td style="display:none;">../../image/logo.png</td>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="../../image/product.png"
-                                width="30px">
-                        </a>
-                    </td>
-                    <td>12345678910234</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>1000</td>
-                    <td>50</td>
-                    <td>
-                        <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                            class="fa fa-plus toolcolor btnUpdate_form"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-            </table>
-        </div>
+    <div id="result"></div> 
 
-        <!-- pagination -->
-        <br>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-            </ul>
-        </nav>
+
+
+  
 
     </div>
     <div class="col-md-5">
@@ -308,7 +32,6 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-control2">
-                                <br>
                                 <select name="cus_id" id="cus_id" class="selectcenter">
                                     <option value="" disabled selected>--- ເລືອກລູກຄ້າ ---</option>
                                     <option value="a"> A</option>
@@ -321,7 +44,6 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-control2">
-                                <br>
                                 <input type="text" name="packing" id="packing" placeholder="Packing No">
                                 <i class="fas fa-check-circle "></i>
                                 <i class="fas fa-exclamation-circle "></i>
@@ -329,10 +51,9 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <br>
                             <div align="center-right">
-                                <button type="button" name="btnAdd" class="btn btn-outline-success btn-lg"
-                                    data-toggle="modal" data-target="#exampleModal2">ບັນທຶກຟອມເບີກ</button>
+                                <button type="button" name="btnAdd" class="btn btn-outline-success btn-block"
+                                    data-toggle="modal" data-target="#exampleModal2" style="padding: 8px 0px 8px 0px">ບັນທຶກຟອມ</button>
                                 <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -386,217 +107,7 @@
                                     <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
                                         class="fa fa-trash toolcolor btnDelete_form"></a>&nbsp; &nbsp;
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
-                                </td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
-                                <td>
-                                    <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                                </td>
-                            </tr>
+                            </tr>                          
                         </table>
                     </div>
 
@@ -604,8 +115,6 @@
                         <br>
                         <h4 style="color: #CE3131;"> 99 ລາຍການ</h4>
                     </div>
-
-
                 </form>
                 </p>
             </div>
@@ -665,6 +174,7 @@
                         </div>
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຈຳນວນ</label>
+                            <input type="text" name="pro_id" id="pro_id" hidden>
                             <input type="number" min="1" name="qty" id="qty" placeholder="ຈຳນວນ">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
@@ -758,6 +268,51 @@ function checkInputs2() {
     </script>';
   }
 ?>
+
+<script>
+$(document).ready(function(){
+
+  load_data();
+
+  function load_data(query,page)
+  {
+    $.ajax({
+      url:"fetch_form.php",
+      method:"POST",
+      data:{query:query,page:page},
+      success:function(data)
+      {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search').keyup(function(){
+    var page = "0";
+    var search = $(this).val();
+    if(search != '')
+    {
+    load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+  $(document).on('click', '.page-links', function(){    
+    var page = this.id;
+    console.log(page);
+    var search = $('#search').val();
+    if(search != '')
+    {
+      load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+});
+</script>
 
 
 <!-- /.content-wrapper -->
