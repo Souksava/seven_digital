@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 23, 2020 at 09:03 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.3.13
+-- Host: 127.0.0.1
+-- Generation Time: Dec 23, 2020 at 10:11 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -157,7 +156,12 @@ select emp_id,emp_name,emp_surname,gender,tel,address,email,pass,e.auther_id,aut
 End$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `form` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select form_id,f.emp_id,f.cus_id,form_date,stt_accept,status,usr_acc,emp_name,company from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id where form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or usr_acc like s order by form_id ASC limit 15 OFFSET page;
+select f.form_id,f.emp_id,f.cus_id,form_date,stt_accept,status,usr_acc,emp_name,company,fd.code,p.img_path from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id left join formdetail fd on f.form_id=fd.form_id  left join products p on fd.code=p.code where f.form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or usr_acc like s order by f.form_id ASC limit page,15;
+end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `form_count` (IN `s` VARCHAR(50))  NO SQL
+begin
+select form_id,f.emp_id,f.cus_id,form_date,stt_accept,status,usr_acc,emp_name,company from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id where form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or usr_acc like s order by form_id ASC;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `form_detail` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
@@ -196,8 +200,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_employee` (IN `empid` VARCHA
 Insert into employee values(empid,name,surname,gender,tel,address,email,md5(pass),autherid,sttid,imgpath);
 End$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_form` (`form_id` INT(11), `emp_id` VARCHAR(20), `cus_id` VARCHAR(20), `amount` DECIMAL(11,2), `form_date` DATE, `form_time` TIME, `stt_accept` VARCHAR(50), `status` VARCHAR(50), `usr_acc` VARCHAR(50))  begin
-Insert into form values(form_id,emp_id,cus_id,amount,form_date,form_time,stt_accept,status,usr_acc);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_form` (IN `form_id` INT(11), IN `emp_id` VARCHAR(20), IN `cus_id` VARCHAR(20), IN `amount` DECIMAL(11,2), IN `packing` INT(11), IN `form_date` DATE, IN `form_time` TIME, IN `stt_accept` VARCHAR(50), IN `status` VARCHAR(50), IN `usr_acc` VARCHAR(50))  begin
+Insert into form values(form_id,emp_id,cus_id,amount,packing,form_date,form_time,stt_accept,status,usr_acc);
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_form_detail` (IN `code` VARCHAR(30), IN `qty` INT(11), IN `form_id` INT(11))  begin
@@ -592,7 +596,7 @@ CREATE TABLE `form` (
   `emp_id` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cus_id` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `amount` decimal(11,2) DEFAULT NULL,
-  `packing_no` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `packing_no` int(11) DEFAULT NULL,
   `form_date` date DEFAULT NULL,
   `form_time` time DEFAULT NULL,
   `stt_accept` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -606,7 +610,8 @@ CREATE TABLE `form` (
 
 INSERT INTO `form` (`form_id`, `emp_id`, `cus_id`, `amount`, `packing_no`, `form_date`, `form_time`, `stt_accept`, `status`, `usr_acc`) VALUES
 (1, '001', '1', '10.00', NULL, '2020-11-13', '09:26:00', 'a', 'b', 'c'),
-(2, '001', '2', '10.00', NULL, '0000-00-00', '09:23:00', 'a', 'b', 'c');
+(2, '001', '2', '10.00', NULL, '0000-00-00', '09:23:00', 'a', 'b', 'c'),
+(5, '001', '2', '10.00', 1, '0000-00-00', '09:23:00', 'a', 'b', 'c');
 
 -- --------------------------------------------------------
 

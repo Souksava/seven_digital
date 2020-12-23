@@ -18,63 +18,83 @@ else{
 if(isset($_POST["query"]))
 {
    $highlight = $_POST['query'];
-   $obj->select_customer("%".$_POST['query']."%",$page);
+   $obj->select_form("%".$_POST['query']."%",$page);
 }
 else
 {
-   $obj->select_customer("%%",$page);
+   $obj->select_form("%%",$page);
 }
-if(mysqli_num_rows($resultcustomer) > 0)
+if(mysqli_num_rows($resultform) > 0)
 {
  $output .= '
   <div class="table-responsive">
    <table class="table font12" style="width: 1500px;">
     <tr>
-     <th>ລະຫັດລູກຄ້າ</th>
-     <th>ຊື່ບໍລິສັດ</th>
-     <th>ເບີໂທລະສັບ</th>
-     <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
-     <th>ອີເມວ</th>
-     <th>ສະຖານະລູກຄ້າ</th>
-     <th></th>
+    <th style="width: 50px">ສິນຄ້າ</th>
+    <th style="width: 150px">ລະຫັດສິນຄ້າ</th>
+    <th>ຊື່ສິນຄ້າ</th>
+    <th style="width: 150px">ວັນທີ</th>
+    <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
+    <th style="width: 50px">ຈຳນວນ</th>
+    <th style="width: 120px">ເງື່ອນໄຂການຜະລິດ</th>
+    <th style="width: 30px"></th>
     </tr>
  ';
- while($row = mysqli_fetch_array($resultcustomer))
+ while($row = mysqli_fetch_array($resultform))
  {
   $output .= '
    <tr  class="result">
-    <td>'.$row["cus_id"].'</td>
-    <td>'.$row["company"].'</td>
-    <td>'.$row["tel"].'</td>
-    <td>'.$row["address"].'</td>
-    <td>'.$row["email"].'</td>
-    <td style="display: none;">'.$row["stt_id"].'</td>
-    <td>'.$row["stt_name"].'</td>
+   <td style="display: none;">'.$row["form_id"].'</td>
+    <td>'.$row["code"].'</td>
+
+    ';
+    if($row['img_path'] != ''){
+    $output .= '
     <td>
-      <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cust"></a>&nbsp; &nbsp; 
-      <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_cust"></a>
+        <a href="'.$path.'image/'.$row['img_path'].'" target="_blank">
+            <img src="'.$path.'image/'.$row['img_path'].'" class="img-circle elevation-2"
+                alt="" width="55px">
+        </a>
     </td>
+    ';
+    }
+    else{
+    $output .= '
+    <td>
+        <a href="'.$path.'image/image.jpeg" target="_blank">
+            <img src="'.$path.'image/image.jpeg" class="img-circle elevation-2"
+                alt="" width="55px">
+        </a>
+    </td>
+    ';
+    }
+    $output .='
+    <td>
+    <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
+        class="fa fa-plus toolcolor btnUpdate_form"></a>&nbsp; &nbsp;
+</td>
    </tr>
   ';
  }
- mysqli_free_result($resultcustomer);  
+ mysqli_free_result($resultform);  
  mysqli_next_result($conn);
  $output .='
    </table>
 </div>
+<br>
  ';
  echo $output;
  
  if(isset($_POST["query"]))
  {
-   $obj->select_customer_count("%".$_POST['query']."%");
+   $obj->select_form_count("%".$_POST['query']."%");
  }
  else
  {
-    $obj->select_customer_count("%%");
+    $obj->select_form_count("%%");
  }
-   $count = mysqli_num_rows($resultcustomer_count);
-   mysqli_free_result($resultcustomer_count);  
+   $count = mysqli_num_rows($resultform_count);
+   mysqli_free_result($resultform_count);  
    mysqli_next_result($conn);
    $a = ceil($count/15);
    if(isset($_POST['page'])){
@@ -107,11 +127,6 @@ if(mysqli_num_rows($resultcustomer) > 0)
          $page_next2 = 1;
       }
    }
-   // <a href="#" id="'.$b.'" style="color: red;" class="page-links" value="'.$b.'" >'.$b.'</a>    
-   // <a href="#" id="'.$b.'" class="page-links" value="'.$b.'" >'.$b.'</a>
-   // <a href="#" id="'.$next.'" class="page-links" value="'.$next.'" >
-   //    Next
-   // </a>
    for($b=1;$b<=$a;$b++){
       $i = $b;
       if($page_next2 == $b){
@@ -168,23 +183,7 @@ else
 <script type="text/javascript">
 var highlight = "<?php echo $_POST['query']; ?>";
 $('.result').highlight([highlight]);
-   $('.btnUpdate_cust').on('click', function() {
-      $('#exampleModalUpdate').modal('show');
-      $tr = $(this).closest('tr');
-      var data = $tr.children("td").map(function() {
-         return $(this).text();
-      }).get();
-
-      console.log(data);
-
-      $('#cus_id_update').val(data[0]);
-      $('#company_update').val(data[1]);
-      $('#tel_update').val(data[2]);
-      $('#address_update').val(data[3]);
-      $('#email_update').val(data[4]);
-      $('#stt_id_update').val(data[5]);
-   });
-   $('.btnDelete_cust').on('click', function() {
+   $('.btnDelete_emp').on('click', function() {
         $('#exampleModalDelete').modal('show');
         $tr = $(this).closest('tr');
         var data = $tr.children("td").map(function() {
@@ -194,5 +193,33 @@ $('.result').highlight([highlight]);
         console.log(data);
 
         $('#id').val(data[0]);
+    });
+    $('.btnUpdate_emp').on('click', function() {
+        $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+    
+        console.log(data);
+
+        $('#emp_id2').val(data[0]);
+        $('#emp_name2').val(data[1]);
+        $('#emp_surname2').val(data[2]);
+        $('#gender2').val(data[3]);
+        $('#tel2').val(data[4]);
+        $('#address2').val(data[5]);
+        $('#auther_id2').val(data[6]);
+        $('#email2').val(data[8]);
+        $('#password2').val(data[9]);
+        $('#password_cf2').val(data[9]);
+        $('#status2').val(data[10]);
+        if(data[12] === ''){
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        }
+        else{
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[12]);
+        }
+     
     });
 </script>

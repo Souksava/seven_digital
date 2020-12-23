@@ -1062,6 +1062,20 @@ class obj{
     }
     //ສິ້ນສຸດຈັດການຂໍ້ມູນສາງ
 
+     //ຈັດການຂໍ້ມູນ form
+     public static function select_form($search,$page){
+        // method ຂອງການດຶງຂໍ້ມູນສະຖານະມາສະແດງ
+        global $resultform;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
+        global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+        $resultform = mysqli_query($conn,"call form('$search','$page');");
+    }
+    public static function select_form_count($search){
+        global $conn;
+        global $resultform_count;
+        global $path;
+        $resultform_count = mysqli_query($conn,"call form_count('$search')");
+    }
+
 
     //ຈັດການຂໍ້ມູນສິນຄ້າ
     public static function select_product($search,$page){
@@ -1800,7 +1814,7 @@ class obj{
 }
 $obj = new obj();
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1867,4 +1881,4 @@ $obj = new obj();
         // echo implode("|",$cart_data);
     ?>
 </body>
-</html>
+</html> -->

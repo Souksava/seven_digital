@@ -14,41 +14,8 @@
 <div class="row">
     <div class="col-md-7">
     <div id="result"></div> 
-    
-        <div class="table-responsive" style="text-align: center;">
-            <table class="table font12" style="width: 900px">
-                <tr>
-                    <th style="width: 50px">ສິນຄ້າ</th>
-                    <th style="width: 150px">ລະຫັດສິນຄ້າ</th>
-                    <th style="width: 150px">ວັນທີ</th>
-                    <th>ຊື່ສິນຄ້າ</th>
-                    <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-                    <th style="width: 50px">ຈຳນວນ</th>
-                    <th style="width: 120px">ເງື່ອນໄຂການຜະລິດ</th>
-                    <th style="width: 30px"></th>
-                </tr>
-                <tr>
-                    <td style="display:none;">../../image/logo.png</td>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="../../image/product.png"
-                                width="30px">
-                        </a>
-                    </td>
-                    <td>12345678910234</td>
-                    <td>FUJI</td>
-                    <td>12/25/2020</td>
-                    <td>SF235SGW2</td>
-                    <td>1000</td>
-                    <td>50</td>
-                    <td>
-                        <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                            class="fa fa-plus toolcolor btnUpdate_form"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                
-            </table>
-        </div>
+
+
 
   
 
@@ -301,6 +268,51 @@ function checkInputs2() {
     </script>';
   }
 ?>
+
+<script>
+$(document).ready(function(){
+
+  load_data();
+
+  function load_data(query,page)
+  {
+    $.ajax({
+      url:"fetch_form.php",
+      method:"POST",
+      data:{query:query,page:page},
+      success:function(data)
+      {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search').keyup(function(){
+    var page = "0";
+    var search = $(this).val();
+    if(search != '')
+    {
+    load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+  $(document).on('click', '.page-links', function(){    
+    var page = this.id;
+    console.log(page);
+    var search = $('#search').val();
+    if(search != '')
+    {
+      load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+});
+</script>
 
 
 <!-- /.content-wrapper -->
