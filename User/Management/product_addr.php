@@ -64,8 +64,8 @@
 <div class="table-responsive">
     <table class="table font12" style="width: 100%;">
         <tr>
-            <th>ລະຫັດທີ່ຢູສິນຄ້າ</th>
-            <th>ທີ່ຢູສິນຄ້າ</th>
+            <th>ລະຫັດທີ່ຢູສາງສິນຄ້າ</th>
+            <th>ທີ່ຢູສາງສິນຄ້າ</th>
             <th></th>
 
         </tr>
