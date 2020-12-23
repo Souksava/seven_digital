@@ -185,4 +185,38 @@ else
 <script type="text/javascript">
 var highlight = "<?php echo $_POST['query']; ?>";
 $('.result').highlight([highlight]);
+   $('.btnUpdate_sup').on('click', function() {
+        $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+
+        $('#sup_id_update').val(data[0]);
+        $('#company_update').val(data[1]);
+        $('#tel_update').val(data[2]);
+        $('#fax_update').val(data[3]);
+        $('#address_update').val(data[4]);
+        $('#email_update').val(data[5]);
+        if(data[6] === ''){
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        }
+        else{
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[6]);
+        }
+        // document.getElementById("output2").src = (data[6]);
+    });
+        $('.btnDelete_sup').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+
+        $('#id').val(data[0]);
+    });
 </script>

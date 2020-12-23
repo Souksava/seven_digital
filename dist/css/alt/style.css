@@ -349,3 +349,6 @@ text-align-last: center;
       em.important{
         background-color: red;
       }
+table,th,td{
+    justify-content: center!important;
+}

@@ -18,48 +18,39 @@ else{
 if(isset($_POST["query"]))
 {
    $highlight = $_POST['query'];
-   $obj->select_employee("%".$_POST['query']."%",$page);
+   $obj->select_product("%".$_POST['query']."%",$page);
 }
 else
 {
-   $obj->select_employee("%%",$page);
+   $obj->select_product("%%",$page);
 }
-if(mysqli_num_rows($resultemployee) > 0)
+if(mysqli_num_rows($resultproduct) > 0)
 {
  $output .= '
   <div class="table-responsive">
    <table class="table font12" style="width: 1500px;">
     <tr>
-        <th>ລະຫັດ</th>
-        <th>ຊື່ພະນັກງານ</th>
-        <th>ນາມສະກຸນ</th>
-        <th>ເພດ</th>
-        <th>ເບີໂທລະສັບ</th>
-        <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
-        <th>ຕຳແໜ່ງ</th>
-        <th>ທີ່ຢູ່ອີເມວ</th>
-        <th>ລະຫັດເຂົ້າໃຊ້ລະບົບ</th>
-        <th>ສິດເຂົ້າໃຊ້ລະບົບ</th>
-        <th>ຮູບພາບ</th>
+        <th>ລະຫັດສິນຄ້າ</th>
+        <th>ຊື່ສິນຄ້າ</th>
+        <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
+        <th>ເງື່ອນໄຂການສັ່ງຊື້</th>
+        <th>ຮູບພາບສິນຄ້າ</th>
         <th></th>
     </tr>
  ';
- while($row = mysqli_fetch_array($resultemployee))
+ while($row = mysqli_fetch_array($resultproduct))
  {
   $output .= '
    <tr  class="result">
-    <td>'.$row["emp_id"].'</td>
-    <td>'.$row["emp_name"].'</td>
-    <td>'.$row["emp_surname"].'</td>
-    <td>'.$row["gender"].'</td>
-    <td>'.$row["tel"].'</td>
-    <td>'.$row["address"].'</td>
-    <td style="display: none;">'.$row["auther_id"].'</td>
-    <td>'.$row["auther_name"].'</td>
-    <td>'.$row["email"].'</td>
-    <td>'.$row["pass"].'</td>
-    <td style="display: none;">'.$row["stt_id"].'</td>
-    <td>'.$row["stt_name"].'</td>
+    <td>'.$row["code"].'</td>
+    <td style="display: none;">'.$row["pro_name"].'</td>
+    <td style="display: none;">'.$row["cate_id"].'</td>
+    <td style="display: none;">'.$row["brand_id"].'</td>
+    <td>'.$row["cate_name"].' '.$row["brand_name"].'<br>'.$row["pro_name"].'</td>
+    <td>'.$row["gen"].'</td>
+    <td style="display: none;">'.$row["unit_id"].'</td>
+    <td style="display: none;">'.$row["qtyalert"].'</td>
+    <td>'.$row["qtyalert"].' '.$row["unit_name"].'</td>
     <td style="display: none;">'.$row["img_path"].'</td>
     ';
     if($row['img_path'] != ''){
@@ -84,13 +75,13 @@ if(mysqli_num_rows($resultemployee) > 0)
     }
     $output .='
         <td>
-            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_emp"></a>&nbsp; &nbsp; 
-            <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_emp"></a>
+            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_prod"></a>&nbsp; &nbsp; 
+            <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_prod"></a>
         </td>
    </tr>
   ';
  }
- mysqli_free_result($resultemployee);  
+ mysqli_free_result($resultproduct);  
  mysqli_next_result($conn);
  $output .='
    </table>
@@ -100,14 +91,14 @@ if(mysqli_num_rows($resultemployee) > 0)
  
  if(isset($_POST["query"]))
  {
-   $obj->select_employee_count("%".$_POST['query']."%");
+   $obj->select_product_count("%".$_POST['query']."%");
  }
  else
  {
-    $obj->select_employee_count("%%");
+    $obj->select_product_count("%%");
  }
-   $count = mysqli_num_rows($resultemployee_count);
-   mysqli_free_result($resultemployee_count);  
+   $count = mysqli_num_rows($resultproduct_count);
+   mysqli_free_result($resultproduct_count);  
    mysqli_next_result($conn);
    $a = ceil($count/15);
    if(isset($_POST['page'])){
@@ -195,7 +186,30 @@ else
 <script type="text/javascript">
 var highlight = "<?php echo $_POST['query']; ?>";
 $('.result').highlight([highlight]);
-   $('.btnDelete_emp').on('click', function() {
+    $('.btnUpdate_prod').on('click', function() {
+        $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+
+        $('#code_update').val(data[0]);
+        $('#pro_name_update').val(data[1]);
+        $('#gen_update').val(data[5]);
+        $('#cate_id_update').val(data[2]);
+        $('#unit_id_update').val(data[6]);
+        $('#brand_id_update').val(data[3]);
+        $('#qtyalert_update').val(data[7]);
+        if(data[9] === ''){
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        }
+        else{
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
+        }
+    });
+    $('.btnDelete_prod').on('click', function() {
         $('#exampleModalDelete').modal('show');
         $tr = $(this).closest('tr');
         var data = $tr.children("td").map(function() {
@@ -205,33 +219,5 @@ $('.result').highlight([highlight]);
         console.log(data);
 
         $('#id').val(data[0]);
-    });
-    $('.btnUpdate_emp').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
-    
-        console.log(data);
-
-        $('#emp_id2').val(data[0]);
-        $('#emp_name2').val(data[1]);
-        $('#emp_surname2').val(data[2]);
-        $('#gender2').val(data[3]);
-        $('#tel2').val(data[4]);
-        $('#address2').val(data[5]);
-        $('#auther_id2').val(data[6]);
-        $('#email2').val(data[8]);
-        $('#password2').val(data[9]);
-        $('#password_cf2').val(data[9]);
-        $('#status2').val(data[10]);
-        if(data[12] === ''){
-            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
-        }
-        else{
-            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[12]);
-        }
-     
     });
 </script>
