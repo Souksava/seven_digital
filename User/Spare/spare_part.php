@@ -5,7 +5,7 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 ?>
-<br>
+
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
         <b>ລາຍການປ່ຽນອາໄຫຼ່</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
@@ -28,14 +28,14 @@
                         <div class="modal-body">
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່</label>
-                                    <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່">
+                                    <label>ລະຫັດເຄື່ອງຖອດອາໄຫຼ່</label>
+                                    <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດເຄື່ອງຖອດອາໄຫຼ່">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>Serial Number ສິນຄ້າທີ່ຖອດອາໄຫຼ່</label>
+                                    <label>Serial Number ເຄື່ອງຖອດ</label>
                                     <input type="text" name="serialout" id="serialout" class="form-control" placeholder="Serial Number">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -49,14 +49,14 @@
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່</label>
-                                    <input type="text" name="pro_id" id="pro_id" class="form-control" placeholder="ລະຫັດສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່">
+                                    <label>ລະຫັດເຄື່ອງປ່ຽນ</label>
+                                    <input type="text" name="pro_id" id="pro_id" class="form-control" placeholder="ລະຫັດເຄື່ອງປ່ຽນ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>Serial Number ສິນຄ້າທີ່ເອົາອາໄຫຼ່ໄປໃສ່</label>
+                                    <label>Serial Number ເຄື່ອງປ່ຽນ</label>
                                     <input type="text" name="serialin" id="serialin" class="form-control" placeholder="Serial Number">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -125,16 +125,17 @@
     <div class="row">
         <div class="col-md-8">
             <div class="table-responsive">
-                <table class="table" style="width: 1100px;">
+                <table class="table" style="width: 1450px;">
                     <tr>
-                        <th style="width: 180px;" scope="col">ລະຫັດປ່ຽນອາໄຫຼ່</th>
-                        <th style="width: 100px;" scope="col">ລະຫັດສິນຄ້າທີ່ຖອດອາໄຫຼ່</th>
-                        <th style="width: 300px;" scope="col">Serial Number ຖອດ</th>
-                        <th style="width: 100px;" scope="col">ຊື່ອາໄຫຼ່</th>
-                        <th style="width: 75px;" scope="col">ລະຫັດສິນຄ້າ</th>
-                        <th style="width: 75px;" scope="col">ຊື່ສິນຄ້າ</th>
-                        <th style="width: 75px;" scope="col">Serial Number ໃສ່</th>
-                        <th style="width: 75px;" scope="col">ໝາຍເຫດ</th>
+                        <th style="width: 180px;" scope="col">ລະຫັດເຄື່ອງຖອດອາໄຫຼ່</th>
+                        <th style="width: 200px;" scope="col">ຊື່ສິນຄ້າເຄື່ອງຖອດອາໄຫຼ່</th>
+                        <th style="width: 180px;" scope="col">Serial Number ເຄື່ອງຖອດ</th>
+                        <th style="width: 120px;" scope="col">ຊື່ອາໄຫຼ່</th>
+                        <th style="width: 100px;" scope="col">ລະຫັດເຄື່ອງປ່ຽນ</th>
+                        <th style="width: 100px;" scope="col">ຊື່ສິນຄ້າເຄື່ອງປ່ຽນ</th>
+                        <th style="width: 180px;" scope="col">Serial Number ເຄື່ອງປ່ຽນ</th>
+                        <th style="width: 100px;" scope="col">ໝາຍເຫດ</th>
+                        <th style="width: 100px; text-align: center">ລ້າງລາຍການ</th>
                     </tr>
                     <tr>
                         <td style="display:none">1</td>
@@ -149,7 +150,7 @@
                         <td style="display:none">12/09/2020</td>
                         <td style="display:none">12:10:50</td>
                         
-                        <td>
+                        <td style="text-align: center;">
                             <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
                                 class="fa fa-trash toolcolor btnDelete_sp"></a>&nbsp; &nbsp;
                         </td>
@@ -157,18 +158,6 @@
                 </table>
                 <hr size="3" align="center" width="100%">
             </div>
-            <!-- pagination -->
-            <br>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-                </ul>
-            </nav>
-
         </div>
         <div class="col-lg-3 font12">
             <div class="row row-cols-1 row-cols-md-1">
