@@ -1746,54 +1746,133 @@ class obj{
     //form
     public static function cookie_form($code,$qty){
         global $conn;
-        $check_code = mysqli_query($conn,"select * from products where code='$code'");
-        $check_serail_stock = mysqli_query($conn,"select * from stocks where serial='$serial' and code='$code'");
-        if(mysqli_num_rows($check_code) <= 0){
+        $check_qty = mysqli_query($conn,"select sum(qty) as qty from products p left join stocks s on p.code=s.code where s.code='$code' group by s.code");
+        $qty_stock = mysqli_fetch_array($check_qty,MYSQLI_ASSOC);
+        $q = $qty_stock['qty'];
+        if($q <= 0){
             echo"<script>";
-            echo"window.location.href='check-stock?code=null';";
+            echo"window.location.href='form?qty=0';";
             echo"</script>";
        }
-       else if(mysqli_num_rows($check_serail_stock) <= 0){
+       else if($qty > $qty_stock['qty']){
             echo"<script>";
-            echo"window.location.href='check-stock?code-serial=null';";
+            echo"window.location.href='form?input=than';";
             echo"</script>";
        }
         else{
-            if(isset($_COOKIE['check_stock'])){//ກວດສອບວ່າຄຸກກີ້ distribute_list ນັ້ນມີຄ່າຫຼືບໍ່
-                $cookie_data = stripcslashes($_COOKIE['check_stock']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            if(isset($_COOKIE['list_form'])){//ກວດສອບວ່າຄຸກກີ້ distribute_list ນັ້ນມີຄ່າຫຼືບໍ່
+                $cookie_data = stripcslashes($_COOKIE['list_form']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
                 $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             }
             else{
                 $cart_data = array();//ຖ້າຄຸກກີ້ບໍ່ມີຄ່າຂໍ້ມູນແລ້ວຕັ້ງໂຕປ່ຽນໃຫ້ເປັນອາເລ
             }
-            $item_id_list = array_column($cart_data,'serial');//ຕັ້ງຄ່າ serial ໃຫ້ມີຄ່າເທົ່າກັບ array $cart_data['serial']
-            if(in_array($serial,$item_id_list)){//ຖ້າວ່າ Serial ທີ່ປ້ອນມາທາງຄີບອດຕົງກັນກັບ Serial ທີ່ຢູ່ໃນ Array Cart_data ໃຫ້ເຮັດວຽກຈຸດນີ້
-                echo"<script>";
-                echo"window.location.href='check-stock?serial-list=same';";
-                echo"</script>";
+            $item_id_list = array_column($cart_data,'code');//ຕັ້ງຄ່າ serial ໃຫ້ມີຄ່າເທົ່າກັບ array $cart_data['code']
+            if(in_array($code,$item_id_list)){//ຖ້າວ່າໄອດີທີ່ປ້ອນມາທາງຄີບອດຕົງກັນກັບໄອດີທີ່ຢູ່ໃນ Array Cart_data ໃຫ້ເຮັດວຽກຈຸດນີ້
+                foreach($cart_data as $keys => $values){//Loop ຂໍ້ມູນ cart_data ອອກມາເພື່ອຊອກຫາໄອດີທີ່ປ້ອນເຂົ້າມາກັບໄອດີທີ່ຢູ່ໃນ cart_data ທີ່ຕົງກັນ
+                    if($cart_data[$keys]["code"] == $code){//ຖ້າຫາກວ່າຊອກຫາໄອດີທີຕົງກັນໄດ້ແລ້ວແມ່ນເຮັດວຽກດັ່ງນີ້
+                        $cart_data[$keys]["qty"] = $cart_data[$keys]["qty"] + $qty;//ປັບໃຫ້ຈຳນວນຂອງ array cart_data ບວກໃຫ້ກັບຈຳນວນທີ່ປ້ອນເຂົ້າມາ
+                    }
+                }
             }
             else{ // ຖ້າວ່າໄອດີບໍ່ຕົງກັນໃຫ້ເພີ່ມຂໍ້ມູນເຂົ້າໃນຄຸກກີ້
-                $get_info = mysqli_fetch_array($check_code,MYSQLI_ASSOC);
+                $getin = mysqli_query($conn,"select * from products where code='$code'");
+                $get_info = mysqli_fetch_array($getin,MYSQLI_ASSOC);
                 $name = $get_info['pro_name'];
                 $gen = $get_info['gen'];
                 $img_path = $get_info['img_path'];
                 $item_array = [//ເພີ່ມຂໍ້ມູນທີ່ຮັບມາຈາກຄີບອດເຂົ້າໄວ້ໃນຕົວປ່ຽນອາເລ $item_array
                     "code" => $code,
-                    "serial" => $serial,
                     "img_path" => $img_path,
                     "name" => $name,
                     "gen" => $gen,
                     "qty" => $qty,
-                    "remark" => $remark
                 ];
                 $cart_data[] = $item_array;//ເພີ່ມຂໍ້ມູນຈາກ $item_array ເຂົ້າໄປໃນ $cart_data
             }
             $item_data = json_encode($cart_data);//ປັບ item_data ໃຫ້ມັນສິ້ນສຸດການຮັບຂໍ້ມູນຈາກ $cart_data
-            setcookie('check_stock',$item_data,time() + (86400 * 30));//ຕັ້ງຄ່າເວລາຄຸກກີ້
+            setcookie('list_form',$item_data,time() + (86400 * 30));//ຕັ້ງຄ່າເວລາຄຸກກີ້
             echo"<script>";
-            echo"window.location.href='check-stock';";
+            echo"window.location.href='form';";
             echo"</script>";
         
+        }
+    }
+    public static function select_form(){
+        global $cart_data;
+        if(isset($_COOKIE['list_form'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
+            $cookie_data = stripslashes($_COOKIE['list_form']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
+        }
+    }
+    public static function clear_form(){
+        setcookie("list_form","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+        echo"<script>";
+        echo"window.location.href='form';";
+        echo"</script>";
+    }
+    public static function del_form($code){
+        $cookie_data = stripcslashes($_COOKIE['list_form']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
+        foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
+            if($cart_data[$keys]['code'] == $code){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
+                unset($cart_data[$keys]);//ລົບຂໍ້ມູນຢູ່ຄຸກກີ້ໝົດແຖວທີ່ມີໄອດີຕົງກັນ
+                $item_data = json_encode($cart_data);//ໃຫ້ຈົບການສ້າງອາເລໃນຮູບແບບ json
+                setcookie('list_form',$item_data,time() + (86400 * 30));//ຕັ້ງເວລາຄຸກກີ້
+                foreach($cart_data as $keys => $values){}
+                if(!$cart_data[$keys]){
+                    setcookie("list_form","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                }
+                echo"<script>";
+                echo"window.location.href='form';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function save_form($form_id,$emp_id,$cus_id,$amount,$packing_no){
+        global $conn;
+        global $Date;
+        global $Time;
+        $stt_accept = 'ຍັງບໍ່ອະນຸມັດ';
+        $status = "ຍັງບໍ່ທັນເບີກ";
+        $usr_acc = "";
+        if(isset($_COOKIE['list_form'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
+            $cookie_data = stripcslashes($_COOKIE['list_form']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
+            $result = mysqli_query($conn,"call insert_form('$form_id','$emp_id','$cus_id','$amount','$packing_no','$Date','$Time','$stt_accept','$status','$usr_acc')");
+            mysqli_free_result($result);  
+            mysqli_next_result($conn);
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='form?save5=fail';";
+                echo"</script>";
+            }
+            else{
+                foreach($cart_data as $data){
+                    $code = $data['code'];
+                    $qty = $data['qty'];
+                    $result2 = mysqli_query($conn,"call inser_form_detail('$code','$qty','$form_id')");
+                    mysqli_free_result($result2);  
+                    mysqli_next_result($conn);
+                }
+                if(!$result2){
+                    echo"<script>";
+                    echo"window.location.href='form?save=fail';";
+                    echo"</script>";
+                }
+                else{
+                    setcookie("list_form","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                    echo"<script>";
+                    echo"window.location.href='form?save2=success';";
+                    echo"</script>";
+                }
+            }
+           
+        }
+        else{
+            echo"<script>";
+            echo"window.location.href='form?list=null';";
+            echo"</script>";
         }
     }
     // end form
@@ -1811,48 +1890,37 @@ $obj = new obj();
 <body>
     <form action="obj.php" method="post" id="form1">
         <input type="text" name="code" placeholder="code">
-        <input type="text" name="serial" placeholder="serial">
-        <input type="text" name="spare" placeholder="spare">
-        <input type="text" name="code2" placeholder="code2">
-        <input type="text" name="serial2" placeholder="serial2">
-        <input type="text" name="remark" placeholder="remark">
+        <input type="text" name="qty" placeholder="qty">
         <button type="submit" name="add">add</button>
         <button type="submit" name="save">save</button>
     </form>
     <a href="obj.php?clear=clear">clear</a>
     <?php
         if(isset($_POST['save'])){
-            $obj->save_spare_part('001');
+            $obj->save_form('20','001','1','10','9');
         }
         if(isset($_GET['clear'])){
-            $obj->clear_spare_part();
+            $obj->clear_form();
         }
         if(isset($_GET['id'])){
-            $obj->del_spare_part($_GET['id']);
+            $obj->del_form($_GET['id']);
         }
         if(isset($_POST['add'])){
-            $obj->cookie_spare_part($_POST['code'],$_POST['serial'],$_POST['spare'],$_POST['code2'],$_POST['serial2'],$_POST['remark']);
+            $obj->cookie_form($_POST['code'],$_POST['qty']);
         }
-        $obj->select_spare_part();
-        if(isset($_COOKIE['spare_parts'])){
+        $obj->select_form();
+        if(isset($_COOKIE['list_form'])){
     ?>
     <table>
         <?php
             foreach($cart_data as $keys => $values){
         ?>
         <tr>
-            <td><?php echo $values["id"] ?></td>
             <td><?php echo $values["code"] ?></td>
-            <td><?php echo $values["serial"] ?></td>
             <td><?php echo $values["name"] ?></td>
             <td><?php echo $values["gen"] ?></td>
-            <td><?php echo $values["spare"] ?></td>
-            <td><?php echo $values["code2"] ?></td>
-            <td><?php echo $values["serial2"] ?></td>
-            <td><?php echo $values["name2"] ?></td>
-            <td><?php echo $values["gen2"] ?></td>
-            <td><?php echo $values["remark"] ?></td>
-            <td><a href="obj.php?id=<?php echo $values["id"]; ?>">delete</a></td>
+            <td><?php echo $values["qty"] ?></td>
+            <td><a href="obj.php?id=<?php echo $values["code"]; ?>">delete</a></td>
         </tr>
         <?php
         }
