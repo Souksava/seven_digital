@@ -187,12 +187,12 @@ sup{
 
 .table-responsive{
     overflow-y: scroll; 
-    height:700px;
+    height:500px;
 }
 
 .table-responsive2{
     overflow-y: scroll; 
-    height:500px;
+    height:300px;
 }
 
 .table-responsive th{

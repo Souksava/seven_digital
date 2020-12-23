@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 21, 2020 at 10:28 AM
+-- Generation Time: Dec 23, 2020 at 09:03 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -237,7 +237,7 @@ Insert into unit (unit_name) values(unit_name);
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `products` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select p.code,pro_name,gen,p.cate_id,p.unit_id,p.brand_id,cate_name,unit_name,brand_name,serial,qty,price from products p left join stocks sk on p.code=sk.code left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where p.code like s or pro_name like s or gen like s or cate_name like s or unit_name like s or brand_name like s or serial like s or qty like s or price like s order by pro_name ASC limit page,15;
+select p.code,pro_name,gen,p.cate_id,p.unit_id,p.brand_id,cate_name,unit_name,brand_name,qtyalert,p.img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where p.code like s or pro_name like s or gen like s or cate_name like s or unit_name like s or brand_name like s order by pro_name ASC limit page,15;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `products_count` (IN `s` VARCHAR(50))  NO SQL
@@ -444,7 +444,9 @@ CREATE TABLE `check_stock` (
 
 INSERT INTO `check_stock` (`id`, `code`, `serial`, `qty`, `emp_id`, `check_date`, `check_time`, `pro_ad`, `remark`) VALUES
 (1, '1', 'a', 1, '001', '2020-11-13', '10:16:00', 1, 'a'),
-(2, '2', 'aa', 11, '001', '2020-11-13', '10:16:00', 2, 'aa');
+(2, '2', 'aa', 11, '001', '2020-11-13', '10:16:00', 2, 'aa'),
+(3, '1', 'a', 1, '001', '2020-12-23', '11:16:34', 1, '1'),
+(4, '2', 'aa', 1, '001', '2020-12-23', '11:16:34', 1, 'remark');
 
 -- --------------------------------------------------------
 
@@ -558,7 +560,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`emp_id`, `emp_name`, `emp_surname`, `gender`, `tel`, `address`, `email`, `pass`, `auther_id`, `stt_id`, `img_path`) VALUES
-('001', 'test', 'test', 'ຍິງ', '0203213', 'test', 'test', 'a46ae8d094a190cf890a3d54df54b59c', '001', 2, 'seven_5fe06a663b562.jpeg');
+('001', 'test', 'test', 'ຍິງ', '0203213', 'test', 'test', 'e3361486e153b26b36aad2f01e6c90c6', '001', 2, 'seven_5fe18832b182c.jpeg');
 
 -- --------------------------------------------------------
 
@@ -649,8 +651,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`code`, `pro_name`, `gen`, `cate_id`, `unit_id`, `brand_id`, `qtyalert`, `img_path`) VALUES
-('1', 'a', 'b', 1, 3, 1, 5, 'c'),
-('2', 'aa', 'bb', 2, 4, 2, 6, 'cc');
+('1', 'a', 'b', 1, 3, 1, 5, 'seven_5fe2b5836b612.jpg'),
+('2', 'test', 'test', 1, 3, 1, 10, 'seven_5fe2b56fa4a18.jpeg');
 
 -- --------------------------------------------------------
 
@@ -742,7 +744,11 @@ CREATE TABLE `spare_part` (
 
 INSERT INTO `spare_part` (`id`, `emp_id`, `code`, `serial`, `spare_part`, `pro_id`, `pro_serial`, `spare_date`, `spare_time`, `remark`) VALUES
 (1, '001', '1', 'a', 'a', 'a', 'a', '2020-11-13', '10:28:00', 'a'),
-(2, '001', '2', 'aa', 'aa', 'aa', 'aa', '2020-11-13', '10:28:00', 'aa');
+(2, '001', '2', 'aa', 'aa', 'aa', 'aa', '2020-11-13', '10:28:00', 'aa'),
+(3, '001', '1', 'a', 'test1', '2', 'aa', '2020-12-23', '14:56:50', 'test1'),
+(4, '001', '1', 'a', 'test2', '2', 'aa', '2020-12-23', '14:56:50', 'test2'),
+(5, '001', '1', 'a', 'test1', '2', 'aa', '2020-12-23', '14:57:29', 'test1'),
+(6, '001', '1', 'a', 'test2', '2', 'aa', '2020-12-23', '14:57:29', 'test2');
 
 -- --------------------------------------------------------
 
@@ -797,7 +803,7 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`sup_id`, `company`, `tel`, `fax`, `address`, `email`, `img_path`) VALUES
-('1', 'a', 'b', 'c', 'd', 'e', 'testu');
+('1', 'testsa', 'testsa', 'tests', 'test', 'test', 'seven_5fe1893b8f767.jpeg');
 
 -- --------------------------------------------------------
 
@@ -981,7 +987,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `check_stock`
 --
 ALTER TABLE `check_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `distribute`
@@ -1011,7 +1017,7 @@ ALTER TABLE `product_putback_stock`
 -- AUTO_INCREMENT for table `spare_part`
 --
 ALTER TABLE `spare_part`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `stocks`
