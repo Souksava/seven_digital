@@ -769,6 +769,11 @@ class obj{
         global $resultunit;
         $resultunit = mysqli_query($conn,"call unit('$search','$page')");
     }
+    public static function select_unit_count($search){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultunit_count; 
+        $resultunit_count = mysqli_query($conn,"call unit_count('$search')");      
+    }
     public static function insert_unit($unit_name){
         global $conn;
         $check_name = mysqli_query($conn,"select * from unit where unit_name='$unit_name'");
@@ -842,6 +847,11 @@ class obj{
         global $conn;
         global $resultbrand;
         $resultbrand = mysqli_query($conn,"call brand('$search','$page')");
+    }
+    public static function select_brand_count($search){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultbrand_count; 
+        $resultbrand_count = mysqli_query($conn,"call brand_count('$search')");      
     }
     public static function insert_brand($brand_name){
         global $conn;
