@@ -115,7 +115,7 @@
                         if ($title == "ຂໍ້ມູນສິນຄ້າ"){
                                     echo '<form class="form-inline ml-3">
                                     <div class="input-group input-group-sm">
-                                      <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                      <input class="form-control form-control-navbar" type="search" name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
                                       <div class="input-group-append">
                                         <button class="btn btn-navbar" type="submit">
                                           <i class="fas fa-search"></i>

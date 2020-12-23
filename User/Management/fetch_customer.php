@@ -168,5 +168,31 @@ else
 <script type="text/javascript">
 var highlight = "<?php echo $_POST['query']; ?>";
 $('.result').highlight([highlight]);
+   $('.btnUpdate_cust').on('click', function() {
+      $('#exampleModalUpdate').modal('show');
+      $tr = $(this).closest('tr');
+      var data = $tr.children("td").map(function() {
+         return $(this).text();
+      }).get();
 
+      console.log(data);
+
+      $('#cus_id_update').val(data[0]);
+      $('#company_update').val(data[1]);
+      $('#tel_update').val(data[2]);
+      $('#address_update').val(data[3]);
+      $('#email_update').val(data[4]);
+      $('#stt_id_update').val(data[5]);
+   });
+   $('.btnDelete_cust').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+
+        $('#id').val(data[0]);
+    });
 </script>

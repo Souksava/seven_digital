@@ -187,12 +187,17 @@ $(document).ready(function() {
 
         $('#code_update').val(data[0]);
         $('#pro_name_update').val(data[1]);
-        $('#gen_update').val(data[2]);
-        $('#cate_id_update').val(data[3]);
-        $('#unit_id_update').val(data[4]);
-        $('#brand_id_update').val(data[5]);
-        $('#qtyalert_update').val(data[6]);
-        document.getElementById("output2").src = (data[7]);
+        $('#gen_update').val(data[5]);
+        $('#cate_id_update').val(data[2]);
+        $('#unit_id_update').val(data[6]);
+        $('#brand_id_update').val(data[3]);
+        $('#qtyalert_update').val(data[7]);
+        if(data[9] === ''){
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        }
+        else{
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
+        }
     });
 
 

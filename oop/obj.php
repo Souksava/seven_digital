@@ -1060,8 +1060,15 @@ class obj{
         global $path;
         $resultproduct = mysqli_query($conn,"call products('$search','$page')");
     }
+    public static function select_product_count($search){
+        global $conn;
+        global $resultproduct_count;
+        global $path;
+        $resultproduct_count = mysqli_query($conn,"call products_count('$search')");
+    }
     public static function insert_product($code,$pro_name,$gen,$cate_id,$unit_id,$brand_id,$qtyalert,$img_path){
         global $conn;
+        global $path;
         $check_id = mysqli_query($conn,"select * from products where code='$code'");
         if(mysqli_num_rows($check_id) > 0){
             echo"<script>";
@@ -1125,12 +1132,12 @@ class obj{
             $result = mysqli_query($conn,"call update_products('$code','$pro_name','$gen','$cate_id','$unit_id','$brand_id','$qtyalert','$Pro_image');");
             if(!$result){
                 echo"<script>";
-                echo"window.location.href='products?save=fail';";
+                echo"window.location.href='products?update=fail';";
                 echo"</script>";
             }
             else{
                 echo"<script>";
-                echo"window.location.href='products?save2=success';";
+                echo"window.location.href='products?update2=success';";
                 echo"</script>";
             }
         }
@@ -1177,7 +1184,7 @@ class obj{
         else{
             $get_img = mysqli_query($conn, "select img_path from products where code='$code'");//ດຶງຊື່ຟາຍຮູບພາບໂດຍໃຊ້ໄອດີ
             $data = mysqli_fetch_array($get_img, MYSQLI_ASSOC);
-            $path2 = $image_path.$data['img_path'];
+            $path2 = $path."image/".$data['img_path'];
             if(file_exists($path2) && !empty($data['img_path'])){
                 unlink($path2);
             }

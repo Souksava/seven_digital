@@ -4,13 +4,24 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  include (''.$path.'oop/obj.php');
+
+  if(isset($_POST['btnDelete'])){
+    $obj->delete_product(trim($_POST['id']));
+  }
+  if(isset($_POST['code'])){
+    $obj->insert_product(trim($_POST['code']),trim($_POST['pro_name']),trim($_POST['gen']),trim($_POST['cate_id']),trim($_POST['unit_id']),trim($_POST['brand_id']),trim($_POST['qtyalert']),$_FILES['img_path']['name']);
+  }
+  if(isset($_POST['pro_name_update'])){
+    $obj->update_product(trim($_POST['code_update']),trim($_POST['pro_name_update']),trim($_POST['gen_update']),trim($_POST['cate_id_update']),trim($_POST['unit_id_update']),trim($_POST['brand_id_update']),trim($_POST['qtyalert_update']),$_FILES['img_path']['name']);
+  }
 ?>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
         <b><?php echo $title?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
-        <form action="products.php" id="form1" method="POST" enctype="multipart/form-data">
+        <form action="products" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalunit">
                 <img src="../../icon/add.ico" alt="" width="25px">
             </a>
@@ -48,36 +59,79 @@
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດປະເພດສິນຄ້າ</label>
-                                    <input type="text" name="cate_id" id="cate_id" placeholder="ລະຫັດປະເພດສິນຄ້າ">
+                                    <label>ປະເພດສິນຄ້າ</label>
+                                    <select name="cate_id" id="cate_id">
+                                        <option value="" disabled selected>--- ເລືອກປະເພດສິນຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_category('%%','0');
+                                            foreach($resultcategory as $rowcate1){
+                                        ?>
+                                        <option value="<?php echo $rowcate1['cate_id'] ?>">
+                                            <?php echo $rowcate1['cate_name'] ?>
+                                        </option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($resultcategory);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດຫົວໜວ່ຍສິນຄ້າ</label>
-                                    <input type="text" name="unit_id" id="unit_id" placeholder="ລະຫັດຫົວໜວ່ຍສິນຄ້າ">
+                                    <label>ຫົວໜ່ວຍສິນຄ້າ</label>
+                                    <select name="unit_id" id="unit_id">
+                                        <option value="" disabled selected>--- ເລືອກຫົວໜ່ວຍສິນຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_unit('%%','0');
+                                            foreach($resultunit as $rowunit1){
+                                        ?>
+                                        <option value="<?php echo $rowunit1['unit_id'] ?>">
+                                            <?php echo $rowunit1['unit_name'] ?>
+                                        </option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($resultunit);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດຍີ່ຫໍ້</label>
-                                    <input type="text" name="brand_id" id="brand_id" placeholder="ລະຫັດຍີ່ຫໍ້">
+                                    <label>ຍີ່ຫໍ້ສິນຄ້າ</label>
+                                    <select name="brand_id" id="brand_id">
+                                        <option value="" disabled selected>--- ເລືອກຍີ່ຫໍ້ສິນຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_brand('%%','0');
+                                            foreach($resultbrand as $brand1){
+                                        ?>
+                                        <option value="<?php echo $brand1['brand_id'] ?>">
+                                            <?php echo $brand1['brand_name'] ?>
+                                        </option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($resultbrand);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເງື່ອນໄຂການສັ່ງຊື້</label>
-                                    <input type="text" name="qtyalert" id="qtyalert" placeholder="ເງື່ອນໄຂການສັ່ງຊື້">
+                                    <input type="number" min="0" name="qtyalert" id="qtyalert" placeholder="ເງື່ອນໄຂການສັ່ງຊື້">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບສິນຄ້າ</label>
-                                    <input type="file" name="img_path" id="img_path" placeholder="ຮູບພາບສິນຄ້າ" onchange="loadFile(event)">
+                                    <input type="file" name="img_path" id="img_path" placeholder="ຮູບພາບສິນຄ້າ"
+                                        onchange="loadFile(event)">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -98,7 +152,7 @@
             </div>
         </form>
 
-        <form action="products.php" id="formUpdate" method="POST" enctype="multipart/form-data">
+        <form action="products" id="formUpdate" method="POST" enctype="multipart/form-data">
             <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -123,42 +177,87 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</label>
-                                    <input type="text" name="gen_update" id="gen_update" placeholder="ລຸ້ນເຄື່ອງຂອງສິນຄ້າ">
+                                    <input type="text" name="gen_update" id="gen_update"
+                                        placeholder="ລຸ້ນເຄື່ອງຂອງສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດປະເພດສິນຄ້າ</label>
-                                    <input type="text" name="cate_id_updated" id="cate_id_update" placeholder="ລະຫັດປະເພດສິນຄ້າ">
+                                    <label>ປະເພດສິນຄ້າ</label>
+                                    <select name="cate_id_update" id="cate_id_update">
+                                        <option value="" disabled selected>--- ເລືອກປະເພດສິນຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_category('%%','0');
+                                            foreach($resultcategory as $rowcate){
+                                        ?>
+                                        <option value="<?php echo $rowcate['cate_id'] ?>">
+                                            <?php echo $rowcate['cate_name'] ?>
+                                        </option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($resultcategory);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດຫົວໜວ່ຍສິນຄ້າ</label>
-                                    <input type="text" name="unit_id_update" id="unit_id_update" placeholder="ລະຫັດຫົວໜວ່ຍສິນຄ້າ">
+                                    <label>ຫົວໜ່ວຍສິນຄ້າ</label>
+                                    <select name="unit_id_update" id="unit_id_update">
+                                        <option value="" disabled selected>--- ເລືອກຫົວໜ່ວຍສິນຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_unit('%%','0');
+                                            foreach($resultunit as $rowunit){
+                                        ?>
+                                        <option value="<?php echo $rowunit['unit_id'] ?>">
+                                            <?php echo $rowunit['unit_name'] ?>
+                                        </option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($resultunit);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
-                                    <label>ລະຫັດຍີ່ຫໍ້</label>
-                                    <input type="text" name="brand_id_update" id="brand_id_update" placeholder="ລະຫັດຍີ່ຫໍ້">
+                                    <label>ຍີ່ຫໍ້ສິນຄ້າ</label>
+                                    <select name="brand_id_update" id="brand_id_update">
+                                        <option value="" disabled selected>--- ເລືອກຍີ່ຫໍ້ສິນຄ້າ ---</option>
+                                        <?php
+                                        $obj->select_brand('%%','0');
+                                            foreach($resultbrand as $brand){
+                                        ?>
+                                        <option value="<?php echo $brand['brand_id'] ?>">
+                                            <?php echo $brand['brand_name'] ?>
+                                        </option>
+                                        <?php
+                                           }
+                                           mysqli_free_result($resultbrand);  
+                                           mysqli_next_result($conn);
+                                        ?>
+                                    </select>
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເງື່ອນໄຂການສັ່ງຊື້</label>
-                                    <input type="text" name="qtyalert_update" id="qtyalert_update" placeholder="ເງື່ອນໄຂການສັ່ງຊື້">
+                                    <input type="number" min="0" name="qtyalert_update" id="qtyalert_update"
+                                        placeholder="ເງື່ອນໄຂການສັ່ງຊື້">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບສິນຄ້າ</label>
-                                    <input type="file" name="img_path_update" id="img_path_update" placeholder="ຮູບພາບສິນຄ້າ" onchange="loadFile2(event)">
+                                    <input type="file" name="img_path" id="img_path"
+                                        placeholder="ຮູບພາບສິນຄ້າ" onchange="loadFile2(event)">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -181,85 +280,13 @@
     </div>
 </div>
 <div class="clearfix"></div><br>
-<div class="table-responsive">
-    <table class="table font12" style="width: 1500px;">
-        <tr>
-            <th>ລະຫັດສິນຄ້າ</th>
-            <th>ຊື່ສິນຄ້າ</th>
-            <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-            <th>ລະຫັດປະເພດສິນຄ້າ</th>
-            <th>ລະຫັດຫົວໜວ່ຍສິນຄ້າ</th>
-            <th>ລະຫັດຍີ່ຫໍ້</th>
-            <th>ເງື່ອນໄຂການສັ່ງຊື້</th>
-            <th>ຮູບພາບສິນຄ້າ</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td style="display:none;">../../image/image.jpeg</td>
-            <td>
-
-                <a href="../../image/image.jpeg" target="_blank">
-                    <img src="../../image/image.jpeg" class="img-circle elevation-2" alt="" width="30px">
-                </a>
-
-            </td>
-            <td>
-                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_prod"></a>&nbsp; &nbsp;
-                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_prod"></a>
-            </td>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td style="display:none;">../../image/image.jpeg</td>
-            <td>
-
-                <a href="../../image/image.jpeg" target="_blank">
-                    <img src="../../image/image.jpeg" class="img-circle elevation-2" alt="" width="30px">
-                </a>
-
-            </td>
-            <td>
-                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_prod"></a>&nbsp; &nbsp;
-                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_prod"></a>
-            </td>
-        </tr>
-        
-    </table>
-</div>
-
-<!-- pagination -->
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">ກັບຄືນ</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">ຕໍ່ໄປ</a></li>
-  </ul>
-</nav>
+<div id="result">result</div>
 
 </div>
 
 
 
-<form action="unit.php" id="formDelete" method="POST" enctype="multipart/form-data">
+<form action="products" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -288,6 +315,10 @@
 const myform = document.getElementById('form1');
 const code = document.getElementById('code');
 const pro_name = document.getElementById('pro_name');
+const unit_id = document.getElementById('unit_id');
+const brand_id = document.getElementById('brand_id');
+const cate_id = document.getElementById('cate_id');
+const qtyalert = document.getElementById('qtyalert');
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
@@ -296,6 +327,10 @@ myform.addEventListener('submit', (e) => {
 function checkInputs() {
     const codeValue = code.value.trim();
     const pro_nameValue = pro_name.value.trim();
+    const unit_idValue = unit_id.value.trim();
+    const brand_idValue = brand_id.value.trim();
+    const cate_idValue = cate_id.value.trim();
+    const qtyalertValue = qtyalert.value.trim();
 
 
     if (codeValue === '') {
@@ -304,17 +339,32 @@ function checkInputs() {
         setSuccessFor(code);
     }
     if (pro_nameValue === '') {
-        setErrorFor(pro_name, 'ກະລຸນາປ້ອນລະຫັດປະເພດສິນຄ້າ');
+        setErrorFor(pro_name, 'ກະລຸນາປ້ອນຊື່ສິນຄ້າ');
     } else {
         setSuccessFor(pro_name);
     }
-    if (unit_nameValue === '') {
-        setErrorFor(unit_name, 'ກະລຸນາປ້ອນຊື່ປະເພດສິນຄ້າ');
+    if (unit_idValue === '') {
+        setErrorFor(unit_id, 'ກະລຸນາເລືອກຫົວໜ່ວຍສິນຄ້າ');
     } else {
-        setSuccessFor(unit_name);
+        setSuccessFor(unit_id);
     }
-    if (unit_nameValue !== '' && unit_idValue !== '') {
-        document.getElementById("form1").action = "unit.php";
+    if (cate_idValue === '') {
+        setErrorFor(cate_id, 'ກະລຸນາເລືອກປະເພດສິນຄ້າ');
+    } else {
+        setSuccessFor(cate_id);
+    }
+    if (brand_idValue === '') {
+        setErrorFor(brand_id, 'ກະລຸນາເລືອກຍີ່ຫໍ້ສິນຄ້າ');
+    } else {
+        setSuccessFor(brand_id);
+    }
+    if (qtyalertValue === '') {
+        setErrorFor(qtyalert, 'ກະລຸນາປ້ອນເງື່ອນໄຂການສັ່ງຊື້');
+    } else {
+        setSuccessFor(qtyalert);
+    }
+    if (codeValue !== '' && unit_idValue !== '' && cate_idValue !== '' && brand_idValue !== '' && pro_nameValue !== '' && qtyalertValue !== '') {
+        document.getElementById("form1").action = "products";
         document.getElementById("form1").submit();
     }
 }
@@ -322,21 +372,56 @@ function checkInputs() {
 
 <script type="text/javascript">
 const myformUpdate = document.getElementById('formUpdate');
-const unit_name_update = document.getElementById('unit_name_update');
+const code_update = document.getElementById('code_update');
+const pro_name_update = document.getElementById('pro_name_update');
+const unit_id_update = document.getElementById('unit_id_update');
+const brand_id_update = document.getElementById('brand_id_update');
+const cate_id_update = document.getElementById('cate_id_update');
+const qtyalert_update = document.getElementById('qtyalert_update');
 myformUpdate.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputsUpdate();
 });
 
 function checkInputsUpdate() {
-    const unit_name_updateValue = unit_name_update.value.trim();
-    if (unit_name_updateValue === '') {
-        setErrorFor(unit_name_update, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າ');
+    const code_updateValue = code_update.value.trim();
+    const pro_name_updateValue = pro_name_update.value.trim();
+    const unit_id_updateValue = unit_id_update.value.trim();
+    const brand_id_updateValue = brand_id_update.value.trim();
+    const cate_id_updateValue = cate_id_update.value.trim();
+    const qtyalert_updateValue = qtyalert_update.value.trim();
+    if (code_updateValue === '') {
+        setErrorFor(code_update, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າ');
     } else {
-        setSuccessFor(unit_name_update);
+        setSuccessFor(code_update);
     }
-    if (unit_name_updateValue !== '') {
-        document.getElementById("formUpdate").action = "products.php";
+    if (pro_name_updateValue === '') {
+        setErrorFor(pro_name_update, 'ກະລຸນາປ້ອນຊື່ສິນຄ້າ');
+    } else {
+        setSuccessFor(pro_name_update);
+    }
+    if (unit_id_updateValue === '') {
+        setErrorFor(unit_id_update, 'ກະລຸນາເລືອກຫົວໜ່ວຍສິນຄ້າ');
+    } else {
+        setSuccessFor(unit_id_update);
+    }
+    if (cate_id_updateValue === '') {
+        setErrorFor(cate_id_update, 'ກະລຸນາເລືອກປະເພດສິນຄ້າ');
+    } else {
+        setSuccessFor(cate_id_update);
+    }
+    if (brand_id_updateValue === '') {
+        setErrorFor(brand_id_update, 'ກະລຸນາເລືອກຍີ່ຫໍ້ສິນຄ້າ');
+    } else {
+        setSuccessFor(brand_id_update);
+    }
+    if (qtyalert_updateValue === '') {
+        setErrorFor(qtyalert_update, 'ກະລຸນາປ້ອນເງື່ອນໄຂການສັ່ງຊື້');
+    } else {
+        setSuccessFor(qtyalert_update);
+    }
+    if (code_updateValue !== '' && unit_id_updateValue !== '' && cate_id_updateValue !== '' && brand_id_updateValue !== '' && pro_name_updateValue !== '' && qtyalert_updateValue !== '') {
+        document.getElementById("formUpdate").action = "products";
         document.getElementById("formUpdate").submit();
     }
 }
@@ -429,21 +514,59 @@ function checkInputsUpdate() {
 
 <!-- script preview image before upload -->
 <script>
-  var loadFile = function(event) {
+var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
+        URL.revokeObjectURL(output.src) // free memory
     }
-  };
+};
 
-  var loadFile2 = function(event) {
+var loadFile2 = function(event) {
     var output2 = document.getElementById('output2');
     output2.src = URL.createObjectURL(event.target.files[0]);
     output2.onload = function() {
-      URL.revokeObjectURL(output2.src) // free memory
+        URL.revokeObjectURL(output2.src) // free memory
     }
-  };
+};
+
+$(document).ready(function() {
+
+    load_data();
+
+    function load_data(query, page) {
+        $.ajax({
+            url: "fetch_product.php",
+            method: "POST",
+            data: {
+                query: query,
+                page: page
+            },
+            success: function(data) {
+                $('#result').html(data);
+            }
+        });
+    }
+    $('#search').keyup(function() {
+        var page = "0";
+        var search = $(this).val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
+        }
+    });
+    $(document).on('click', '.page-links', function() {
+        var page = this.id;
+        console.log(page);
+        var search = $('#search').val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
+        }
+    });
+});
 </script>
 
 
