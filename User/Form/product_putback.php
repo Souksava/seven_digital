@@ -7,7 +7,7 @@
 ?>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b>ລາຍການສິນຄ້ານຳກັບເຂົ້າສາງຄືນ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b>ລາຍການ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
         <form action="product-putback" id="form1" method="POST" enctype="multipart/form-data">
@@ -74,7 +74,7 @@
         </form>
     </div>
 </div>
-<div class="clearfix"></div><br>
+<div class="clearfix"></div>
 <!-- <form action="make2.php" id="form1" method="POST">
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
@@ -112,11 +112,10 @@
             </div>
         </div>
     </form> -->
-<br>
+    <br>
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-8">
-            ລາຍການສິນຄ້າ
             <div class="table-responsive">
                 <table class="table" style="width: 1100px;">
                     <tr>
@@ -168,17 +167,7 @@
                             <p class="card-text">
                             <form action="#" id="formSave" method="POST">
                                 <div class="row">
-                                <div class="col-md-12 form-control2">
-                                        <label>ລູກຄ້າ</label>
-                                        <select name="sup_id" id="sup_id" class="selectcenter">
-                                            <option value="" disabled selected>--- ລູກຄ້າ ---</option>
-                                            <option value="a">ສາງ A</option>
-                                            <option value="a">ສາງ B</option>
-                                        </select>
-                                        <i class="fas fa-check-circle "></i>
-                                        <i class="fas fa-exclamation-circle "></i>
-                                        <small class="">Error message</small>
-                                    </div>
+
                                     <div class="col-md-12" align="center">
                                     
                                         <button type="button" name="btnAdd" class="btn btn-outline-success"
