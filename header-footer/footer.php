@@ -47,7 +47,8 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?php echo $path ?>dist/js/adminlte.js"></script>
 <script src="<?php echo $path ?>dist/js/style.js"></script>
 <script src="<?php echo $path ?>dist/js/jquery.highlight.js"></script>
-<script type="text/javascript">
+<!-- <script src="<?php echo $path ?>dist/js/modal.js" type="text/javascript"></script> -->
+<script>
 $(document).ready(function() {
     // Update Modal
     $('.btnUpdate_auther').on('click', function() {
@@ -64,33 +65,33 @@ $(document).ready(function() {
 
     });
    // update employee
-    $('.btnUpdate_emp').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
-    
-        console.log(data);
+   $('.btnUpdate_emp').on('click', function() {
+    $('#exampleModalUpdate').modal('show');
+    $tr = $(this).closest('tr');
+    var data = $tr.children("td").map(function() {
+        return $(this).text();
+    }).get();
 
-        $('#emp_id2').val(data[0]);
-        $('#emp_name2').val(data[1]);
-        $('#emp_surname2').val(data[2]);
-        $('#gender2').val(data[3]);
-        $('#tel2').val(data[4]);
-        $('#address2').val(data[5]);
-        $('#auther_id2').val(data[6]);
-        $('#email2').val(data[8]);
-        $('#password2').val(data[9]);
-        $('#password_cf2').val(data[9]);
-        $('#status2').val(data[10]);
-        if(data[12] === ''){
-            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
-        }
-        else{
-            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[12]);
-        }
-     
+    console.log(data);
+
+    $('#emp_id2').val(data[0]);
+    $('#emp_name2').val(data[1]);
+    $('#emp_surname2').val(data[2]);
+    $('#gender2').val(data[3]);
+    $('#tel2').val(data[4]);
+    $('#address2').val(data[5]);
+    $('#auther_id2').val(data[6]);
+    $('#email2').val(data[8]);
+    $('#password2').val(data[9]);
+    $('#password_cf2').val(data[9]);
+    $('#status2').val(data[10]);
+    if(data[12] === ''){
+        document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+    }
+    else{
+        document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[12]);
+    }
+ 
     });
     // update supplier
     $('.btnUpdate_sup').on('click', function() {
@@ -505,32 +506,7 @@ $(document).ready(function() {
     });
 });
 
-$('.btnUpdate_form').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
-
-        console.log(data);
-
-        $('#code_update').val(data[0]);
-        $('#pro_name_update').val(data[1]);
-        $('#gen_update').val(data[5]);
-        $('#cate_id_update').val(data[2]);
-        $('#unit_id_update').val(data[6]);
-        $('#brand_id_update').val(data[3]);
-        $('#qtyalert_update').val(data[7]);
-        if(data[9] === ''){
-            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
-        }
-        else{
-            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
-        }
-    });
-
 </script>
-
 
 </body>
 
