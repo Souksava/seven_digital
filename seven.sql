@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2020 at 10:11 AM
+-- Generation Time: Dec 24, 2020 at 04:50 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.25
 
@@ -216,8 +216,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_product_addr` (`addr_name` V
 insert into product_addr(addr_name) values(addr_name);
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_product_putback_stock` (IN `code` VARCHAR(30), IN `serial` VARCHAR(30), IN `qty` INT(11), IN `emp_id` VARCHAR(20), IN `cus_id` VARCHAR(20), IN `form_id` INT(11), IN `date_back` DATE, IN `time_back` TIME, IN `remark` VARCHAR(100))  begin
-insert into product_putback_stock (code,serial,qty,emp_id,cus_id,form_id,date_back,time_back,remark) values(code,serial,qty,emp_id,cus_id,form_id,date_back,time_back,remark);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_product_putback_stock` (IN `code` VARCHAR(30), IN `serial` VARCHAR(30), IN `qty` INT(11), IN `emp_id` VARCHAR(20), IN `form_id` INT(11), IN `date_back` DATE, IN `time_back` TIME, IN `remark` VARCHAR(100))  begin
+insert into product_putback_stock (code,serial,qty,emp_id,form_id,date_back,time_back,remark) values(code,serial,qty,emp_id,form_id,date_back,time_back,remark);
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_rate` (`rate_id` VARCHAR(20), `rate_buy` DECIMAL(11,2), `rate_sell` DECIMAL(11,2))  begin
@@ -690,7 +690,6 @@ CREATE TABLE `product_putback_stock` (
   `serial` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   `qty` int(11) DEFAULT NULL,
   `emp_id` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cus_id` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `form_id` int(11) DEFAULT NULL,
   `date_back` date DEFAULT NULL,
   `time_back` time DEFAULT NULL,
@@ -701,9 +700,10 @@ CREATE TABLE `product_putback_stock` (
 -- Dumping data for table `product_putback_stock`
 --
 
-INSERT INTO `product_putback_stock` (`id`, `code`, `serial`, `qty`, `emp_id`, `cus_id`, `form_id`, `date_back`, `time_back`, `remark`) VALUES
-(1, '1', 'b', 2, '001', '1', 1, '2020-11-13', '10:15:00', 'c'),
-(2, '2', 'aa', 2, '001', '2', 2, '2020-11-13', '10:11:00', 'aa');
+INSERT INTO `product_putback_stock` (`id`, `code`, `serial`, `qty`, `emp_id`, `form_id`, `date_back`, `time_back`, `remark`) VALUES
+(1, '1', 'b', 2, '001', 1, '2020-11-13', '10:15:00', 'c'),
+(2, '2', 'aa', 2, '001', 2, '2020-11-13', '10:11:00', 'aa'),
+(3, '2', 'aa', 1, '001', 2, '2020-11-13', '10:11:00', 'a');
 
 -- --------------------------------------------------------
 
@@ -933,7 +933,6 @@ ALTER TABLE `product_putback_stock`
   ADD PRIMARY KEY (`id`),
   ADD KEY `code` (`code`),
   ADD KEY `emp_id` (`emp_id`),
-  ADD KEY `cus_id` (`cus_id`),
   ADD KEY `form_id` (`form_id`);
 
 --
@@ -1016,7 +1015,7 @@ ALTER TABLE `product_addr`
 -- AUTO_INCREMENT for table `product_putback_stock`
 --
 ALTER TABLE `product_putback_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `spare_part`
@@ -1096,7 +1095,6 @@ ALTER TABLE `products`
 ALTER TABLE `product_putback_stock`
   ADD CONSTRAINT `product_putback_stock_ibfk_1` FOREIGN KEY (`code`) REFERENCES `products` (`code`),
   ADD CONSTRAINT `product_putback_stock_ibfk_2` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`),
-  ADD CONSTRAINT `product_putback_stock_ibfk_3` FOREIGN KEY (`cus_id`) REFERENCES `customer` (`cus_id`),
   ADD CONSTRAINT `product_putback_stock_ibfk_4` FOREIGN KEY (`form_id`) REFERENCES `form` (`form_id`);
 
 --
