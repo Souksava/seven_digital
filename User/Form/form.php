@@ -301,6 +301,16 @@ $(document).ready(function() {
             load_data('%%', page);
         }
     });
+    $(document).on('click', '.check', function() {
+        var check = this.id;
+        console.log(check);
+        var search = $('#search').val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
+        }
+    });
 });
 </script>
 
