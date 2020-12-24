@@ -175,6 +175,8 @@ $(document).ready(function() {
         $('#unit_name_update').val(data[1]);
     });
 
+    
+
     // update product
     $('.btnUpdate_prod').on('click', function() {
         $('#exampleModalUpdate').modal('show');
@@ -497,6 +499,30 @@ $(document).ready(function() {
         $('#id').val(data[0]);
     });
 });
+
+$('.btnUpdate_form').on('click', function() {
+        $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+
+        $('#code_update').val(data[0]);
+        $('#pro_name_update').val(data[1]);
+        $('#gen_update').val(data[5]);
+        $('#cate_id_update').val(data[2]);
+        $('#unit_id_update').val(data[6]);
+        $('#brand_id_update').val(data[3]);
+        $('#qtyalert_update').val(data[7]);
+        if(data[9] === ''){
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        }
+        else{
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
+        }
+    });
 
 </script>
 

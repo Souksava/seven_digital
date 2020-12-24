@@ -13,12 +13,7 @@
 <br>
 <div class="row">
     <div class="col-md-7">
-    <div id="result"></div> 
-
-
-
-  
-
+        <div id="result"></div>
     </div>
     <div class="col-md-5">
         <div class="card">
@@ -53,7 +48,8 @@
                         <div class="col-md-4">
                             <div align="center-right">
                                 <button type="button" name="btnAdd" class="btn btn-outline-success btn-block"
-                                    data-toggle="modal" data-target="#exampleModal2" style="padding: 8px 0px 8px 0px">ບັນທຶກຟອມ</button>
+                                    data-toggle="modal" data-target="#exampleModal2"
+                                    style="padding: 8px 0px 8px 0px">ບັນທຶກຟອມ</button>
                                 <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -107,10 +103,9 @@
                                     <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
                                         class="fa fa-trash toolcolor btnDelete_form"></a>&nbsp; &nbsp;
                                 </td>
-                            </tr>                          
+                            </tr>
                         </table>
                     </div>
-
                     <div class="col-md-12" align="right">
                         <br>
                         <h4 style="color: #CE3131;"> 99 ລາຍການ</h4>
@@ -165,8 +160,7 @@
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຮູບສິນຄ້າ</label>
                             <div class="col-md-12 col-sm-6 form-control2">
-                                <img src="../../image/product.png" alt="../../image/product.png" id="output2"
-                                    width="100%" height="250">
+                                <img src="../../image/camera.jpg" id="output2" width="100%" height="250">
                             </div>
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
@@ -270,47 +264,42 @@ function checkInputs2() {
 ?>
 
 <script>
-$(document).ready(function(){
+$(document).ready(function() {
 
-  load_data();
+    load_data();
 
-  function load_data(query,page)
-  {
-    $.ajax({
-      url:"fetch_form.php",
-      method:"POST",
-      data:{query:query,page:page},
-      success:function(data)
-      {
-        $('#result').html(data);
-      }
+    function load_data(query, page) {
+        $.ajax({
+            url: "fetch_form.php",
+            method: "POST",
+            data: {
+                query: query,
+                page: page
+            },
+            success: function(data) {
+                $('#result').html(data);
+            }
+        });
+    }
+    $('#search').keyup(function() {
+        var page = "0";
+        var search = $(this).val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
+        }
     });
-  }
-  $('#search').keyup(function(){
-    var page = "0";
-    var search = $(this).val();
-    if(search != '')
-    {
-    load_data(search,page);
-    }
-    else
-    {
-      load_data('%%',page);
-    }
-  });
-  $(document).on('click', '.page-links', function(){    
-    var page = this.id;
-    console.log(page);
-    var search = $('#search').val();
-    if(search != '')
-    {
-      load_data(search,page);
-    }
-    else
-    {
-      load_data('%%',page);
-    }
-  });
+    $(document).on('click', '.page-links', function() {
+        var page = this.id;
+        console.log(page);
+        var search = $('#search').val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
+        }
+    });
 });
 </script>
 

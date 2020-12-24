@@ -1893,7 +1893,7 @@ class obj{
 }
 $obj = new obj();
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1949,4 +1949,4 @@ $obj = new obj();
         // echo implode("|",$cart_data);
     ?>
 </body>
-</html>
+</html> -->
