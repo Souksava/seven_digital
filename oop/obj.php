@@ -1858,14 +1858,14 @@ class obj{
             mysqli_next_result($conn);
             if(!$result){
                 echo"<script>";
-                echo"window.location.href='form?save5=fail';";
+                echo"window.location.href='form?save=fail';";
                 echo"</script>";
             }
             else{
                 foreach($cart_data as $data){
                     $code = $data['code'];
                     $qty = $data['qty'];
-                    $result2 = mysqli_query($conn,"call inser_form_detail('$code','$qty','$form_id')");
+                    $result2 = mysqli_query($conn,"call insert_form_detail('$code','$qty','$form_id')");
                     mysqli_free_result($result2);  
                     mysqli_next_result($conn);
                 }
@@ -1890,6 +1890,99 @@ class obj{
         }
     }
     // end form
+
+    // putback
+
+    public static function cookie_putback($code,$serial,$qty,$form_id,$remark){
+        global $conn;
+        $check_code = mysqli_query($conn,"select * from products where code='$code'");
+        $check_serail_distribute = mysqli_query($conn,"select * from distribute where (serial='$serial' and code='$code') and form_id='$form_id' ");
+        if(mysqli_num_rows($check_code) <= 0){
+            echo"<script>";
+            echo"window.location.href='product-putback?code=null';";
+            echo"</script>";
+       }
+       else if(mysqli_num_rows($check_serail_distribute) <= 0){
+            echo"<script>";
+            echo"window.location.href='product-putback?code-serial-form=null';";
+            echo"</script>";
+       }
+        else{
+            if(isset($_COOKIE['putback'])){//ກວດສອບວ່າຄຸກກີ້ distribute_list ນັ້ນມີຄ່າຫຼືບໍ່
+                $cookie_data = stripcslashes($_COOKIE['putback']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+                $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
+            }
+            else{
+                $cart_data = array();//ຖ້າຄຸກກີ້ບໍ່ມີຄ່າຂໍ້ມູນແລ້ວຕັ້ງໂຕປ່ຽນໃຫ້ເປັນອາເລ
+            }
+            $item_id_list = array_column($cart_data,'serial');//ຕັ້ງຄ່າ serial ໃຫ້ມີຄ່າເທົ່າກັບ array $cart_data['serial']
+            if(in_array($serial,$item_id_list)){//ຖ້າວ່າ Serial ທີ່ປ້ອນມາທາງຄີບອດຕົງກັນກັບ Serial ທີ່ຢູ່ໃນ Array Cart_data ໃຫ້ເຮັດວຽກຈຸດນີ້
+                echo"<script>";
+                echo"window.location.href='product-putback?serial-list=same';";
+                echo"</script>";
+            }
+            else{ // ຖ້າວ່າໄອດີບໍ່ຕົງກັນໃຫ້ເພີ່ມຂໍ້ມູນເຂົ້າໃນຄຸກກີ້
+                $getin = mysqli_query($conn,"select * from products where code='$code'");
+                $get_info = mysqli_fetch_array($getin,MYSQLI_ASSOC);
+                $name = $get_info['pro_name'];
+                $gen = $get_info['gen'];
+                $img_path = $get_info['img_path'];
+                $get_cus = mysqli_query($conn,"select company from form f left join customer c on f.cus_id=c.cus_id where form_id='$form_id'");
+                $cus_name = mysqli_fetch_array($get_cus,MYSQLI_ASSOC);
+                $company = $cus_name['company'];
+                $item_array = [//ເພີ່ມຂໍ້ມູນທີ່ຮັບມາຈາກຄີບອດເຂົ້າໄວ້ໃນຕົວປ່ຽນອາເລ $item_array
+                    "code" => $code,
+                    "serial" => $serial,
+                    "img_path" => $img_path,
+                    "name" => $name,
+                    "gen" => $gen,
+                    "qty" => $qty,
+                    "form_id" => $form_id,
+                    "company" => $company,
+                    "remark" => $remark
+                ];
+                $cart_data[] = $item_array;//ເພີ່ມຂໍ້ມູນຈາກ $item_array ເຂົ້າໄປໃນ $cart_data
+            }
+            $item_data = json_encode($cart_data);//ປັບ item_data ໃຫ້ມັນສິ້ນສຸດການຮັບຂໍ້ມູນຈາກ $cart_data
+            setcookie('putback',$item_data,time() + (86400 * 30));//ຕັ້ງຄ່າເວລາຄຸກກີ້
+            echo"<script>";
+            echo"window.location.href='product-putback';";
+            echo"</script>";
+        
+        }
+    }
+    public static function clear_putback(){
+        setcookie("putback","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+        echo"<script>";
+        echo"window.location.href='product-putback';";
+        echo"</script>";
+    }
+    public static function del_putback($serial){
+        $cookie_data = stripcslashes($_COOKIE['putback']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
+        foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
+            if($cart_data[$keys]['serial'] == $serial){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
+                unset($cart_data[$keys]);//ລົບຂໍ້ມູນຢູ່ຄຸກກີ້ໝົດແຖວທີ່ມີໄອດີຕົງກັນ
+                $item_data = json_encode($cart_data);//ໃຫ້ຈົບການສ້າງອາເລໃນຮູບແບບ json
+                setcookie('putback',$item_data,time() + (86400 * 30));//ຕັ້ງເວລາຄຸກກີ້
+                foreach($cart_data as $keys => $values){}
+                if(!$cart_data[$keys]){
+                    setcookie("putback","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                }
+                echo"<script>";
+                echo"window.location.href='product-putback';";
+                echo"</script>";
+            }
+        }
+    }
+    public static function select_putback(){
+        global $cart_data;
+        if(isset($_COOKIE['putback'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
+            $cookie_data = stripslashes($_COOKIE['putback']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
+        }
+    }
+    //end putback
 }
 $obj = new obj();
 ?>
@@ -1904,7 +1997,10 @@ $obj = new obj();
 <body>
     <form action="obj.php" method="post" id="form1">
         <input type="text" name="code" placeholder="code">
+        <input type="text" name="serial" placeholder="serial">
         <input type="text" name="qty" placeholder="qty">
+        <input type="text" name="form_id" placeholder="form_id">
+        <input type="text" name="remark" placeholder="remark">
         <button type="submit" name="add">add</button>
         <button type="submit" name="save">save</button>
     </form>
@@ -1914,16 +2010,16 @@ $obj = new obj();
             $obj->save_form('20','001','1','10','9');
         }
         if(isset($_GET['clear'])){
-            $obj->clear_form();
+            $obj->clear_putback();
         }
         if(isset($_GET['id'])){
-            $obj->del_form($_GET['id']);
+            $obj->del_putback($_GET['id']);
         }
         if(isset($_POST['add'])){
-            $obj->cookie_form($_POST['code'],$_POST['qty']);
+            $obj->cookie_putback($_POST['code'],$_POST['serial'],$_POST['qty'],$_POST['form_id'],$_POST['remark']);
         }
-        $obj->select_form_cookie();
-        if(isset($_COOKIE['list_form'])){
+        $obj->select_putback();
+        if(isset($_COOKIE['putback'])){
     ?>
     <table>
         <?php
@@ -1931,10 +2027,14 @@ $obj = new obj();
         ?>
         <tr>
             <td><?php echo $values["code"] ?></td>
+            <td><?php echo $values["serial"] ?></td>
             <td><?php echo $values["name"] ?></td>
             <td><?php echo $values["gen"] ?></td>
             <td><?php echo $values["qty"] ?></td>
-            <td><a href="obj.php?id=<?php echo $values["code"]; ?>">delete</a></td>
+            <td><?php echo $values["form_id"] ?></td>
+            <td>(company: <?php echo $values["company"] ?>)</td>
+            <td><?php echo $values["remark"] ?></td>
+            <td><a href="obj.php?id=<?php echo $values["serial"]; ?>">delete</a></td>
         </tr>
         <?php
         }
