@@ -168,7 +168,7 @@
                         </div>
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຈຳນວນ</label>
-                            <input type="text" name="pro_id" id="pro_id" hidden>
+                            <input type="hidden" name="pro_id" id="pro_id" >
                             <input type="number" min="1" name="qty" id="qty" placeholder="ຈຳນວນ">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>

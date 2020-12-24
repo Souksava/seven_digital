@@ -253,8 +253,13 @@ $(document).ready(function() {
         }).get();
 
         console.log(data);
-
-        document.getElementById("output2").src = (data[0]);
+        $('#pro_id').val(data[0]);
+        if(data[9] === ''){
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        }
+        else{
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
+        }
     });
 
     // update dist
