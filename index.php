@@ -38,7 +38,7 @@
     <div class="container">
       <div class="forms-container">
           <div class="signin-signup">
-              <form action="index.php" method="POST" id="formLogin" class="sign-in-form">
+              <form action="home" method="POST" id="formLogin" class="sign-in-form">
                 <img src="image/logo.png" alt="" width="100px"><br>
                 <h2 class="title">ເຂົ້າສູ່ລະບົບ</h2>
                   <div class="input-field">
