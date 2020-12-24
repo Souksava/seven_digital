@@ -49,7 +49,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="<?php echo $path ?>dist/js/sweetalert.min.js"></script>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed" >
+<body class="hold-transition sidebar-mini layout-fixed">
+
     <div class="wrapper">
         <nav class="main-header navbar navbar-expand navbar-white navbar-light font14">
             <ul class="navbar-nav">
@@ -115,7 +116,7 @@
                         if ($title == "ຂໍ້ມູນສິນຄ້າ"){
                                     echo '<form class="form-inline ml-3">
                                     <div class="input-group input-group-sm">
-                                      <input class="form-control form-control-navbar" type="search" name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                      <input class="form-control form-control-navbar" type="search"  name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
                                       <div class="input-group-append">
                                         <button class="btn btn-navbar" type="submit">
                                           <i class="fas fa-search"></i>
@@ -149,7 +150,7 @@
                                             if ($title == "ເບີກສິນຄ້າ"){
                                                 echo '<form class="form-inline ml-3">
                                                 <div class="input-group input-group-sm">
-                                                  <input class="form-control form-control-navbar" type="search" name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                                  <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
                                                   <div class="input-group-append">
                                                     <button class="btn btn-navbar" type="submit">
                                                       <i class="fas fa-search"></i>
