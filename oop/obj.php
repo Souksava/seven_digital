@@ -7,6 +7,118 @@ $Time = date("H:i:s",$datenow);
 class obj{
     public $conn;
     public $search;
+    public static function login($email,$password){
+        global $conn;
+        // global $_SESSION['ses_seven_id'];
+        // global $_SESSION['email'];
+        // global $_SESSION['emp_name'];
+        // $_SESSION['emp_id'];
+        // $_SESSION['img_path'];
+        // $_SESSION['ses_status_id'];
+        session_start();
+        $resultck = mysqli_query($conn, "select * from employee where email='$email' and pass=md5('$password')");
+        if($email == "")
+        {
+            echo"<script>";
+            echo"window.location.href='home?email=null';";
+            echo"</script>";
+        }
+        else if($password == "")
+        {
+            echo"<script>";
+            echo"window.location.href='home?pass=null';";
+            echo"</script>";
+        }
+        else if(!mysqli_num_rows($resultck))
+        {
+            echo"<script>";
+            echo"window.location.href='home?login=false';";
+            echo"</script>";
+        }
+        else 
+        {
+            $resultget = mysqli_query($conn, "select * from employee where email='$email' and pass=md5('$password')"); 
+            if(mysqli_num_rows($resultget) <= 0){
+                echo"<meta http-equiv-'refress' content='1;URL=/'>";
+            }
+            else{
+               
+                while($user = mysqli_fetch_array($resultget))
+                {
+                    if($user['stt_id'] == 1)
+                    {
+                        $_SESSION['ses_seven_id'] = session_id();
+                        $_SESSION['email'] = $user['email'];
+                        $_SESSION['emp_name'] = $user['emp_name'];
+                        $_SESSION['emp_id'] = $user['emp_id'];
+                        $_SESSION['img_path'] = $user['img_path'];
+                        $_SESSION['ses_status_id'] = 1;
+                        echo"<meta http-equiv='refresh' content='1;URL=Manager/Main'>";
+                    }
+                    else if($user['stt_id'] == 2)
+                    {
+                        $_SESSION['ses_seven_id'] = session_id();
+                        $_SESSION['email'] = $user['email'];
+                        $_SESSION['emp_name'] = $user['emp_name'];
+                        $_SESSION['emp_id'] = $user['emp_id'];
+                        $_SESSION['img_path'] = $user['img_path'];
+                        $_SESSION['ses_status_id'] = 2;
+                        echo"<meta http-equiv='refresh' content='1;URL=User/Main'>";
+                    }
+                    else if($user['stt_id'] == 3)
+                    {
+                        $_SESSION['ses_seven_id'] = session_id();
+                        $_SESSION['email'] = $user['email'];
+                        $_SESSION['emp_name'] = $user['emp_name'];
+                        $_SESSION['emp_id'] = $user['emp_id'];
+                        $_SESSION['img_path'] = $user['img_path'];
+                        $_SESSION['ses_status_id'] = 3;
+                        echo"<meta http-equiv='refresh' content='1;URL=User_Stock/Main'>";
+                    }
+                    else if($user['stt_id'] == 3)
+                    {
+                        $_SESSION['ses_seven_id'] = session_id();
+                        $_SESSION['email'] = $user['email'];
+                        $_SESSION['emp_name'] = $user['emp_name'];
+                        $_SESSION['emp_id'] = $user['emp_id'];
+                        $_SESSION['img_path'] = $user['img_path'];
+                        $_SESSION['ses_status_id'] = 4;
+                        echo"<meta http-equiv='refresh' content='1;URL=Check_Stock/Main'>";
+                    }
+                    else
+                    {
+                        $_SESSION['ses_seven_id'] = session_id();
+                        session_start();
+                        unset($_SESSION['ses_seven_id']);
+                        unset($_SESSION['email']);
+                        unset($_SESSION['emp_name']);
+                        unset($_SESSION['emp_id']);
+                        unset($_SESSION['img_path']);
+                        unset($_SESSION['ses_status_id']);
+                        session_destroy();
+                        echo"<script>";
+                        echo"window.location.href='/?permission=found';";
+                        echo"</script>";
+                    }
+
+                }
+            }
+        }  
+    }
+    public static function logout(){
+        global $path;
+        session_start();
+        unset($_SESSION['ses_seven_id']);
+        unset($_SESSION['email']);
+        unset($_SESSION['emp_name']);
+        unset($_SESSION['emp_id']);
+        unset($_SESSION['img_path']);
+        unset($_SESSION['ses_status_id']);
+        session_destroy();
+        echo"<script>";
+        echo"window.location.href='$path';";
+        echo"</script>";
+    }
     //ຈັດການຂໍ້ມູນຕຳແໜ່ງ
     public static function select_auther($search,$page){
         // method ຂອງການດຶງຂໍ້ມູນຕຳແໜ່ງມາສະແດງ
@@ -1230,7 +1342,7 @@ class obj{
     // Stock
     public static function cookie_stock($code,$serial,$qty,$price,$pro_no,$dnv,$import_no,$remark){
         global $conn;
-        $check_code = mysqli_query($conn,"select * from products where code='$code'");
+        $check_code = mysqli_query($conn,"select code,pro_name,gen,cate_name,unit_name,brand_name,qtyalert,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code'");
         $check_serail_stock = mysqli_query($conn,"select * from stocks where serial='$serial'");
         $check_pro_no = mysqli_query($conn,"select * from stocks where pro_no='$pro_no'");
        if(mysqli_num_rows($check_code) <= 0){
@@ -1253,6 +1365,9 @@ class obj{
             $img_path = $get_info['img_path'];
             $name = $get_info['pro_name'];
             $gen = $get_info['gen'];
+            $brand_name = $get_info['brand_name'];
+            $unit_name = $get_info['unit_name'];
+            $cate_name = $get_info['cate_name'];
             if(isset($_COOKIE['stock_list'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
                 $cookie_data = stripcslashes($_COOKIE['stock_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
                 $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
@@ -1278,6 +1393,9 @@ class obj{
                     "serial" => $serial,
                     "img_path" => $img_path,
                     "name" => $name,
+                    "unit_name" => $unit_name,
+                    "cate_name" => $cate_name,
+                    "brand_name" => $brand_name,
                     "gen" => $gen,
                     "qty" => $qty,
                     "price" => $price,
@@ -1369,7 +1487,7 @@ class obj{
     //Distribute Form
     public static function cookie_distribute($code,$serial,$qty,$form_id,$remark){
         global $conn;
-        $check_code = mysqli_query($conn,"select * from products where code='$code'");
+        $check_code = mysqli_query($conn,"select code,pro_name,gen,cate_name,unit_name,brand_name,qtyalert,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code'");
         $check_serail_stock = mysqli_query($conn,"select * from stocks where serial='$serial' and code='$code'");
         $stock_qty = mysqli_fetch_array($check_serail_stock,MYSQLI_ASSOC);
         $check_form = mysqli_query($conn,"select * from form where form_id='$form_id' and stt_accept='ອະນຸມັດ'");
@@ -1412,11 +1530,17 @@ class obj{
                 $name = $get_info['pro_name'];
                 $gen = $get_info['gen'];
                 $img_path = $get_info['img_path'];
+                $brand_name = $get_info['brand_name'];
+                $unit_name = $get_info['unit_name'];
+                $cate_name = $get_info['cate_name'];
                 $item_array = [//ເພີ່ມຂໍ້ມູນທີ່ຮັບມາຈາກຄີບອດເຂົ້າໄວ້ໃນຕົວປ່ຽນອາເລ $item_array
                     "code" => $code,
                     "serial" => $serial,
                     "img_path" => $img_path,
                     "name" => $name,
+                    "unit_name" => $unit_name,
+                    "cate_name" => $cate_name,
+                    "brand_name" => $brand_name,
                     "gen" => $gen,
                     "qty" => $qty,
                     "form_id" => $form_id,
@@ -1462,28 +1586,53 @@ class obj{
         global $conn;
         global $Date;
         global $Time;
+        $status = "ເບີກຈ່າຍແລ້ວ";
         if(isset($_COOKIE['distribute_list'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
             $cookie_data = stripcslashes($_COOKIE['distribute_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
             $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
-            foreach($cart_data as $data){
-                $code = $data['code'];
-                $serial = $data['serial'];
-                $qty = $data['qty'];
-                $form_id = $data['form_id'];
-                $remark = $data['remark'];
-                $result = mysqli_query($conn,"call insert_distribute('$code','$serial','$qty','$emp_id','$form_id','$Date','$Time','$remark')");
-                $update = mysqli_query($conn,"update stocks set qty=qty-'$qty' where code='$code' and serial='$serial'; ");
+            foreach($cart_data as $data2){
+                $check_code = $data2['code'];
+                $check_serial = $data2['serial'];
+                $check_qty = $data2['qty'];
+                $check = mysqli_query($conn,"select * from stocks where code='$check_code' and serial='$check_serial'");
+                $db_qty = mysqli_fetch_array($check,MYSQLI_ASSOC);
+                if($check_qty > $db_qty['qty']){
+                    echo'
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>ບໍ່ສາມາດບັນທຶກຂໍ້ມູນໄດ້!</strong> ເນື່ອງຈາກຈຳນວນສິນຄ້າລະຫັດ '.$check_code.' Serial '.$check_serial.' ໃນລາຍການເກີນກວ່າຈຳນວນທີ່ຢູ່ໃນສະຕ໋ອກ .
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    ';
+                    $i = true;
+                    break;
+                    
+                }
             }
-            if(!$result){
-                echo"<script>";
-                echo"window.location.href='distribute?save=fail';";
-                echo"</script>";
+            if($i == true){
+
             }
             else{
-                setcookie("distribute_list","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
-                echo"<script>";
-                echo"window.location.href='distribute?save2=success';";
-                echo"</script>";
+                foreach($cart_data as $data){
+                    $code = $data['code'];
+                    $serial = $data['serial'];
+                    $qty = $data['qty'];
+                    $form_id = $data['form_id'];
+                    $remark = $data['remark'];
+                    $result = mysqli_query($conn,"call insert_distribute('$code','$serial','$qty','$emp_id','$form_id','$Date','$Time','$remark')");
+                    $update = mysqli_query($conn,"update stocks set qty=qty-'$qty' where code='$code' and serial='$serial'; ");
+                    $form = mysqli_query($conn,"update form set status='$status' where form_id='$form_id'");
+                }
+                if(!$result){
+                    echo"<script>";
+                    echo"window.location.href='distribute?save=fail';";
+                    echo"</script>";
+                }
+                else{
+                    setcookie("distribute_list","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                    echo"<script>";
+                    echo"window.location.href='distribute?save2=success';";
+                    echo"</script>";
+                }
             }
         }
         else{
@@ -1497,7 +1646,7 @@ class obj{
     //Check_Stock
     public static function cookie_check_stock($code,$serial,$qty,$remark){
         global $conn;
-        $check_code = mysqli_query($conn,"select * from products where code='$code'");
+        $check_code = mysqli_query($conn,"select code,pro_name,gen,cate_name,unit_name,brand_name,qtyalert,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code'");
         $check_serail_stock = mysqli_query($conn,"select * from stocks where serial='$serial' and code='$code'");
         if(mysqli_num_rows($check_code) <= 0){
             echo"<script>";
@@ -1528,11 +1677,17 @@ class obj{
                 $name = $get_info['pro_name'];
                 $gen = $get_info['gen'];
                 $img_path = $get_info['img_path'];
+                $brand_name = $get_info['brand_name'];
+                $unit_name = $get_info['unit_name'];
+                $cate_name = $get_info['cate_name'];
                 $item_array = [//ເພີ່ມຂໍ້ມູນທີ່ຮັບມາຈາກຄີບອດເຂົ້າໄວ້ໃນຕົວປ່ຽນອາເລ $item_array
                     "code" => $code,
                     "serial" => $serial,
                     "img_path" => $img_path,
                     "name" => $name,
+                    "unit_name" => $unit_name,
+                    "cate_name" => $cate_name,
+                    "brand_name" => $brand_name,
                     "gen" => $gen,
                     "qty" => $qty,
                     "remark" => $remark
@@ -1611,10 +1766,10 @@ class obj{
     //spare_part ປ່ຽນອາໄຫຼ່
     public static function cookie_spare_part($code,$serial,$spare,$code2,$serial2,$remark){
         global $conn;
-        $check_code = mysqli_query($conn,"select * from products where code='$code'");
+        $check_code = mysqli_query($conn,"select code,pro_name,gen,cate_name,unit_name,brand_name,qtyalert,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code'");
         $check_serail_stock = mysqli_query($conn,"select * from stocks where serial='$serial' and code='$code'");
         $qty = mysqli_fetch_array($check_serail_stock,MYSQLI_ASSOC);
-        $check_code2 = mysqli_query($conn,"select * from products where code='$code2'");
+        $check_code2 = mysqli_query($conn,"select code,pro_name,gen,cate_name,unit_name,brand_name,qtyalert,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code2'");
         $check_serail_stock2 = mysqli_query($conn,"select * from stocks where serial='$serial2' and code='$code2'");
         $qty2 = mysqli_fetch_array($check_serail_stock2,MYSQLI_ASSOC);
         if(mysqli_num_rows($check_code) <= 0){
@@ -1667,17 +1822,29 @@ class obj{
                 $gen = $get_info['gen'];
                 $name2 = $get_info2['pro_name'];
                 $gen2 = $get_info2['gen'];
+                $brand_name = $get_info['brand_name'];
+                $unit_name = $get_info['unit_name'];
+                $cate_name = $get_info['cate_name'];
+                $brand_name2 = $get_info2['brand_name'];
+                $unit_name2 = $get_info2['unit_name'];
+                $cate_name2 = $get_info2['cate_name'];
                 $id = 'id_'.uniqid();
                 $item_array = [//ເພີ່ມຂໍ້ມູນທີ່ຮັບມາຈາກຄີບອດເຂົ້າໄວ້ໃນຕົວປ່ຽນອາເລ $item_array
                     "id" => $id,
                     "code" => $code,
                     "serial" => $serial,
                     "name" => $name,
+                    "unit_name" => $unit_name,
+                    "cate_name" => $cate_name,
+                    "brand_name" => $brand_name,
                     "gen" => $gen,
                     "spare" => $spare,
                     "code2" => $code2,
                     "serial2" => $serial2,
                     "name2" => $name2,
+                    "unit_name" => $unit_name2,
+                    "cate_name" => $cate_name2,
+                    "brand_name" => $brand_name2,
                     "gen2" => $gen2,
                     "remark" => $remark
                 ];
@@ -1806,6 +1973,9 @@ class obj{
                     "code" => $code,
                     "img_path" => $img_path,
                     "name" => $name,
+                    "unit_name" => $unit_name,
+                    "cate_name" => $cate_name,
+                    "brand_name" => $brand_name,
                     "gen" => $gen,
                     "qty" => $qty,
                 ];
@@ -1853,35 +2023,56 @@ class obj{
         if(isset($_COOKIE['list_form'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
             $cookie_data = stripcslashes($_COOKIE['list_form']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
             $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
-            $result = mysqli_query($conn,"call insert_form('$form_id','$emp_id','$cus_id','$amount','$packing_no','$Date','$Time','$stt_accept','$status','$usr_acc')");
-            mysqli_free_result($result);  
-            mysqli_next_result($conn);
-            if(!$result){
-                echo"<script>";
-                echo"window.location.href='form?save=fail';";
-                echo"</script>";
+            foreach($cart_data as $data2){
+                $check_code = $data2['code'];
+                $check_qty = $data2['qty'];
+                $check = mysqli_query($conn,"select sum(qty) as qty from products p left join stocks s on p.code=s.code where s.code='$check_code' group by s.code");
+                $db_qty = mysqli_fetch_array($check,MYSQLI_ASSOC);
+                if($check_qty > $db_qty['qty']){
+                    echo'
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>ບໍ່ສາມາດບັນທຶກຂໍ້ມູນໄດ້!</strong> ເນື່ອງຈາກຈຳນວນສິນຄ້າລະຫັດ '.$check_code.' ໃນລາຍການເກີນກວ່າຈຳນວນທີ່ຢູ່ໃນສະຕ໋ອກ .
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    ';
+                    $i = true;
+                    break;
+                    
+                }
+            }
+            if($i == true){
+
             }
             else{
-                foreach($cart_data as $data){
-                    $code = $data['code'];
-                    $qty = $data['qty'];
-                    $result2 = mysqli_query($conn,"call insert_form_detail('$code','$qty','$form_id')");
-                    mysqli_free_result($result2);  
-                    mysqli_next_result($conn);
-                }
-                if(!$result2){
+                $result = mysqli_query($conn,"call insert_form('$form_id','$emp_id','$cus_id','$amount','$packing_no','$Date','$Time','$stt_accept','$status','$usr_acc')");
+                mysqli_free_result($result);  
+                mysqli_next_result($conn);
+                if(!$result){
                     echo"<script>";
                     echo"window.location.href='form?save=fail';";
                     echo"</script>";
                 }
                 else{
-                    setcookie("list_form","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
-                    echo"<script>";
-                    echo"window.location.href='form?save2=success';";
-                    echo"</script>";
+                    foreach($cart_data as $data){
+                        $code = $data['code'];
+                        $qty = $data['qty'];
+                        $result2 = mysqli_query($conn,"call insert_form_detail('$code','$qty','$form_id')");
+                        mysqli_free_result($result2);  
+                        mysqli_next_result($conn);
+                    }
+                    if(!$result2){
+                        echo"<script>";
+                        echo"window.location.href='form?save=fail';";
+                        echo"</script>";
+                    }
+                    else{
+                        setcookie("list_form","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                        echo"<script>";
+                        echo"window.location.href='form?save2=success';";
+                        echo"</script>";
+                    }
                 }
-            }
-           
+            } 
         }
         else{
             echo"<script>";
@@ -1895,7 +2086,7 @@ class obj{
 
     public static function cookie_putback($code,$serial,$qty,$form_id,$remark){
         global $conn;
-        $check_code = mysqli_query($conn,"select * from products where code='$code'");
+        $check_code = mysqli_query($conn,"select code,pro_name,gen,cate_name,unit_name,brand_name,qtyalert,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code'");
         $check_serail_distribute = mysqli_query($conn,"select * from distribute where (serial='$serial' and code='$code') and form_id='$form_id' ");
         if(mysqli_num_rows($check_code) <= 0){
             echo"<script>";
@@ -1935,6 +2126,9 @@ class obj{
                     "serial" => $serial,
                     "img_path" => $img_path,
                     "name" => $name,
+                    "unit_name" => $unit_name,
+                    "cate_name" => $cate_name,
+                    "brand_name" => $brand_name,
                     "gen" => $gen,
                     "qty" => $qty,
                     "form_id" => $form_id,
@@ -1982,6 +2176,43 @@ class obj{
             $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
         }
     }
+    public static function save_putback($emp_id){
+        global $conn;
+        global $Date;
+        global $Time;
+        if(isset($_COOKIE['putback'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
+            $cookie_data = stripcslashes($_COOKIE['putback']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
+            foreach($cart_data as $data){
+                $code = $data['code'];
+                $serial = $data['serial'];
+                $qty = $data['qty'];
+                $form_id = $data['form_id'];
+                $remark = $data['remark'];
+                $result = mysqli_query($conn,"call insert_product_putback_stock('$code','$serial','$qty','$emp_id','$form_id','$Date','$Time','$remark')");
+                mysqli_free_result($result);  
+                mysqli_next_result($conn);
+            }
+            mysqli_free_result($result);  
+            mysqli_next_result($conn);
+            if(!$result){
+                echo"<script>";
+                echo"window.location.href='product-putback?save=fail';";
+                echo"</script>";
+            }
+            else{
+                setcookie("putback","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                echo"<script>";
+                echo"window.location.href='product-putback?save2=success';";
+                echo"</script>";
+            }
+        }
+        else{
+            echo"<script>";
+            echo"window.location.href='product-putback?list=null';";
+            echo"</script>";
+        }
+    }
     //end putback
 }
 $obj = new obj();
@@ -2007,19 +2238,19 @@ $obj = new obj();
     <a href="obj.php?clear=clear">clear</a>
     <?php
         if(isset($_POST['save'])){
-            $obj->save_form('20','001','1','10','9');
+            $obj->save_distribute('001');
         }
         if(isset($_GET['clear'])){
-            $obj->clear_putback();
+            $obj->clear_distribute();
         }
         if(isset($_GET['id'])){
-            $obj->del_putback($_GET['id']);
+            $obj->del_distribute($_GET['id']);
         }
         if(isset($_POST['add'])){
-            $obj->cookie_putback($_POST['code'],$_POST['serial'],$_POST['qty'],$_POST['form_id'],$_POST['remark']);
+            $obj->cookie_distribute($_POST['code'],$_POST['serial'],$_POST['qty'],$_POST['form_id'],$_POST['remark']);
         }
-        $obj->select_putback();
-        if(isset($_COOKIE['putback'])){
+        $obj->select_distribute_list();
+        if(isset($_COOKIE['distribute_list'])){
     ?>
     <table>
         <?php
@@ -2032,8 +2263,6 @@ $obj = new obj();
             <td><?php echo $values["gen"] ?></td>
             <td><?php echo $values["qty"] ?></td>
             <td><?php echo $values["form_id"] ?></td>
-            <td>(company: <?php echo $values["company"] ?>)</td>
-            <td><?php echo $values["remark"] ?></td>
             <td><a href="obj.php?id=<?php echo $values["serial"]; ?>">delete</a></td>
         </tr>
         <?php

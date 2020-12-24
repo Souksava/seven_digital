@@ -1,15 +1,39 @@
 <?php
-//    session_start();
-//     if($_SESSION['ses_id'] == ''){
-//         echo"<meta http-equiv='refresh' content='1;URL=../index.html'>";        
-//     }
-//     else if($_SESSION['auther_id'] != 2){
-//         echo"<meta http-equiv='refresh' content='1;URL=../Check/logout.php'>";
-//     }
-//     else{
+   session_start();
+   if($_SESSION['ses_status_id'] == 1){
+        $stt = 1;
+   }
+   if($_SESSION['ses_status_id'] == 2){
+    $stt = 2;
+    }
+    if($_SESSION['ses_status_id'] == 3){
+        $stt = 3;
+    }
+    if($_SESSION['ses_status_id'] == 4){
+        $stt = 4;
+    }
+    if($_SESSION['ses_seven_id'] == ''){
+        unset($_SESSION['ses_id']);
+        unset($_SESSION['email']);
+        unset($_SESSION['emp_name']);
+        unset($_SESSION['emp_id']);
+        unset($_SESSION['img_path']);
+        unset($_SESSION['ses_status_id']);
+        echo"<meta http-equiv='refresh' content='1;URL=$path'>";        
+    }
+    else if($_SESSION['ses_status_id'] != $stt){
+        unset($_SESSION['ses_id']);
+        unset($_SESSION['email']);
+        unset($_SESSION['emp_name']);
+        unset($_SESSION['emp_id']);
+        unset($_SESSION['img_path']);
+        unset($_SESSION['ses_status_id']);
+        echo"<meta http-equiv='refresh' content='1;URL=$path'>";
+    }
+    else{
 
-//     }
-       require ''.$path.'ConnectDB/connectDB.php';
+    }
+    include (''.$path.'oop/obj.php');
       ?>
 
 <!DOCTYPE html>
@@ -49,6 +73,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="<?php echo $path ?>dist/js/sweetalert.min.js"></script>
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 
     <div class="wrapper">
@@ -193,25 +218,23 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <!-- <?php
-            if($_SESSION['img_path'] == ''){
-              ?>
-              <img src="<?php echo $path ?>image/image.jpeg" class="img-circle elevation-2" alt="User Image">
-              <?php
+                                        <?php
+                            if($_SESSION['img_path'] == ''){
+                            ?>
+                                        <img src="<?php echo $path ?>image/image.jpeg" class="img-circle elevation-2" alt="User Image">
+                                        <?php
 
-            }
-            else{
-              ?>
-                   <img src="<?php echo $path ?>image/<?php echo $_SESSION['img_path'] ?>" class="img-circle elevation-2" alt="User Image">
-              <?php
-            }
-          ?> -->
-
-                        <img src="<?php echo $path ?>image/image.jpeg" class="img-circle elevation-2" alt="User Image">
-
+                            }
+                            else{
+                            ?>
+                                        <img src="<?php echo $path ?>image/<?php echo $_SESSION['img_path'] ?>"
+                                            class="img-circle elevation-2" alt="User Image">
+                                        <?php
+                            }
+                        ?>
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"><?php // echo $_SESSION['emp_name'] ?>Seven_User</a>
+                        <a href="#" class="d-block"><?php echo $_SESSION['emp_name'] ?></a>
                     </div>
                 </div>
 
@@ -478,7 +501,7 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-        <form action="<?php echo $path ?>Check/Logout.php" method="POST" id="formLogout">
+        <form action="Main" method="POST" id="formLogout">
             <div class="modal fade font14" id="exampleModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -501,4 +524,9 @@
                 </div>
             </div>
         </form>
+        <?php
+            if(isset($_POST['btnLogout'])){
+                $obj->logout();
+            }
+        ?>
         <div class="main-footer">
