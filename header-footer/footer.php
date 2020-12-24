@@ -253,7 +253,7 @@ $(document).ready(function() {
         }).get();
 
         console.log(data);
-        $('#pro_id').val(data[0]);
+        $('#code').val(data[0]);
         if(data[9] === ''){
             document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
         }

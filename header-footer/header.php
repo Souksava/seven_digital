@@ -49,7 +49,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="<?php echo $path ?>dist/js/sweetalert.min.js"></script>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed" onload="initialize(); return;">
+<body class="hold-transition sidebar-mini layout-fixed" >
     <div class="wrapper">
         <nav class="main-header navbar navbar-expand navbar-white navbar-light font14">
             <ul class="navbar-nav">
@@ -139,7 +139,7 @@
                                               </div>
                                             </div>
                                           </form>
-                                          <a href="#" class="nav-link">ກອດສອບສິນຄ້າ</a>
+                                          <a href="#" class="nav-link check">ກອດສອບສິນຄ້າ</a>
                                           ';
                                             }
                                             else{ 

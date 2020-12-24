@@ -5,6 +5,7 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
   include (''.$path.'oop/obj.php');
+
 ?>
 
 <div style="width: 100%;">
@@ -168,7 +169,7 @@
                         </div>
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຈຳນວນ</label>
-                            <input type="hidden" name="pro_id" id="pro_id" >
+                            <input type="hidden" name="code" id="code" >
                             <input type="number" min="1" name="qty" id="qty" placeholder="ຈຳນວນ">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
