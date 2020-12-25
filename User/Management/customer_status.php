@@ -4,7 +4,6 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
-  include (''.$path.'oop/obj.php');
   if(isset($_POST['btnDelete'])){
     $obj->delete_customer_status(trim($_POST['id']));
   }

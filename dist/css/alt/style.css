@@ -353,3 +353,6 @@ text-align-last: center;
 table,th,td{
     justify-content: center!important;
 }
+.clear{
+    color: white;
+}

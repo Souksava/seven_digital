@@ -31,9 +31,22 @@
         echo"<meta http-equiv='refresh' content='1;URL=$path'>";
     }
     else{
-
+        include (''.$path.'oop/obj.php');
+            if(isset($_POST['stock'])){
+                $obj->cookie_stock(trim($_POST['code']),trim($_POST['serial']),trim($_POST['qty']),trim($_POST['price']),trim($_POST['pro_no']),trim($_POST['dnv']),trim($_POST['imp_no']),trim($_POST['remark']));
+            }
+            if(isset($_POST['btnDelete_stock'])){
+                $obj->del_stock(trim($_POST['id']));
+            }
+            if(isset($_POST['clear-stock'])){
+                $obj->clear_stock();
+            }
+            if(isset($_POST['btnStock'])){
+                $obj->save_stock(trim($_POST['sup_id']),trim($_POST['rate_id']),$_SESSION['emp_id']);
+            }
+            
+      
     }
-    include (''.$path.'oop/obj.php');
       ?>
 
 <!DOCTYPE html>

@@ -4,6 +4,9 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+
+
+    $amount = 0;
 ?>
 <br>
 <div style="width: 100%;">
@@ -29,6 +32,7 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດສິນຄ້າ</label>
+                                    <input type="hidden" name="stock" id="stock">
                                     <input type="text" name="code" id="code" placeholder="ລະຫັດສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -43,14 +47,14 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຈຳນວນ</label>
-                                    <input type="text" name="qty" id="qty" class="form-control" placeholder="ຈຳນວນ">
+                                    <input type="number" min="0" name="qty" id="qty" class="form-control" placeholder="ຈຳນວນ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລາຄາ</label>
-                                    <input type="text" name="price" id="price" class="form-control" placeholder="ລາຄາ">
+                                    <input type="number" min="0" name="price" id="price" class="form-control" placeholder="ລາຄາ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -97,104 +101,96 @@
     </div>
 </div>
 <div class="clearfix"></div>
-<!-- <form action="make2.php" id="form1" method="POST">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ລະຫັດສິນຄ້າ</label>
-                <input type="text" class="form-control" placeholder="ລະຫັດສິນຄ້າ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>Serial Number</label>
-                <input type="text" class="form-control" placeholder="Serial Number"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ຈຳນວນ</label>
-                <input type="text" class="form-control" placeholder="ຈຳນວນ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ລາຄາ</label>
-                <input type="text" class="form-control" placeholder="ລາຄາ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ເລກທີໃບສັ່ງຊື້ D.N.V</label>
-                <input type="text" class="form-control" placeholder="ເລກທີໃບສັ່ງຊື້ D.N.V"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ເລກທີບິນນຳເຂົ້າສິນຄ້າ</label>
-                <input type="text" class="form-control" placeholder="ເລກທີບິນນຳເຂົ້າສິນຄ້າ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ໝາຍເຫດ</label>
-                <div class="input-group">        
-                    <input type="text" name="pro_id"  placeholder="ໝາຍເຫດ" class="form-control">
-                    <div class="input-group-prepend">
-                        <button type="submit" name="btnAdd" class="btn btn-outline-primary">ເພີ່ມລາຍການ</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form> -->
-
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-8">
-            
+            <?php 
+               $obj->select_stock_list();
+                if(isset($_COOKIE['stock_list'])){
+            ?>
             <div class="table-responsive">
-                <table class="table" style="width: 1100px;">
+                <table class="table" style="width: 1500px;">
                     <tr>
-                        <th style="width: 110px;" scope="col">ສິນຄ້າ</th>
-                        <th style="width: 110px;" scope="col">ລະຫັດສິນຄ້າ</th>
+                        <th style="width: 80px;" scope="col">ສິນຄ້າ</th>
+                        <th style="width: 120px;" scope="col">ລະຫັດສິນຄ້າ</th>
                         <th style="width: 180px;" scope="col">ຊື່ສິນຄ້າ</th>
-                        <th style="width: 180px;" scope="col">Serial</th>
-                        <th style="width: 180px;" scope="col">ລຸ້ນເຄື່ອງ</th>
-                        <th style="width: 60px;" scope="col">ຈຳນວນ</th>
-                        <th style="width: 60px;" scope="col">ລາຄາ</th>
-                        <th style="width: 60px;" scope="col">ລວມ</th>
-                        <th style="width: 180px;" scope="col">D.N.V</th>
+                        <th style="width: 120px;" scope="col">Serial</th>
+                        <th style="width: 100px;" scope="col">ລຸ້ນເຄື່ອງ</th>
+                        <th style="width: 100px;" scope="col">ຈຳນວນ</th>
+                        <th style="width: 100px;" scope="col">ລາຄາ</th>
+                        <th style="width: 120px;" scope="col">ລວມ</th>
+                        <th style="width: 60px;" scope="col">D.N.V</th>
                         <th style="width: 180px;" scope="col">ເລກທີບິນນຳເຂົ້າສິນຄ້າ</th>
-                        <th style="width: 180px;" scope="col">ໝາຍເລກເຄືອງ</th>
-                        <th style="width: 180px;" scope="col">ໝາຍເຫດ</th>
-                        <th style="width: 75px;"></th>
+                        <th style="width: 120px;" scope="col">ໝາຍເລກເຄືອງ</th>
+                        <th style="width: 120px;" scope="col">ໝາຍເຫດ</th>
+                        <th style="width: 75px;"><a href="#" data-toggle="modal" data-target="#exampleModalClear" class="clear">ລ້າງ</a></th>
                     </tr>
+                    <?php
+                      
+                        foreach($cart_data as $keys => $values){
+                        $amount += $values['qty'] * $values['price'];
+                    ?>
                     <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
+                        <td style="display: none;"><?php echo $values['serial'] ?></td>
+                       <?php
+                            if($values['img_path'] == ''){
+                        ?>
+                         <td>
+                            <a href="<?php echo $path ?>image/<?php echo $values['img_path']; ?>" target="_blank">
+                                <img src="<?php echo $path ?>image/<?php echo $values['img_path']; ?>" class="img-circle elevation-2" alt="" width="30px">
                             </a>
                         </td>
-                        <td style="display:none">1</td>
-                        <td>FUJI</td>
-                        <td>2020</td>
-                        <td>2020</td>
-                        <td>2020</td>
-                        <td>2020</td>
-                        <td>2020</td>
-                        <td>2020</td>
-                        <td>2020</td>
-                        <td>99</td>
-                        <td>10,000 ກີບ</td>
-                        <td>990,000 ກີບ</td>
-                        <td style="display:none">9/12/2020</td>
-                        <td style="display:none">9:10:50</td>
+                        <?php
+                            }
+                            else{
+                        ?>
+                         <td>
+                            <a href="<?php echo $path ?>image/logo.png" target="_blank">
+                                <img src="<?php echo $path ?>image/logo.png" class="img-circle elevation-2" alt="" width="30px">
+                            </a>
+                        </td>
+                        <?php
+                            }
+                       ?>
+                        <td><?php echo $values['code'] ?></td>
+                        <td>
+                            <?php echo $values['cate_name'] ?> <?php echo $values['brand_name'] ?><br>
+                            <?php echo $values['name'] ?>
+                        </td>
+                        <td><?php echo $values['serial'] ?></td>
+                        <td><?php echo $values['gen'] ?></td>
+                        <td><?php echo $values['qty'] ?></td>
+                        <td><?php echo number_format($values['price'],2) ?></td>
+                        <td><?php echo number_format($values['qty'] * $values['price'],2) ?></td>
+                        <td><?php echo $values['dnv'] ?></td>
+                        <td><?php echo $values['import_no'] ?></td>
+                        <td><?php echo $values['pro_no'] ?></td>
+                        <td><?php echo $values['remark'] ?></td>
                         <td>
                         <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                                class="fa fa-trash toolcolor btnDelete_import"></a>&nbsp; &nbsp;
+                                class="fa fa-trash toolcolor btnDelete_stock"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
+                    <?php
+                        }
+                    ?>
                 </table>
                 <hr size="3" align="center" width="100%">
             </div>
+            <?php
+                }
+                else{
+                    echo'
+                        <div align="center">
+                            <hr size="1" style="width: 90%;"/>
+                                ຍັງບໍ່ມີຂໍ້ມູນ
+                            <hr size="1" style="width: 90%;"/>
+                        </div>
+                    ';
+                }
+            ?>
             <br>
             <!-- pagination -->
-<nav aria-label="Page navigation example">
-<ul class="pagination">
-    <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-  </ul>
-</nav>
         </div>
         <div class="col-lg-3 font12">
             <div class="row row-cols-1 row-cols-md-1">
@@ -203,21 +199,29 @@
                         <div class="card-body">
                             <h5 align="center" class="card-title"></h5>
                             <p class="card-text">
-                            <form action="#" id="formSave" method="POST">
+                            <form action="import" id="formSave" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-6">
                                     ຍອມລວມ
                                     </div>
                                     <div class="col-md-6" align="right">
-                                        <h4 style="color: #CE3131;"> 990,000 ກີບ</h4>
+                                        <h4 style="color: #CE3131;"> <?php echo number_format($amount,2) ?> ກີບ</h4>
                                     </div>
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">
                                         <label>ຜູ້ສະໜອງ</label>
                                         <select name="sup_id" id="sup_id" class="selectcenter">
                                             <option value="" disabled selected>--- ເລືອກຜູ້ສະໜອງ ---</option>
-                                            <option value="a">ສາງ A</option>
-                                            <option value="a">ສາງ B</option>
+                                            <?php
+                                                $obj->select_supplier_count("%%");
+                                                foreach($resultsupplier_count as $rowsup){
+                                            ?>
+                                            <option value="<?php echo $rowsup['sup_id'] ?>"><?php echo $rowsup['company'] ?></option>
+                                            <?php 
+                                                }
+                                                mysqli_free_result($resultsupplier_count);  
+                                                mysqli_next_result($conn);
+                                            ?>
                                         </select>
                                         <i class="fas fa-check-circle "></i>
                                         <i class="fas fa-exclamation-circle "></i>
@@ -227,15 +231,23 @@
                                         <label>ເລດເງີນ</label>
                                         <select name="rate_id" id="rate_id" class="selectcenter">
                                             <option value="" disabled selected>--- ເລືອກເລດເງີນ ---</option>
-                                            <option value="a">ສາງ A</option>
-                                            <option value="a">ສາງ B</option>
+                                            <?php
+                                                $obj->select_rate();
+                                                foreach($resultrate as $rowrate){
+                                            ?>
+                                            <option value="<?php echo $rowrate['rate_id'] ?>"><?php echo $rowrate['rate_id'] ?></option>
+                                            <?php 
+                                                }
+                                                mysqli_free_result($resultrate);  
+                                                mysqli_next_result($conn);
+                                            ?>
                                         </select>
                                         <i class="fas fa-check-circle "></i>
                                         <i class="fas fa-exclamation-circle "></i>
                                         <small class="">Error message</small>
                                     </div>
                                     <div class="col-md-12" align="center">
-                                    
+                                        <input type="hidden" name="btnStock" id="btnStock">
                                         <button type="button" name="btnAdd" class="btn btn-outline-success"
                                             data-toggle="modal" data-target="#exampleModal2">ບັນທຶກການນຳເຂົ້າ</button>
                                         <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
@@ -250,13 +262,12 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body" align="center">
-                                                        ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນການຜະລິດນ້ຳດື່ມເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
+                                                        ທ່ານຕ້ອງການບັນທຶກການນຳເຂົ້າສິນຄ້າ ຫຼື ບໍ່ ?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             data-dismiss="modal">ຍົກເລີກ</button>
-                                                        <button type="submit" name="btnSave" 
-                                                            class="btn btn-outline-success">ບັນທຶກ</button>
+                                                            <button type="submit" name="btnStock" class="btn btn-outline-success">ບັນທຶກ</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -294,17 +305,82 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete_stock" class="btn btn-outline-danger">ລົບ</button>
                 </div>
             </div>
         </div>
     </div>
 </form>
-
+<form action="import" id="formClear" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" id="exampleModalClear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ຢືນຢັນການລົບຂໍ້ມູນ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" align="center">
+                    <input type="hidden" name="id" id="id">
+                    ທ່ານຕ້ອງການລ້າງລາຍການ ຫຼື ບໍ່ ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button type="submit" name="clear-stock" class="btn btn-outline-danger">ລ້າງລາຍການ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<?php
+  if(isset($_GET['code'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ລະຫັດສິນຄ້າບໍ່ມີໃນລະບົບ !", "info");
+    </script>';
+  }
+  if(isset($_GET['serial'])=='stock'){
+    echo'<script type="text/javascript">
+    swal("", "ໝາຍເລກ Serial Number ນີ້ມີຢູ່ໃນສະຕ໋ອກສິນຄ້າແລ້ວ !", "info");
+    </script>';
+  }
+  if(isset($_GET['no'])=='has'){
+    echo'<script type="text/javascript">
+    swal("", "ໝາຍເລກເຄື່ອງນີ້ມີຢູ່ສະຕ໋ອກສິນຄ້າແລ້ວ !", "info");
+    </script>';
+  }
+  if(isset($_GET['serial-list'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ໝາຍເລກ Serial Number ມີຢູ່ໃນລາຍການແລ້ວ !", "info");
+    </script>';
+  }
+  if(isset($_GET['list-no'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ໝາຍເລກເຄື່ອງນີ້ມີຢູ່ໃນລາຍການແລ້ວ !", "info");
+    </script>';
+  }
+  if(isset($_GET['list'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ກະລຸນາເພີ່ມລາຍການກ່ອນ !", "info");
+    </script>';
+  }
+  if(isset($_GET['save'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດບັນທຶກຂໍ້ມູນໄດ້ ກະລຸນາລອງໃໝ່ອີກຄັ້ງ !", "info");
+    </script>';
+  }
+  if(isset($_GET['save2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ !", "success");
+    </script>';
+  }
+?>
 
 <!-- check form import input not null -->
 <script type="text/javascript">
         const myform = document.getElementById('form1');
+        const stock = document.getElementById('stock');
         const code = document.getElementById('code');
         const serial = document.getElementById('serial');
         const qty = document.getElementById('qty');
@@ -315,6 +391,7 @@
         checkInputs();
         });
         function checkInputs(){
+            const stockValue = stock.value.trim();
           const codeValue = code.value.trim();
           const serialValue = serial.value.trim();
           const qtyValue = qty.value.trim();
@@ -360,6 +437,7 @@
 <!-- check save form import input not null -->
 <script type="text/javascript">
         const myform2 = document.getElementById('formSave');
+        const btnStock = document.getElementById('btnStock');
         const sup_id = document.getElementById('sup_id');
         const rate_id = document.getElementById('rate_id');
         myform2.addEventListener('submit',(e) => {
@@ -367,6 +445,7 @@
         checkInputs2();
         });
         function checkInputs2(){
+            const btnStockValue = btnStock.value.trim();
           const sup_idValue = sup_id.value.trim();
           const rate_idValue = rate_id.value.trim();
           if(sup_idValue === ''){

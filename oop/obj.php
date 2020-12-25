@@ -9,12 +9,6 @@ class obj{
     public $search;
     public static function login($email,$password){
         global $conn;
-        // global $_SESSION['ses_seven_id'];
-        // global $_SESSION['email'];
-        // global $_SESSION['emp_name'];
-        // $_SESSION['emp_id'];
-        // $_SESSION['img_path'];
-        // $_SESSION['ses_status_id'];
         session_start();
         $resultck = mysqli_query($conn, "select * from employee where email='$email' and pass=md5('$password')");
         if($email == "")
@@ -1034,10 +1028,10 @@ class obj{
     //ສິນສຸດການຈັດການຂໍ້ມູນຍີ່ຫໍ້ສິນຄ້າ
 
     //ຈັດການຂໍ້ມູນອັດຕາແລກປ່ຽນ
-    public static function select_rate($search,$page){
+    public static function select_rate(){
         global $conn;
         global $resultrate;
-        $resultrate = mysqli_query($conn,"call rate('$search','$page')");
+        $resultrate = mysqli_query($conn,"select * from rate order by rate_id asc");
     }
     public static function insert_rate($rate_id,$rate_buy,$rate_sell){
         global $conn;
@@ -1406,8 +1400,7 @@ class obj{
                 ];
                 $cart_data[] = $item_array;//ເພີ່ມຂໍ້ມູນຈາກ $item_array ເຂົ້າໄປໃນ $cart_data
             }
-            
-            
+            $item_data ="";
             $item_data = json_encode($cart_data);//ປັບ item_data ໃຫ້ມັນສິ້ນສຸດການຮັບຂໍ້ມູນຈາກ $cart_data
             setcookie('stock_list',$item_data,time() + (86400 * 30));//ຕັ້ງຄ່າເວລາຄຸກກີ້
             echo"<script>";
@@ -2230,7 +2223,10 @@ $obj = new obj();
         <input type="text" name="code" placeholder="code">
         <input type="text" name="serial" placeholder="serial">
         <input type="text" name="qty" placeholder="qty">
-        <input type="text" name="form_id" placeholder="form_id">
+        <input type="text" name="price" placeholder="price">
+        <input type="text" name="pro_no" placeholder="pro_no">
+        <input type="text" name="dnv" placeholder="dnv">
+        <input type="text" name="imp_no" placeholder="imp_no">
         <input type="text" name="remark" placeholder="remark">
         <button type="submit" name="add">add</button>
         <button type="submit" name="save">save</button>
@@ -2241,16 +2237,16 @@ $obj = new obj();
             $obj->save_distribute('001');
         }
         if(isset($_GET['clear'])){
-            $obj->clear_distribute();
+            $obj->clear_stock();
         }
         if(isset($_GET['id'])){
             $obj->del_distribute($_GET['id']);
         }
         if(isset($_POST['add'])){
-            $obj->cookie_distribute($_POST['code'],$_POST['serial'],$_POST['qty'],$_POST['form_id'],$_POST['remark']);
+            $obj->cookie_stock(trim($_POST['code']),trim($_POST['serial']),trim($_POST['qty']),trim($_POST['price']),trim($_POST['pro_no']),trim($_POST['dnv']),trim($_POST['imp_no']),trim($_POST['remark']));
         }
-        $obj->select_distribute_list();
-        if(isset($_COOKIE['distribute_list'])){
+        $obj->select_stock_list();
+        if(isset($_COOKIE['stock_list'])){
     ?>
     <table>
         <?php
@@ -2262,7 +2258,7 @@ $obj = new obj();
             <td><?php echo $values["name"] ?></td>
             <td><?php echo $values["gen"] ?></td>
             <td><?php echo $values["qty"] ?></td>
-            <td><?php echo $values["form_id"] ?></td>
+            <td><?php echo $values["unit_name"] ?></td>
             <td><a href="obj.php?id=<?php echo $values["serial"]; ?>">delete</a></td>
         </tr>
         <?php

@@ -4,8 +4,6 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
-  include (''.$path.'oop/obj.php');
-
   if(isset($_POST['btnDelete'])){
     $obj->delete_supplier(trim($_POST['id']));
   }
