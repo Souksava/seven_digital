@@ -4,9 +4,8 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  $amount = 0;
 ?>
-
-
 <form action="distribute" id="formUpdate" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -85,7 +84,8 @@
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-7">
-            <div class="table-responsive">
+        <div id="result"></div>
+            <!-- <div class="table-responsive">
                 <table class="table" style="width: 1000px;">
                     <tr>
                         <th style="width: 30px;">ສິນຄ້າ</th>
@@ -120,25 +120,7 @@
                         </td>
                     </tr>
                 </table>
-            </div>
-
-            <div>
-                <br>
-                <div class="row">
-                    <div class="col-md-6">
-                        <!-- pagination -->
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="col-md-5">
@@ -146,81 +128,82 @@
                 <div class="card-body">
                     <h5 align="center" class="card-title"></h5>
                     <p class="card-text">
-                    <form action="#" id="formadd" method="POST">
-                        <div class="row">
-                            <div class="col-md-6">
-                                ເລກທີບິນ: 1
-                            </div>
-                            <div class="col-md-6">
-                                <div align="right">
-                                    <button type="button" name="btnAdd" class="btn btn-outline-success"
-                                        data-toggle="modal" data-target="#exampleModal2">ບັນທຶກຟອມເບີກ</button>
-                                    <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body" align="center">
-                                                    ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນຟອມເບີກເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-secondary"
-                                                        data-dismiss="modal">ຍົກເລີກ</button>
-                                                    <button type="submit" name="btnSave"
-                                                        class="btn btn-outline-success">ບັນທຶກ</button>
+                        <form action="#" id="formadd" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    ເລກທີບິນ: 1
+                                </div>
+                                <div class="col-md-6">
+                                    <div align="right">
+                                        <button type="button" name="btnAdd" class="btn btn-outline-success"
+                                            data-toggle="modal" data-target="#exampleModal2">ບັນທຶກຟອມເບີກ</button>
+                                        <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span></button>
+                                                    </div>
+                                                    <div class="modal-body" align="center">
+                                                        ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນຟອມເບີກເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            data-dismiss="modal">ຍົກເລີກ</button>
+                                                        <button type="submit" name="btnSave"
+                                                            class="btn btn-outline-success">ບັນທຶກ</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
-                        <div class="table-responsive2" style="text-align: center;">
-                            <table class="table font12" style="width: 700px">
-                            <tr>
-                        <th>ສິນຄ້າ</th>
-                        <th>ລະຫັດສິນຄ້າ</th>
-                        <th>ຊື່ສິນຄ້າ</th>
-                        <th>ລຸ້ນເຄື່ອງ</th>
-                        <th>ຈຳນວນ</th>
-                        <th>ເລກທີ</th>
-                        <th>ໝາຍເຫດ</th>
-                        <th style="width: 30px;"></th>
-                    </tr>
-                    <tr>
-                        <td style="display:none;">../../image/logo.png</td>
-                        <td scope="row"><img src="../../image/logo.png" alt="" style="width: 30px;heigt: 100px;"></td>
-                        <td>12345678</td>
-                        <td>SD5345SWD</td>
-                        <td>FUJI</td>
-                        <td>2020</td>
-                        <td>2020</td>
-                        <td>remarkabcd</td>
-                        <td style="display:none;">1</td>
-                        <td>
-                        <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                                class="fa fa-trash toolcolor btnDelete_dist"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                            </table>
-                        </div>
                 </div>
-                <div class="col-md-12" align="right">
-                    <br>
-                    <h4 style="color: #CE3131;"> 99 ລາຍການ</h4>
+                <div class="table-responsive2" style="text-align: center;">
+                    <table class="table font12" style="width: 700px">
+                        <tr>
+                            <th>ສິນຄ້າ</th>
+                            <th>ລະຫັດສິນຄ້າ</th>
+                            <th>ຊື່ສິນຄ້າ</th>
+                            <th>ລຸ້ນເຄື່ອງ</th>
+                            <th>ຈຳນວນ</th>
+                            <th>ເລກທີ</th>
+                            <th>ໝາຍເຫດ</th>
+                            <th style="width: 30px;"></th>
+                        </tr>
+                        <tr>
+                            <td style="display:none;">../../image/logo.png</td>
+                            <td scope="row"><img src="../../image/logo.png" alt="" style="width: 30px;heigt: 100px;">
+                            </td>
+                            <td>12345678</td>
+                            <td>SD5345SWD</td>
+                            <td>FUJI</td>
+                            <td>2020</td>
+                            <td>2020</td>
+                            <td>remarkabcd</td>
+                            <td style="display:none;">1</td>
+                            <td>
+                                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
+                                    class="fa fa-trash toolcolor btnDelete_dist"></a>&nbsp; &nbsp;
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-
             </div>
-            </form>
-            </p>
+            <div class="col-md-12" align="right">
+                <br>
+                <h4 style="color: #CE3131;"> <?php echo $amount ?> ລາຍການ</h4>
+            </div>
+
         </div>
+        </form>
+        </p>
     </div>
+</div>
 </div>
 </div>
 </div>
@@ -323,7 +306,45 @@ function checkInputs() {
 ?>
 
 
+<script>
+$(document).ready(function() {
 
+    load_data();
+
+    function load_data(query, page) {
+        $.ajax({
+            url: "fetch_distribute.php",
+            method: "POST",
+            data: {
+                query: query,
+                page: page
+            },
+            success: function(data) {
+                $('#result').html(data);
+            }
+        });
+    }
+    $('#search').keyup(function() {
+        var page = "0";
+        var search = $(this).val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
+        }
+    });
+    $(document).on('click', '.page-links', function() {
+        var page = this.id;
+        console.log(page);
+        var search = $('#search').val();
+        if (search != '') {
+            load_data(search, page);
+        } else {
+            load_data('%%', page);
+        }
+    });
+});
+</script>
 
 
 <?php

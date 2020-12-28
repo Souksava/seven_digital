@@ -9,7 +9,7 @@
 <br>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b>ລາຍການສະຕ໋ອກ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b>ລາຍການນັບສະຕ໋ອກ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
         <form action="check-stock" id="form1" method="POST" enctype="multipart/form-data">
@@ -29,6 +29,7 @@
                         <div class="modal-body">
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
+                                    <input type="hidden" name="check_stock" id="check_stock">
                                     <label>ລະຫັດສິນຄ້າ</label>
                                     <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດສິນຄ້າ">
                                     <i class="fas fa-check-circle "></i>
@@ -85,7 +86,7 @@
                         <th style="width: 180px;" scope="col">Serial Number</th>
                         <th style="width: 60px;" scope="col">ຈຳນວນ</th>
                         <th style="width: 100px;" scope="col">ໝາຍເຫດ</th>
-                        <th style="width: 50px;"></th>
+                        <th style="width: 75px;"><a href="#" data-toggle="modal" data-target="#exampleModalClear" class="clear">ລ້າງ</a></th>
                     </tr>
                     <?php
                         foreach($cart_data as $row){
@@ -94,11 +95,12 @@
                     <tr>
                         <td><?php echo $row['code'] ?></td>
                         <td>
-                        <?php echo $row['cate_name'] ?> <?php echo $row['code'] ?>
+                        <?php echo $row['cate_name'] ?> <?php echo $row['brand_name'] ?> <br>
+                        <?php echo $row['name'] ?>
                         </td>
-                        <td>50</td>
-                        <td>50</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
+                        <td><?php echo $row['serial'] ?></td>
+                        <td><?php echo $row['qty'] ?> <?php echo $row['unit_name'] ?></td>
+                        <td><?php echo $row['remark'] ?></td>
                         <td>
                             <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
                                 class="fa fa-trash toolcolor btnDelete_check"></a>&nbsp; &nbsp;
@@ -145,15 +147,23 @@
                                         <label>ທີ່ຢູ່ຂອງສາງ</label>
                                         <select name="pro_addr" id="pro_addr" class="selectcenter">
                                             <option value="" disabled selected>--- ເລືອກທີ່ຢູ່ຂອງສາງ ---</option>
-                                            <option value="a">ສາງ A</option>
-                                            <option value="a">ສາງ B</option>
+                                            <?php
+                                                $obj->select_pro_addr("%","0");
+                                                foreach($result_pro_addr as $rowpro){
+                                            ?>
+                                            <option value="<?php echo $rowpro['pro_ad'] ?>"><?php echo $rowpro['addr_name'] ?></option>
+                                            <?php
+                                                }
+                                                mysqli_free_result($result_pro_addr);  
+                                                mysqli_next_result($conn);
+                                            ?>
                                         </select>
                                         <i class="fas fa-check-circle "></i>
                                         <i class="fas fa-exclamation-circle "></i>
                                         <small class="">Error message</small>
                                     </div>
                                     <div class="col-md-12" align="center">
-
+                                        <input type="hidden" name="btnCheck_stock" id="btnCheck_stock">
                                         <button type="button" name="btnAdd" class="btn btn-outline-success"
                                             data-toggle="modal" data-target="#exampleModal2">ບັນທຶກການນັບສະຕ໋ອກ</button>
                                         <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
@@ -173,7 +183,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             data-dismiss="modal">ຍົກເລີກ</button>
-                                                        <button type="submit" name="btnSave"
+                                                        <button type="submit" name="btnSave_stock"
                                                             class="btn btn-outline-success">ບັນທຶກ</button>
                                                     </div>
                                                 </div>
@@ -211,16 +221,39 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete_Check_Stock" class="btn btn-outline-danger">ລົບ</button>
                 </div>
             </div>
         </div>
     </div>
 </form>
-
+<form action="check-stock" id="formClear" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" id="exampleModalClear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ຢືນຢັນການລົບຂໍ້ມູນ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" align="center">
+                    <input type="hidden" name="id" id="id">
+                    ທ່ານຕ້ອງການລ້າງລາຍການ ຫຼື ບໍ່ ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button type="submit" name="clear_check_stock" class="btn btn-outline-danger">ລ້າງລາຍການ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <!-- check form import input not null -->
 <script type="text/javascript">
         const myform = document.getElementById('form1');
+        const check_stock = document.getElementById('check_stock');
         const code = document.getElementById('code');
         const serial = document.getElementById('serial');
         const qty = document.getElementById('qty');
@@ -229,9 +262,10 @@
         checkInputs();
         });
         function checkInputs(){
-          const codeValue = code.value.trim();
-          const serialValue = serial.value.trim();
-          const qtyValue = qty.value.trim();
+            const check_stockValue = check_stock.value.trim();
+            const codeValue = code.value.trim();
+            const serialValue = serial.value.trim();
+            const qtyValue = qty.value.trim();
           if(codeValue === ''){
             setErrorFor(code, 'ກະລຸນາປ້ອນລະຫັດສິນຄ້າ');
           }
@@ -260,12 +294,14 @@
 <!-- check form import input not null -->
 <script type="text/javascript">
         const myform2 = document.getElementById('formSave');
+        const btnCheck_stock = document.getElementById('btnCheck_stock');
         const pro_addr = document.getElementById('pro_addr');
         myform2.addEventListener('submit',(e) => {
           e.preventDefault();
         checkInputs2();
         });
         function checkInputs2(){
+            const btnCheck_stockValue = btnCheck_stock.value.trim();
           const pro_addrValue = pro_addr.value.trim();
           if(pro_addrValue === ''){
             setErrorFor(pro_addr, 'ກະລຸນາປ້ອນເລືອກທີ່ຢູ່ຂອງສາງ');
@@ -294,17 +330,27 @@
     swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
-  // check delete
-  if(isset($_GET['del'])=='fail'){
+  if(isset($_GET['code'])=='null'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ລະຫັດສິນຄ້າບໍ່ມີໃນລະບົບ !", "info");
     </script>';
   }
-  if(isset($_GET['del2'])=='success'){
+  if(isset($_GET['code-serial'])=='null'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ລະຫັດສິນຄ້າ ແລະ ໝາຍເລກ Serial ບໍ່ມີໃນລະບົບ !", "info");
     </script>';
   }
+  if(isset($_GET['serial-list'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ໝາຍເລກ Serial ນີ້ມີຢູ່ໃນລາຍການແລ້ວ !", "info");
+    </script>';
+  }
+  if(isset($_GET['list'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ກະລຸນາເພີ່ມລາຍການກ່ອນ !", "info");
+    </script>';
+  }
+
 ?>
 
 <?php

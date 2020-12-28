@@ -1168,6 +1168,23 @@ class obj{
     }
     //ສິ້ນສຸດຈັດການຂໍ້ມູນສາງ
 
+    // formdetail
+    public static function select_formdetail($search,$page){
+        // method ຂອງການດຶງຂໍ້ມູນສະຖານະມາສະແດງ
+        global $resultformdetail;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
+        global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+        $resultformdetail = mysqli_query($conn,"call form_detail('$search','$page');");
+    }
+    public static function select_formdetail_count($search){
+        // method ຂອງການດຶງຂໍ້ມູນສະຖານະມາສະແດງ
+        global $resultformdetail_count;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
+        global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+        $resultformdetail_count = mysqli_query($conn,"call form_detail_count('$search');");
+    }
+
+
+    //end formdetail
+
      //ຈັດການຂໍ້ມູນ form
      public static function select_form($search,$page){
         // method ຂອງການດຶງຂໍ້ມູນສະຖານະມາສະແດງ
@@ -1835,9 +1852,9 @@ class obj{
                     "code2" => $code2,
                     "serial2" => $serial2,
                     "name2" => $name2,
-                    "unit_name" => $unit_name2,
-                    "cate_name" => $cate_name2,
-                    "brand_name" => $brand_name2,
+                    "unit_name2" => $unit_name2,
+                    "cate_name2" => $cate_name2,
+                    "brand_name2" => $brand_name2,
                     "gen2" => $gen2,
                     "remark" => $remark
                 ];
@@ -1916,7 +1933,6 @@ class obj{
         }
     }
     //ສິ້ນສຸດການປ່ຽນອາໄຫຼ່
-
     //form
     public static function select_form_cookie(){
         global $cart_data;
@@ -1927,7 +1943,7 @@ class obj{
     }
     public static function cookie_form($code,$qty){
         global $conn;
-        $check_qty = mysqli_query($conn,"select sum(qty) as qty from products p left join stocks s on p.code=s.code where s.code='$code' group by s.code");
+        $check_qty = mysqli_query($conn,"select sum(qty) as qty from stocks s left join products p on p.code=s.code where s.code='$code' group by s.code");
         $qty_stock = mysqli_fetch_array($check_qty,MYSQLI_ASSOC);
         $q = $qty_stock['qty'];
         if($q <= 0){

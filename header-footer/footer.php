@@ -259,7 +259,7 @@ $(document).ready(function() {
             document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
         }
         else{
-            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[0]);
         }
     });
 
@@ -272,11 +272,15 @@ $(document).ready(function() {
         }).get();
         console.log(data);
 
-        document.getElementById("output2").src = (data[0]);
+        if(data[0] === ''){
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        }
+        else{
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[0]);
+        }
         $('#code').val(data[2]);
-        $('#qty').val(data[3]);
-        $('#form_id').val(data[7]);
-        $('#remark').val(data[9]);
+        $('#qty').val(data[5]);
+        $('#form_id').val(data[8]);
     });
 
     // Delete Modal________________________________________________________________________________________________
@@ -492,7 +496,7 @@ $(document).ready(function() {
             return $(this).text();
         }).get();
         console.log(data);
-        $('#id').val(data[0]);
+        $('#id').val(data[2]);
     });
     // delete spare-part
     $('.btnDelete_sp').on('click', function() {

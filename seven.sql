@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 24, 2020 at 04:50 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.25
+-- Host: localhost
+-- Generation Time: Dec 28, 2020 at 11:00 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -165,7 +166,12 @@ select form_id,f.emp_id,f.cus_id,form_date,stt_accept,status,usr_acc,emp_name,co
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `form_detail` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select id,fd.code,qty,fd.form_id from formdetail fd left join product p on fd.code=p.code left join form f on fd.form_id=f.form_id where id like s or fd.code like s or qty like s or fd.form_id like s order by fd.code ASC limit 15 OFFSET page;
+select id,fd.code,pro_name,unit_name,cate_name,brand_name,f.form_date,f.form_time,f.stt_accept,f.emp_id,emp_name,f.cus_id,company,packing_no,gen,qty,fd.form_id,p.img_path from formdetail fd left join form f on fd.form_id=f.form_id left join products p on fd.code=p.code left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id left join customer cs on f.cus_id=cs.cus_id left join employee em on f.emp_id=em.emp_id where (fd.code like s or fd.form_id like s or company like s or emp_name like s) and stt_accept='ອະນຸມັດ' order by f.form_date ASC limit page,15;
+end$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `form_detail_count` (IN `s` VARCHAR(50))  NO SQL
+begin
+select id,fd.code,pro_name,unit_name,cate_name,brand_name,f.form_date,f.form_time,f.stt_accept,f.emp_id,emp_name,f.cus_id,company,packing_no,qty,fd.form_id from formdetail fd left join form f on fd.form_id=f.form_id left join products p on fd.code=p.code left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id left join customer cs on f.cus_id=cs.cus_id left join employee em on f.emp_id=em.emp_id where (fd.code like s or fd.form_id like s or company like s or emp_name like s) and stt_accept='ອະນຸມັດ' order by f.form_date ASC;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_auther` (`autherid` VARCHAR(20), `authername` VARCHAR(50))  Begin
@@ -450,7 +456,10 @@ INSERT INTO `check_stock` (`id`, `code`, `serial`, `qty`, `emp_id`, `check_date`
 (1, '1', 'a', 1, '001', '2020-11-13', '10:16:00', 1, 'a'),
 (2, '2', 'aa', 11, '001', '2020-11-13', '10:16:00', 2, 'aa'),
 (3, '1', 'a', 1, '001', '2020-12-23', '11:16:34', 1, '1'),
-(4, '2', 'aa', 1, '001', '2020-12-23', '11:16:34', 1, 'remark');
+(4, '2', 'aa', 1, '001', '2020-12-23', '11:16:34', 1, 'remark'),
+(5, '1', 'a', 1, '001', '2020-12-28', '11:38:50', 1, 'remark'),
+(6, '2', 'aa', 1, '001', '2020-12-28', '11:38:50', 1, 'remark'),
+(7, '1', 'fff', 1, '001', '2020-12-28', '11:38:50', 1, 'remark');
 
 -- --------------------------------------------------------
 
@@ -537,7 +546,9 @@ CREATE TABLE `distribute` (
 
 INSERT INTO `distribute` (`id`, `code`, `serial`, `qty`, `emp_id`, `form_id`, `dis_date`, `dis_time`, `remark`) VALUES
 (4, '1', 'a', 1, '001', 1, '2020-11-13', '09:12:00', 'a'),
-(5, '2', 'aa', 2, '001', 2, '2020-11-13', '09:12:00', 'aa');
+(5, '2', 'aa', 2, '001', 2, '2020-11-13', '09:12:00', 'aa'),
+(6, '1', 'a', 1, '001', 1, '2020-12-24', '15:46:18', 'remark'),
+(7, '2', 'aa', 1, '001', 1, '2020-12-24', '15:46:18', 'remark');
 
 -- --------------------------------------------------------
 
@@ -564,7 +575,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`emp_id`, `emp_name`, `emp_surname`, `gender`, `tel`, `address`, `email`, `pass`, `auther_id`, `stt_id`, `img_path`) VALUES
-('001', 'test', 'test', 'ຍິງ', '0203213', 'test', 'test', 'e3361486e153b26b36aad2f01e6c90c6', '001', 2, 'seven_5fe18832b182c.jpeg');
+('001', 'Seven', 'test', 'ຍິງ', '0203213', 'test', 'seven@seven.com', '202cb962ac59075b964b07152d234b70', '001', 2, 'seven_5fe18832b182c.jpeg');
 
 -- --------------------------------------------------------
 
@@ -609,7 +620,7 @@ CREATE TABLE `form` (
 --
 
 INSERT INTO `form` (`form_id`, `emp_id`, `cus_id`, `amount`, `packing_no`, `form_date`, `form_time`, `stt_accept`, `status`, `usr_acc`) VALUES
-(1, '001', '1', '10.00', NULL, '2020-11-13', '09:26:00', 'a', 'b', 'c'),
+(1, '001', '1', '10.00', NULL, '2020-11-13', '09:26:00', 'ອະນຸມັດ', 'ເບີກຈ່າຍແລ້ວ', 'c'),
 (2, '001', '2', '10.00', NULL, '0000-00-00', '09:23:00', 'a', 'b', 'c'),
 (5, '001', '2', '10.00', 1, '0000-00-00', '09:23:00', 'a', 'b', 'c');
 
@@ -703,7 +714,9 @@ CREATE TABLE `product_putback_stock` (
 INSERT INTO `product_putback_stock` (`id`, `code`, `serial`, `qty`, `emp_id`, `form_id`, `date_back`, `time_back`, `remark`) VALUES
 (1, '1', 'b', 2, '001', 1, '2020-11-13', '10:15:00', 'c'),
 (2, '2', 'aa', 2, '001', 2, '2020-11-13', '10:11:00', 'aa'),
-(3, '2', 'aa', 1, '001', 2, '2020-11-13', '10:11:00', 'a');
+(3, '2', 'aa', 1, '001', 2, '2020-11-13', '10:11:00', 'a'),
+(4, '1', 'a', 1, '001', 1, '2020-12-24', '11:08:39', 'remark'),
+(5, '2', 'aa', 1, '001', 2, '2020-12-24', '11:08:39', 'remark');
 
 -- --------------------------------------------------------
 
@@ -753,7 +766,9 @@ INSERT INTO `spare_part` (`id`, `emp_id`, `code`, `serial`, `spare_part`, `pro_i
 (3, '001', '1', 'a', 'test1', '2', 'aa', '2020-12-23', '14:56:50', 'test1'),
 (4, '001', '1', 'a', 'test2', '2', 'aa', '2020-12-23', '14:56:50', 'test2'),
 (5, '001', '1', 'a', 'test1', '2', 'aa', '2020-12-23', '14:57:29', 'test1'),
-(6, '001', '1', 'a', 'test2', '2', 'aa', '2020-12-23', '14:57:29', 'test2');
+(6, '001', '1', 'a', 'test2', '2', 'aa', '2020-12-23', '14:57:29', 'test2'),
+(7, '001', '1', 'a', 'test', '2', 'aa', '2020-12-28', '15:15:03', 'remark'),
+(8, '001', '1', 'a', 'test2', '1', 'fff', '2020-12-28', '15:15:03', 'remark');
 
 -- --------------------------------------------------------
 
@@ -784,8 +799,9 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`sk_id`, `code`, `serial`, `qty`, `price`, `dnv`, `imp_no`, `imp_date`, `imp_time`, `pro_no`, `rate_id`, `rate`, `emp_id`, `sup_id`, `remark`) VALUES
-(1, '1', 'a', 5, '10.00', 'b', '1', '2020-11-13', '09:41:00', '1', '1', '1.20', '001', '1', 'c'),
-(2, '2', 'aa', 55, '1.10', 'cc', 'dd', '2020-11-13', '09:41:00', '11', '1', '1.20', '001', '1', 'cc');
+(1, '1', 'a', 4, '10.00', 'b', '1', '2020-11-13', '09:41:00', '1', '1', '1.20', '001', '1', 'c'),
+(2, '2', 'aa', 54, '1.10', 'cc', 'dd', '2020-11-13', '09:41:00', '11', '1', '1.20', '001', '1', 'cc'),
+(3, '1', 'FFF', 1, '100000.00', '001', '100', '2020-12-25', '14:45:33', '3', '1', '1.10', '001', '1', '');
 
 -- --------------------------------------------------------
 
@@ -991,13 +1007,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `check_stock`
 --
 ALTER TABLE `check_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `distribute`
 --
 ALTER TABLE `distribute`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `formdetail`
@@ -1015,19 +1031,19 @@ ALTER TABLE `product_addr`
 -- AUTO_INCREMENT for table `product_putback_stock`
 --
 ALTER TABLE `product_putback_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `spare_part`
 --
 ALTER TABLE `spare_part`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `sk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `unit`

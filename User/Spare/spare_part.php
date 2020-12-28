@@ -29,6 +29,7 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດເຄື່ອງຖອດອາໄຫຼ່</label>
+                                    <input type="hidden" name="add_spare" id="add_spare">
                                     <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດເຄື່ອງຖອດອາໄຫຼ່">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
@@ -83,48 +84,14 @@
     </div>
 </div>
 <div class="clearfix"></div>
-<!-- <form action="make2.php" id="form1" method="POST">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ລະຫັດສິນຄ້າ</label>
-                <input type="text" class="form-control" placeholder="ລະຫັດສິນຄ້າ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>Serial Number</label>
-                <input type="text" class="form-control" placeholder="Serial Number"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ຈຳນວນ</label>
-                <input type="text" class="form-control" placeholder="ຈຳນວນ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ລາຄາ</label>
-                <input type="text" class="form-control" placeholder="ລາຄາ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ເລກທີໃບສັ່ງຊື້ D.N.V</label>
-                <input type="text" class="form-control" placeholder="ເລກທີໃບສັ່ງຊື້ D.N.V"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ເລກທີບິນນຳເຂົ້າສິນຄ້າ</label>
-                <input type="text" class="form-control" placeholder="ເລກທີບິນນຳເຂົ້າສິນຄ້າ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ໝາຍເຫດ</label>
-                <div class="input-group">        
-                    <input type="text" name="pro_id"  placeholder="ໝາຍເຫດ" class="form-control">
-                    <div class="input-group-prepend">
-                        <button type="submit" name="btnAdd" class="btn btn-outline-primary">ເພີ່ມລາຍການ</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form> -->
-
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-8">
-            <div class="table-responsive">
+        <?php
+        $obj->select_spare_part();
+        if(isset($_COOKIE['spare_parts'])){
+        ?>
+         <div class="table-responsive">
                 <table class="table" style="width: 1450px;">
                     <tr>
                         <th style="width: 180px;" scope="col">ລະຫັດເຄື່ອງຖອດອາໄຫຼ່</th>
@@ -135,29 +102,51 @@
                         <th style="width: 100px;" scope="col">ຊື່ສິນຄ້າເຄື່ອງປ່ຽນ</th>
                         <th style="width: 180px;" scope="col">Serial Number ເຄື່ອງປ່ຽນ</th>
                         <th style="width: 100px;" scope="col">ໝາຍເຫດ</th>
-                        <th style="width: 100px; text-align: center">ລ້າງລາຍການ</th>
+                        <th style="width: 75px;"><a href="#" data-toggle="modal" data-target="#exampleModalClear" class="clear">ລ້າງ</a></th>
                     </tr>
+                    <?php
+                        foreach($cart_data as $row){
+                    ?>
                     <tr>
-                        <td style="display:none">1</td>
-                        <td>2525252525</td>
-                        <td>2625125152</td>
-                        <td>50</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
-                        <td>sfklglskfdglksdfgsdfg</td>
-                        <td style="display:none">12/09/2020</td>
-                        <td style="display:none">12:10:50</td>
+                        <td style="display:none"><?php echo $row['id']?></td>
+                        <td><?php echo $row['code']; ?></td>
+                        <td>
+                        <?php echo $row['cate_name']; ?><?php echo $row['brand_name']; ?> <br>
+                        <?php echo $row['name']; ?>
+                        </td>
+                        <td><?php echo $row['serial']; ?></td>
+                        <td><?php echo $row['spare']; ?></td>
+                        <td><?php echo $row['code2']; ?></td>
+                        <td>
+                        <?php echo $row['cate_name']; ?> <?php echo $row['brand_name']; ?><br>
+                        <?php echo $row['name2']; ?>
+                        </td>
+                        <td><?php echo $row['serial2']; ?></td>
+                        <td><?php echo $row['remark']; ?></td>
                         
                         <td style="text-align: center;">
                             <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
                                 class="fa fa-trash toolcolor btnDelete_sp"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
+                    <?php
+                        }
+                    ?>
                 </table>
-                <hr size="3" align="center" width="100%">
+                <hr size="3" align="center" width="1450px">
             </div>
+        <?php
+        }
+        else{
+            echo'
+            <div align="center">
+                <hr size="1" style="width: 90%;"/>
+                    ຍັງບໍ່ມີຂໍ້ມູນ
+                <hr size="1" style="width: 90%;"/>
+            </div>
+        ';
+        }
+        ?>
         </div>
         <div class="col-lg-3 font12">
             <div class="row row-cols-1 row-cols-md-1">
@@ -189,7 +178,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             data-dismiss="modal">ຍົກເລີກ</button>
-                                                        <button type="submit" name="btnSave"
+                                                        <button type="submit" name="btnSave_spare"
                                                             class="btn btn-outline-success">ບັນທຶກ</button>
                                                     </div>
                                                 </div>
@@ -228,16 +217,38 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete_spare" class="btn btn-outline-danger">ລົບ</button>
                 </div>
             </div>
         </div>
     </div>
 </form>
-
+<form action="spare-part" id="formClear" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" id="exampleModalClear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ຢືນຢັນການລົບຂໍ້ມູນ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" align="center">
+                    ທ່ານຕ້ອງການລ້າງລາຍການ ຫຼື ບໍ່ ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button type="submit" name="clear_spare" class="btn btn-outline-danger">ລ້າງລາຍການ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <!-- check form input not null -->
 <script type="text/javascript">
 const myform = document.getElementById('form1');
+const add_spare = document.getElementById('add_spare');
 const code = document.getElementById('code');
 const serialout = document.getElementById('serialout');
 const spare_part = document.getElementById('spare_part');
@@ -250,6 +261,7 @@ myform.addEventListener('submit', (e) => {
 });
 
 function checkInputs() {
+    const add_spareValue = add_spare.value.trim();
     const codeValue = code.value.trim();
     const serialoutValue = serialout.value.trim();
     const spare_partValue = spare_part.value.trim();
@@ -300,15 +312,39 @@ function checkInputs() {
     swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
-  // check delete
-  if(isset($_GET['del'])=='fail'){
+  if(isset($_GET['code'])=='null'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ລະຫັດສິນຄ້າບໍ່ມີໃນລະບົບ !", "info");
     </script>';
   }
-  if(isset($_GET['del2'])=='success'){
+  if(isset($_GET['code-serial'])=='null'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ລະຫັດສິນຄ້າ ແລະ ໝາຍເລກ Serial ເຄື່ອງຖອດອາໄຫຼ່ ບໍ່ມີໃນລະບົບ !", "info");
+    </script>';
+  }
+  if(isset($_GET['code2'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ລະຫັດສິນຄ້າເຄື່ອງປ່ຽນອາໄຫຼ່ບໍ່ມີໃນລະບົບ !", "info");
+    </script>';
+  }
+  if(isset($_GET['code-serial2'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ລະຫັດສິນຄ້າ ແລະ ໝາຍເລກ Serial ເຄື່ອງປ່ຽນອາໄຫຼ່ ບໍ່ມີໃນລະບົບ !", "info");
+    </script>';
+  }
+  if(isset($_GET['qty'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ລະຫັດສິນຄ້າ ແລະ ໝາຍເລກ Serial ເຄື່ອງຖອດອາໄຫຼ່ບໍ່ມີໃນສະຕ໋ອກ !", "info");
+    </script>';
+  }
+  if(isset($_GET['qty2'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ລະຫັດສິນຄ້າ ແລະ ໝາຍເລກ Serial ເຄື່ອງປ່ຽນອາໄຫຼ່ບໍ່ມີໃນສະຕ໋ອກ !", "info");
+    </script>';
+  }
+  if(isset($_GET['code-in'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດເພີ່ມລາຍການໄດ້ເນື່ອງຈາກລະຫັດສິນຄ້າເຄື່ອງຖອດ ແລະ ເຄື່ອງປ່ຽນອາໄຫຼ່ແມ່ນລະຫັດດຽວກັນ !", "error");
     </script>';
   }
 ?>

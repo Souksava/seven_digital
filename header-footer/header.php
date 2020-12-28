@@ -47,10 +47,35 @@
             }
             //End Import
             // Check-Stock
-            if(isset($_POST['btnAdd_check_stock'])){
+            if(isset($_POST['check_stock'])){
                 $obj->cookie_check_stock(trim($_POST['code']),trim($_POST['serial']),trim($_POST['qty']),trim($_POST['remark']));
             }
+            if(isset($_POST['btnDelete_Check_Stock'])){
+                $obj->del_check_stock(trim($_POST['id']));
+            }
+            if(isset($_POST['clear_check_stock'])){
+                $obj->clear_check_stock();
+            }
             
+            if(isset($_POST['btnCheck_stock'])){
+                $obj->save_check_stock($_SESSION['emp_id'],$_POST['pro_addr']);
+            }
+            //End Check-Stock
+
+            //Spare-part
+            if(isset($_POST['add_spare'])){
+                $obj->cookie_spare_part(trim($_POST['code']),trim($_POST['serialout']),trim($_POST['spare_part']),trim($_POST['pro_id']),trim($_POST['serialin']),trim($_POST['remark']));
+            }
+            if(isset($_POST['btnDelete_spare'])){
+                $obj->del_spare_part(trim($_POST['id']));
+            }
+            if(isset($_POST['clear_spare'])){
+                $obj->clear_spare_part();
+            }
+            if(isset($_POST['btnSave_spare'])){
+                $obj->save_spare_part($_SESSION['emp_id']);
+            }
+            //ປ່ຽນອາໄຫຼ່ End Spare-Part
       
     }
       ?>
@@ -193,7 +218,7 @@
                                             if ($title == "ເບີກສິນຄ້າ"){
                                                 echo '<form class="form-inline ml-3">
                                                 <div class="input-group input-group-sm">
-                                                  <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                                  <input class="form-control form-control-navbar" type="search" name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
                                                   <div class="input-group-append">
                                                     <button class="btn btn-navbar" type="submit">
                                                       <i class="fas fa-search"></i>

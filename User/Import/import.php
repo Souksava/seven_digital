@@ -157,7 +157,7 @@
                         </td>
                         <td><?php echo $values['serial'] ?></td>
                         <td><?php echo $values['gen'] ?></td>
-                        <td><?php echo $values['qty'] ?></td>
+                        <td><?php echo $values['qty'] ?>  <?php echo $values['unit_name'] ?></td>
                         <td><?php echo number_format($values['price'],2) ?></td>
                         <td><?php echo number_format($values['qty'] * $values['price'],2) ?></td>
                         <td><?php echo $values['dnv'] ?></td>
