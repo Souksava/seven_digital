@@ -3,6 +3,7 @@
   $path = "../";
   $links = "";
   $session_path = "../";
+  include (''.$path.'oop/obj.php');
   include ("../header-footer/header.php");
 ?>
 <div class="row">

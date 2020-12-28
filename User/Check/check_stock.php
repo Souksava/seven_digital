@@ -4,13 +4,13 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  $amount = 0;
 ?>
 <br>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
         <b>ລາຍການສະຕ໋ອກ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
-
     <div style="width: 46%; float: right;" align="right">
         <form action="check-stock" id="form1" method="POST" enctype="multipart/form-data">
             <a href="#" data-toggle="modal" data-target="#exampleModalemp">
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຈຳນວນ</label>
-                                    <input type="text" name="qty" id="qty" class="form-control" placeholder="ຈຳນວນ">
+                                    <input type="number" min="0" name="qty" id="qty" class="form-control" placeholder="ຈຳນວນ">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -61,7 +61,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
                                 data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="btnSave" class="btn btn-outline-primary">ບັນທຶກ</button>
+                            <button type="submit" name="btnAdd_check_stock" class="btn btn-outline-primary">ເພີ່ມລາຍການ</button>
                         </div>
                     </div>
                 </div>
@@ -69,49 +69,14 @@
         </form>
     </div>
 </div>
-
 <div class="clearfix"></div>
-<!-- <form action="make2.php" id="form1" method="POST">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ລະຫັດສິນຄ້າ</label>
-                <input type="text" class="form-control" placeholder="ລະຫັດສິນຄ້າ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>Serial Number</label>
-                <input type="text" class="form-control" placeholder="Serial Number"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ຈຳນວນ</label>
-                <input type="text" class="form-control" placeholder="ຈຳນວນ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ລາຄາ</label>
-                <input type="text" class="form-control" placeholder="ລາຄາ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ເລກທີໃບສັ່ງຊື້ D.N.V</label>
-                <input type="text" class="form-control" placeholder="ເລກທີໃບສັ່ງຊື້ D.N.V"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ເລກທີບິນນຳເຂົ້າສິນຄ້າ</label>
-                <input type="text" class="form-control" placeholder="ເລກທີບິນນຳເຂົ້າສິນຄ້າ"><br>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3"> 
-                <label>ໝາຍເຫດ</label>
-                <div class="input-group">        
-                    <input type="text" name="pro_id"  placeholder="ໝາຍເຫດ" class="form-control">
-                    <div class="input-group-prepend">
-                        <button type="submit" name="btnAdd" class="btn btn-outline-primary">ເພີ່ມລາຍການ</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form> -->
-
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-8">
+            <?php 
+            $obj->select_check_stock();
+            if(isset($_COOKIE['check_stock'])){
+            ?>
             <div class="table-responsive">
                 <table class="table" style="width: 1100px;">
                     <tr>
@@ -122,13 +87,16 @@
                         <th style="width: 100px;" scope="col">ໝາຍເຫດ</th>
                         <th style="width: 50px;"></th>
                     </tr>
+                    <?php
+                        foreach($cart_data as $row){
+                        $amount += $row['qty'];
+                    ?>
                     <tr>
-                    <td style="display:none">1</td>
-                        <td>2525252525</td>
-                        <td>2625125152</td>
+                        <td><?php echo $row['code'] ?></td>
+                        <td>
+                        <?php echo $row['cate_name'] ?> <?php echo $row['code'] ?>
+                        </td>
                         <td>50</td>
-                        <td style="display:none;">9/12/2020</td>
-                        <td style="display:none;">9:10:50</td>
                         <td>50</td>
                         <td>sfklglskfdglksdfgsdfg</td>
                         <td>
@@ -136,21 +104,26 @@
                                 class="fa fa-trash toolcolor btnDelete_check"></a>&nbsp; &nbsp;
                         </td>
                     </tr>
+                    <?php
+                        }
+                    ?>
                 </table>
                 <hr size="3" align="center" width="100%">
             </div>
+            <?php
+            }
+            else{
+                echo'
+                <div align="center">
+                    <hr size="1" style="width: 90%;"/>
+                        ຍັງບໍ່ມີຂໍ້ມູນ
+                    <hr size="1" style="width: 90%;"/>
+                </div>
+            ';
+            }
+            ?>
             <!-- pagination -->
             <br>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-                </ul>
-            </nav>
-
         </div>
         <div class="col-lg-3 font12">
             <div class="row row-cols-1 row-cols-md-1">
@@ -165,7 +138,7 @@
                                     ຍອມລວມ
                                     </div>
                                         <div class="col-md-6 " align="right">
-                                             <h4 style="color: #CE3131;"> 990</h4>
+                                             <h4 style="color: #CE3131;"> <?php echo $amount ?></h4>
                                         </div>
                                     <hr size="3" align="center" width="100%">
                                     <div class="col-md-12 form-control2">
@@ -220,7 +193,6 @@
 </div>
 <!-- /.content-wrapper -->
 <br>
-
 <!-- modal form delete -->
 <form action="check-stock" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

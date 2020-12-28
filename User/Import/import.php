@@ -1,11 +1,9 @@
 <?php
-  $title = "ນຳເຂົ້າສິນຄ້າ";
-  $path="../../";
-  $links = "../";
-  $session_path = "../../";
-  include ("../../header-footer/header.php");
-
-
+    $title = "ນຳເຂົ້າສິນຄ້າ";
+    $path="../../";
+    $links = "../";
+    $session_path = "../../";
+    include ("../../header-footer/header.php");
     $amount = 0;
 ?>
 <br>

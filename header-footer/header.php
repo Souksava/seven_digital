@@ -31,7 +31,8 @@
         echo"<meta http-equiv='refresh' content='1;URL=$path'>";
     }
     else{
-        include (''.$path.'oop/obj.php');
+            include (''.$path.'oop/obj.php');
+            // Import
             if(isset($_POST['stock'])){
                 $obj->cookie_stock(trim($_POST['code']),trim($_POST['serial']),trim($_POST['qty']),trim($_POST['price']),trim($_POST['pro_no']),trim($_POST['dnv']),trim($_POST['imp_no']),trim($_POST['remark']));
             }
@@ -44,11 +45,15 @@
             if(isset($_POST['btnStock'])){
                 $obj->save_stock(trim($_POST['sup_id']),trim($_POST['rate_id']),$_SESSION['emp_id']);
             }
+            //End Import
+            // Check-Stock
+            if(isset($_POST['btnAdd_check_stock'])){
+                $obj->cookie_check_stock(trim($_POST['code']),trim($_POST['serial']),trim($_POST['qty']),trim($_POST['remark']));
+            }
             
       
     }
       ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -64,8 +69,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tcususdominus Bbootstrap 4 -->
-    <link rel="stylesheet"
-        href="<?php echo $path ?>plugins/tcususdominus-bootstrap-4/css/tcususdominus-bootstrap-4.min.css">
+    <!-- <link rel="stylesheet"
+        href="<?php echo $path ?>plugins/tcususdominus-bootstrap-4/css/tcususdominus-bootstrap-4.min.css"> -->
     <!-- iCheck -->
     <link rel="stylesheet" href="<?php echo $path ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
@@ -514,7 +519,7 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-        <form action="Main" method="POST" id="formLogout">
+        <form action="#" method="POST" id="formLogout">
             <div class="modal fade font14" id="exampleModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">

@@ -4,10 +4,7 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
-  include (''.$path.'oop/obj.php');
-
 ?>
-
 <div style="width: 100%;">
     <b>ລາຍການຟອມ</b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
 </div>
