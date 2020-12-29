@@ -1440,6 +1440,10 @@ class obj{
                 unset($cart_data[$keys]);//ລົບຂໍ້ມູນຢູ່ຄຸກກີ້ໝົດແຖວທີ່ມີໄອດີຕົງກັນ
                 $item_data = json_encode($cart_data);//ໃຫ້ຈົບການສ້າງອາເລໃນຮູບແບບ json
                 setcookie('stock_list',$item_data,time() + (86400 * 30));//ຕັ້ງເວລາຄຸກກີ້
+                foreach($cart_data as $keys => $values){}
+                if(!$cart_data[$keys]){
+                    setcookie("stock_list","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                }
                 echo"<script>";
                 echo"window.location.href='import';";
                 echo"</script>";
@@ -1501,22 +1505,28 @@ class obj{
         $check_serail_stock = mysqli_query($conn,"select * from stocks where serial='$serial' and code='$code'");
         $stock_qty = mysqli_fetch_array($check_serail_stock,MYSQLI_ASSOC);
         $check_form = mysqli_query($conn,"select * from form where form_id='$form_id' and stt_accept='ອະນຸມັດ'");
+        $check_form2 = mysqli_query($conn,"select * from form where form_id='$form_id'");
         if(mysqli_num_rows($check_code) <= 0){
             echo"<script>";
             echo"window.location.href='distribute?code=null';";
             echo"</script>";
        }
-       else if(mysqli_num_rows($check_serail_stock) <= 0){
+       elseif(mysqli_num_rows($check_serail_stock) <= 0){
             echo"<script>";
             echo"window.location.href='distribute?code-serial=null';";
             echo"</script>";
        }
-       else if($stock_qty['qty'] < $qty){
+       elseif($stock_qty['qty'] < $qty){
         echo"<script>";
         echo"window.location.href='distribute?qty=than';";
         echo"</script>";
         }
-        else if(mysqli_num_rows($check_form) <= 0){
+        elseif(mysqli_num_rows($check_form2) <= 0){
+            echo"<script>";
+            echo"window.location.href='distribute?form2=null';";
+            echo"</script>";
+       }
+        elseif(mysqli_num_rows($check_form) <= 0){
             echo"<script>";
             echo"window.location.href='distribute?form=false';";
             echo"</script>";
@@ -1580,6 +1590,10 @@ class obj{
                 unset($cart_data[$keys]);//ລົບຂໍ້ມູນຢູ່ຄຸກກີ້ໝົດແຖວທີ່ມີໄອດີຕົງກັນ
                 $item_data = json_encode($cart_data);//ໃຫ້ຈົບການສ້າງອາເລໃນຮູບແບບ json
                 setcookie('distribute_list',$item_data,time() + (86400 * 30));//ຕັ້ງເວລາຄຸກກີ້
+                foreach($cart_data as $keys => $values){}
+                if(!$cart_data[$keys]){
+                    setcookie("distribute_list","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                }
                 echo"<script>";
                 echo"window.location.href='distribute';";
                 echo"</script>";
@@ -1596,6 +1610,8 @@ class obj{
         global $conn;
         global $Date;
         global $Time;
+        global $alert;
+        $alert = '';
         $status = "ເບີກຈ່າຍແລ້ວ";
         if(isset($_COOKIE['distribute_list'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
             $cookie_data = stripcslashes($_COOKIE['distribute_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
@@ -1607,15 +1623,16 @@ class obj{
                 $check = mysqli_query($conn,"select * from stocks where code='$check_code' and serial='$check_serial'");
                 $db_qty = mysqli_fetch_array($check,MYSQLI_ASSOC);
                 if($check_qty > $db_qty['qty']){
-                    echo'
+                    $alert = '
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>ບໍ່ສາມາດບັນທຶກຂໍ້ມູນໄດ້!</strong> ເນື່ອງຈາກຈຳນວນສິນຄ້າລະຫັດ '.$check_code.' Serial '.$check_serial.' ໃນລາຍການເກີນກວ່າຈຳນວນທີ່ຢູ່ໃນສະຕ໋ອກ .
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
                     ';
                     $i = true;
-                    break;
-                    
+                    break;        
                 }
             }
             if($i == true){
@@ -1647,7 +1664,7 @@ class obj{
         }
         else{
             echo"<script>";
-            echo"window.location.href='import?list=null';";
+            echo"window.location.href='distribute?list=null';";
             echo"</script>";
         }
     }
@@ -1765,6 +1782,10 @@ class obj{
                 unset($cart_data[$keys]);//ລົບຂໍ້ມູນຢູ່ຄຸກກີ້ໝົດແຖວທີ່ມີໄອດີຕົງກັນ
                 $item_data = json_encode($cart_data);//ໃຫ້ຈົບການສ້າງອາເລໃນຮູບແບບ json
                 setcookie('check_stock',$item_data,time() + (86400 * 30));//ຕັ້ງເວລາຄຸກກີ້
+                foreach($cart_data as $keys => $values){}
+                if(!$cart_data[$keys]){
+                    setcookie("check_stock","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
+                }
                 echo"<script>";
                 echo"window.location.href='check-stock';";
                 echo"</script>";
@@ -2038,6 +2059,8 @@ class obj{
         global $conn;
         global $Date;
         global $Time;
+        global $alert;
+        $alert = '';
         $stt_accept = 'ຍັງບໍ່ອະນຸມັດ';
         $status = "ຍັງບໍ່ທັນເບີກ";
         $usr_acc = "";
@@ -2050,10 +2073,12 @@ class obj{
                 $check = mysqli_query($conn,"select sum(qty) as qty from products p left join stocks s on p.code=s.code where s.code='$check_code' group by s.code");
                 $db_qty = mysqli_fetch_array($check,MYSQLI_ASSOC);
                 if($check_qty > $db_qty['qty']){
-                    echo'
+                    $alert = '
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>ບໍ່ສາມາດບັນທຶກຂໍ້ມູນໄດ້!</strong> ເນື່ອງຈາກຈຳນວນສິນຄ້າລະຫັດ '.$check_code.' ໃນລາຍການເກີນກວ່າຈຳນວນທີ່ຢູ່ໃນສະຕ໋ອກ .
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong>ບໍ່ສາມາດບັນທຶກຂໍ້ມູນໄດ້!</strong> ເນື່ອງຈາກຈຳນວນສິນຄ້າລະຫັດ '.$check_code.' Serial '.$check_serial.' ໃນລາຍການເກີນກວ່າຈຳນວນທີ່ຢູ່ໃນສະຕ໋ອກ .
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
                     ';
                     $i = true;
@@ -2108,15 +2133,33 @@ class obj{
     public static function cookie_putback($code,$serial,$qty,$form_id,$remark){
         global $conn;
         $check_code = mysqli_query($conn,"select code,pro_name,gen,cate_name,unit_name,brand_name,qtyalert,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code'");
-        $check_serail_distribute = mysqli_query($conn,"select * from distribute where (serial='$serial' and code='$code') and form_id='$form_id' ");
+        $check_serail_distribute = mysqli_query($conn,"select * from distribute where serial='$serial' and code='$code'");
+        $check_serail_distribute2 = mysqli_query($conn,"select * from distribute where (serial='$serial' and code='$code') and form_id='$form_id' ");
+        $check_form = mysqli_query($conn,"select * from form where form_id='$form_id' and stt_accept='ອະນຸມັດ'");
+        $check_form2 = mysqli_query($conn,"select * from form where form_id='$form_id'");
         if(mysqli_num_rows($check_code) <= 0){
             echo"<script>";
             echo"window.location.href='product-putback?code=null';";
             echo"</script>";
        }
        else if(mysqli_num_rows($check_serail_distribute) <= 0){
+        echo"<script>";
+        echo"window.location.href='product-putback?code-serial-form=null';";
+        echo"</script>";
+        }
+       elseif(mysqli_num_rows($check_form2) <= 0){
+        echo"<script>";
+        echo"window.location.href='product-putback?form2=null';";
+        echo"</script>";
+        }
+        elseif(mysqli_num_rows($check_form) <= 0){
             echo"<script>";
-            echo"window.location.href='product-putback?code-serial-form=null';";
+            echo"window.location.href='product-putback?form=false';";
+            echo"</script>";
+        }
+        else if(mysqli_num_rows($check_serail_distribute2) <= 0){
+            echo"<script>";
+            echo"window.location.href='product-putback?code-serial-form2=null';";
             echo"</script>";
        }
         else{
@@ -2134,11 +2177,15 @@ class obj{
                 echo"</script>";
             }
             else{ // ຖ້າວ່າໄອດີບໍ່ຕົງກັນໃຫ້ເພີ່ມຂໍ້ມູນເຂົ້າໃນຄຸກກີ້
-                $getin = mysqli_query($conn,"select * from products where code='$code'");
+                $getin = mysqli_query($conn,"select code,pro_name,gen,cate_name,unit_name,brand_name,qtyalert,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code'");
                 $get_info = mysqli_fetch_array($getin,MYSQLI_ASSOC);
                 $name = $get_info['pro_name'];
                 $gen = $get_info['gen'];
                 $img_path = $get_info['img_path'];
+                $brand_name = $get_info['brand_name'];
+                $unit_name = $get_info['unit_name'];
+                $cate_name = $get_info['cate_name'];
+
                 $get_cus = mysqli_query($conn,"select company from form f left join customer c on f.cus_id=c.cus_id where form_id='$form_id'");
                 $cus_name = mysqli_fetch_array($get_cus,MYSQLI_ASSOC);
                 $company = $cus_name['company'];
@@ -2213,6 +2260,7 @@ class obj{
                 $result = mysqli_query($conn,"call insert_product_putback_stock('$code','$serial','$qty','$emp_id','$form_id','$Date','$Time','$remark')");
                 mysqli_free_result($result);  
                 mysqli_next_result($conn);
+                $resutl_update = mysqli_query($conn,"update stocks set qty=qty+'$qty' where code='$code' and serial='$serial'");
             }
             mysqli_free_result($result);  
             mysqli_next_result($conn);
