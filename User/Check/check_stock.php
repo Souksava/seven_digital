@@ -239,7 +239,6 @@
                     </button>
                 </div>
                 <div class="modal-body" align="center">
-                    <input type="hidden" name="id" id="id">
                     ທ່ານຕ້ອງການລ້າງລາຍການ ຫຼື ບໍ່ ?
                 </div>
                 <div class="modal-footer">
@@ -350,6 +349,7 @@
     swal("", "ກະລຸນາເພີ່ມລາຍການກ່ອນ !", "info");
     </script>';
   }
+  
 
 ?>
 

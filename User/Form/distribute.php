@@ -35,6 +35,7 @@
                         </div>
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>Serial Number</label>
+                            <input type="hidden" name="add_distribute" id="add_distribute">
                             <input type="text" name="serial" id="serial" class="form-control"
                                 placeholder="Serial Number">
                             <i class="fas fa-check-circle "></i>
@@ -58,7 +59,7 @@
                         </div>
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ໝາຍເຫດ</label>
-                            <input type="text" name="remark" id="remark" class="form-control" placeholder="ໝາຍເຫດ">
+                            <input type="text" name="remark" id="remark" placeholder="ໝາຍເຫດ">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
                             <small class="">Error message</small>
@@ -74,8 +75,11 @@
         </div>
     </div>
 </form>
-
-
+<?php
+    if(isset($alert)){
+        echo $alert;
+    }
+?>
 <br>
 <div style="width: 100%;">
     <b>ລາຍການ<?php echo $title ?></b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
@@ -84,43 +88,7 @@
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-7">
-        <div id="result"></div>
-            <!-- <div class="table-responsive">
-                <table class="table" style="width: 1000px;">
-                    <tr>
-                        <th style="width: 30px;">ສິນຄ້າ</th>
-                        <th>ລະຫັດສິນຄ້າ</th>
-                        <th>ຊື່ສິນຄ້າ</th>
-                        <th>ລຸ້ນເຄື່ອງ</th>
-                        <th>ຈຳນວນ</th>
-                        <th style="width: 90px;">ຜູ້ສ້າງຟອມ</th>
-                        <th>ເລກທີ</th>
-                        <th style="width: 90px;">ລູກຄ້າ</th>
-                        <th style="width: 100px;">ໝາຍເຫດ</th>
-                        <th style="width: 90px;">ສະຖານະ</th>
-                        <th style="width: 30px;"></th>
-                    </tr>
-                    <tr>
-                        <td style="display:none;">../../image/logo.png</td>
-                        <td scope="row"><img src="../../image/logo.png" alt="" style="width: 30px;heigt: 100px;"></td>
-                        <td>12345678</td>
-                        <td>SD5345SWD</td>
-                        <td>FUJI</td>
-                        <td>2020</td>
-                        <td>9</td>
-                        <td>2020</td>
-                        <td>9</td>
-                        <td>remarkabcd</td>
-                        <td>9</td>
-                        <td style="display:none;">11/12/2020</td>
-                        <td style="display:none;">9:10:50</td>
-                        <td>
-                            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                                class="fa fa-plus toolcolor btnUpdate_dist"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                </table>
-            </div> -->
+            <div id="result"></div>
         </div>
 
         <div class="col-md-5">
@@ -128,10 +96,10 @@
                 <div class="card-body">
                     <h5 align="center" class="card-title"></h5>
                     <p class="card-text">
-                        <form action="#" id="formadd" method="POST">
+                        <form action="distribute" id="formsave" method="POST">
                             <div class="row">
                                 <div class="col-md-6">
-                                    ເລກທີບິນ: 1
+
                                 </div>
                                 <div class="col-md-6">
                                     <div align="right">
@@ -153,7 +121,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             data-dismiss="modal">ຍົກເລີກ</button>
-                                                        <button type="submit" name="btnSave"
+                                                        <button type="submit" name="btnSave_distribute"
                                                             class="btn btn-outline-success">ບັນທຶກ</button>
                                                     </div>
                                                 </div>
@@ -162,37 +130,77 @@
                                     </div>
                                 </div>
                             </div>
+                        </form>
                 </div>
+                <?php
+                    $obj->select_distribute_list();
+                    if(isset($_COOKIE['distribute_list'])){
+                ?>
                 <div class="table-responsive2" style="text-align: center;">
                     <table class="table font12" style="width: 700px">
                         <tr>
                             <th>ສິນຄ້າ</th>
                             <th>ລະຫັດສິນຄ້າ</th>
                             <th>ຊື່ສິນຄ້າ</th>
+                            <th>Serial</th>
                             <th>ລຸ້ນເຄື່ອງ</th>
                             <th>ຈຳນວນ</th>
                             <th>ເລກທີ</th>
                             <th>ໝາຍເຫດ</th>
-                            <th style="width: 30px;"></th>
+                            <th style="width: 30px;"><a href="#" data-toggle="modal" data-target="#exampleModalClear" class="clear">ລ້າງ</a></th>
                         </tr>
+                        <?php 
+                            foreach($cart_data as $row){
+                        ?>
                         <tr>
-                            <td style="display:none;">../../image/logo.png</td>
-                            <td scope="row"><img src="../../image/logo.png" alt="" style="width: 30px;heigt: 100px;">
+                            <td style="display:none;"><?php echo $row['serial'] ?></td>
+                            <?php
+                                if($row['img_path'] == ''){
+                            ?>
+                            <td scope="row"><img src="<?php echo $path ?>image/logo.png" alt=""
+                                    style="width: 30px;heigt: 100px;">
+                                <?php
+                                }
+                                else{
+                            ?>
+                            <td scope="row"><img src="<?php echo $path ?>image/<?php echo $row['img_path'] ?>" alt=""
+                                    style="width: 30px;heigt: 100px;">
+                                <?php
+                                }
+                            ?>
                             </td>
-                            <td>12345678</td>
-                            <td>SD5345SWD</td>
-                            <td>FUJI</td>
-                            <td>2020</td>
-                            <td>2020</td>
-                            <td>remarkabcd</td>
-                            <td style="display:none;">1</td>
+                            <td><?php echo $row['code'] ?></td>
+                            <td>
+                            <?php echo $row['cate_name'] ?> <?php echo $row['brand_name'] ?> <br>
+                            <?php echo $row['name'] ?>
+                            </td>
+                            <td><?php echo $row['serial'] ?></td>
+                            <td><?php echo $row['gen'] ?></td>
+                            <td><?php echo $row['qty'] ?> <?php echo $row['unit_name'] ?></td>
+                            <td><?php echo $row['form_id'] ?></td>
+                           <td> <?php echo $row['remark'] ?></td>
                             <td>
                                 <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
                                     class="fa fa-trash toolcolor btnDelete_dist"></a>&nbsp; &nbsp;
                             </td>
                         </tr>
+                        <?php
+                            }
+                        ?>
                     </table>
                 </div>
+                <?php
+                    }
+                    else{
+                        echo'
+                        <div align="center">
+                            <hr size="1" style="width: 90%;"/>
+                                ຍັງບໍ່ມີຂໍ້ມູນ
+                            <hr size="1" style="width: 90%;"/>
+                        </div>
+                    ';
+                    }
+                ?>
             </div>
             <div class="col-md-12" align="right">
                 <br>
@@ -207,7 +215,29 @@
 </div>
 </div>
 </div>
-
+<form action="distribute" id="formClear" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" id="exampleModalClear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ຢືນຢັນການລົບຂໍ້ມູນ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" align="center">
+                
+                    ທ່ານຕ້ອງການລ້າງລາຍການ ຫຼື ບໍ່ ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button type="submit" name="clear_distribute" class="btn btn-outline-danger">ລ້າງ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <!-- modal form delete -->
 <form action="distribute" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -226,7 +256,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete_distribute" class="btn btn-outline-danger">ລົບ</button>
                 </div>
             </div>
         </div>
@@ -237,6 +267,7 @@
 <!-- check form import input not null -->
 <script type="text/javascript">
 const myform = document.getElementById('formUpdate');
+const add_distribute = document.getElementById('add_distribute');
 const code = document.getElementById('code');
 const serial = document.getElementById('serial');
 const qty = document.getElementById('qty');
@@ -247,6 +278,7 @@ myform.addEventListener('submit', (e) => {
 });
 
 function checkInputs() {
+    const add_distributeValue = add_distribute.value.trim();
     const codeValue = code.value.trim();
     const serialValue = serial.value.trim();
     const qtyValue = qty.value.trim();
@@ -292,15 +324,39 @@ function checkInputs() {
     swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
-  // check delete
-  if(isset($_GET['del'])=='fail'){
+  if(isset($_GET['code'])=='null'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ລະຫັດສິນຄ້າບໍ່ມີໃນລະບົບ !", "info");
     </script>';
   }
-  if(isset($_GET['del2'])=='success'){
+  if(isset($_GET['code-serial'])=='null'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ລະຫັດສິນຄ້າ ແລະ ໝາຍເລກ Serial ບໍ່ມີໃນລະບົບ !", "info");
+    </script>';
+  }
+  if(isset($_GET['qty'])=='than'){
+    echo'<script type="text/javascript">
+    swal("", "ຈຳນວນເບີກສິນຄ້າເກີນກວ່າຈຳນວນສິນຄ້າຢູ່ໃນສະຕ໋ອກ ! ກະລຸນາປ້ອນຈຳນວນໃຫ້ນ້ອຍກວ່າ ຫຼື ເທົ່າກັບສະຕ໋ອກ", "info");
+    </script>';
+  }
+  if(isset($_GET['form'])=='false'){
+    echo'<script type="text/javascript">
+    swal("", "ເລກທີຟອມເບີກຍັງບໍ່ທັນໄດ້ຮັບການອະນຸມັດ", "error");
+    </script>';
+  }
+  if(isset($_GET['form2'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ເລກທີຟອມເບີກນີ້ບໍ່ມີໃນລະບົບ", "info");
+    </script>';
+  }
+  if(isset($_GET['serial-list'])=='same'){
+    echo'<script type="text/javascript">
+    swal("", "Serial Number ນີ້ມີຢູ່ໃນລາຍການແລ້ວ", "info");
+    </script>';
+  }
+  if(isset($_GET['list'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ກະລຸນາເພີ່ມລາຍການກ່ອນ !", "info");
     </script>';
   }
 ?>

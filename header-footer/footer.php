@@ -476,7 +476,7 @@ $(document).ready(function() {
             return $(this).text();
         }).get();
         console.log(data);
-        $('#id').val(data[8]);
+        $('#id').val(data[0]);
     });
     // delete pps
     $('.btnDelete_pps').on('click', function() {

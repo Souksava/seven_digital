@@ -76,7 +76,34 @@
                 $obj->save_spare_part($_SESSION['emp_id']);
             }
             //ປ່ຽນອາໄຫຼ່ End Spare-Part
-      
+            //ຟອມເບີກ
+            if(isset($_POST['add_distribute'])){
+                $obj->cookie_distribute(trim($_POST['code']),trim($_POST['serial']),trim($_POST['qty']),trim($_POST['form_id']),trim($_POST['remark']));
+            }
+            if(isset($_POST['clear_distribute'])){
+                $obj->clear_distribute();
+            }
+            if(isset($_POST['btnDelete_distribute'])){
+                $obj->del_distribute(trim($_POST['id']));
+            }
+            if(isset($_POST['btnSave_distribute'])){
+                $obj->save_distribute($_SESSION['emp_id']);
+            }
+            //ສິ້ນສຸດຟອມເບີກ
+            //ສິນຄ້າເບີກແລ້ວນຳກັບຄືນ
+            if(isset($_POST['add_putback'])){
+                $obj->cookie_putback(trim($_POST['code']),trim($_POST['serial']),trim($_POST['qty']),trim($_POST['form_id']),trim($_POST['remark']));
+            }
+            if(isset($_POST['clear_putback'])){
+                $obj->clear_putback();
+            }
+            if(isset($_POST['btnDelete_putback'])){
+                $obj->del_putback(trim($_POST['id']));
+            }
+            if(isset($_POST['btnSave_putback'])){
+                $obj->save_putback($_SESSION['emp_id']);
+            }
+            //ສິ້ນສຸດ
     }
       ?>
 <!DOCTYPE html>
