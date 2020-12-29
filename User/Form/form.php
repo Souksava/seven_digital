@@ -11,7 +11,181 @@
 <br>
 <div class="row">
     <div class="col-md-7">
-        <div id="result"></div>
+        <?php 
+        $output = '';
+        if(isset($_POST['page'])){
+           $page = $_POST['page'];
+           if($page == '' || $page == 0 || $page == 1){
+              $page = 0;
+              }
+              else{
+                 $page = ($page*15)-15;
+              }
+        }
+        else{
+           $page = 0;
+        }
+            if(isset($_GET['id'])){
+                $obj->select_form_check();
+                if(mysqli_num_rows($result_form_check) > 0)
+{
+ $output .= '
+  <div class="table-responsive">
+   <table class="table font12" style="width: 1500px;">
+    <tr>
+    <th>ລະຫັດສິນຄ້າ</th>
+    <th>ຊື່ສິນຄ້າ</th>
+    <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
+    <th>ເງື່ອນໄຂການສັ່ງຊື້</th>
+    <th>ຮູບພາບສິນຄ້າ</th>
+    <th></th>
+    </tr>
+ ';
+ while($row = mysqli_fetch_array($result_form_check))
+ {
+  $output .= '
+  <tr  class="result">
+  <td>'.$row["code"].'</td>
+  <td style="display: none;">'.$row["pro_name"].'</td>
+  <td style="display: none;">'.$row["cate_id"].'</td>
+  <td style="display: none;">'.$row["brand_id"].'</td>
+  <td>'.$row["cate_name"].' '.$row["brand_name"].'<br>'.$row["pro_name"].'</td>
+  <td>'.$row["gen"].'</td>
+  <td style="display: none;">'.$row["unit_id"].'</td>
+  <td style="display: none;">'.$row["qtyalert"].'</td>
+  <td>'.$row["qtyalert"].' '.$row["unit_name"].'</td>
+  <td style="display: none;">'.$row["img_path"].'</td>
+  ';
+  if($row['img_path'] != ''){
+  $output .= '
+  <td>
+      <a href="'.$path.'image/'.$row['img_path'].'" target="_blank">
+          <img src="'.$path.'image/'.$row['img_path'].'" class="img-circle elevation-2"
+              alt="" width="55px">
+      </a>
+  </td>
+  ';
+  }
+  else{
+  $output .= '
+  <td>
+      <a href="'.$path.'image/image.jpeg" target="_blank">
+          <img src="'.$path.'image/image.jpeg" class="img-circle elevation-2"
+              alt="" width="55px">
+      </a>
+  </td>
+  ';
+  }
+  $output .='
+  <td>
+  <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
+      class="fa fa-plus toolcolor btnUpdate_form"></a>&nbsp; &nbsp;
+</td>
+ </tr>
+  ';
+ }
+ mysqli_free_result($result_form_check);  
+ mysqli_next_result($conn);
+ $output .='
+   </table>
+</div>
+<br>
+ ';
+ echo $output;
+ 
+
+   $obj->select_form_check_count();
+   $count = mysqli_num_rows($result_form_check_count);
+   mysqli_free_result($result_form_check_count);  
+   mysqli_next_result($conn);
+   $a = ceil($count/15);
+   if(isset($_POST['page'])){
+      if($_POST['page'] > 1){
+         $previous = $_POST['page'] - 1;
+         echo '      
+         <nav aria-label="...">
+            <ul class="pagination">
+               <li class="page-item">
+                  <a href="#" class="btn btn-danger page-links" id="'.$previous.'" style="color: white!important;" value="'.$previous.'">ກັບຄືນ</a>
+               </li>
+       ';
+      }
+      else{
+         echo' <nav aria-label="...">
+                  <ul class="pagination">';
+      }
+   }
+   else{
+      echo' <nav aria-label="...">
+               <ul class="pagination">';
+   }
+   $i = 0;
+   $page_next = 0;
+   $page_next2 = 1;
+   if(isset($_POST['page'])){
+      $page_next = $_POST['page'];
+      $page_next2 = $_POST['page'];
+      if($_POST['page'] == 0 || $_POST['page'] == ''){
+         $page_next2 = 1;
+      }
+   }
+   for($b=1;$b<=$a;$b++){
+      $i = $b;
+      if($page_next2 == $b){
+         echo '
+         <li class="page-item active" aria-current="page">
+            <span class="page-link">
+            '.$b.'
+            <span class="sr-only">(current)</span>
+            </span>
+         </li>
+         ';
+      }
+      else{
+         echo '
+         <li class="page-item">
+            <a href="#" id="'.$b.'" class="btn btn-danger page-link page-links" value="'.$b.'">'.$b.'</a>
+         </li>
+         ';
+      }
+   }
+     if($page_next == 0){
+        $page_next = 1;
+     }
+      if($page_next < $i){
+         if($page_next == 0){
+            $page_next += 1;
+         }
+         $next = $page_next + 1;
+         echo '      
+
+                     <li class="page-item">
+                        <a href="#" class="btn btn-success page-links" id="'.$next.'" value="'.$next.'" style="color: white!important;" href="#">ໜ້າຖັດໄປ</a>
+                     </li>
+                  </ul>
+               </nav>
+';
+
+      }
+      else{
+         echo'';
+      }
+   
+}
+else
+{
+ echo '<br>
+ <hr size="1" width="90%">
+<p align="center">ບໍ່ມີຂໍ້ມູນ</p>
+<hr size="1" width="90%">
+ ';
+}
+
+        }
+            else{
+                echo'<div id="result"></div>';
+            }
+        ?>
     </div>
     <div class="col-md-5">
         <div class="card">
@@ -166,7 +340,7 @@
                         </div>
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຈຳນວນ</label>
-                            <input type="hidden" name="code" id="code" >
+                            <input type="hidden" name="code" id="code">
                             <input type="number" min="1" name="qty" id="qty" placeholder="ຈຳນວນ">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
@@ -291,16 +465,6 @@ $(document).ready(function() {
     $(document).on('click', '.page-links', function() {
         var page = this.id;
         console.log(page);
-        var search = $('#search').val();
-        if (search != '') {
-            load_data(search, page);
-        } else {
-            load_data('%%', page);
-        }
-    });
-    $(document).on('click', '.check', function() {
-        var check = this.id;
-        console.log(check);
         var search = $('#search').val();
         if (search != '') {
             load_data(search, page);

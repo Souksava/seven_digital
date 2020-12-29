@@ -213,7 +213,7 @@
                                     <div class="input-group input-group-sm">
                                       <input class="form-control form-control-navbar" type="search"  name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
                                       <div class="input-group-append">
-                                        <button class="btn btn-navbar" type="submit">
+                                        <button class="btn btn-navbar" type="submit" name="searchicon">
                                           <i class="fas fa-search"></i>
                                         </button>
                                       </div>
@@ -235,7 +235,7 @@
                                               </div>
                                             </div>
                                           </form>
-                                          <a href="#" class="nav-link check">ກອດສອບສິນຄ້າ</a>
+                                          <a href="form?id=check" class="check"> &nbsp&nbsp&nbsp&nbsp ກອດສອບສິນຄ້າ</a>
                                           ';
                                             }
                                             else{ 
