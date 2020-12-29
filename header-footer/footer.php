@@ -259,7 +259,7 @@ $(document).ready(function() {
             document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
         }
         else{
-            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[0]);
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
         }
     });
 

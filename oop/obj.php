@@ -1934,6 +1934,18 @@ class obj{
     }
     //ສິ້ນສຸດການປ່ຽນອາໄຫຼ່
     //form
+    public static function select_form_check(){
+        // method ຂອງການດຶງຂໍ້ມູນຕຳແໜ່ງມາສະແດງ
+        global $result_form_check;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
+        global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+        $result_form_check = mysqli_query($conn,"select p.code,p.pro_name,p.gen,p.cate_id,p.unit_id,p.brand_id,p.qtyalert,p.img_path,cate_name,brand_name,unit_name,sum(qty) as qty from products p left join stocks s on p.code=s.code left join category c on p.cate_id=c.cate_id left join brand b on p.brand_id=b.brand_id left join unit u on p.unit_id=u.unit_id where qtyalert > qty group by s.code limit 0,15"); 
+    }
+    public static function select_form_check_count(){
+        // method ຂອງການດຶງຂໍ້ມູນຕຳແໜ່ງມາສະແດງ
+        global $result_form_check_count;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
+        global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+        $result_form_check_count = mysqli_query($conn,"select *, (select sum(qty) as qty from stocks s) from products p left join stocks s on p.code=s.code where qtyalert < qty group by s.code"); 
+    }
     public static function select_form_cookie(){
         global $cart_data;
         if(isset($_COOKIE['list_form'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
