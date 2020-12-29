@@ -11,631 +11,303 @@
 </div>
 <div class="row">
     <div class="col-md-7">
+        <?php
+        $page = 0;
+        if(isset($_GET['page'])){
+            $page=$_GET['page'];
+        }
+        $obj->select_form($page);
+        if(mysqli_num_rows($resultform) > 0){
+    ?>
         <div class="table-responsive" style="text-align: center;">
-            <table class="table font12" style="width: 900px">
+            <table class="table font12" style="width: 1000px">
                 <tr>
-                    <th style="width: 50px">ສິນຄ້າ</th>
-                    <th style="width: 150px">ລະຫັດສິນຄ້າ</th>
-                    <th>ຊື່ສິນຄ້າ</th>
-                    <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-                    <th style="width: 50px">ຈຳນວນ</th>
-                    <th style="width: 120px">ເງື່ອນໄຂການຜະລິດ</th>
+                    <th style="width: 100px">ເລກທີຟອມ</th>
+                    <th style="width: 150px">ຜູ້ສ້າງຟອມ</th>
+                    <th style="width: 150px">ລູກຄ້າ</th>
+                    <th style="width: 100px">ຈຳນວນທັງໝົດ</th>
+                    <th style="width: 120px">Packing No</th>
+                    <th style="width: 80px">ວັນທີ</th>
+                    <th style="width: 80px">ເວລາ</th>
+                    <th style="width: 100px">ສະຖານະ</th>
                     <th style="width: 30px"></th>
                 </tr>
+                <?php
+                    foreach($resultform as $row){
+                ?>
                 <tr>
-                    <td style="display:none;">../../image/logo.png</td>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="../../image/product.png"
-                                width="30px">
-                        </a>
-                    </td>
-                    <td>12345678910234</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>1000</td>
-                    <td>50</td>
+                    <td><?php echo $row['form_id'] ?></td>
+                    <td><?php echo $row['emp_name'] ?></td>
+                    <td><?php echo $row['company'] ?></td>
+                    <td><?php echo $row['amount'] ?></td>
+                    <td><?php echo $row['packing_no'] ?></td>
+                    <td><?php echo date("d/m/Y",strtotime($row["form_date"])) ?></td>
+                    <td><?php echo $row['form_time'] ?></td>
+                    <td><?php echo $row['stt_accept'] ?></td>
                     <td>
                         <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                            class="fa fa-info toolcolor btnUpdate_form"></a>&nbsp; &nbsp;
+                            class="fa fa-info toolcolor btnUpdate_accept"></a>&nbsp; &nbsp;
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="../../image/logo.png" target="_blank">
-                            <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                        </a>
-                    </td>
-                    <td>12345678</td>
-                    <td>FUJI</td>
-                    <td>SF235SGW2</td>
-                    <td>30</td>
-                    <td>50</td>
-                    <td>
-                        <a href="formdetail" class="fa fa-plus toolcolor"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
+                <?php
+                    }
+                    mysqli_free_result($resultform);  
+                    mysqli_next_result($conn);
+                ?>
             </table>
         </div>
-
-            <!-- pagination -->
-            <br>
-            <nav aria-label="Page navigation example">
-<ul class="pagination">
-    <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-  </ul>
-</nav>
-
-
-
+        <?php
+             $obj->select_form_count();
+             $count = mysqli_num_rows($resultform_count);
+             mysqli_free_result($resultform_count);  
+             mysqli_next_result($conn);
+             $a = ceil($count/15);
+             if(isset($_GET['page'])){
+                if($_GET['page'] > 1){
+                   $previous = $_GET['page'] - 1;
+                   echo '      
+                   <nav aria-label="...">
+                      <ul class="pagination">
+                         <li class="page-item">
+                            <a href="accept?page='.$previous.'" class="btn btn-danger page-links" id="'.$previous.'" style="color: white!important;" value="'.$previous.'">ກັບຄືນ</a>
+                         </li>
+                 ';
+                }
+                else{
+                   echo' <nav aria-label="...">
+                            <ul class="pagination">';
+                }
+             }
+             else{
+                echo' <nav aria-label="...">
+                         <ul class="pagination">';
+             }
+             $i = 0;
+             $page_next = 0;
+             $page_next2 = 1;
+             if(isset($_GET['page'])){
+                $page_next = $_GET['page'];
+                $page_next2 = $_GET['page'];
+                if($_GET['page'] == 0 || $_GET['page'] == ''){
+                   $page_next2 = 1;
+                }
+             }
+             for($b=1;$b<=$a;$b++){
+                $i = $b;
+                if($page_next2 == $b){
+                   echo '
+                   <li class="page-item active" aria-current="page">
+                      <span class="page-link">
+                      '.$b.'
+                      <span class="sr-only">(current)</span>
+                      </span>
+                   </li>
+                   ';
+                }
+                else{
+                   echo '
+                   <li class="page-item">
+                      <a href="accept?page='.$b.'" id="'.$b.'" class="btn btn-danger page-link page-links" value="'.$b.'">'.$b.'</a>
+                   </li>
+                   ';
+                }
+             }
+               if($page_next == 0){
+                  $page_next = 1;
+               }
+                if($page_next < $i){
+                   if($page_next == 0){
+                      $page_next += 1;
+                   }
+                   $next = $page_next + 1;
+                   echo '      
+          
+                               <li class="page-item">
+                                  <a href="accept?page='.$next.'" class="btn btn-success page-links" id="'.$next.'" value="'.$next.'" style="color: white!important;" href="#">ໜ້າຖັດໄປ</a>
+                               </li>
+                            </ul>
+                         </nav>
+          ';
+          
+                }
+                else{
+                   echo'';
+                }
+        ?>
+        <?php
+        }
+        else{
+            echo'
+            <div align="center">
+                <hr size="1" style="width: 90%;"/>
+                    ຍັງບໍ່ມີຂໍ້ມູນ
+                <hr size="1" style="width: 90%;"/>
+            </div>
+        ';
+        }
+    ?>
     </div>
     <div class="col-md-5">
         <div class="card">
             <div class="card-body">
                 <h5 align="center" class="card-title"></h5>
-                <p class="card-text">
                 <form action="accept" id="formadd" method="POST">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div>
-                                ເລກທີບິນ: 1
+                    <input type="hidden" name="form_id" id="form_id">
+                    <p class="card-text">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <button type="button" name="Discard" class="btn btn-outline-danger"
+                                        data-toggle="modal" data-target="#exampleModal_discard">ບໍ່ອະນຸມັດ</button>
+                                    <div class="modal fade font14" id="exampleModal_discard" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body" align="center">
+                                                    ທ່ານບໍ່ຕ້ອງການອະນຸມັດຟອມເບີກ ຫຼື ບໍ່ ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        data-dismiss="modal">ຍົກເລີກ</button>
+                                                    <button type="submit" name="btnDiscard"
+                                                        class="btn btn-outline-danger">ບໍ່ອະນຸມັດ</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div align="right">
-                                <button type="button" name="btnAdd" class="btn btn-outline-success" data-toggle="modal"
-                                    data-target="#exampleModal2">ບັນທຶກຟອມເບີກ</button>
-                                <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span></button>
-                                            </div>
-                                            <div class="modal-body" align="center">
-                                                ທ່ານຕ້ອງການຈະບັນທຶກຂໍ້ມູນການຜະລິດນ້ຳດື່ມເຂົ້າໃນລະບົບ ຫຼື ບໍ່ ?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    data-dismiss="modal">ຍົກເລີກ</button>
-                                                <button type="submit" name="btnSave"
-                                                    class="btn btn-outline-success">ບັນທຶກ</button>
+                            <div class="col-md-6">
+                                <div align="right">
+                                    <button type="button" name="btnAdd" class="btn btn-outline-success"
+                                        data-toggle="modal" data-target="#exampleModal2">ອະນຸມັດ</button>
+                                    <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body" align="center">
+                                                    ທ່ານຕ້ອງການອະນຸມັດຟອມເບີກ ຫຼື ບໍ່ ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        data-dismiss="modal">ຍົກເລີກ</button>
+                                                    <button type="submit" name="btnAccept"
+                                                        class="btn btn-outline-success">ອະນຸມັດ</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
             </div>
-
-            <div class="table-responsive2" style="text-align: center;">
-                <table class="table font12" style="width: 700px">
-                    <tr>
-                        <th style="width: 50px">ສິນຄ້າ</th>
-                        <th style="width: 150px">ລະຫັດສິນຄ້າ</th>
-                        <th>ຊື່ສິນຄ້າ</th>
-                        <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-                        <th style="width: 50px">ຈຳນວນ</th>
-
-                        <th style="width: 30px"></th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td style="display:none">1</td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                                class="fa fa-trash toolcolor btnDelete_accept"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="../../image/logo.png" target="_blank">
-                                <img src="../../image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-                            </a>
-                        </td>
-                        <td>12345678</td>
-                        <td>FUJI</td>
-                        <td>SF235SGW2</td>
-                        <td>30</td>
-                        <td>
-                            <a href="formdetail" class="fa fa-trash toolcolor"></a>&nbsp; &nbsp;
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <div id="result"></div>
         </div>
-        <div class="col-md-12" align="right">
-            <br>
-            <h4 style="color: #CE3131;"> 99 ລາຍການ</h4>
-        </div>
-
     </div>
-    </form>
     </p>
+    </form>
 </div>
 </div>
 </div>
 </div>
 </div>
-
-<!-- modal form delete -->
-<form action="accept" id="formDelete" method="POST" enctype="multipart/form-data">
-    <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ຢືນຢັນການລົບຂໍ້ມູນ</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" align="center">
-                    <input type="hidden" name="id" id="id">
-                    ທ່ານຕ້ອງການລົບຂໍ້ມູນ ຫຼື ບໍ່ ?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-
-
-
+<?php
+    if(isset($_POST['btnDiscard'])){
+        $form_id = $_POST['form_id'];
+        $accpet = mysqli_query($conn,"update form set stt_accept='ບໍ່ອະນຸມັດ' where form_id='$form_id'");
+        if(!$accpet){
+            echo"<script>";
+            echo"window.location.href='accept?Discard=fail';";
+            echo"</script>";
+        }
+        else{
+            echo"<script>";
+            echo"window.location.href='accept?Discard2=success';";
+            echo"</script>";
+        }
+    }
+    if(isset($_POST['btnAccept'])){
+        $form_id = $_POST['form_id'];
+        $accpet = mysqli_query($conn,"update form set stt_accept='ອະນຸມັດ' where form_id='$form_id'");
+        if(!$accpet){
+            echo"<script>";
+            echo"window.location.href='accept?Accept=fail';";
+            echo"</script>";
+        }
+        else{
+            echo"<script>";
+            echo"window.location.href='accept?Accept2=success';";
+            echo"</script>";
+        }
+    }
+?>
 <!-- sweetalert -->
 <?php
   //check save
-  if(isset($_GET['save'])=='fail'){
+  if(isset($_GET['Discard'])=='fail'){
     echo'<script type="text/javascript">
-    swal("", "ບັນທຶກຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ການບໍ່ອະນຸມັດຟອມເບິກຜິດພາດ", "error");
     </script>';
   }
-  if(isset($_GET['save2'])=='success'){
+  if(isset($_GET['Discard2'])=='success'){
     echo'<script type="text/javascript">
-    swal("", "ບັນທຶກຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ການບໍ່ອະນຸມັດຟອມເບີກສຳເລັດ", "success");
     </script>';
   }
-  // check delete
-  if(isset($_GET['del'])=='fail'){
+  if(isset($_GET['Accept'])=='fail'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
+    swal("", "ການອະນຸມັດຟອມເບິກຜິດພາດ", "error");
     </script>';
   }
-  if(isset($_GET['del2'])=='success'){
+  if(isset($_GET['Accept2'])=='success'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ການອະນຸມັດຟອມເບີກສຳເລັດ", "success");
     </script>';
   }
 ?>
 
+<script>
+$(document).ready(function() {
 
+load_data();
+
+function load_data(query) {
+    $.ajax({
+        url: "fetch_accept.php",
+        method: "POST",
+        data: {
+            query: query
+        },
+        success: function(data) {
+            $('#result').html(data);
+        }
+    });
+}
+
+$(document).on('click', '.btnUpdate_accept', function() {
+
+    var form_id = $('#form_id').val();
+    console.log(form_id);
+    if (form_id != '') {
+        load_data(form_id);
+    } else {
+        load_data();
+    }
+});
+});
+</script>
 <!-- /.content-wrapper -->
 <br>
 <?php
