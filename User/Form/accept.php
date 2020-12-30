@@ -5,7 +5,7 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 ?>
-<br>
+
 <div style="width: 100%;">
     <b>ລາຍການຟອມເບີກ</b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
 </div>

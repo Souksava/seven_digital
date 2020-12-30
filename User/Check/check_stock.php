@@ -6,7 +6,6 @@
   include ("../../header-footer/header.php");
   $amount = 0;
 ?>
-<br>
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
         <b>ລາຍການນັບສະຕ໋ອກ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">

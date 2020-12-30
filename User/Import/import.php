@@ -6,7 +6,7 @@
     include ("../../header-footer/header.php");
     $amount = 0;
 ?>
-<br>
+
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
         <b>ລາຍການສິນຄ້າ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">

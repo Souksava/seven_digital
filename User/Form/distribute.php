@@ -80,7 +80,7 @@
         echo $alert;
     }
 ?>
-<br>
+
 <div style="width: 100%;">
     <b>ລາຍການ<?php echo $title ?></b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
 </div>
