@@ -11,6 +11,7 @@
     }
     if($_SESSION['ses_status_id'] == 4){
         $stt = 4;
+
     }
     if($_SESSION['ses_seven_id'] == ''){
         unset($_SESSION['ses_id']);
@@ -104,7 +105,22 @@
                 $obj->save_putback($_SESSION['emp_id']);
             }
             //ສິ້ນສຸດ
-    }
+                        //ສິນຄ້າເບີກແລ້ວນຳກັບຄືນ
+                        if(isset($_POST['form_add'])){
+                            $obj->cookie_form(trim($_POST['code']),trim($_POST['img_path']),trim($_POST['name']),trim($_POST['unit_name']),trim($_POST['cate_name']),trim($_POST['brand_path']),trim($_POST['gen']),trim($_POST['qty']));
+                        }
+                        if(isset($_POST['clear_form'])){
+                            $obj->clear_form();
+                        }
+                        if(isset($_POST['btnDelete_form'])){
+                            $obj->del_form(trim($_POST['id']));
+                        }
+                        if(isset($_POST['btnSave_form'])){
+                            $obj->save_form($_SESSION['emp_id']);
+                        }
+                        //ສິ້ນສຸດ
+                    }
+                    
       ?>
 <!DOCTYPE html>
 <html>
@@ -305,18 +321,18 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                                        <?php
+                        <?php
                             if($_SESSION['img_path'] == ''){
                             ?>
-                                        <img src="<?php echo $path ?>image/image.jpeg" class="img-circle elevation-2" alt="User Image">
-                                        <?php
+                        <img src="<?php echo $path ?>image/image.jpeg" class="img-circle elevation-2" alt="User Image">
+                        <?php
 
                             }
                             else{
                             ?>
-                                        <img src="<?php echo $path ?>image/<?php echo $_SESSION['img_path'] ?>"
-                                            class="img-circle elevation-2" alt="User Image">
-                                        <?php
+                        <img src="<?php echo $path ?>image/<?php echo $_SESSION['img_path'] ?>"
+                            class="img-circle elevation-2" alt="User Image">
+                        <?php
                             }
                         ?>
                     </div>
@@ -414,7 +430,7 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="<?php echo $links ?>Management/brand" class="nav-link">
-                                    <i class="fas fa-copyright nav-icon"></i>
+                                        <i class="fas fa-copyright nav-icon"></i>
                                         <p>ຂໍ້ມູນຍີ່ຫໍ້</p>
                                     </a>
                                 </li>
