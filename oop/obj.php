@@ -1192,6 +1192,12 @@ class obj{
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
         $resultform = mysqli_query($conn,"call form('$page');");
     }
+    public static function select_form2($search){
+        // method ຂອງການດຶງຂໍ້ມູນສະຖານະມາສະແດງ
+        global $resultform2;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
+        global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+        $resultform2 = mysqli_query($conn,"call form2('$search');");
+    }
     public static function select_form_count(){
         global $conn;
         global $resultform_count;
