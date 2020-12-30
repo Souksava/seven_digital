@@ -262,6 +262,16 @@ $(window).load(function() {
             document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
         }
     });
+    $('.btnUpdate_accept').on('click', function() {
+        // $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+        $('#form_id').val(data[0]);
+    });
 
     // update dist
     $('.btnUpdate_dist').on('click', function() {

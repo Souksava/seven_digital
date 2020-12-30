@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 28, 2020 at 11:00 AM
+-- Generation Time: Dec 29, 2020 at 10:48 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.13
 
@@ -83,20 +83,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_category` (`id` INT(11))  be
 Delete from category where cate_id=id;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_check_stock` (IN `csid` INT(11))  begin
-Delete from check_stock where id=csid;
-end$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_customer` (`id` VARCHAR(20))  begin
 Delete from customer where cus_id=id;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_customer_status` (`id` VARCHAR(20))  begin
 Delete from customer_status where stt_id=id;
-end$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_distribute` (IN `did` INT(11))  begin
-Delete from distribute where id=did;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_employee` (`empid` VARCHAR(20))  Begin
@@ -107,10 +99,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_form` (`id` VARCHAR(20))  be
 Delete from form where form_id=id;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_form_detail` (IN `fid` VARCHAR(20))  begin
-Delete from formdetail where id=fid;
-End$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_products` (`id` INT(11))  begin
 Delete from products where code=id;
 end$$
@@ -119,20 +107,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_product_addr` (IN `id` INT(1
 Delete from product_addr where pro_ad=id;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_product_putback_stock` (IN `ppsid` INT(11))  begin
-Delete from product_putback_stock where id=ppsid;
-end$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_rate` (IN `id` VARCHAR(20))  begin
 Delete from rate where rate_id=id;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_spare_part` (IN `spid` INT(11))  begin
 Delete from spare_part where id=spid;
-end$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_stocks` (`id` VARCHAR(20))  begin
-Delete from stocks where sk_id=id;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_supplier` (`id` VARCHAR(20))  begin
@@ -156,13 +136,13 @@ Begin
 select emp_id,emp_name,emp_surname,gender,tel,address,email,pass,e.auther_id,auther_name,e.stt_id,stt_name,img_path from employee e left join auther a on e.auther_id=a.auther_id left join emp_status s on e.stt_id=s.stt_id where emp_id like s or emp_name like s or emp_surname like s or gender like s or address like s or email like s or auther_name like s or stt_name like s order by emp_name ASC;
 End$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `form` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
-select f.form_id,f.emp_id,f.cus_id,form_date,stt_accept,status,usr_acc,emp_name,company,fd.code,p.img_path from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id left join formdetail fd on f.form_id=fd.form_id  left join products p on fd.code=p.code where f.form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or usr_acc like s order by f.form_id ASC limit page,15;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `form` (IN `page` INT(5))  begin
+select f.form_id,f.emp_id,f.cus_id,form_date,stt_accept,amount,status,usr_acc,emp_name,company,packing_no,fd.code,p.img_path,form_time from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id left join formdetail fd on f.form_id=fd.form_id  left join products p on fd.code=p.code where stt_accept='ຍັງບໍ່ອະນຸມັດ' order by form_date DESC limit page,15;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `form_count` (IN `s` VARCHAR(50))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `form_count` ()  NO SQL
 begin
-select form_id,f.emp_id,f.cus_id,form_date,stt_accept,status,usr_acc,emp_name,company from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id where form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or usr_acc like s order by form_id ASC;
+select f.form_id,f.emp_id,f.cus_id,form_date,stt_accept,amount,status,usr_acc,emp_name,company,packing_no,fd.code,p.img_path,form_time from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id left join formdetail fd on f.form_id=fd.form_id  left join products p on fd.code=p.code where stt_accept='ຍັງບໍ່ອະນຸມັດ' order by form_date DESC;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `form_detail` (IN `s` VARCHAR(250), IN `page` INT(5))  begin
@@ -346,20 +326,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `update_product_addr` (`pro_ad_updat
 update product_addr set addr_name=addr_name_update where pro_ad=pro_ad_update;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_product_putback_stock` (IN `id_update` INT(11), IN `code_update` VARCHAR(30), IN `serial_update` VARCHAR(30), IN `qty_update` INT(11), IN `emp_id_update` VARCHAR(20), IN `cus_id_update` VARCHAR(20), IN `form_id_update` INT(11), IN `date_back_update` DATE, IN `time_back_update` TIME, IN `remark_update` VARCHAR(100))  begin
-Update product_putback_stock set code=code_update,serial=serial_update,qty=qty_update,emp_id=emp_id_update,cus_id=cus_id_update,form_id=form_id_update,date_back=date_back_update,time_back=time_back_update,remark=remark_update where id=id_update;
-end$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_rate` (`rate_id_update` VARCHAR(20), `rate_buy_update` DECIMAL(11,2), `rate_sell_update` DECIMAL(11,2))  begin
 Update rate set rate_buy=rate_buy_update, rate_sell=rate_sell_update where rate_id=rate_id_update;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_spare_part` (IN `id_update` INT(11), IN `emp_id_update` VARCHAR(20), IN `code_update` VARCHAR(30), IN `serial_update` VARCHAR(30), IN `spare_part_update` VARCHAR(50), IN `pro_id_update` VARCHAR(30), IN `pro_serial_update` VARCHAR(30), IN `spare_date_update` DATE, IN `spare_time_update` TIME, IN `remark_update` VARCHAR(100))  begin
 Update spare_part set code=code_update,serial=serial_update,spare_part=spare_part_update,pro_id=pro_id_update,pro_serial=pro_serial_update,spare_date=spare_date_update,spare_time=spare_time_update,remark=remark_update where id=id_update;
-end$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_stocks` (`sk_id_update` INT(11), `code_update` VARCHAR(30), `serial_update` VARCHAR(30), `qty_update` INT(11), `price_update` DECIMAL(11,2), `dnv_update` VARCHAR(10), `imp_no_update` VARCHAR(10), `imp_date_update` DATE, `imp_time_update` TIME, `pro_no_update` VARCHAR(5), `rate_id_update` VARCHAR(20), `rate_update` DECIMAL(11,2), `emp_id_update` VARCHAR(20), `sup_id_update` VARCHAR(20), `remark_update` VARCHAR(100))  begin
-Update stocks set code=code_update,serial=serial_update,qty=qty_update,price=price_update,dnv=dnv_update,imp_no=imp_no_update,imp_date=imp_date_update,imp_time=imp_time_update,pro_no=pro_no_update,rate_id=rate_id_update,rate=rate_update,emp_id=emp_id_update,sup_id=sup_id_update where sk_id=sk_id_update;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_supplier` (`sup_id_update` VARCHAR(20), `company_update` VARCHAR(50), `tel_update` VARCHAR(30), `fax_update` VARCHAR(30), `address_update` VARCHAR(250), `email_update` VARCHAR(100), `img_path_update` VARCHAR(50))  begin
@@ -548,7 +520,9 @@ INSERT INTO `distribute` (`id`, `code`, `serial`, `qty`, `emp_id`, `form_id`, `d
 (4, '1', 'a', 1, '001', 1, '2020-11-13', '09:12:00', 'a'),
 (5, '2', 'aa', 2, '001', 2, '2020-11-13', '09:12:00', 'aa'),
 (6, '1', 'a', 1, '001', 1, '2020-12-24', '15:46:18', 'remark'),
-(7, '2', 'aa', 1, '001', 1, '2020-12-24', '15:46:18', 'remark');
+(8, '1', 'a', 1, '001', 1, '2020-12-29', '11:43:02', ''),
+(9, '1', 'a', 1, '001', 1, '2020-12-29', '11:43:50', ''),
+(10, '1', 'fff', 1, '001', 1, '2020-12-29', '11:58:39', '');
 
 -- --------------------------------------------------------
 
@@ -621,8 +595,23 @@ CREATE TABLE `form` (
 
 INSERT INTO `form` (`form_id`, `emp_id`, `cus_id`, `amount`, `packing_no`, `form_date`, `form_time`, `stt_accept`, `status`, `usr_acc`) VALUES
 (1, '001', '1', '10.00', NULL, '2020-11-13', '09:26:00', 'ອະນຸມັດ', 'ເບີກຈ່າຍແລ້ວ', 'c'),
-(2, '001', '2', '10.00', NULL, '0000-00-00', '09:23:00', 'a', 'b', 'c'),
-(5, '001', '2', '10.00', 1, '0000-00-00', '09:23:00', 'a', 'b', 'c');
+(2, '001', '2', '10.00', NULL, '2020-12-09', '09:23:00', 'ຍັງບໍ່ອະນຸມັດ', 'b', 'c'),
+(5, '001', '2', '10.00', 1, '0000-00-00', '09:23:00', 'ບໍ່ອະນຸມັດ', 'b', 'c'),
+(6, '001', '2', '440.00', 1, '2020-11-13', '09:26:00', 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(7, '001', '2', '10.00', 1, '2020-12-08', '09:26:00', 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(8, '001', '3', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(10, '001', '2', NULL, NULL, NULL, NULL, 'ອະນຸມັດ', NULL, NULL),
+(11, '001', '2', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(12, '001', '2', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(13, '001', '3', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, '001', '1', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(15, '001', '4', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(17, '001', '2', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(18, '001', '2', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(19, '001', '1', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(20, '001', '2', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(21, '001', '2', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL),
+(22, '001', '2', NULL, NULL, NULL, NULL, 'ຍັງບໍ່ອະນຸມັດ', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -716,7 +705,8 @@ INSERT INTO `product_putback_stock` (`id`, `code`, `serial`, `qty`, `emp_id`, `f
 (2, '2', 'aa', 2, '001', 2, '2020-11-13', '10:11:00', 'aa'),
 (3, '2', 'aa', 1, '001', 2, '2020-11-13', '10:11:00', 'a'),
 (4, '1', 'a', 1, '001', 1, '2020-12-24', '11:08:39', 'remark'),
-(5, '2', 'aa', 1, '001', 2, '2020-12-24', '11:08:39', 'remark');
+(5, '2', 'aa', 1, '001', 2, '2020-12-24', '11:08:39', 'remark'),
+(6, '1', 'a', 1, '001', 1, '2020-12-29', '14:25:42', '');
 
 -- --------------------------------------------------------
 
@@ -799,9 +789,9 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`sk_id`, `code`, `serial`, `qty`, `price`, `dnv`, `imp_no`, `imp_date`, `imp_time`, `pro_no`, `rate_id`, `rate`, `emp_id`, `sup_id`, `remark`) VALUES
-(1, '1', 'a', 4, '10.00', 'b', '1', '2020-11-13', '09:41:00', '1', '1', '1.20', '001', '1', 'c'),
+(1, '1', 'a', 1, '10.00', 'b', '1', '2020-11-13', '09:41:00', '1', '1', '1.20', '001', '1', 'c'),
 (2, '2', 'aa', 54, '1.10', 'cc', 'dd', '2020-11-13', '09:41:00', '11', '1', '1.20', '001', '1', 'cc'),
-(3, '1', 'FFF', 1, '100000.00', '001', '100', '2020-12-25', '14:45:33', '3', '1', '1.10', '001', '1', '');
+(3, '1', 'FFF', 0, '100000.00', '001', '100', '2020-12-25', '14:45:33', '3', '1', '1.10', '001', '1', '');
 
 -- --------------------------------------------------------
 
@@ -1013,7 +1003,7 @@ ALTER TABLE `check_stock`
 -- AUTO_INCREMENT for table `distribute`
 --
 ALTER TABLE `distribute`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `formdetail`
@@ -1031,7 +1021,7 @@ ALTER TABLE `product_addr`
 -- AUTO_INCREMENT for table `product_putback_stock`
 --
 ALTER TABLE `product_putback_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `spare_part`
