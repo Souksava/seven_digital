@@ -49,7 +49,7 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?php echo $path ?>dist/js/jquery.highlight.js"></script>
 <!-- <script src="<?php echo $path ?>dist/js/modal.js" type="text/javascript"></script> -->
 <script>
-$(document).ready(function() {
+$(window).load(function() {
     // Update Modal
     $('.btnUpdate_auther').on('click', function() {
         $('#exampleModalUpdate').modal('show');

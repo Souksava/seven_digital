@@ -389,7 +389,7 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="<?php echo $links ?>Management/product-address" class="nav-link">
-                                        <i class="fas fa-boxes nav-icon"></i>
+                                        <i class="fas fa-warehouse nav-icon"></i>
                                         <p>ຂໍ້ມູນຂໍ້ມູນສາງ</p>
                                     </a>
                                 </li>
@@ -397,7 +397,7 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="<?php echo $links ?>Management/brand" class="nav-link">
-                                        <i class="fas fa-boxes nav-icon"></i>
+                                    <i class="fas fa-copyright nav-icon"></i>
                                         <p>ຂໍ້ມູນຍີ່ຫໍ້</p>
                                     </a>
                                 </li>
@@ -405,7 +405,7 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="<?php echo $links ?>Management/rate" class="nav-link">
-                                        <i class="fas fa-boxes nav-icon"></i>
+                                        <i class="fas fa-dollar-sign nav-icon"></i>
                                         <p>ຂໍ້ມູນເລດເງີນ</p>
                                     </a>
                                 </li>

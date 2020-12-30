@@ -247,7 +247,10 @@ else
                             </div>
                         </div>
                     </div>
-
+                    <?php
+            $obj->select_form_cookie();
+            if(isset($_COOKIE['list_form'])){
+?>
                     <div class="table-responsive2" style="text-align: center;">
                         <table class="table font12" style="width: 700px">
                             <tr>
@@ -256,28 +259,44 @@ else
                                 <th>ຊື່ສິນຄ້າ</th>
                                 <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
                                 <th style="width: 50px">ຈຳນວນ</th>
-
                                 <th style="width: 30px"></th>
                             </tr>
+                            <?php
+                        foreach($cart_data as $row){
+                        $amount += $row['qty'];
+                    ?>
                             <tr>
+                            <td style="display: none;"> <?php $row["img_path"] ?></td>
+                                <td><?php echo $row['code'] ?></td>
                                 <td>
-                                    <a href="../../image/logo.png" target="_blank">
-                                        <img src="../../image/logo.png" class="img-circle elevation-2" alt=""
-                                            width="30px">
-                                    </a>
+                                    <?php echo $row['cate_name'] ?> <?php echo $row['brand_name'] ?> <br>
+                                    <?php echo $row['name'] ?>
                                 </td>
-                                <td style="display:none">1</td>
-                                <td>12345678</td>
-                                <td>FUJI</td>
-                                <td>SF235SGW2</td>
-                                <td>30</td>
+                                <td><?php echo $row['gen'] ?></td>
+                                <td><?php echo $row['serial'] ?></td>
+                                <td><?php echo $row['qty'] ?> <?php echo $row['unit_name'] ?></td>
                                 <td>
                                     <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                                        class="fa fa-trash toolcolor btnDelete_form"></a>&nbsp; &nbsp;
+                                        class="fa fa-trash toolcolor btnDelete_check"></a>&nbsp; &nbsp;
                                 </td>
                             </tr>
+                            <?php
+                        }
+                    ?>
                         </table>
                     </div>
+                    <?php
+            }
+            else{
+                echo'
+                <div align="center">
+                    <hr size="1" style="width: 90%;"/>
+                        ຍັງບໍ່ມີຂໍ້ມູນ
+                    <hr size="1" style="width: 90%;"/>
+                </div>
+            ';
+            }
+            ?>
                     <div class="col-md-12" align="right">
                         <br>
                         <h4 style="color: #CE3131;"> 99 ລາຍການ</h4>
@@ -475,6 +494,25 @@ $(document).ready(function() {
 });
 </script>
 
+<script>
+$(window).load(function() {
+    $('.btnUpdate_form').on('click', function() {
+        $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+        $('#code').val(data[0]);
+        if (data[9] === '') {
+            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+        } else {
+            document.getElementById("output2").src = ('<?php echo $path ?>image/' + data[9]);
+        }
+    });
+});
+</script>
 
 <!-- /.content-wrapper -->
 <br>
