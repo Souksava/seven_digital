@@ -202,6 +202,32 @@ function checkInputs2() {
         document.getElementById("formUpdate").submit();
     }
 }
+    // update product address
+    $('.btnUpdate_addr').on('click', function() {
+        $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+
+        $('#pro_ad_update').val(data[0]);
+        $('#addr_name_update').val(data[1]);
+    });
+
+        // delete product address
+        $('.btnDelete_addr').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+
+        $('#id').val(data[0]);
+    });
 </script>
 
 

@@ -9,7 +9,7 @@
 
 <div style="width: 100%;">
     <div style="width: 48%; float: left;">
-        <b>ລາຍການສິນຄ້າ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
+        <b>ລາຍການສິນຄ້າ</b>&nbsp <img src="../../icon/hidemenu.ico" width="10px"> 
     </div>
     <div style="width: 46%; float: right;" align="right">
         <form action="import" id="form1" method="POST" enctype="multipart/form-data">
@@ -98,7 +98,7 @@
         </form>
     </div>
 </div>
-<div class="clearfix"></div>
+<div class="clearfix"></div><br>
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-8">

@@ -84,7 +84,7 @@
 <div style="width: 100%;">
     <b>ລາຍການ<?php echo $title ?></b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
 </div>
-
+<br>
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-7">

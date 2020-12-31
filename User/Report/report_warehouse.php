@@ -10,12 +10,10 @@
         <b><?php echo $title ?></b>&nbsp <img src="../../icon/hidemenu.ico" width="10px">
     </div>
     <div style="width: 46%; float: right;" align="right">
-
         <button type="button" class="btn btn-sm btn-primary">Word </button>
         <button type="button" class="btn btn-sm btn-success">Excel</button>
-        <button type="button" class="btn btn-sm btn-danger"> &nbsp; PDF &nbsp;</button> <br><br>
+        <button type="button" class="btn btn-sm btn-danger"> &nbsp; PDF &nbsp;</button> 
     </div>
-
 </div>
 
 <div class="clearfix">
@@ -32,17 +30,25 @@
 </div><br>
 
 <div class="table-responsive">
-
-
-
     <table class="table font12" style="width: 1500px;">
 
-        <tr>
-            <th></th>
-
+    <tr>
+            <th>ລະຫັດຜູ້ສະໜອງ</th>
+            <th>ຊື່ບໍລິສັດ</th>
+            <th>ເບີໂທລະສັບ</th>
+            <th>ເບີແຟັກ</th>
+            <th>ທີ່ຕັ້ງບໍລິສັດ</th>
+            <th>ອີເມວບໍລິສັດ</th>
+            <th>ຮູບພາບບໍລິສັດຜູ້ສະໜອງ</th>
         </tr>
         <tr>
-            <td></td>
+            <td>1</td>
+            <td>c</td>
+            <td>1</td>
+            <td>c</td>
+            <td>1</td>
+            <td>c</td>
+            <td>c</td>
         </tr>
     </table>
 </div>

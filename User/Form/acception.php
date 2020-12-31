@@ -9,6 +9,7 @@
 <div style="width: 100%;">
     <b>ລາຍການຟອມເບີກ</b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
 </div>
+<br>
 <div class="row">
     <div class="col-md-7">
         <div id="result2"></div>

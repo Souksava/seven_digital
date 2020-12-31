@@ -51,37 +51,13 @@ $.widget.bridge('uibutton', $.ui.button)
 <script>
 $(window).load(function() {
     // Update Modal
-    // update customer status
-    $('.btnUpdate_customer_status').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
 
-        console.log(data);
-
-        $('#stt_id_update').val(data[0]);
-        $('#stt_name_update').val(data[1]);
-    });
 
 
 
 
     
-    // update product address
-    $('.btnUpdate_addr').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
 
-        console.log(data);
-
-        $('#pro_ad_update').val(data[0]);
-        $('#addr_name_update').val(data[1]);
-    });
 
     // update brand
     $('.btnUpdate_brand').on('click', function() {
@@ -116,18 +92,7 @@ $(window).load(function() {
 
 
 
-    // delete product address
-    $('.btnDelete_addr').on('click', function() {
-        $('#exampleModalDelete').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
 
-        console.log(data);
-
-        $('#id').val(data[0]);
-    });
 
     // delete brand
     $('.btnDelete_brand').on('click', function() {

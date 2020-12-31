@@ -13,7 +13,7 @@
 
         <button type="button" class="btn btn-sm btn-primary">Word </button>
         <button type="button" class="btn btn-sm btn-success">Excel</button>
-        <button type="button" class="btn btn-sm btn-danger"> &nbsp; PDF &nbsp;</button> <br><br>
+        <button type="button" class="btn btn-sm btn-danger"> &nbsp; PDF &nbsp;</button> 
     </div>
 
 </div>

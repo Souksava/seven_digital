@@ -69,7 +69,7 @@
         </form>
     </div>
 </div>
-<div class="clearfix"></div>
+<div class="clearfix"></div><br>
 <div class="container-fluid font12">
     <div class="row">
         <div class="col-md-8">
