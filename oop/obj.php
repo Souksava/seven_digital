@@ -2068,9 +2068,12 @@ class obj{
                 }
             }
             else{ // ຖ້າວ່າໄອດີບໍ່ຕົງກັນໃຫ້ເພີ່ມຂໍ້ມູນເຂົ້າໃນຄຸກກີ້
-                $getin = mysqli_query($conn,"select * from products where code='$code'");
+                $getin = mysqli_query($conn,"select pro_name,cate_name,gen,brand_name,unit_name,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code'");
                 $get_info = mysqli_fetch_array($getin,MYSQLI_ASSOC);
                 $name = $get_info['pro_name'];
+                $cate_name = $get_info['cate_name'];
+                $unit_name = $get_info['unit_name'];
+                $brand_name = $get_info['brand_name'];
                 $gen = $get_info['gen'];
                 $img_path = $get_info['img_path'];
                 $item_array = [//ເພີ່ມຂໍ້ມູນທີ່ຮັບມາຈາກຄີບອດເຂົ້າໄວ້ໃນຕົວປ່ຽນອາເລ $item_array

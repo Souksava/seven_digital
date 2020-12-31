@@ -29,14 +29,14 @@ if(mysqli_num_rows($resultproduct) > 0)
 {
  $output .= '
   <div class="table-responsive">
-   <table class="table font12" style="width: 1500px;">
+   <table class="table font12" style="width: 800px;">
     <tr>
-    <th>ລະຫັດສິນຄ້າ</th>
-    <th>ຊື່ສິນຄ້າ</th>
-    <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-    <th>ເງື່ອນໄຂການສັ່ງຊື້</th>
-    <th>ຮູບພາບສິນຄ້າ</th>
-    <th></th>
+      <th style="width: 120px;">ລະຫັດສິນຄ້າ</th>
+      <th style="width: 150px;">ຊື່ສິນຄ້າ</th>
+      <th style="width: 150px;">ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
+      <th style="width: 150px;">ເງື່ອນໄຂການສັ່ງຊື້</th>
+      <th style="width: 100px;">ຮູບພາບສິນຄ້າ</th>
+      <th style="width: 30px;"></th>  
     </tr>
  ';
  while($row = mysqli_fetch_array($resultproduct))
@@ -205,5 +205,14 @@ $('.btnUpdate_form').on('click', function() {
         else{
             document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
         }
+    });
+    $('.btnDelete_check').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[1]);
     });
 </script>

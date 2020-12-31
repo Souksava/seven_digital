@@ -246,22 +246,22 @@ $(window).load(function() {
         $('#rate_sell_update').val(data[2]);
     });
     // update form
-    $('.btnUpdate_form').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
+    // $('.btnUpdate_form').on('click', function() {
+    //     $('#exampleModalUpdate').modal('show');
+    //     $tr = $(this).closest('tr');
+    //     var data = $tr.children("td").map(function() {
+    //         return $(this).text();
+    //     }).get();
 
-        console.log(data);
-        $('#code').val(data[0]);
-        if(data[9] === ''){
-            document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
-        }
-        else{
-            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
-        }
-    });
+    //     console.log(data);
+    //     $('#code').val(data[0]);
+    //     if(data[9] === ''){
+    //         document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
+    //     }
+    //     else{
+    //         document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[9]);
+    //     }
+    // });
     // update dist
     $('.btnUpdate_dist').on('click', function() {
         $('#exampleModalUpdate').modal('show');
@@ -486,16 +486,6 @@ $(window).load(function() {
         }).get();
         console.log(data);
         $('#id').val(data[0]);
-    });
-    // delete check
-    $('.btnDelete_check').on('click', function() {
-        $('#exampleModalDelete').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
-        console.log(data);
-        $('#id').val(data[2]);
     });
     // delete spare-part
     $('.btnDelete_sp').on('click', function() {
