@@ -4,6 +4,7 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  $amount = 0;
 ?>
 <div style="width: 100%;">
     <b>ລາຍການຟອມ</b>&nbsp <img src="<?php echo $path ?>icon/hidemenu.ico" width="10px">
@@ -38,7 +39,6 @@
     <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
     <th>ເງື່ອນໄຂການສັ່ງຊື້</th>
     <th>ຮູບພາບສິນຄ້າ</th>
-    <th></th>
     </tr>
  ';
  while($row = mysqli_fetch_array($result_form_check))
@@ -259,11 +259,11 @@ else
                                 <th>ຊື່ສິນຄ້າ</th>
                                 <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
                                 <th style="width: 50px">ຈຳນວນ</th>
-                                <th style="width: 30px"></th>
+                                <th style="width: 75px;"><a href="#" data-toggle="modal" data-target="#exampleModalClear" class="clear">ລ້າງ</a></th>
                             </tr>
                             <?php
                         foreach($cart_data as $row){
-                        $amount += $row['qty'];
+                        // $amount += $row['qty'];
                     ?>
                             <tr>
                             <td style="display: none;"> <?php $row["img_path"] ?></td>
@@ -273,7 +273,6 @@ else
                                     <?php echo $row['name'] ?>
                                 </td>
                                 <td><?php echo $row['gen'] ?></td>
-                                <td><?php echo $row['serial'] ?></td>
                                 <td><?php echo $row['qty'] ?> <?php echo $row['unit_name'] ?></td>
                                 <td>
                                     <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
@@ -299,7 +298,7 @@ else
             ?>
                     <div class="col-md-12" align="right">
                         <br>
-                        <h4 style="color: #CE3131;"> 99 ລາຍການ</h4>
+                        <h4 style="color: #CE3131;"> <?php echo $amount ?> PCT.</h4>
                     </div>
                 </form>
                 </p>
@@ -308,7 +307,28 @@ else
     </div>
 </div>
 
-
+<form action="form" id="formClear" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" id="exampleModalClear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ຢືນຢັນການລົບຂໍ້ມູນ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" align="center">
+                    ທ່ານຕ້ອງການລ້າງລາຍການ ຫຼື ບໍ່ ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
+                    <button type="submit" name="clear_form" class="btn btn-outline-danger">ລ້າງລາຍການ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <!-- modal form delete -->
 <form action="form" id="formDelete" method="POST" enctype="multipart/form-data">
     <div class="modal fade" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -349,6 +369,7 @@ else
                 <div class="modal-body">
                     <div class="row" align="left">
                         <div class="col-md-12 col-sm-6 form-control2">
+                        <input type="hidden" name="form_add" id="form_add">
                             <label>ຮູບສິນຄ້າ</label>
                             <div class="col-md-12 col-sm-6 form-control2">
                                 <img src="../../image/camera.jpg" id="output2" width="100%" height="250">
