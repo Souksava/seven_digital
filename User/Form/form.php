@@ -263,7 +263,7 @@ else
                             </tr>
                             <?php
                         foreach($cart_data as $row){
-                        // $amount += $row['qty'];
+                        //  $amount += $row['qty'];
                     ?>
                             <tr>
                             <td style="display: none;"> <?php $row["img_path"] ?></td>
