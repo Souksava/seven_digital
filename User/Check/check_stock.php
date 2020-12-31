@@ -312,6 +312,15 @@
             document.getElementById("formSave").submit();
           }
         }
+        $('.btnDelete_check').on('click', function() {
+            $('#exampleModalDelete').modal('show');
+            $tr = $(this).closest('tr');
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+            console.log(data);
+            $('#id').val(data[2]);
+        });
 </script>
 
 

@@ -351,7 +351,7 @@ var loadFile2 = function(event) {
 };
 $(document).ready(function() {
 
-    load_data();
+    load_data('%%','0');
 
     function load_data(query,page) {
         $.ajax({

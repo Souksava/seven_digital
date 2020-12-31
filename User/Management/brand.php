@@ -230,7 +230,7 @@ function checkInputs2() {
 <script>
 $(document).ready(function(){
 
-  load_data();
+  load_data('0');
 
   function load_data(page)
   {

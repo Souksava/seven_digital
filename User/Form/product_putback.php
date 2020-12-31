@@ -299,6 +299,15 @@ function checkInputs() {
         document.getElementById("form1").submit();
     }
 }
+$('.btnDelete_pps').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[0]);
+    });
 </script>
 
 <!-- sweetalert -->
