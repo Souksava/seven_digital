@@ -1217,14 +1217,52 @@ class obj{
     }
     public static function del_form2($form_id){
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
-        $check_form = mysqli_query($conn,"select * from form where stt_accept='ອະນຸມັດ'");
-        if(mysqli_num_rows($check_form) > 0){
+        $check_form = mysqli_query($conn,"select * from form where stt_accept='ອະນຸມັດ' and form_id='$form_id'");
+        if($form_id == ''){
             echo"<script>";
-            echo"window.location.href='products?code=same';";
+            echo"window.location.href='acception?id=null';";
+            echo"</script>";
+        }
+        else if(mysqli_num_rows($check_form) > 0){
+            echo"<script>";
+            echo"window.location.href='acception?accept=not';";
             echo"</script>";
         }
         else{
-            
+            $check_dis = mysqli_query($conn,"select * from distribute where form_id='$form_id'");
+            $check_putback = mysqli_query($conn,"select * from product_putback_stock where form_id='$form_id'");
+            if(mysqli_num_rows($check_putback) > 0){
+                echo"<script>";
+                echo"window.location.href='acception?putback=has';";
+                echo"</script>";
+            }
+            else if(mysqli_num_rows($check_dis) > 0){
+                echo"<script>";
+                echo"window.location.href='acception?distribute=has';";
+                echo"</script>";
+            }
+            else{
+                $result_del = mysqli_query($conn,"delete from formdetail where form_id='$form_id'");
+                if(!$result_del){
+                    echo"<script>";
+                    echo"window.location.href='acception?del=fail';";
+                    echo"</script>";
+                }
+                else{
+                    $result = mysqli_query($conn,"delete from form where form_id='$form_id'");
+                    if(!$result){
+                        echo"<script>";
+                        echo"window.location.href='acception?del=fail';";
+                        echo"</script>";
+                    }
+                    else{
+                        echo"<script>";
+                        echo"window.location.href='acception?del2=success';";
+                        echo"</script>";
+                    }
+                }
+
+            }
         }
     }
 
@@ -2035,9 +2073,12 @@ class obj{
                 }
             }
             else{ // ຖ້າວ່າໄອດີບໍ່ຕົງກັນໃຫ້ເພີ່ມຂໍ້ມູນເຂົ້າໃນຄຸກກີ້
-                $getin = mysqli_query($conn,"select * from products where code='$code'");
+                $getin = mysqli_query($conn,"select pro_name,cate_name,gen,brand_name,unit_name,img_path from products p left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where code='$code'");
                 $get_info = mysqli_fetch_array($getin,MYSQLI_ASSOC);
                 $name = $get_info['pro_name'];
+                $cate_name = $get_info['cate_name'];
+                $unit_name = $get_info['unit_name'];
+                $brand_name = $get_info['brand_name'];
                 $gen = $get_info['gen'];
                 $img_path = $get_info['img_path'];
                 $item_array = [//ເພີ່ມຂໍ້ມູນທີ່ຮັບມາຈາກຄີບອດເຂົ້າໄວ້ໃນຕົວປ່ຽນອາເລ $item_array

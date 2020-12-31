@@ -107,7 +107,7 @@
             //ສິ້ນສຸດ
                         //ສິນຄ້າເບີກແລ້ວນຳກັບຄືນ
                         if(isset($_POST['form_add'])){
-                            $obj->cookie_form(trim($_POST['code']),trim($_POST['serial']),trim($_POST['qty']),trim($_POST['remark']));
+                            $obj->cookie_form(trim($_POST['code']),trim($_POST['qty']));
                         }
                         if(isset($_POST['clear_form'])){
                             $obj->clear_form();
@@ -116,7 +116,7 @@
                             $obj->del_form(trim($_POST['id']));
                         }
                         if(isset($_POST['btnSave_form'])){
-                            $obj->save_form($_SESSION['emp_id']);
+                            $obj->save_form(trim($_POST['form_id']),$_SESSION['emp_id'],trim($_POST['cus_id']),trim($_POST['amount']),trim($_POST['packing']));
                         }
                         //ສິ້ນສຸດ
                     }
