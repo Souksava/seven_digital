@@ -279,33 +279,41 @@
 ?>
 
 <script>
-$(document).ready(function() {
+$(window).load(function() {
 
-load_data();
+load_data('0');
 
 function load_data(query) {
     $.ajax({
         url: "fetch_accept.php",
         method: "POST",
         data: {
-            query: query
+            query:query
         },
         success: function(data) {
             $('#result').html(data);
         }
     });
 }
+    $('.btnUpdate_accept').on('click', function() {
+        // $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
 
-$(document).on('click', '.btnUpdate_accept', function() {
-
-    var form_id = $('#form_id').val();
-    console.log(form_id);
-    if (form_id != '') {
-        load_data(form_id);
-    } else {
-        load_data();
-    }
-});
+        console.log(data);
+        $('#form_id').val(data[0]);
+    });
+    $(document).on('click', '.btnUpdate_accept', function() {
+        var form_id = $('#form_id').val();
+        console.log(form_id);
+        if (form_id != '') {
+            load_data(form_id);
+        } else {
+            load_data('0');
+        }
+    });
 });
 </script>
 <!-- /.content-wrapper -->

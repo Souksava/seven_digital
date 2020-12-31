@@ -1192,17 +1192,35 @@ class obj{
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
         $resultform = mysqli_query($conn,"call form('$page');");
     }
-    public static function select_form2($search){
+    public static function select_form2($search,$page,$emp_id){
         // method ຂອງການດຶງຂໍ້ມູນສະຖານະມາສະແດງ
         global $resultform2;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
         global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
-        $resultform2 = mysqli_query($conn,"call form2('$search');");
+        $resultform2 = mysqli_query($conn,"call form2('$search','$page','$emp_id');");
+    }
+    public static function select_form2_count($search,$emp_id){
+        // method ຂອງການດຶງຂໍ້ມູນສະຖານະມາສະແດງ
+        global $resultform2_count;//ຕັ້ງໂຕປ່ຽນຢູ່ພາຍໃນ class ເອົາໄປໃຊ້ນອກ class
+        global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+        $resultform2_count = mysqli_query($conn,"call form2_count('$search','$emp_id');");
     }
     public static function select_form_count(){
         global $conn;
         global $resultform_count;
         global $path;
         $resultform_count = mysqli_query($conn,"call form_count()");
+    }
+    public static function del_form2($form_id){
+        global $conn; //ດຶງຕົວປ່ຽນພາຍນອກ class ມາໃຊ້
+        $check_form = mysqli_query($conn,"select * from form where stt_accept='ອະນຸມັດ'");
+        if(mysqli_num_rows($check_form) > 0){
+            echo"<script>";
+            echo"window.location.href='products?code=same';";
+            echo"</script>";
+        }
+        else{
+            
+        }
     }
 
 

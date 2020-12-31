@@ -16,7 +16,6 @@ else{
    $page = 0;
 }
 
-
 if(isset($_POST["query"]))
 {
    $highlight = $_POST['query'];
