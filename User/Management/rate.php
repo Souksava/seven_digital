@@ -246,6 +246,30 @@
             document.getElementById("formUpdate").submit();
           }
         }
+            // update rate
+    $('.btnUpdate_rate').on('click', function() {
+        $('#exampleModalUpdate').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+
+        console.log(data);
+
+        $('#rate_id_update').val(data[0]);
+        $('#rate_buy_update').val(data[1]);
+        $('#rate_sell_update').val(data[2]);
+    });
+            // delete rate
+    $('.btnDelete_rate').on('click', function() {
+        $('#exampleModalDelete').modal('show');
+        $tr = $(this).closest('tr');
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+        console.log(data);
+        $('#id').val(data[0]);
+    });
           </script>
 
 <!-- sweetalert -->

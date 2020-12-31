@@ -59,33 +59,8 @@ $(window).load(function() {
     
 
 
-    // update brand
-    $('.btnUpdate_brand').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
 
-        console.log(data);
 
-        $('#brand_id_update').val(data[0]);
-        $('#brand_name_update').val(data[1]);
-    });
-    // update rate
-    $('.btnUpdate_rate').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
-
-        console.log(data);
-
-        $('#rate_id_update').val(data[0]);
-        $('#rate_buy_update').val(data[1]);
-        $('#rate_sell_update').val(data[2]);
-    });
 
 
     // Delete Modal________________________________________________________________________________________________
@@ -94,28 +69,8 @@ $(window).load(function() {
 
 
 
-    // delete brand
-    $('.btnDelete_brand').on('click', function() {
-        $('#exampleModalDelete').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
 
-        console.log(data);
 
-        $('#id').val(data[0]);
-    });
-    // delete rate
-    $('.btnDelete_rate').on('click', function() {
-        $('#exampleModalDelete').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
-        console.log(data);
-        $('#id').val(data[0]);
-    });
     // delete import
     $('.btnDelete_import').on('click', function() {
         $('#exampleModalDelete').modal('show');
