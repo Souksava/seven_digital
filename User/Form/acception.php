@@ -36,12 +36,12 @@
                                                 <div class="modal-body" align="center">
                                                     ທ່ານບໍ່ຕ້ອງການລົບຟອມເບີກ ຫຼື ບໍ່ ?
                                                 </div>
-                                                <form action="accept" id="formadd" method="POST">
+                                                <form action="acception" id="formadd" method="POST">
                                                 <input type="hidden" name="form_id" id="form_id">
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-dismiss="modal">ຍົກເລີກ</button>
-                                                    <button type="submit" name="btnDiscard"
+                                                    <button type="submit" name="btnDel"
                                                         class="btn btn-outline-danger">ລົບ</button>
                                                 </div>
                                                 </form>
@@ -72,7 +72,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-dismiss="modal">ຍົກເລີກ</button>
-                                                    <button type="submit" name="btnAccept"
+                                                    <button type="submit" name="btnReport"
                                                         class="btn btn-outline-success">ພິມລາຍງານ</button>
                                                 </div>
                                                 </form>
@@ -94,56 +94,44 @@
 </div>
 </div>
 <?php
-    if(isset($_POST['btnDiscard'])){
-        $form_id = $_POST['form_id'];
-        $accpet = mysqli_query($conn,"update form set stt_accept='ບໍ່ອະນຸມັດ' where form_id='$form_id'");
-        if(!$accpet){
-            echo"<script>";
-            echo"window.location.href='accept?Discard=fail';";
-            echo"</script>";
-        }
-        else{
-            echo"<script>";
-            echo"window.location.href='accept?Discard2=success';";
-            echo"</script>";
-        }
+    if(isset($_POST['btnDel'])){
+        $obj->del_form2($_POST['form_id']);
     }
-    if(isset($_POST['btnAccept'])){
-        $form_id = $_POST['form_id'];
-        $accpet = mysqli_query($conn,"update form set stt_accept='ອະນຸມັດ' where form_id='$form_id'");
-        if(!$accpet){
-            echo"<script>";
-            echo"window.location.href='accept?Accept=fail';";
-            echo"</script>";
-        }
-        else{
-            echo"<script>";
-            echo"window.location.href='accept?Accept2=success';";
-            echo"</script>";
-        }
-    }
+   
 ?>
 <!-- sweetalert -->
 <?php
   //check save
-  if(isset($_GET['Discard'])=='fail'){
+
+  if(isset($_GET['id'])=='null'){
     echo'<script type="text/javascript">
-    swal("", "ການບໍ່ອະນຸມັດຟອມເບິກຜິດພາດ", "error");
+    swal("", "ກະລຸນາເລືອກເລກທີຟອມເບີກສິນຄ້າ", "info");
     </script>';
   }
-  if(isset($_GET['Discard2'])=='success'){
+  if(isset($_GET['distribute'])=='has'){
     echo'<script type="text/javascript">
-    swal("", "ການບໍ່ອະນຸມັດຟອມເບີກສຳເລັດ", "success");
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນໄດ້ ເນື່ອງຈາກເລກທີຟອມເບີກນີ້ໄດ້ເຄື່ອນໄຫວໃນການເບິກຈ່າຍສິນຄ້າແລ້ວ", "warning");
     </script>';
   }
-  if(isset($_GET['Accept'])=='fail'){
+
+  if(isset($_GET['putback'])=='has'){
     echo'<script type="text/javascript">
-    swal("", "ການອະນຸມັດຟອມເບິກຜິດພາດ", "error");
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນໄດ້ ເນື່ອງຈາກເລກທີຟອມເບີກນີ້ໄດ້ເຄື່ອນໄຫວໃນການນຳສິນຄ້າກັບຄືນແລ້ວ", "warning");
     </script>';
   }
-  if(isset($_GET['Accept2'])=='success'){
+  if(isset($_GET['accept'])=='not'){
     echo'<script type="text/javascript">
-    swal("", "ການອະນຸມັດຟອມເບີກສຳເລັດ", "success");
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນໄດ້ ເນື່ອງຈາກເລກທີຟອມເບີກນີ້ໄດ້ຮັບການອະນຸມັດແລ້ວ", "warning");
+    </script>';
+  }
+  if(isset($_GET['del'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ການລົບຂໍ້ມູນຜິດພາດ", "error");
+    </script>';
+  }
+  if(isset($_GET['del2'])=='success'){
+    echo'<script type="text/javascript">
+    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
 ?>
