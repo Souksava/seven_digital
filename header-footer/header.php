@@ -107,7 +107,7 @@
             //ສິ້ນສຸດ
                         //ສິນຄ້າເບີກແລ້ວນຳກັບຄືນ
                         if(isset($_POST['form_add'])){
-                            $obj->cookie_form(trim($_POST['code']),trim($_POST['img_path']),trim($_POST['name']),trim($_POST['unit_name']),trim($_POST['cate_name']),trim($_POST['brand_path']),trim($_POST['gen']),trim($_POST['qty']));
+                            $obj->cookie_form(trim($_POST['code']),trim($_POST['serial']),trim($_POST['qty']),trim($_POST['remark']));
                         }
                         if(isset($_POST['clear_form'])){
                             $obj->clear_form();
