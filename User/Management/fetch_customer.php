@@ -190,9 +190,7 @@ $('.result').highlight([highlight]);
         var data = $tr.children("td").map(function() {
             return $(this).text();
         }).get();
-
         console.log(data);
-
         $('#id').val(data[0]);
     });
 </script>

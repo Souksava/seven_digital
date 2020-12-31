@@ -90,10 +90,6 @@ $(window).load(function() {
 
     // Delete Modal________________________________________________________________________________________________
 
-
-
-
-
     // delete brand
     $('.btnDelete_brand').on('click', function() {
         $('#exampleModalDelete').modal('show');
