@@ -93,48 +93,7 @@
     </div>
 </div>
 <div class="clearfix"></div><br>
-<?php
-      $obj->select_category('%%','0');
-      if(mysqli_num_rows($resultcategory) > 0){
-    ?>
-<div class="table-responsive">
-    <table class="table font12" style="width: 1500px;">
-        <tr>
-            <th>ລະຫັດປະເພດສິນຄ້າ</th>
-            <th>ຊື່ປະເພດສິນຄ້າ</th>
-            <th></th>
-
-        </tr>
-        <?php
-            foreach($resultcategory as $row){
-        ?>
-        <tr>
-            <td><?php echo $row['cate_id'] ?></td>
-            <td><?php echo $row['cate_name'] ?></td>
-            <td>
-                <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                    class="fa fa-pen toolcolor btnUpdate_cat"></a>&nbsp; &nbsp;
-                <a href="#" data-toggle="modal" data-target="#exampleModalDelete"
-                    class="fa fa-trash toolcolor btnDelete_cat"></a>
-            </td>
-        </tr>
-        <?php
-            }   
-            mysqli_free_result($resultcategory);  
-            mysqli_next_result($conn);
-        ?>
-    </table>
-</div>
-<?php
-          } 
-          else{
-        ?>
-                    <hr size="1" width="90%">
-              <p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
-            <hr size="1" width="90%">
-        <?php
-          }
-        ?>
+<div id="result"></div>
 
 
 <form action="category" id="formDelete" method="POST" enctype="multipart/form-data">
@@ -263,7 +222,51 @@ function checkInputsUpdate() {
   }
 ?>
 
+<script>
+$(document).ready(function(){
 
+  load_data("%%","0");
+
+  function load_data(query,page)
+  {
+    $.ajax({
+      url:"fetch_category.php",
+      method:"POST",
+      data:{query:query,page:page},
+      success:function(data)
+      {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search').keyup(function(){
+    var page = "0";
+    var search = $(this).val();
+    if(search != '')
+    {
+    load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+  $(document).on('click', '.page-links', function(){    
+    var page = this.id;
+    console.log(page);
+    var search = $('#search').val();
+    if(search != '')
+    {
+      load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+});
+
+</script>
 
 
 <?php

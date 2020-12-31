@@ -799,6 +799,11 @@ class obj{
         global $resultcategory;
         $resultcategory = mysqli_query($conn,"call category('$search','$page')");
     }
+    public static function select_category_count($page){
+        global $conn;
+        global $resultcategory_count;
+        $resultcategory_count = mysqli_query($conn,"call category_count('$page')");
+    }
     public static function insert_category($cate_name){
         global $conn;
         $check_id = mysqli_query($conn,"select * from category where cate_name='$cate_name'");

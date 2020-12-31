@@ -65,19 +65,7 @@ $(window).load(function() {
         $('#stt_name_update').val(data[1]);
     });
 
-    // update category
-    $('.btnUpdate_cat').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
 
-        console.log(data);
-
-        $('#cate_id_update').val(data[0]);
-        $('#cate_name_update').val(data[1]);
-    });
 
 
     
@@ -126,18 +114,7 @@ $(window).load(function() {
 
     // Delete Modal________________________________________________________________________________________________
 
-    // delete category
-    $('.btnDelete_cat').on('click', function() {
-        $('#exampleModalDelete').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
 
-        console.log(data);
-
-        $('#id').val(data[0]);
-    });
 
     // delete product address
     $('.btnDelete_addr').on('click', function() {
