@@ -10,7 +10,7 @@ class obj{
     public static function login($email,$password){
         global $conn;
         session_start();
-        $resultck = mysqli_query($conn, "select * from employee where email='$email' and pass=md5('$password')");
+        $resultck = mysqli_query($conn, "select * from employee where email='$email' and binary pass=md5('$password')");
         if($email == "")
         {
             echo"<script>";
@@ -31,7 +31,7 @@ class obj{
         }
         else 
         {
-            $resultget = mysqli_query($conn, "select * from employee where email='$email' and pass=md5('$password')"); 
+            $resultget = mysqli_query($conn, "select * from employee where email='$email' and binary pass=md5('$password')"); 
             if(mysqli_num_rows($resultget) <= 0){
                 echo"<meta http-equiv-'refress' content='1;URL=/'>";
             }
@@ -69,7 +69,7 @@ class obj{
                         $_SESSION['ses_status_id'] = 3;
                         echo"<meta http-equiv='refresh' content='1;URL=User_Stock/Main'>";
                     }
-                    else if($user['stt_id'] == 3)
+                    else if($user['stt_id'] == 4)
                     {
                         $_SESSION['ses_seven_id'] = session_id();
                         $_SESSION['email'] = $user['email'];
