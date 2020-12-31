@@ -39,7 +39,7 @@
       <div class="forms-container">
           <div class="signin-signup">
               <form action="home" method="POST" id="formLogin" class="sign-in-form">
-                <img src="image/logo.png" alt="" width="100px"><br>
+                <img src="image/logo-min.png" alt="" width="100px"><br>
                 <h2 class="title">ເຂົ້າສູ່ລະບົບ</h2>
                   <div class="input-field">
                     <i class="fas fa-envelope"></i>
