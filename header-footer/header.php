@@ -259,7 +259,7 @@
                                                   echo"";
                                                 } 
 
-                                                if ($title == "ອະນຸມັດຟອມເບີກ2"){
+                                                if ($title == "ການອະນຸມັດ"){
                                                     echo '<form class="form-inline ml-3">
                                                     <div class="input-group input-group-sm">
                                                       <input class="form-control form-control-navbar" type="search" name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">

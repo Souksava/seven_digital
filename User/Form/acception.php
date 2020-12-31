@@ -1,5 +1,5 @@
 <?php
-  $title = "ອະນຸມັດຟອມເບີກ2";
+  $title = "ການອະນຸມັດ";
   $path = "../../";
   $links = "../";
   $session_path = "../../";
@@ -11,149 +11,12 @@
 </div>
 <div class="row">
     <div class="col-md-7">
-    <div id="result"></div>
-        <?php
-        $page = 0;
-        if(isset($_GET['page'])){
-            $page=$_GET['page'];
-        }
-        $obj->select_form($page);
-        if(mysqli_num_rows($resultform) > 0){
-    ?>
-        <div class="table-responsive" style="text-align: center;">
-            <table class="table font12" style="width: 1000px">
-                <tr>
-                    <th style="width: 100px">ເລກທີຟອມ</th>
-                    <th style="width: 150px">ຜູ້ສ້າງຟອມ</th>
-                    <th style="width: 150px">ລູກຄ້າ</th>
-                    <th style="width: 100px">ຈຳນວນທັງໝົດ</th>
-                    <th style="width: 120px">Packing No</th>
-                    <th style="width: 80px">ວັນທີ</th>
-                    <th style="width: 80px">ເວລາ</th>
-                    <th style="width: 100px">ສະຖານະ</th>
-                    <th style="width: 30px"></th>
-                </tr>
-                <?php
-                    foreach($resultform as $row){
-                ?>
-                <tr>
-                    <td><?php echo $row['form_id'] ?></td>
-                    <td><?php echo $row['emp_name'] ?></td>
-                    <td><?php echo $row['company'] ?></td>
-                    <td><?php echo $row['amount'] ?></td>
-                    <td><?php echo $row['packing_no'] ?></td>
-                    <td><?php echo date("d/m/Y",strtotime($row["form_date"])) ?></td>
-                    <td><?php echo $row['form_time'] ?></td>
-                    <td><?php echo $row['stt_accept'] ?></td>
-                    <td>
-                        <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                            class="fa fa-info toolcolor btnUpdate_accept"></a>&nbsp; &nbsp;
-                    </td>
-                </tr>
-                <?php
-                    }
-                    mysqli_free_result($resultform);  
-                    mysqli_next_result($conn);
-                ?>
-            </table>
-        </div>
-        <?php
-             $obj->select_form_count();
-             $count = mysqli_num_rows($resultform_count);
-             mysqli_free_result($resultform_count);  
-             mysqli_next_result($conn);
-             $a = ceil($count/15);
-             if(isset($_GET['page'])){
-                if($_GET['page'] > 1){
-                   $previous = $_GET['page'] - 1;
-                   echo '      
-                   <nav aria-label="...">
-                      <ul class="pagination">
-                         <li class="page-item">
-                            <a href="accept?page='.$previous.'" class="btn btn-danger page-links" id="'.$previous.'" style="color: white!important;" value="'.$previous.'">ກັບຄືນ</a>
-                         </li>
-                 ';
-                }
-                else{
-                   echo' <nav aria-label="...">
-                            <ul class="pagination">';
-                }
-             }
-             else{
-                echo' <nav aria-label="...">
-                         <ul class="pagination">';
-             }
-             $i = 0;
-             $page_next = 0;
-             $page_next2 = 1;
-             if(isset($_GET['page'])){
-                $page_next = $_GET['page'];
-                $page_next2 = $_GET['page'];
-                if($_GET['page'] == 0 || $_GET['page'] == ''){
-                   $page_next2 = 1;
-                }
-             }
-             for($b=1;$b<=$a;$b++){
-                $i = $b;
-                if($page_next2 == $b){
-                   echo '
-                   <li class="page-item active" aria-current="page">
-                      <span class="page-link">
-                      '.$b.'
-                      <span class="sr-only">(current)</span>
-                      </span>
-                   </li>
-                   ';
-                }
-                else{
-                   echo '
-                   <li class="page-item">
-                      <a href="accept?page='.$b.'" id="'.$b.'" class="btn btn-danger page-link page-links" value="'.$b.'">'.$b.'</a>
-                   </li>
-                   ';
-                }
-             }
-               if($page_next == 0){
-                  $page_next = 1;
-               }
-                if($page_next < $i){
-                   if($page_next == 0){
-                      $page_next += 1;
-                   }
-                   $next = $page_next + 1;
-                   echo '      
-          
-                               <li class="page-item">
-                                  <a href="accept?page='.$next.'" class="btn btn-success page-links" id="'.$next.'" value="'.$next.'" style="color: white!important;" href="#">ໜ້າຖັດໄປ</a>
-                               </li>
-                            </ul>
-                         </nav>
-          ';
-          
-                }
-                else{
-                   echo'';
-                }
-        ?>
-        <?php
-        }
-        else{
-            echo'
-            <div align="center">
-                <hr size="1" style="width: 90%;"/>
-                    ຍັງບໍ່ມີຂໍ້ມູນ
-                <hr size="1" style="width: 90%;"/>
-            </div>
-        ';
-        }
-    ?>
+        <div id="result2"></div>
     </div>
     <div class="col-md-5">
         <div class="card">
             <div class="card-body">
                 <h5 align="center" class="card-title"></h5>
-                <form action="accept" id="formadd" method="POST">
-                    <input type="hidden" name="form_id" id="form_id">
                     <p class="card-text">
                         <div class="row">
                             <div class="col-md-6">
@@ -171,14 +34,17 @@
                                                         <span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <div class="modal-body" align="center">
-                                                    ທ່ານບໍ່ຕ້ອງການອະນຸມັດຟອມເບີກ ຫຼື ບໍ່ ?
+                                                    ທ່ານບໍ່ຕ້ອງການລົບຟອມເບີກ ຫຼື ບໍ່ ?
                                                 </div>
+                                                <form action="accept" id="formadd" method="POST">
+                                                <input type="hidden" name="form_id" id="form_id">
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-dismiss="modal">ຍົກເລີກ</button>
                                                     <button type="submit" name="btnDiscard"
-                                                        class="btn btn-outline-danger">ບໍ່ອະນຸມັດ</button>
+                                                        class="btn btn-outline-danger">ລົບ</button>
                                                 </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -199,14 +65,17 @@
                                                         <span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <div class="modal-body" align="center">
-                                                    ທ່ານຕ້ອງການອະນຸມັດຟອມເບີກ ຫຼື ບໍ່ ?
+                                                    ທ່ານຕ້ອງການພິມລາຍງານ ຫຼື ບໍ່ ?
                                                 </div>
+                                                <form action="#" id="FormReport" method="POST">
+                                                <input type="hidden" name="form_id_Report" id="form_id_Report">
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-secondary"
                                                         data-dismiss="modal">ຍົກເລີກ</button>
                                                     <button type="submit" name="btnAccept"
-                                                        class="btn btn-outline-success">ອະນຸມັດ</button>
+                                                        class="btn btn-outline-success">ພິມລາຍງານ</button>
                                                 </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -218,7 +87,7 @@
         </div>
     </div>
     </p>
-    </form>
+
 </div>
 </div>
 </div>
@@ -280,11 +149,55 @@
 ?>
 
 <script>
-$(document).ready(function() {
+$(window).load(function() {
+    var search = $('#search').val();
+    if (search != '') {
 
-load_data();
+    }
+    else{
+        var search = "%%";
+    }
+    var page = 0;
+    var emp_id = '<?php echo $_SESSION['emp_id'] ?>';
+load_data(search,page,emp_id);
+load_data2();
 
-function load_data(query) {
+function load_data(query,page,emp_id) {
+    $.ajax({
+        url: "fetch_accept2.php",
+        method: "POST",
+        data: {
+            query:query,
+            page:page,
+            emp_id:emp_id
+        },
+        success: function(data) {
+            $('#result2').html(data);
+        }
+    });
+}
+    $('#search').keyup(function() {
+        var page = 0;
+        var emp_id = '<?php echo $_SESSION['emp_id'] ?>';
+        var search = $(this).val();
+        if (search != '') {
+            load_data(search,page,emp_id);
+        } else {
+            load_data('%%',page);
+        }
+    });
+    $(document).on('click', '.page-links', function() {
+        var page = this.id;
+        var emp_id = '<?php echo $_SESSION['emp_id'] ?>';
+        console.log(page);
+        var search = $('#search').val();
+        if (search != '') {
+            load_data(search,page,emp_id);
+        } else {
+            load_data('%%',page,emp_id);
+        }
+    });
+    function load_data2(query) {
     $.ajax({
         url: "fetch_accept.php",
         method: "POST",
@@ -295,24 +208,16 @@ function load_data(query) {
             $('#result').html(data);
         }
     });
-}
-$('#search').keyup(function() {
-        var search = $(this).val();
-        if (search != '') {
-            load_data(search);
+    }
+    $(document).on('click', '.btnUpdate_accept', function() {
+        var form_id = $('#form_id').val();
+        console.log(form_id);
+        if (form_id != '') {
+            load_data2(form_id);
         } else {
-            load_data('%%');
+            load_data2();
         }
     });
-$(document).on('click', '.btnUpdate_accept', function() {
-    var form_id = $('#form_id').val();
-    console.log(form_id);
-    if (form_id != '') {
-        load_data(form_id);
-    } else {
-        load_data();
-    }
-});
 });
 </script>
 <!-- /.content-wrapper -->

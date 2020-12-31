@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 30, 2020 at 06:25 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Host: localhost
+-- Generation Time: Dec 31, 2020 at 04:53 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.3.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -139,14 +140,14 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `form` (IN `page` INT(5))  begin
 select f.form_id,f.emp_id,f.cus_id,form_date,stt_accept,amount,status,usr_acc,emp_name,company,packing_no,fd.code,p.img_path,form_time from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id left join formdetail fd on f.form_id=fd.form_id  left join products p on fd.code=p.code where stt_accept='ຍັງບໍ່ອະນຸມັດ' order by form_date DESC limit page,15;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `form2` (IN `s` VARCHAR(50), IN `page` INT(5))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `form2` (IN `s` VARCHAR(50), IN `page` INT(5), IN `emp` VARCHAR(20))  NO SQL
 begin
-select f.form_id,f.emp_id,f.cus_id,form_date,stt_accept,amount,status,usr_acc,emp_name,company,packing_no,fd.code,p.img_path,form_time from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id left join formdetail fd on f.form_id=fd.form_id  left join products p on fd.code=p.code where f.form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or amount like s or STATUS like s or usr_acc like s or emp_name like s or company like s or packing_no like s or fd.code like s or p.img_path like s or form_time like s order by form_date DESC limit page,15;
+select f.form_id,f.emp_id,f.cus_id,form_date,stt_accept,amount,status,usr_acc,emp_name,company,packing_no,fd.code,p.img_path,form_time from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id left join formdetail fd on f.form_id=fd.form_id  left join products p on fd.code=p.code where f.form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or amount like s or STATUS like s or usr_acc like s or emp_name like s or company like s or packing_no like s or fd.code like s or p.img_path like s or form_time like s and f.emp_id=emp order by form_date DESC limit page,15;
 end$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `form2_count` (IN `s` VARCHAR(50))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `form2_count` (IN `s` VARCHAR(50), IN `emp` INT(20))  NO SQL
 begin
-select f.form_id,f.emp_id,f.cus_id,form_date,stt_accept,amount,status,usr_acc,emp_name,company,packing_no,fd.code,p.img_path,form_time from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id left join formdetail fd on f.form_id=fd.form_id  left join products p on fd.code=p.code where f.form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or amount like s or STATUS like s or usr_acc like s or emp_name like s or company like s or packing_no like s or fd.code like s or p.img_path like s or form_time like s order by form_date DESC;
+select f.form_id,f.emp_id,f.cus_id,form_date,stt_accept,amount,status,usr_acc,emp_name,company,packing_no,fd.code,p.img_path,form_time from form f left join employee e on f.emp_id=e.emp_id left join customer c on f.cus_id=c.cus_id left join formdetail fd on f.form_id=fd.form_id  left join products p on fd.code=p.code where f.form_id like s or f.emp_id like s or f.cus_id like s or form_date like s or stt_accept like s or amount like s or STATUS like s or usr_acc like s or emp_name like s or company like s or packing_no like s or fd.code like s or p.img_path like s or form_time like s and f.emp_id=emp order by form_date DESC;
 end$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `form_count` ()  NO SQL
