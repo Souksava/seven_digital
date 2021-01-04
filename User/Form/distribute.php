@@ -59,7 +59,7 @@
                         </div>
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ໝາຍເຫດ</label>
-                            <input type="text" name="remark" id="remark" placeholder="ໝາຍເຫດ">
+                            <input type="text" name="remark" id="remark" placeholder="ໝາຍເຫດ" class="form-control">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
                             <small class="">Error message</small>

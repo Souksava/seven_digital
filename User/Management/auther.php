@@ -37,7 +37,7 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຕຳແໜ່ງ</label>
-                                    <input type="text" name="auther_id" id="auther_id" placeholder="ລະຫັດຕຳແໜ່ງ">
+                                    <input type="text" name="auther_id" id="auther_id" placeholder="ລະຫັດຕຳແໜ່ງ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -48,7 +48,7 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ຕຳແໜ່ງ</label>
-                                    <input type="text" name="auther_name" id="auther_name" placeholder="ຊື່ຕຳແໜ່ງ">
+                                    <input type="text" name="auther_name" id="auther_name" placeholder="ຊື່ຕຳແໜ່ງ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -127,7 +127,7 @@
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຊື່ຕຳແໜ່ງ</label>
                             <input type="hidden" id="auther_id_update" name="auther_id_update">
-                            <input type="text" name="auther_name_update" id="auther_name_update" placeholder="ຊື່ຕຳແໜ່ງ">
+                            <input type="text" name="auther_name_update" id="auther_name_update" placeholder="ຊື່ຕຳແໜ່ງ" class="form-control">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
                             <small class="">Error message</small>

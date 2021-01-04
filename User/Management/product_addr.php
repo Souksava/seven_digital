@@ -37,7 +37,7 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ທີ່ຢູສິນຄ້າ</label>
-                                    <input type="text" name="addr_name" id="addr_name" placeholder="ທີ່ຢູສິນຄ້າ">
+                                    <input type="text" name="addr_name" id="addr_name" placeholder="ທີ່ຢູສິນຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -115,7 +115,7 @@
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ທີ່ຢູສິນຄ້າ</label>
                             <input type="hidden" id="pro_ad_update" name="pro_ad_update">
-                            <input type="text" name="addr_name_update" id="addr_name_update" placeholder="ທີ່ຢູສິນຄ້າ">
+                            <input type="text" name="addr_name_update" id="addr_name_update" placeholder="ທີ່ຢູສິນຄ້າ" class="form-control">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
                             <small class="">Error message</small>

@@ -36,21 +36,21 @@
                               <div class="row" align="left">
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ລະຫັດເລດເງີນ </label>
-                                      <input type="text" name="rate_id" id="rate_id" placeholder="ລະຫັດເລດເງີນ ">
+                                      <input type="text" name="rate_id" id="rate_id" placeholder="ລະຫັດເລດເງີນ " class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label></label>
-                                      <input type="text" name="rate_buy" id="rate_buy" placeholder="ເລດເງິນຊື້">
+                                      <input type="text" name="rate_buy" id="rate_buy" placeholder="ເລດເງິນຊື້" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label></label>
-                                      <input type="text" name="rate_sell" id="rate_sell" placeholder="ເລດເງິນຂາຍ">
+                                      <input type="text" name="rate_sell" id="rate_sell" placeholder="ເລດເງິນຂາຍ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
@@ -81,14 +81,14 @@
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ເລດເງີນຊື້</label>
                                       <input type="hidden" name="rate_id_update" id="rate_id_update" placeholder="ລະຫັດເລດເງິນ">
-                                      <input type="text" name="rate_buy_update" id="rate_buy_update" placeholder="ເລດເງິນຊື້">
+                                      <input type="text" name="rate_buy_update" id="rate_buy_update" placeholder="ເລດເງິນຊື້" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>   
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ເລດເງີນຂາຍ</label>
-                                      <input type="text" name="rate_sell_update" id="rate_sell_update" placeholder="ເລດເງິນຂາຍ">
+                                      <input type="text" name="rate_sell_update" id="rate_sell_update" placeholder="ເລດເງິນຂາຍ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>

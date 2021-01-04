@@ -40,35 +40,35 @@
                               <div class="row" align="left">
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ລະຫັດລູກຄ້າ</label>
-                                      <input type="text" name="cus_id" id="cus_id" placeholder="ລະຫັດລູກຄ້າ">
+                                      <input type="text" name="cus_id" id="cus_id" placeholder="ລະຫັດລູກຄ້າ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ຊື່ບໍລີສັດ</label>
-                                      <input type="text" name="company" id="company" placeholder="ຊື່ບໍລີສັດ">
+                                      <input type="text" name="company" id="company" placeholder="ຊື່ບໍລີສັດ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ເບີໂທລະສັບ</label>
-                                      <input type="text" name="tel" id="tel" placeholder="ເບີໂທລະສັບ">
+                                      <input type="text" name="tel" id="tel" placeholder="ເບີໂທລະສັບ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ທີ່ຢູ່ປັດຈຸບັນ</label>
-                                      <input type="text" name="address" id="address" placeholder="ທີ່ຢູ່ປັດຈຸບັນ">
+                                      <input type="text" name="address" id="address" placeholder="ທີ່ຢູ່ປັດຈຸບັນ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ອີເມວ</label>
-                                      <input type="text" name="email" id="email" placeholder="ອີເມວ">
+                                      <input type="text" name="email" id="email" placeholder="ອີເມວ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
@@ -118,28 +118,28 @@
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ຊື່ບໍລີສັດ</label>
                                       <input type="hidden" name="cus_id_update" id="cus_id_update" placeholder="ລະຫັດລູກຄ້າ">
-                                      <input type="text" name="company_update" id="company_update" placeholder="ຊື່ບໍລີສັດ">
+                                      <input type="text" name="company_update" id="company_update" placeholder="ຊື່ບໍລີສັດ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ເບີໂທລະສັບ</label>
-                                      <input type="text" name="tel_update" id="tel_update" placeholder="ເບີໂທລະສັບ">
+                                      <input type="text" name="tel_update" id="tel_update" placeholder="ເບີໂທລະສັບ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ທີ່ຢູ່ປັດຈຸບັນ</label>
-                                      <input type="text" name="address_update" id="address_update" placeholder="ທີ່ຢູ່ປັດຈຸບັນ">
+                                      <input type="text" name="address_update" id="address_update" placeholder="ທີ່ຢູ່ປັດຈຸບັນ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>
                                   </div>
                                   <div class="col-md-12 col-sm-6 form-control2">
                                       <label>ອີເມວ</label>
-                                      <input type="text" name="email_update" id="email_update" placeholder="ອີເມວ">
+                                      <input type="text" name="email_update" id="email_update" placeholder="ອີເມວ" class="form-control">
                                       <i class="fas fa-check-circle "></i>
                                       <i class="fas fa-exclamation-circle "></i>
                                       <small class="">Error message</small>

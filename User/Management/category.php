@@ -37,7 +37,7 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ປະເພດສິນຄ້າ</label>
-                                    <input type="text" name="cate_name" id="cate_name" placeholder="ຊື່ປະເພດສິນຄ້າ">
+                                    <input type="text" name="cate_name" id="cate_name" placeholder="ຊື່ປະເພດສິນຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -73,7 +73,7 @@
                                     <input type="hidden" name="cate_id_update" id="cate_id_update"
                                         placeholder="ລະຫັດປະເພດສິນຄ້າ">
                                     <input type="text" name="cate_name_update" id="cate_name_update"
-                                        placeholder="ຊື່ຫົວໜ່ວຍສິນຄ້າ">
+                                        placeholder="ຊື່ຫົວໜ່ວຍສິນຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle"></i>
                                     <small class="">Error message</small>

@@ -30,42 +30,42 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດເຄື່ອງຖອດອາໄຫຼ່</label>
                                     <input type="hidden" name="add_spare" id="add_spare">
-                                    <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດເຄື່ອງຖອດອາໄຫຼ່">
+                                    <input type="text" name="code" id="code" class="form-control" placeholder="ລະຫັດເຄື່ອງຖອດອາໄຫຼ່" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>Serial Number ເຄື່ອງຖອດ</label>
-                                    <input type="text" name="serialout" id="serialout" class="form-control" placeholder="Serial Number">
+                                    <input type="text" name="serialout" id="serialout" class="form-control" placeholder="Serial Number" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ອາໄຫຼ່</label>
-                                    <input type="text" name="spare_part" id="spare_part" class="form-control" placeholder="ຊື່ອາໄຫຼ່">
+                                    <input type="text" name="spare_part" id="spare_part" class="form-control" placeholder="ຊື່ອາໄຫຼ່" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດເຄື່ອງປ່ຽນ</label>
-                                    <input type="text" name="pro_id" id="pro_id" class="form-control" placeholder="ລະຫັດເຄື່ອງປ່ຽນ">
+                                    <input type="text" name="pro_id" id="pro_id" class="form-control" placeholder="ລະຫັດເຄື່ອງປ່ຽນ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>Serial Number ເຄື່ອງປ່ຽນ</label>
-                                    <input type="text" name="serialin" id="serialin" class="form-control" placeholder="Serial Number">
+                                    <input type="text" name="serialin" id="serialin" class="form-control" placeholder="Serial Number" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ໝາຍເຫດ</label>
-                                    <input type="text" name="remark" id="remark" placeholder="ໝາຍເຫດ" class="form-control">
+                                    <input type="text" name="remark" id="remark" placeholder="ໝາຍເຫດ" class="form-control" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>

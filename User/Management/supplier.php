@@ -38,28 +38,28 @@
                         <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຜູ້ສະໜອງ</label>
-                                    <input type="text" name="sup_id" id="sup_id" placeholder="ລະຫັດຜູ້ສະໜອງ">
+                                    <input type="text" name="sup_id" id="sup_id" placeholder="ລະຫັດຜູ້ສະໜອງ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ບໍ່ລິສັດ</label>
-                                    <input type="text" name="company" id="company" placeholder="ຊື່ບໍ່ລິສັດ">
+                                    <input type="text" name="company" id="company" placeholder="ຊື່ບໍ່ລິສັດ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເບີໂທລະສັບ</label>
-                                    <input type="text" name="tel" id="tel" placeholder="ເບີໂທລະສັບ">
+                                    <input type="text" name="tel" id="tel" placeholder="ເບີໂທລະສັບ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເບີແຟັກ</label>
-                                    <input type="text" name="fax" id="fax" placeholder="ເບີແຟັກ">
+                                    <input type="text" name="fax" id="fax" placeholder="ເບີແຟັກ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ທີ່ຢູ່ອີເມວ</label>
-                                    <input type="text" name="email" id="email" placeholder="ທີ່ຢູ່ອີເມວ">
+                                    <input type="text" name="email" id="email" placeholder="ທີ່ຢູ່ອີເມວ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -120,21 +120,21 @@
                                     <input type="hidden" name="sup_id_update" id="sup_id_update"
                                         placeholder="ລະຫັດຜູ້ສະໜອງ">
                                     <input type="text" name="company_update" id="company_update"
-                                        placeholder="ຊື່ຊື່ບໍລິສັດ">
+                                        placeholder="ຊື່ຊື່ບໍລິສັດ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເບີໂທລະສັບ</label>
-                                    <input type="text" name="tel_update" id="tel_update" placeholder="ເບີໂທລະສັບ">
+                                    <input type="text" name="tel_update" id="tel_update" placeholder="ເບີໂທລະສັບ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເບີແຟັກ</label>
-                                    <input type="text" name="fax_update" id="fax_update" placeholder="ເບີແຟັກ">
+                                    <input type="text" name="fax_update" id="fax_update" placeholder="ເບີແຟັກ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -149,7 +149,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ທີ່ຢູ່ອີເມວ</label>
-                                    <input type="text" name="email_update" id="email_update" placeholder="ທີ່ຢູ່ອີເມວ">
+                                    <input type="text" name="email_update" id="email_update" placeholder="ທີ່ຢູ່ອີເມວ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -157,7 +157,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບ</label>
                                     <input type="file" name="img_path" id="img_path_update"
-                                        onchange="loadFile2(event)">
+                                        onchange="loadFile2(event)" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>

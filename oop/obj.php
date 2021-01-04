@@ -1447,7 +1447,7 @@ class obj{
             $unit_name = $get_info['unit_name'];
             $cate_name = $get_info['cate_name'];
             if(isset($_COOKIE['stock_list'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
-                $cookie_data = stripcslashes($_COOKIE['stock_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+                $cookie_data = $_COOKIE['stock_list'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
                 $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             }
             else{
@@ -1495,12 +1495,12 @@ class obj{
     public static function select_stock_list(){
         global $cart_data;
         if(isset($_COOKIE['stock_list'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
-            $cookie_data = stripslashes($_COOKIE['stock_list']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cookie_data = $_COOKIE['stock_list'];//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
             $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
         }
     }
     public static function del_stock($serial){
-        $cookie_data = stripcslashes($_COOKIE['stock_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cookie_data = $_COOKIE['stock_list'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
         $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
         foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
             if($cart_data[$keys]['serial'] == $serial){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
@@ -1531,7 +1531,7 @@ class obj{
         $rate = mysqli_fetch_array($get_rate,MYSQLI_ASSOC);
         $rate_buy = $rate['rate_buy'];
         if(isset($_COOKIE['stock_list'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
-            $cookie_data = stripcslashes($_COOKIE['stock_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cookie_data = $_COOKIE['stock_list'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
             $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             foreach($cart_data as $data){
                 $code = $data['code'];
@@ -1600,7 +1600,7 @@ class obj{
        }
         else{
             if(isset($_COOKIE['distribute_list'])){//ກວດສອບວ່າຄຸກກີ້ distribute_list ນັ້ນມີຄ່າຫຼືບໍ່
-                $cookie_data = stripcslashes($_COOKIE['distribute_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+                $cookie_data = $_COOKIE['distribute_list'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
                 $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             }
             else{
@@ -1645,12 +1645,12 @@ class obj{
     public static function select_distribute_list(){
         global $cart_data;
         if(isset($_COOKIE['distribute_list'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
-            $cookie_data = stripslashes($_COOKIE['distribute_list']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cookie_data = $_COOKIE['distribute_list'];//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
             $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
         }
     }
     public static function del_distribute($serial){
-        $cookie_data = stripcslashes($_COOKIE['distribute_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cookie_data = $_COOKIE['distribute_list'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
         $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
         foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
             if($cart_data[$keys]['serial'] == $serial){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
@@ -1681,7 +1681,7 @@ class obj{
         $alert = '';
         $status = "ເບີກຈ່າຍແລ້ວ";
         if(isset($_COOKIE['distribute_list'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
-            $cookie_data = stripcslashes($_COOKIE['distribute_list']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cookie_data = $_COOKIE['distribute_list'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
             $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             foreach($cart_data as $data2){
                 $check_code = $data2['code'];
@@ -1754,7 +1754,7 @@ class obj{
        }
         else{
             if(isset($_COOKIE['check_stock'])){//ກວດສອບວ່າຄຸກກີ້ distribute_list ນັ້ນມີຄ່າຫຼືບໍ່
-                $cookie_data = stripcslashes($_COOKIE['check_stock']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+                $cookie_data = $_COOKIE['check_stock'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
                 $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             }
             else{
@@ -1799,7 +1799,7 @@ class obj{
     public static function select_check_stock(){
         global $cart_data;
         if(isset($_COOKIE['check_stock'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
-            $cookie_data = stripslashes($_COOKIE['check_stock']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cookie_data = $_COOKIE['check_stock'];//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
             $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
         }
     }
@@ -1808,7 +1808,7 @@ class obj{
         global $Date;
         global $Time;
         if(isset($_COOKIE['check_stock'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
-            $cookie_data = stripcslashes($_COOKIE['check_stock']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cookie_data = $_COOKIE['check_stock'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
             $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             foreach($cart_data as $data){
                 $code = $data['code'];
@@ -1842,7 +1842,7 @@ class obj{
         echo"</script>";
     }
     public static function del_check_stock($serial){
-        $cookie_data = stripcslashes($_COOKIE['check_stock']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cookie_data = $_COOKIE['check_stock'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
         $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
         foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
             if($cart_data[$keys]['serial'] == $serial){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
@@ -1907,7 +1907,7 @@ class obj{
         }
         else{
             if(isset($_COOKIE['spare_parts'])){//ກວດສອບວ່າຄຸກກີ້ spare_part ນັ້ນມີຄ່າຫຼືບໍ່
-                $cookie_data = stripcslashes($_COOKIE['spare_parts']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+                $cookie_data = $_COOKIE['spare_parts'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
                 $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             }
             else{
@@ -1956,7 +1956,7 @@ class obj{
         }
     }
     public static function del_spare_part($id){
-        $cookie_data = stripcslashes($_COOKIE['spare_parts']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cookie_data = $_COOKIE['spare_parts'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
         $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
         foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
             if($cart_data[$keys]['id'] == $id){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
@@ -1991,7 +1991,7 @@ class obj{
         global $Date;
         global $Time;
         if(isset($_COOKIE['spare_parts'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
-            $cookie_data = stripcslashes($_COOKIE['spare_parts']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cookie_data = $_COOKIE['spare_parts'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
             $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             foreach($cart_data as $data){
                 $code = $data['code'];
@@ -2058,7 +2058,7 @@ class obj{
        }
         else{
             if(isset($_COOKIE['list_form'])){//ກວດສອບວ່າຄຸກກີ້ distribute_list ນັ້ນມີຄ່າຫຼືບໍ່
-                $cookie_data = stripcslashes($_COOKIE['list_form']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+                $cookie_data = $_COOKIE['list_form'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
                 $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             }
             else{
@@ -2108,7 +2108,7 @@ class obj{
         echo"</script>";
     }
     public static function del_form($code){
-        $cookie_data = stripcslashes($_COOKIE['list_form']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cookie_data = $_COOKIE['list_form'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
         $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
         foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
             if($cart_data[$keys]['code'] == $code){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
@@ -2135,7 +2135,7 @@ class obj{
         $status = "ຍັງບໍ່ທັນເບີກ";
         $usr_acc = "";
         if(isset($_COOKIE['list_form'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
-            $cookie_data = stripcslashes($_COOKIE['list_form']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cookie_data = $_COOKIE['list_form'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
             $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             foreach($cart_data as $data2){
                 $check_code = $data2['code'];
@@ -2234,7 +2234,7 @@ class obj{
        }
         else{
             if(isset($_COOKIE['putback'])){//ກວດສອບວ່າຄຸກກີ້ distribute_list ນັ້ນມີຄ່າຫຼືບໍ່
-                $cookie_data = stripcslashes($_COOKIE['putback']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+                $cookie_data = $_COOKIE['putback'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
                 $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             }
             else{
@@ -2290,7 +2290,7 @@ class obj{
         echo"</script>";
     }
     public static function del_putback($serial){
-        $cookie_data = stripcslashes($_COOKIE['putback']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+        $cookie_data = $_COOKIE['putback'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
         $cart_data = json_decode($cookie_data, true);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນອາເລໃນຮູບແບບ json
         foreach($cart_data as $keys => $values){//ຊອກຫາຄ່າໄອດີຢູ່ໃນອາເລ
             if($cart_data[$keys]['serial'] == $serial){//ຖ້າໄອດີຕົງກັນໃຫ້ລົບຂໍ້ມູນ
@@ -2319,7 +2319,7 @@ class obj{
         global $Date;
         global $Time;
         if(isset($_COOKIE['putback'])){//ກວດສອບວ່າຄຸກກີ້ stock_list ນັ້ນມີຄ່າຫຼືບໍ່
-            $cookie_data = stripcslashes($_COOKIE['putback']);//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
+            $cookie_data = $_COOKIE['putback'];//ຕັ້ງຄ່າຄຸກກີ້ໃຫ້ເປັນ String
             $cart_data = json_decode($cookie_data, true);//Decode ຄ່າຄຸກກີ້ອອກມາໃຫ້ອ່ານຄ່າເປັນ Array ໄດ້ໃນຮູບແບບ json
             foreach($cart_data as $data){
                 $code = $data['code'];
