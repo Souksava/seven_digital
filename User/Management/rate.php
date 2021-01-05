@@ -124,8 +124,8 @@
         ?>
         <tr>
             <td><?php echo $row['rate_id'] ?></td>
-            <td><?php echo $row['rate_buy'] ?></td>
-            <td><?php echo $row['rate_sell'] ?></td>
+            <td><?php echo number_format($row['rate_buy'],2) ?></td>
+            <td><?php echo number_format($row['rate_sell'],2) ?></td>
             <td>
             <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_rate"></a>&nbsp; &nbsp; 
               <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_rate"></a>
