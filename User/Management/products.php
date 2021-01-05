@@ -38,21 +38,21 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດສິນຄ້າ</label>
-                                    <input type="text" name="code" id="code" placeholder="ລະຫັດສິນຄ້າ">
+                                    <input type="text" name="code" id="code" placeholder="ລະຫັດສິນຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ສິນຄ້າ</label>
-                                    <input type="text" name="pro_name" id="pro_name" placeholder="ຊື່ສິນຄ້າ">
+                                    <input type="text" name="pro_name" id="pro_name" placeholder="ຊື່ສິນຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</label>
-                                    <input type="text" name="gen" id="gen" placeholder="ລຸ້ນເຄື່ອງຂອງສິນຄ້າ">
+                                    <input type="text" name="gen" id="gen" placeholder="ລຸ້ນເຄື່ອງຂອງສິນຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເງື່ອນໄຂການສັ່ງຊື້</label>
-                                    <input type="number" min="0" name="qtyalert" id="qtyalert" placeholder="ເງື່ອນໄຂການສັ່ງຊື້">
+                                    <input type="number" min="0" name="qtyalert" id="qtyalert" placeholder="ເງື່ອນໄຂການສັ່ງຊື້" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -167,9 +167,9 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ສິນຄ້າ</label>
                                     <input type="hidden" name="code_update" id="code_update"
-                                        placeholder="ລະຫັດປະເພດສິນຄ້າ">
+                                        placeholder="ລະຫັດປະເພດສິນຄ້າ" >
                                     <input type="text" name="pro_name_update" id="pro_name_update"
-                                        placeholder="ຊື່ສິນຄ້າ">
+                                        placeholder="ຊື່ສິນຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle"></i>
                                     <small class="">Error message</small>
@@ -177,7 +177,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</label>
                                     <input type="text" name="gen_update" id="gen_update"
-                                        placeholder="ລຸ້ນເຄື່ອງຂອງສິນຄ້າ">
+                                        placeholder="ລຸ້ນເຄື່ອງຂອງສິນຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -248,7 +248,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເງື່ອນໄຂການສັ່ງຊື້</label>
                                     <input type="number" min="0" name="qtyalert_update" id="qtyalert_update"
-                                        placeholder="ເງື່ອນໄຂການສັ່ງຊື້">
+                                        placeholder="ເງື່ອນໄຂການສັ່ງຊື້" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -256,7 +256,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຮູບພາບສິນຄ້າ</label>
                                     <input type="file" name="img_path" id="img_path"
-                                        placeholder="ຮູບພາບສິນຄ້າ" onchange="loadFile2(event)">
+                                        placeholder="ຮູບພາບສິນຄ້າ" onchange="loadFile2(event)" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>

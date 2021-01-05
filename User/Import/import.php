@@ -31,7 +31,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດສິນຄ້າ</label>
                                     <input type="hidden" name="stock" id="stock">
-                                    <input type="text" name="code" id="code" placeholder="ລະຫັດສິນຄ້າ">
+                                    <input type="text" name="code" id="code" placeholder="ລະຫັດສິນຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>

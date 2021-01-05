@@ -411,7 +411,7 @@ else
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຈຳນວນ</label>
                             <input type="hidden" name="code" id="code">
-                            <input type="number" min="1" name="qty" id="qty" placeholder="ຈຳນວນ">
+                            <input type="number" min="1" name="qty" id="qty" placeholder="ຈຳນວນ" class="form-control">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
                             <small class="">Error message</small>

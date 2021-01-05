@@ -37,14 +37,14 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດສະຖານະລູກຄ້າ</label>
-                                    <input type="text" name="stt_id" id="stt_id" placeholder="ລະຫັດສະຖານະລູກຄ້າ">
+                                    <input type="text" name="stt_id" id="stt_id" placeholder="ລະຫັດສະຖານະລູກຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ສະຖານະລູກຄ້າ</label>
-                                    <input type="text" name="stt_name" id="stt_name" placeholder="ຊື່ສະຖານະລູກຄ້າ">
+                                    <input type="text" name="stt_name" id="stt_name" placeholder="ຊື່ສະຖານະລູກຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -78,9 +78,9 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ສະຖານະລູກຄ້າ</label>
                                     <input type="hidden" name="stt_id_update" id="stt_id_update"
-                                        placeholder="ລະຫັດສະຖານະລູກຄ້າ">
+                                        placeholder="ລະຫັດສະຖານະລູກຄ້າ" >
                                     <input type="text" name="stt_name_update" id="stt_name_update"
-                                        placeholder="ຊື່ສະຖານະລູກຄ້າ">
+                                        placeholder="ຊື່ສະຖານະລູກຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>

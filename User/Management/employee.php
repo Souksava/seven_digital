@@ -41,21 +41,21 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດພະນັກງານ</label>
-                                    <input type="text" name="emp_id" id="emp_id" placeholder="ລະຫັດພະນັກງານ">
+                                    <input type="text" name="emp_id" id="emp_id" placeholder="ລະຫັດພະນັກງານ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ພະນັກງານ</label>
-                                    <input type="text" name="emp_name" id="emp_name" placeholder="ຊື່ພະນັກງານ">
+                                    <input type="text" name="emp_name" id="emp_name" placeholder="ຊື່ພະນັກງານ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ນາມສະກຸນ</label>
-                                    <input type="text" name="emp_surname" id="emp_surname" placeholder="ນາມສະກຸນ">
+                                    <input type="text" name="emp_surname" id="emp_surname" placeholder="ນາມສະກຸນ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -101,21 +101,21 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເບີໂທລະສັບ</label>
-                                    <input type="text" name="tel" id="tel" placeholder="ເບີໂທລະສັບ">
+                                    <input type="text" name="tel" id="tel" placeholder="ເບີໂທລະສັບ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ທີ່ຢູ່ອີເມວ</label>
-                                    <input type="text" name="email" id="email" placeholder="ທີ່ຢູ່ອີເມວ">
+                                    <input type="text" name="email" id="email" placeholder="ທີ່ຢູ່ອີເມວ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຜູ້ໃຊ້ລະບົບ</label>
-                                    <input type="password" name="password" id="password" placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ">
+                                    <input type="password" name="password" id="password" placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -123,7 +123,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຢືນຢັນລະຫັດ</label>
                                     <input type="password" name="password_cf" id="password_cf"
-                                        placeholder="ຢືນຢັນລະຫັດ">
+                                        placeholder="ຢືນຢັນລະຫັດ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -188,14 +188,14 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ພະນັກງານ</label>
                                     <input type="hidden" name="emp_id2" id="emp_id2" placeholder="ລະຫັດພະນັກງານ">
-                                    <input type="text" name="emp_name2" id="emp_name2" placeholder="ຊື່ພະນັກງານ">
+                                    <input type="text" name="emp_name2" id="emp_name2" placeholder="ຊື່ພະນັກງານ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ນາມສະກຸນ</label>
-                                    <input type="text" name="emp_surname2" id="emp_surname2" placeholder="ນາມສະກຸນ">
+                                    <input type="text" name="emp_surname2" id="emp_surname2" placeholder="ນາມສະກຸນ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -241,14 +241,14 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເບີໂທລະສັບ</label>
-                                    <input type="text" name="tel2" id="tel2" placeholder="ເບີໂທລະສັບ">
+                                    <input type="text" name="tel2" id="tel2" placeholder="ເບີໂທລະສັບ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ທີ່ຢູ່ອີເມວ</label>
-                                    <input type="text" name="email2" id="email2" placeholder="ທີ່ຢູ່ອີເມວ">
+                                    <input type="text" name="email2" id="email2" placeholder="ທີ່ຢູ່ອີເມວ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -256,7 +256,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຜູ້ໃຊ້ລະບົບ</label>
                                     <input type="password" name="password2" id="password2"
-                                        placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ">
+                                        placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -264,7 +264,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຢືນຢັນລະຫັດ</label>
                                     <input type="password" name="password_cf2" id="password_cf2"
-                                        placeholder="ຢືນຢັນລະຫັດ">
+                                        placeholder="ຢືນຢັນລະຫັດ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
