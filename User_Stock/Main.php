@@ -249,12 +249,50 @@ if ($stt == 1){
 }elseif($stt == 3){
     echo '
     <div class="row">
-    <a href="';?><?php echo $links ?><?php echo 'Spare/spare-part" class="m-a">
+    <a href="';?><?php echo $links ?><?php echo 'Management/supplier" class="m-a">
+<div class="btn btn-light mainlink">
+    ຜູ້ສະໜອງ
+</div>
+</a>
+    <a href="';?><?php echo $links ?><?php echo 'Management/category" class="m-a">
+<div class="btn btn-light mainlink">
+    ປະເພດ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Management/unit" class="m-a">
+<div class="btn btn-light mainlink">
+    ຫົວໜ່ວຍ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Management/products" class="m-a">
+<div class="btn btn-light mainlink">
+    ສິນຄ້າ
+</div>
+</a>
+
+<a href="';?><?php echo $links ?><?php echo 'Import/import" class="m-a">
+<div class="btn btn-light mainlink">
+    ນຳເຂົ້າສິນຄ້າ
+</div>
+</a>
+
+
+    <a href="';?><?php echo $links ?><?php echo 'Form/distribute" class="m-a">
     <div class="btn btn-light mainlink">
-        ປ່ຽນອາໄຫຼ່
+        ເບີກຈ່າຍສິນຄ້າ
     </div>
 </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-supplier" class="m-a">
+<a href="';?><?php echo $links ?><?php echo 'Form/product-putback" class="m-a">
+    <div class="btn btn-light mainlink">
+        ສິນຄ້າເບີກແລ້ວເກັບເຂົ້າສາງ
+    </div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Spare/spare-part" class="m-a">
+<div class="btn btn-light mainlink">
+    ປ່ຽນອາໄຫຼ່
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-supplier" class="m-a">
         <div class="btn btn-light mainlink">
             ລາຍງານຜູ້ສະໜອງ
         </div>
@@ -299,41 +337,6 @@ if ($stt == 1){
             ລາຍງານສິນຄ້າກັບເຂົ້າສາງຄືນ
         </div>
     </a>
-    <a href="';?><?php echo $links ?><?php echo 'Form/distribute" class="m-a">
-    <div class="btn btn-light mainlink">
-        ເບີກຈ່າຍສິນຄ້າ
-    </div>
-</a>
-<a href="';?><?php echo $links ?><?php echo 'Form/product-putback" class="m-a">
-    <div class="btn btn-light mainlink">
-        ສິນຄ້າເບີກແລ້ວເກັບເຂົ້າສາງ
-    </div>
-</a>
-<a href="';?><?php echo $links ?><?php echo 'Import/import" class="m-a">
-<div class="btn btn-light mainlink">
-    ນຳເຂົ້າສິນຄ້າ
-</div>
-</a>
-<a href="';?><?php echo $links ?><?php echo 'Management/category" class="m-a">
-<div class="btn btn-light mainlink">
-    ປະເພດ
-</div>
-</a>
-<a href="';?><?php echo $links ?><?php echo 'Management/unit" class="m-a">
-<div class="btn btn-light mainlink">
-    ຫົວໜ່ວຍ
-</div>
-</a>
-<a href="';?><?php echo $links ?><?php echo 'Management/products" class="m-a">
-<div class="btn btn-light mainlink">
-    ສິນຄ້າ
-</div>
-</a>
-<a href="';?><?php echo $links ?><?php echo 'Management/supplier" class="m-a">
-<div class="btn btn-light mainlink">
-    ຜູ້ສະໜອງ
-</div>
-</a>
 </div>
     ';
 }elseif($stt == 4){

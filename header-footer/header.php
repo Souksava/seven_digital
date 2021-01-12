@@ -357,7 +357,7 @@ if($stt == 1){
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/auther" class="nav-link">
+                                    <a href="'.$links.'Management/auther" class="nav-link">
                                         <i class="fas fa-network-wired nav-icon"></i>
                                         <p>ຂໍ້ມູນຕຳແໜ່ງ</p>
                                     </a>
@@ -365,21 +365,30 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/employee" class="nav-link">
+                                    <a href="'.$links.'Management/employee" class="nav-link">
                                         <i class="far fa fa-user nav-icon"></i>
                                         <p>ຂໍ້ມູນພະນັງານ</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a href="" class="nav-link">
+                                <i class="fab fa-product-hunt nav-icon"></i>
+                                <p>
+                                    ສ້າງຟອມ ແລະ ເບີກຈ່າຍສິນຄ້າ
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
                         <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo $links ?>Form/accept" class="nav-link">
+                            <a href="'.$links.'Form/acception" class="nav-link">
                                 <i class="fas fa-vote-yea nav-icon"></i>
                                 <p>ອະນຸມັດຟອມເບີກສິນຄ້າ</p>
                             </a>
                         </li>
                     </ul>
+                    </li>
                     <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
@@ -390,7 +399,7 @@ if($stt == 1){
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-employee" class="nav-link">
+                                    <a href="'.$links.'Report/report-employee" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນພະນັກງານ</p>
                                     </a>
@@ -398,7 +407,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-customer" class="nav-link">
+                                    <a href="'.$links.'Report/report-customer" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນລູກຄ້າ</p>
                                     </a>
@@ -406,7 +415,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-supplier" class="nav-link">
+                                    <a href="'.$links.'Report/report-supplier" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນຜູ້ສະໜອງ</p>
                                     </a>
@@ -414,7 +423,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-product" class="nav-link">
+                                    <a href="'.$links.'Report/report-product" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນສິນຄ້າ</p>
                                     </a>
@@ -422,7 +431,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-stock" class="nav-link">
+                                    <a href="'.$links.'Report/report-stock" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນສະຕ໋ອກສິນຄ້າ</p>
                                     </a>
@@ -430,7 +439,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-check-stock" class="nav-link">
+                                    <a href="'.$links.'Report/report-check-stock" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນການນັບສະຕ໋ອກ</p>
                                     </a>
@@ -438,7 +447,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-warehouse" class="nav-link">
+                                    <a href="'.$links.'Report/report-warehouse" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນສາງເກັບຮັກສາ</p>
                                     </a>
@@ -446,7 +455,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-distribute" class="nav-link">
+                                    <a href="'.$links.'Report/report-distribute" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນການເບີກຈ່າຍສິນຄ້າ</p>
                                     </a>
@@ -454,7 +463,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-product-putback" class="nav-link">
+                                    <a href="'.$links.'Report/report-product-putback" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານສິນຄ້າເບີກແລ້ວເກັບເຂົ້າສາງ</p>
                                     </a>
@@ -489,7 +498,7 @@ if($stt == 1){
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/customer-status" class="nav-link">
+                                    <a href="'.$links.'Management/customer-status" class="nav-link">
                                         <i class="fas fa-stamp nav-icon"></i>
                                         <p>ຂໍ້ມູນສະຖານະລູກຄ້າ</p>
                                     </a>
@@ -497,7 +506,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/customer" class="nav-link">
+                                    <a href="'.$links.'Management/customer" class="nav-link">
                                         <i class="far fa fa-user nav-icon"></i>
                                         <p>ຂໍ້ມູນລູກຄ້າ</p>
                                     </a>
@@ -514,7 +523,7 @@ if($stt == 1){
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Form/form" class="nav-link">
+                                    <a href="'.$links.'Form/form" class="nav-link">
                                         <i class="far fa-file-alt nav-icon"></i>
                                         <p>ສ້າງໃບສະເໜີເບີກສິນຄ້າ</p>
                                     </a>
@@ -522,7 +531,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Form/accept" class="nav-link">
+                                    <a href="'.$links.'Form/accept" class="nav-link">
                                         <i class="fas fa-vote-yea nav-icon"></i>
                                         <p>ອະນຸມັດຟອມເບີກສິນຄ້າ</p>
                                     </a>
@@ -539,7 +548,7 @@ if($stt == 1){
                             </a>
                             <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo $links ?>Report/report-product" class="nav-link">
+                                <a href="'.$links.'Report/report-product" class="nav-link">
                                     <i class="far fas fa-book nav-icon"></i>
                                     <p>ລາຍງານຂໍ້ມູນສິນຄ້າ</p>
                                 </a>
@@ -547,7 +556,7 @@ if($stt == 1){
                         </ul>
                         <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo $links ?>Report/report-distribute" class="nav-link">
+                            <a href="'.$links.'Report/report-distribute" class="nav-link">
                                 <i class="far fas fa-book nav-icon"></i>
                                 <p>ລາຍງານຂໍ້ມູນການເບີກຈ່າຍສິນຄ້າ</p>
                             </a>
@@ -585,7 +594,7 @@ if($stt == 1){
                             </a>
                             <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo $links ?>Management/supplier" class="nav-link">
+                                <a href="'.$links.'Management/supplier" class="nav-link">
                                     <i class="far fa fa-user nav-icon"></i>
                                     <p>ຂໍ້ມູນຜູ້ສະໜອງ</p>
                                 </a>
@@ -593,7 +602,7 @@ if($stt == 1){
                         </ul>
                         <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo $links ?>Management/category" class="nav-link">
+                            <a href="'.$links.'Management/category" class="nav-link">
                                 <i class="far fa fa-cube nav-icon"></i>
                                 <p>ຂໍ້ມູນປະເພດສິນຄ້າ</p>
                             </a>
@@ -601,7 +610,7 @@ if($stt == 1){
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo $links ?>Management/unit" class="nav-link">
+                            <a href="'.$links.'Management/unit" class="nav-link">
                                 <i class="far fa fa-cube nav-icon"></i>
                                 <p>ຂໍ້ມູນຫົວໜ່ວຍສິນຄ້າ</p>
                             </a>
@@ -609,7 +618,7 @@ if($stt == 1){
                     </ul>
                     <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="<?php echo $links ?>Management/products" class="nav-link">
+                        <a href="'.$links.'Management/products" class="nav-link">
                             <i class="fas fa-boxes nav-icon"></i>
                             <p>ຂໍ້ມູນສິນຄ້າ</p>
                         </a>
@@ -617,7 +626,7 @@ if($stt == 1){
                 </ul>
                 </li>
                 <li class="nav-item has-treeview">
-                <a href="<?php echo $links ?>Import/import" class="nav-link">
+                <a href="'.$links.'Import/import" class="nav-link">
                     <i class="nav-icon fa fa-truck"></i>
                     <p>
                         ນຳເຂົ້າສິນຄ້າ
@@ -634,7 +643,7 @@ if($stt == 1){
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="<?php echo $links ?>Form/distribute" class="nav-link">
+                <a href="'.$links.'Form/distribute" class="nav-link">
                     <i class="fas fa-boxes nav-icon"></i>
                     <p>ເບີກຈ່າຍສິນຄ້າ</p>
                 </a>
@@ -642,7 +651,7 @@ if($stt == 1){
         </ul>
         <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="<?php echo $links ?>Form/product-putback" class="nav-link">
+                <a href="'.$links.'Form/product-putback" class="nav-link">
                     <i class="fas fa-undo nav-icon"></i>
                     <p>ສິນຄ້າເບີກແລ້ວນຳກັບເຂົ້າສາງຄືນ</p>
                 </a>
@@ -650,7 +659,7 @@ if($stt == 1){
         </ul>
     </li>
     <li class="nav-item">
-    <a href="<?php echo $links ?>Spare/spare-part" class="nav-link">
+    <a href="'.$links.'Spare/spare-part" class="nav-link">
         <i class="fas fa-undo nav-icon"></i>
         <p>
             ປ່ຽນອາໄຫຼ່
@@ -667,7 +676,7 @@ if($stt == 1){
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-employee" class="nav-link">
+                                    <a href="'.$links.'Report/report-employee" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນພະນັກງານ</p>
                                     </a>
@@ -675,7 +684,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-customer" class="nav-link">
+                                    <a href="'.$links.'Report/report-customer" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນລູກຄ້າ</p>
                                     </a>
@@ -683,7 +692,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-supplier" class="nav-link">
+                                    <a href="'.$links.'Report/report-supplier" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນຜູ້ສະໜອງ</p>
                                     </a>
@@ -691,7 +700,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-product" class="nav-link">
+                                    <a href="'.$links.'Report/report-product" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນສິນຄ້າ</p>
                                     </a>
@@ -699,7 +708,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-stock" class="nav-link">
+                                    <a href="'.$links.'Report/report-stock" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນສະຕ໋ອກສິນຄ້າ</p>
                                     </a>
@@ -707,7 +716,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-check-stock" class="nav-link">
+                                    <a href="'.$links.'Report/report-check-stock" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນການນັບສະຕ໋ອກ</p>
                                     </a>
@@ -715,7 +724,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-warehouse" class="nav-link">
+                                    <a href="'.$links.'Report/report-warehouse" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນສາງເກັບຮັກສາ</p>
                                     </a>
@@ -723,7 +732,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-distribute" class="nav-link">
+                                    <a href="'.$links.'Report/report-distribute" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານຂໍ້ມູນການເບີກຈ່າຍສິນຄ້າ</p>
                                     </a>
@@ -731,7 +740,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-product-putback" class="nav-link">
+                                    <a href="'.$links.'Report/report-product-putback" class="nav-link">
                                         <i class="far fas fa-book nav-icon"></i>
                                         <p>ລາຍງານສິນຄ້າເບີກແລ້ວເກັບເຂົ້າສາງ</p>
                                     </a>
@@ -756,8 +765,11 @@ if($stt == 1){
 
 }elseif($stt == 4){
     echo '
+    <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
     <li class="nav-item">
-    <a href="<?php echo $links ?>Check/check-stock" class="nav-link">
+    <a href="'.$links.'Check/check-stock" class="nav-link">
         <i class="fas fa fa-cubes nav-icon"></i>
         <p>
             ນັບສະຕ໋ອກສິນຄ້າ
@@ -774,7 +786,7 @@ if($stt == 1){
                             </a>
                             <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="<?php echo $links ?>Report/report-check-stock" class="nav-link">
+                                <a href="'.$links.'Report/report-check-stock" class="nav-link">
                                     <i class="far fas fa-book nav-icon"></i>
                                     <p>ລາຍງານຂໍ້ມູນການນັບສະຕ໋ອກ</p>
                                 </a>

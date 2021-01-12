@@ -15,34 +15,49 @@ if(isset($_POST['page'])){
 else{
    $page = 0;
 }
-
-   $obj->select_category("%%",$page);
-
-if(mysqli_num_rows($resultcategory) > 0)
+if(isset($_POST["query"]))
+{
+   $highlight = $_POST['query'];
+   $obj->select_customer("%".$_POST['query']."%",$page);
+}
+else
+{
+   $obj->select_customer("%%",$page);
+}
+if(mysqli_num_rows($resultcustomer) > 0)
 {
  $output .= '
   <div class="table-responsive">
    <table class="table font12" style="width: 1500px;">
     <tr>
-    <th>ລະຫັດຍີ່ຫໍ້</th>
-    <th>ຊື່ຍີ່ຫໍ້</th>
-    <th></th>
+     <th>ລະຫັດລູກຄ້າ</th>
+     <th>ຊື່ບໍລິສັດ</th>
+     <th>ເບີໂທລະສັບ</th>
+     <th>ທີ່ຢູ່ປັດຈຸບັນ</th>
+     <th>ອີເມວ</th>
+     <th>ສະຖານະລູກຄ້າ</th>
+     <th></th>
     </tr>
  ';
- while($row = mysqli_fetch_array($resultcategory))
+ while($row = mysqli_fetch_array($resultcustomer))
  {
   $output .= '
    <tr  class="result">
-    <td>'.$row["cate_id"].'</td>
-    <td>'.$row["cate_name"].'</td>
+    <td>'.$row["cus_id"].'</td>
+    <td>'.$row["company"].'</td>
+    <td>'.$row["tel"].'</td>
+    <td>'.$row["address"].'</td>
+    <td>'.$row["email"].'</td>
+    <td style="display: none;">'.$row["stt_id"].'</td>
+    <td>'.$row["stt_name"].'</td>
     <td>
-      <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cate"></a>&nbsp; &nbsp; 
-      <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_cate"></a>
+      <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cust"></a>&nbsp; &nbsp; 
+      <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_cust"></a>
     </td>
    </tr>
   ';
  }
- mysqli_free_result($resultcategory);  
+ mysqli_free_result($resultcustomer);  
  mysqli_next_result($conn);
  $output .='
    </table>
@@ -50,9 +65,16 @@ if(mysqli_num_rows($resultcategory) > 0)
  ';
  echo $output;
  
-    $obj->select_category_count("%%");
-   $count = mysqli_num_rows($resultcategory_count);
-   mysqli_free_result($resultcategory_count);  
+ if(isset($_POST["query"]))
+ {
+   $obj->select_customer_count("%".$_POST['query']."%");
+ }
+ else
+ {
+    $obj->select_customer_count("%%");
+ }
+   $count = mysqli_num_rows($resultcustomer_count);
+   mysqli_free_result($resultcustomer_count);  
    mysqli_next_result($conn);
    $a = ceil($count/15);
    if(isset($_POST['page'])){
@@ -126,10 +148,12 @@ if(mysqli_num_rows($resultcategory) > 0)
                   </ul>
                </nav>
 ';
+
       }
       else{
          echo'';
       }
+   
 }
 else
 {
@@ -141,30 +165,32 @@ else
 }
 ?>
 
-<script >
-    // update category
-    $('.btnUpdate_cate').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
+<script type="text/javascript">
+var highlight = "<?php echo $_POST['query']; ?>";
+$('.result').highlight([highlight]);
+   $('.btnUpdate_cust').on('click', function() {
+      $('#exampleModalUpdate').modal('show');
+      $tr = $(this).closest('tr');
+      var data = $tr.children("td").map(function() {
+         return $(this).text();
+      }).get();
 
-        console.log(data);
+      console.log(data);
 
-        $('#cate_id_update').val(data[0]);
-        $('#cate_name_update').val(data[1]);
-    });
-        // delete category
-        $('.btnDelete_cate').on('click', function() {
+      $('#cus_id_update').val(data[0]);
+      $('#company_update').val(data[1]);
+      $('#tel_update').val(data[2]);
+      $('#address_update').val(data[3]);
+      $('#email_update').val(data[4]);
+      $('#stt_id_update').val(data[5]);
+   });
+   $('.btnDelete_cust').on('click', function() {
         $('#exampleModalDelete').modal('show');
         $tr = $(this).closest('tr');
         var data = $tr.children("td").map(function() {
             return $(this).text();
         }).get();
-
         console.log(data);
-
         $('#id').val(data[0]);
     });
 </script>

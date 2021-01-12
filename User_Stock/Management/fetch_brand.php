@@ -16,9 +16,9 @@ else{
    $page = 0;
 }
 
-   $obj->select_category("%%",$page);
+   $obj->select_brand("%%",$page);
 
-if(mysqli_num_rows($resultcategory) > 0)
+if(mysqli_num_rows($resultbrand) > 0)
 {
  $output .= '
   <div class="table-responsive">
@@ -29,20 +29,20 @@ if(mysqli_num_rows($resultcategory) > 0)
     <th></th>
     </tr>
  ';
- while($row = mysqli_fetch_array($resultcategory))
+ while($row = mysqli_fetch_array($resultbrand))
  {
   $output .= '
    <tr  class="result">
-    <td>'.$row["cate_id"].'</td>
-    <td>'.$row["cate_name"].'</td>
+    <td>'.$row["brand_id"].'</td>
+    <td>'.$row["brand_name"].'</td>
     <td>
-      <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_cate"></a>&nbsp; &nbsp; 
-      <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_cate"></a>
+      <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-pen toolcolor btnUpdate_brand"></a>&nbsp; &nbsp; 
+      <a href="#" data-toggle="modal" data-target="#exampleModalDelete" class="fa fa-trash toolcolor btnDelete_brand"></a>
     </td>
    </tr>
   ';
  }
- mysqli_free_result($resultcategory);  
+ mysqli_free_result($resultbrand);  
  mysqli_next_result($conn);
  $output .='
    </table>
@@ -50,9 +50,9 @@ if(mysqli_num_rows($resultcategory) > 0)
  ';
  echo $output;
  
-    $obj->select_category_count("%%");
-   $count = mysqli_num_rows($resultcategory_count);
-   mysqli_free_result($resultcategory_count);  
+    $obj->select_brand_count("%%");
+   $count = mysqli_num_rows($resultbrand_count);
+   mysqli_free_result($resultbrand_count);  
    mysqli_next_result($conn);
    $a = ceil($count/15);
    if(isset($_POST['page'])){
@@ -126,10 +126,12 @@ if(mysqli_num_rows($resultcategory) > 0)
                   </ul>
                </nav>
 ';
+
       }
       else{
          echo'';
       }
+   
 }
 else
 {
@@ -142,8 +144,8 @@ else
 ?>
 
 <script >
-    // update category
-    $('.btnUpdate_cate').on('click', function() {
+    // update brand
+    $('.btnUpdate_brand').on('click', function() {
         $('#exampleModalUpdate').modal('show');
         $tr = $(this).closest('tr');
         var data = $tr.children("td").map(function() {
@@ -152,11 +154,11 @@ else
 
         console.log(data);
 
-        $('#cate_id_update').val(data[0]);
-        $('#cate_name_update').val(data[1]);
+        $('#brand_id_update').val(data[0]);
+        $('#brand_name_update').val(data[1]);
     });
-        // delete category
-        $('.btnDelete_cate').on('click', function() {
+        // delete brand
+        $('.btnDelete_brand').on('click', function() {
         $('#exampleModalDelete').modal('show');
         $tr = $(this).closest('tr');
         var data = $tr.children("td").map(function() {

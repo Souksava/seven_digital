@@ -254,51 +254,6 @@ if ($stt == 1){
         ປ່ຽນອາໄຫຼ່
     </div>
 </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-supplier" class="m-a">
-        <div class="btn btn-light mainlink">
-            ລາຍງານຜູ້ສະໜອງ
-        </div>
-    </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-customer" class="m-a">
-        <div class="btn btn-light mainlink">
-            ລາຍງານລູກຄ້າ
-        </div>
-    </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-employee" class="m-a">
-        <div class="btn btn-light mainlink">
-            ລາຍງານພະນັກງານ
-        </div>
-    </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-product" class="m-a">
-        <div class="btn btn-light mainlink">
-            ລາຍງານສິນຄ້າ
-        </div>
-    </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-stock" class="m-a">
-        <div class="btn btn-light mainlink">
-            ລາຍງານສະຕ໋ອກ
-        </div>
-    </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-check-stock" class="m-a">
-        <div class="btn btn-light mainlink">
-            ລາຍງານການນັບສະຕ໋ອກ
-        </div>
-    </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-warehouse" class="m-a">
-        <div class="btn btn-light mainlink">
-            ລາຍງານສາງເກັບຮັກສາ
-        </div>
-    </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-distribute" class="m-a">
-        <div class="btn btn-light mainlink">
-            ລາຍງານການເບີກຈ່າຍສິນຄ້າ
-        </div>
-    </a>
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-product-putback" class="m-a">
-        <div class="btn btn-light mainlink">
-            ລາຍງານສິນຄ້າກັບເຂົ້າສາງຄືນ
-        </div>
-    </a>
     <a href="';?><?php echo $links ?><?php echo 'Form/distribute" class="m-a">
     <div class="btn btn-light mainlink">
         ເບີກຈ່າຍສິນຄ້າ
@@ -334,19 +289,65 @@ if ($stt == 1){
     ຜູ້ສະໜອງ
 </div>
 </a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-supplier" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານຜູ້ສະໜອງ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-customer" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານລູກຄ້າ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-employee" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານພະນັກງານ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-product" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານສິນຄ້າ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-stock" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານສະຕ໋ອກ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-check-stock" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານການນັບສະຕ໋ອກ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-warehouse" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານສາງເກັບຮັກສາ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-distribute" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານການເບີກຈ່າຍສິນຄ້າ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-product-putback" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານສິນຄ້າກັບເຂົ້າສາງຄືນ
+</div>
+</a>
 </div>
     ';
 }elseif($stt == 4){
     echo '
     <div class="row">
-    <a href="';?><?php echo $links ?><?php echo 'Report/report-check-stock" class="m-a">
-    <div class="btn btn-light mainlink">
-        ລາຍງານການນັບສະຕ໋ອກ
-    </div>
-</a>
+
 <a href="';?><?php echo $links ?><?php echo 'Check/check-stock" class="m-a">
 <div class="btn btn-light mainlink">
     ນັບສະຕ໋ອກ
+</div>
+</a>
+<a href="';?><?php echo $links ?><?php echo 'Report/report-check-stock" class="m-a">
+<div class="btn btn-light mainlink">
+    ລາຍງານການນັບສະຕ໋ອກ
 </div>
 </a>
 </div>
