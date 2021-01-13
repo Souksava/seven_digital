@@ -50,7 +50,7 @@ if(mysqli_num_rows($resultformdetail) > 0)
     ';
     if($row['img_path'] == ''){
     $output .= '
-    <td><img src="'.$path.'logo.png" /></td>
+    <td><img src="'.$path.'image/logo.png"  style="width: 55px;heigt: 100px;" class="img-circle elevation-2"  /></td>
     ';
     }
     else{
