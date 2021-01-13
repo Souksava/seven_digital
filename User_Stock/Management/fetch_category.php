@@ -126,10 +126,12 @@ if(mysqli_num_rows($resultcategory) > 0)
                   </ul>
                </nav>
 ';
+
       }
       else{
          echo'';
       }
+   
 }
 else
 {

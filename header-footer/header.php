@@ -624,6 +624,22 @@ if($stt == 1){
                         </a>
                     </li>
                 </ul>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="'.$links.'Management/brand" class="nav-link">
+                        <i class="fas fa-boxes nav-icon"></i>
+                        <p>ຂໍ້ມູນຍີ່ຫໍ້</p>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="'.$links.'Management/rate" class="nav-link">
+                    <i class="fas fa-boxes nav-icon"></i>
+                    <p>ຂໍ້ມູນເລດເງີນ</p>
+                </a>
+            </li>
+        </ul>
                 </li>
                 <li class="nav-item has-treeview">
                 <a href="'.$links.'Import/import" class="nav-link">
@@ -766,8 +782,27 @@ if($stt == 1){
 }elseif($stt == 4){
     echo '
     <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+        data-accordion="false">
+        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    ຈັດການຂໍ້ມູນຫຼັກ
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="'.$links.'Management/product-address" class="nav-link">
+                                    <i class="far fa fa-warehouse nav-icon"></i>
+                                    <p>ຂໍ້ມູນສາງສິນຄ້າ</p>
+                                </a>
+                            </li>
+                        </ul>
+
+
+
     <li class="nav-item">
     <a href="'.$links.'Check/check-stock" class="nav-link">
         <i class="fas fa fa-cubes nav-icon"></i>
