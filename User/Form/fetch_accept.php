@@ -46,9 +46,9 @@ if(mysqli_num_rows($result) > 0)
   }
   $output .='
     <td>'.$row["code"].'</td>
-    <td>'.$row["cate_name"].' '.$row["unit_name"].' <br>'.$row["pro_name"].'</td>
+    <td>'.$row["cate_name"].' '.$row["brand_name"].' <br>'.$row["pro_name"].'</td>
     <td>'.$row["gen"].'</td>
-    <td>'.$row["qty"].'</td>
+    <td>'.$row["qty"].' '.$row["unit_name"].'</td>
  </tr>
   ';
  }
