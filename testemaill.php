@@ -10,9 +10,9 @@ $mail->isHTML();
 $mail->Username = 'nilakone@verisette.com';
 $mail->Password = 'Ss0102030';
 $mail->SetFrom('no-reply@verisette.com');
-$mail->Subject = 'Hello World';
-$mail->Body = 'A test email';
-$mail->AddAddress('yurnerodoto@gmail.com');
+$mail->Subject = 'Orders Product';
+$mail->Body = 'ມີໃບສະເໜີການສັ່ງຊື້ສິນຄ້າເລກທີ 001 ຜູ້ສັ່ງຊື້ແມ່ນ ສຸກສະຫວັດ';
+$mail->AddAddress('souksavath@verisette.com');
 
 $mail->Send();
 ?>
