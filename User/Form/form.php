@@ -37,7 +37,7 @@
         <th style="width: 120px;">ລະຫັດສິນຄ້າ</th>
         <th style="width: 150px;">ຊື່ສິນຄ້າ</th>
         <th style="width: 150px;">ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-        <th style="width: 150px;">ເງື່ອນໄຂການສັ່ງຊື້</th>
+        <th style="width: 150px;">ຈຳນວນ</th>
         <th style="width: 100px;">ຮູບພາບສິນຄ້າ</th>
         <th style="width: 30px;"></th>
     </tr>
@@ -53,7 +53,7 @@
   <td>'.$row["cate_name"].' '.$row["brand_name"].'<br>'.$row["pro_name"].'</td>
   <td>'.$row["gen"].'</td>
   <td style="display: none;">'.$row["unit_id"].'</td>
-  <td style="display: none;">'.$row["qtyalert"].'</td>
+  <td style="display: none;">'.$row["qty"].'</td>
   <td>'.$row["qtyalert"].' '.$row["unit_name"].'</td>
   <td style="display: none;">'.$row["img_path"].'</td>
   ';
@@ -502,11 +502,17 @@ function checkInputs2() {
     swal("", "ລົບຂໍ້ມູນບໍ່ສຳເລັດ", "error");
     </script>';
   }
-  if(isset($_GET['del2'])=='success'){
+  if(isset($_GET['input'])=='than'){
     echo'<script type="text/javascript">
-    swal("", "ລົບຂໍ້ມູນສຳເລັດ", "success");
+    swal("", "ຈຳນວນເບີກນັ້ນມີຫຼາຍກວ່າຈຳນວນສິນຄ້າຢູ່ໃນສະຕ໋ອກ", "info");
     </script>';
   }
+  if(isset($_GET['qty'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ຈຳນວນສິນຄ້າໃນສະຕ໋ອກແມ່ນມີ 0 ກະລຸນາປ້ອນຈຳນວນສີນຄ້າທີ່ມີຫຼາຍກວ່າ 0", "info");
+    </script>';
+  }
+
 ?>
 
 <script>
@@ -560,10 +566,10 @@ $(window).load(function() {
 
         console.log(data);
         $('#code').val(data[0]);
-        if (data[9] === '') {
+        if (data[7] === '') {
             document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
         } else {
-            document.getElementById("output2").src = ('<?php echo $path ?>image/' + data[9]);
+            document.getElementById("output2").src = ('<?php echo $path ?>image/' + data[7]);
         }
     });
     $('.btnDelete_check').on('click', function() {

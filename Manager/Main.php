@@ -23,7 +23,7 @@ if ($stt == 1){
     </a>
     
     
-    <a href="';?><?php echo $links ?><?php echo 'Form/acception" class="m-a">
+    <a href="';?><?php echo $links ?><?php echo 'Form/accept" class="m-a">
         <div class="btn btn-light mainlink">
             ອະນຸມັດ
         </div>

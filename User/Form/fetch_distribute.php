@@ -15,90 +15,91 @@ if(isset($_POST['page'])){
 else{
    $page = 0;
 }
-
 if(isset($_POST["query"]))
 {
    $highlight = $_POST['query'];
-   $obj->select_product2("%".$_POST['query']."%",$page);
+   $obj->select_formdetail("%".$_POST['query']."%",$page);
 }
 else
 {
-   $obj->select_product2("%%",$page);
+   $obj->select_formdetail("%%",$page);
 }
-if(mysqli_num_rows($resultproduct2) > 0)
+if(mysqli_num_rows($resultformdetail) > 0)
 {
  $output .= '
   <div class="table-responsive">
-   <table class="table font12" style="width: 800px;">
+   <table class="table font12" style="width: 1400px;">
     <tr>
-      <th style="width: 120px;">ລະຫັດສິນຄ້າ</th>
-      <th style="width: 150px;">ຊື່ສິນຄ້າ</th>
-      <th style="width: 150px;">ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-      <th style="width: 150px;">ຈຳນວນ</th>
-      <th style="width: 100px;">ຮູບພາບສິນຄ້າ</th>
-      <th style="width: 30px;"></th>  
+        <th style="width: 30px;">ສິນຄ້າ</th>
+        <th style="width: 180px;">ລະຫັດສິນຄ້າ</th>
+        <th style="width: 150px;">ຊື່ສິນຄ້າ</th>
+        <th style="width: 120px;">ລຸ້ນເຄື່ອງ</th>
+        <th style="width: 80px;">ຈຳນວນ</th>
+        <th style="width: 150px;">ຜູ້ສ້າງຟອມ</th>
+        <th style="width: 50px;">ເລກທີ</th>
+        <th style="width: 150px;">ລູກຄ້າ</th>
+        <th style="width: 120px;">ສະຖານະ</th>
+        <th style="width: 30px;"></th>
     </tr>
  ';
- while($row = mysqli_fetch_array($resultproduct2))
+ while($row = mysqli_fetch_array($resultformdetail))
  {
   $output .= '
-  <tr  class="result">
-  <td>'.$row["code"].'</td>
-  <td style="display: none;">'.$row["pro_name"].'</td>
-  <td style="display: none;">'.$row["cate_id"].'</td>
-  <td style="display: none;">'.$row["brand_id"].'</td>
-  <td>'.$row["cate_name"].' '.$row["brand_name"].'<br>'.$row["pro_name"].'</td>
-  <td>'.$row["gen"].'</td>
-  <td>'.number_format($row["qty"]).' '.$row["unit_name"].'</td>
-  <td style="display: none;">'.$row["img_path"].'</td>
-  ';
-  if($row['img_path'] != ''){
-  $output .= '
-  <td>
-      <a href="'.$path.'image/'.$row['img_path'].'" target="_blank">
-          <img src="'.$path.'image/'.$row['img_path'].'" class="img-circle elevation-2"
-              alt="" width="55px">
-      </a>
-  </td>
-  ';
-  }
-  else{
-  $output .= '
-  <td>
-      <a href="'.$path.'image/image.jpeg" target="_blank">
-          <img src="'.$path.'image/image.jpeg" class="img-circle elevation-2"
-              alt="" width="55px">
-      </a>
-  </td>
-  ';
-  }
-  $output .='
-  <td>
-  <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-      class="fa fa-plus toolcolor btnUpdate_form"></a>&nbsp; &nbsp;
-</td>
- </tr>
+   <tr  class="result">
+    <td style="display:none;">'.$row['img_path'].'</td>
+    ';
+    if($row['img_path'] == ''){
+    $output .= '
+    <td><img src="'.$path.'image/logo.png" style="width: 55px;heigt: 100px;" class="img-circle elevation-2"></td>
+    ';
+    }
+    else{
+        $output .='
+        <td>
+            <a href="'.$path.'image/'.$row['img_path'].'" target="_blank">
+                <img src="'.$path.'image/'.$row['img_path'].'" alt="" style="width: 55px;heigt: 100px;" class="img-circle elevation-2" />
+            </a>
+        </td>
+        ';
+    }
+    $output .='
+    <td>'.$row["code"].'</td>
+    <td>
+    '.$row["cate_name"].' '.$row["brand_name"].'<br>  
+    '.$row["pro_name"].'
+    </td>
+    <td>'.$row["gen"].'</td>
+    <td style="display:none;">'.$row['qty'].'</td>
+    <td>'.$row["qty"].' '.$row["unit_name"].'</td>
+    <td>'.$row["emp_name"].'</td>
+    <td>'.$row["form_id"].'</td>
+    <td>'.$row["company"].'</td>
+    <td>'.$row["stt_accept"].'</td>
+    <td>
+        <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
+        class="fa fa-plus toolcolor btnUpdate_dist"></a>&nbsp; &nbsp;
+    </td>
+   </tr>
   ';
  }
- mysqli_free_result($resultproduct2);  
+ mysqli_free_result($resultformdetail);  
  mysqli_next_result($conn);
  $output .='
    </table>
 </div>
-<br>
  ';
  echo $output;
  
  if(isset($_POST["query"]))
  {
-   $obj->select_product2_count("%".$_POST['query']."%");
+   $obj->select_formdetail_count("%".$_POST['query']."%");
  }
  else
  {
-    $obj->select_product2_count("%%");
+    $obj->select_formdetail_count("%%");
  }
-   $count = mysqli_num_rows($resultproduct2_count);
-   mysqli_free_result($resultproduct2_count);  
+   $count = mysqli_num_rows($resultformdetail_count);
+   mysqli_free_result($resultformdetail_count);  
    mysqli_next_result($conn);
    $a = ceil($count/15);
    if(isset($_POST['page'])){
@@ -182,35 +183,28 @@ else
 <hr size="1" width="90%">
  ';
 }
-
 ?>
 
 <script type="text/javascript">
 var highlight = "<?php echo $_POST['query']; ?>";
 $('.result').highlight([highlight]);
-$('.btnUpdate_form').on('click', function() {
+$('.btnUpdate_dist').on('click', function() {
         $('#exampleModalUpdate').modal('show');
         $tr = $(this).closest('tr');
         var data = $tr.children("td").map(function() {
             return $(this).text();
         }).get();
-
         console.log(data);
-        $('#code').val(data[0]);
-        if(data[7] === ''){
+
+        if(data[0] === ''){
             document.getElementById("output2").src = ('<?php echo $path ?>image/camera.jpg');
         }
         else{
-            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[7]);
+            document.getElementById("output2").src = ('<?php echo $path ?>image/'+data[0]);
         }
-    });
-    $('.btnDelete_check').on('click', function() {
-        $('#exampleModalDelete').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
-        console.log(data);
-        $('#id').val(data[1]);
+        $('#code').val(data[2]);
+        $('#qty').val(data[5]);
+        $('#form_id').val(data[8]);
+
     });
 </script>

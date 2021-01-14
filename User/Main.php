@@ -92,7 +92,7 @@ if ($stt == 1){
         ສ້າງໃບສະເໜີເບີກສິນຄ້າ
     </div>
 </a>
-<a href="';?><?php echo $links ?><?php echo 'Form/accept" class="m-a">
+<a href="';?><?php echo $links ?><?php echo 'Form/acception" class="m-a">
     <div class="btn btn-light mainlink">
         ອະນຸມັດ
     </div>

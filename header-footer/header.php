@@ -251,9 +251,10 @@
                                               </div>
                                             </div>
                                           </form>
-                                          <a href="form?id=check" class="check"> &nbsp&nbsp&nbsp&nbsp ກອດສອບສິນຄ້າ</a>
+
                                           ';
                                             }
+                                            // <a href="form?id=check" class="check"> &nbsp&nbsp&nbsp&nbsp ກອດສອບສິນຄ້າ</a>
                                             else{ 
                                               echo"";
                                             }   
@@ -324,14 +325,14 @@
                         <?php
                             if($_SESSION['img_path'] == ''){
                             ?>
-                        <img src="<?php echo $path ?>image/image.jpeg" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?php echo $path ?>image/image.jpeg"  class="img-circle elevation-2" alt="">
                         <?php
 
                             }
                             else{
                             ?>
-                        <img src="<?php echo $path ?>image/<?php echo $_SESSION['img_path'] ?>"
-                            class="img-circle elevation-2" alt="User Image">
+                        <img src="<?php echo $path ?>image/<?php echo $_SESSION['img_path'] ?>" 
+                            class="img-circle elevation-2" alt="">
                         <?php
                             }
                         ?>
@@ -382,7 +383,7 @@ if($stt == 1){
                             </a>
                         <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="'.$links.'Form/acception" class="nav-link">
+                            <a href="'.$links.'Form/accept" class="nav-link">
                                 <i class="fas fa-vote-yea nav-icon"></i>
                                 <p>ອະນຸມັດຟອມເບີກສິນຄ້າ</p>
                             </a>
@@ -531,7 +532,7 @@ if($stt == 1){
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="'.$links.'Form/accept" class="nav-link">
+                                    <a href="'.$links.'Form/acception" class="nav-link">
                                         <i class="fas fa-vote-yea nav-icon"></i>
                                         <p>ອະນຸມັດຟອມເບີກສິນຄ້າ</p>
                                     </a>

@@ -262,6 +262,13 @@ class obj{
     public static function update_employee($emp_id,$name,$surname,$gender,$tel,$address,$email,$pass,$auther_id,$sttid,$img_path){
         global $conn;
         global $path;
+        $flag = preg_match('/^[a-f0-9]{32}$/', $pass);
+        if($flag){ // flag true means string is a valid md5 encrypation
+            echo"";
+        }else{
+            $pass = md5($pass);
+        }
+
         $resultmp = mysqli_query($conn,"select * from employee where emp_id='$emp_id'");//ດຶງຄ່າອີເມວ ແລະ ລະຫັດຜ່ານ ໂດຍໃຊ້ໄອດີພະນັກງານ
         $rowmp = mysqli_fetch_array($resultmp,MYSQLI_ASSOC);
         $get_img = mysqli_query($conn, "select img_path from employee where emp_id='$emp_id'");
@@ -283,7 +290,7 @@ class obj{
                     unlink($path2);                  
                 }
             }
-            $result = mysqli_query($conn,"call update_employee('$emp_id','$name','$surname','$gender','$tel','$address','$email',$pass,'$auther_id','$sttid','$Pro_image')");
+            $result = mysqli_query($conn,"call update_employee('$emp_id','$name','$surname','$gender','$tel','$address','$email','$pass','$auther_id','$sttid','$Pro_image')");
             // $result = mysqli_query($conn,"update employee set emp_name='$name',emp_surname='$surname',gender='$gender',tel='$tel',address='$address',email='$email',pass='$pass',auther_id='$auther_id',stt_id='$sttid',img_path='$Pro_image' where emp_id ='$emp_id'");
             if(!$result){
                 echo"<script>";
@@ -1274,6 +1281,18 @@ class obj{
         global $path;
         $resultproduct = mysqli_query($conn,"call products('$search','$page')");
     }
+    public static function select_product2($search,$page){
+        global $conn;
+        global $resultproduct2;
+        global $path;
+        $resultproduct2 = mysqli_query($conn,"call products2('$search','$page')");
+    }
+    public static function select_product2_count($search){
+        global $conn;
+        global $resultproduct2_count;
+        global $path;
+        $resultproduct2_count = mysqli_query($conn,"call products2_count('$search')");
+    }
     public static function select_product_count($search){
         global $conn;
         global $resultproduct_count;
@@ -2037,7 +2056,7 @@ class obj{
     public static function select_form_cookie(){
         global $cart_data;
         if(isset($_COOKIE['list_form'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
-            $cookie_data = stripslashes($_COOKIE['list_form']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cookie_data = $_COOKIE['list_form'];//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
             $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
         }
     }
@@ -2048,10 +2067,10 @@ class obj{
         $q = $qty_stock['qty'];
         if($q <= 0){
             echo"<script>";
-            echo"window.location.href='form?qty=0';";
+            echo"window.location.href='form?qty=null';";
             echo"</script>";
        }
-       else if($qty > $qty_stock['qty']){
+       else if($qty > $q){
             echo"<script>";
             echo"window.location.href='form?input=than';";
             echo"</script>";
@@ -2093,6 +2112,7 @@ class obj{
                 ];
                 $cart_data[] = $item_array;//ເພີ່ມຂໍ້ມູນຈາກ $item_array ເຂົ້າໄປໃນ $cart_data
             }
+            $item_data ="";
             $item_data = json_encode($cart_data);//ປັບ item_data ໃຫ້ມັນສິ້ນສຸດການຮັບຂໍ້ມູນຈາກ $cart_data
             setcookie('list_form',$item_data,time() + (86400 * 30));//ຕັ້ງຄ່າເວລາຄຸກກີ້
             echo"<script>";
