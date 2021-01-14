@@ -1995,7 +1995,7 @@ class obj{
     public static function select_spare_part(){
         global $cart_data;
         if(isset($_COOKIE['spare_parts'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
-            $cookie_data = stripslashes($_COOKIE['spare_parts']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cookie_data = $_COOKIE['spare_parts'];//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
             $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
         }
     }
@@ -2330,7 +2330,7 @@ class obj{
     public static function select_putback(){
         global $cart_data;
         if(isset($_COOKIE['putback'])){//ຕອນໂຫຼດກວດສອບວ່າຄຸກກີ້ມີຄ່າວ່າງຫຼືບໍ່
-            $cookie_data = stripslashes($_COOKIE['putback']);//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
+            $cookie_data = $_COOKIE['putback'];//ຕັ້ງຄຸກກີ້ໃຫ້ເປັນ string
             $cart_data = json_decode($cookie_data, true);// ຕັ້ງຄຸກກີ້ໃຫ້ເປັນຮູບແບບ json
         }
     }
