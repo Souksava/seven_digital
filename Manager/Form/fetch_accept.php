@@ -7,6 +7,7 @@ $amount = 0;
 if(isset($_POST["query"]))
 {
     $form = $_POST['query'];
+    $update_seen = mysqli_query($conn,"update form set seen1='1' where form_id='$form'");
     $result = mysqli_query($conn,"select img_path,fd.code,pro_name,cate_name,brand_name,unit_name,gen,fd.qty from formdetail fd left join form f on fd.form_id=f.form_id left join products p on fd.code=p.code left join category c on p.cate_id=c.cate_id left join unit u on p.unit_id=u.unit_id left join brand b on p.brand_id=b.brand_id where fd.form_id='$form'");
     $result2 = mysqli_query($conn,"select sum(qty) as amount from formdetail fd left join form f on fd.form_id=f.form_id where fd.form_id='$form'");
     $rowamount = mysqli_fetch_array($result2,MYSQLI_ASSOC);

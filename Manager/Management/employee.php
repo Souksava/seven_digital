@@ -347,6 +347,7 @@
 const myform = document.getElementById('form1');
 const emp_id = document.getElementById('emp_id');
 const emp_name = document.getElementById('emp_name');
+const email = document.getElementById('email');
 const gender = document.getElementById('gender');
 const tel = document.getElementById('tel');
 const auther_id = document.getElementById('auther_id');
@@ -358,6 +359,7 @@ myform.addEventListener('submit', (e) => {
 
 function checkInputs() {
     const emp_idValue = emp_id.value.trim();
+    const emailValue = email.value.trim();
     const emp_nameValue = emp_name.value.trim();
     const genderValue = gender.value.trim();
     const telValue = tel.value.trim();

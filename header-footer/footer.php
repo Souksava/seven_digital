@@ -14,7 +14,45 @@
 <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<script type="text/javascript">
+<?php
+if($stt == 1){
+?>
+    function loadDocalert() {
+            setInterval(function(){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("alert_mananger").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "<?php echo $path ?>header-footer/alert_manager.php", true);
+                xhttp.send();
+            },1000);
+        }
+        loadDocalert(); 
+<?php
+}
+if($stt == 2){
+?>
+  function loadDocalert() {
+            setInterval(function(){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("alert_user").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "<?php echo $path ?>header-footer/alert_user.php", true);
+                xhttp.send();
+            },1000);
+        }
+        loadDocalert(); 
+<?php
+}
+?>
+       
+</script>
 <!-- jQuery -->
 <script src="<?php echo $path ?>plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -48,30 +86,67 @@ $.widget.bridge('uibutton', $.ui.button)
 <script src="<?php echo $path ?>dist/js/style.js"></script>
 <script src="<?php echo $path ?>dist/js/jquery.highlight.js"></script>
 <!-- <script src="<?php echo $path ?>dist/js/modal.js" type="text/javascript"></script> -->
+
+<?php
+      if($stt == 1){
+?>
+<script>
+    // load_datalist('0');
+    // function load_datalist(query) {
+    //     $.ajax({
+    //         url: "<?php echo $path ?>header-footer/fetch_list_manager.php",
+    //         method: "POST",
+    //         data: {
+    //             query:query
+    //         },
+    //         success: function(data) {
+    //             $('#result_list').html(data);
+    //         }
+    //     });
+    // }
+    function load_datalist() {
+            setInterval(function(){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result_list").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "<?php echo $path ?>header-footer/fetch_list_manager.php", true);
+                xhttp.send();
+            },1000);
+        }
+        load_datalist(); 
+   
+</script>
+<?php
+      }
+      if($stt == 2){
+?>
+<script>
+load_datalist('0');
+    function load_datalist(query) {
+        $.ajax({
+            url: "<?php echo $path ?>header-footer/fetch_list_user.php",
+            method: "POST",
+            data: {
+                query:query
+            },
+            success: function(data) {
+                $('#result_list').html(data);
+            }
+        });
+    }
+</script>
+<?php
+      }
+?>
+
 <script>
 $(window).load(function() {
     // Update Modal
-
-
-
-
-
-    
-
-
-
-
-
-
-    // Delete Modal________________________________________________________________________________________________
-
-
-
-
-
-
-
     // delete import
+
     $('.btnDelete_import').on('click', function() {
         $('#exampleModalDelete').modal('show');
         $tr = $(this).closest('tr');
@@ -114,7 +189,6 @@ $(window).load(function() {
 });
 
 </script>
-
 </body>
 
 </html>

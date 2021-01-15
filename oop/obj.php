@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("Localhost", "root", "", "seven");
+ include ('connect.php');
 date_default_timezone_set("Asia/Bangkok");
 $datenow = time();
 $Date = date("Y-m-d",$datenow);

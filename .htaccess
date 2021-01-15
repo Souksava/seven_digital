@@ -37,7 +37,7 @@ RewriteRule ^User/Spare/spare-part?$ User/Spare/spare_part.php
 RewriteRule ^Manager/Main?$ Manager/Main.php
 RewriteRule ^Manager/Management/auther?$ Manager/Management/auther.php
 RewriteRule ^Manager/Management/employee?$ Manager/Management/employee.php
-RewriteRule ^Manager/Form/acception?$ Manager/Form/acception.php
+RewriteRule ^Manager/Form/accept?$ Manager/Form/accept.php
 RewriteRule ^Manager/Report/report-employee?$ Manager/Report/report_employee.php
 RewriteRule ^Manager/Report/report-customer?$ Manager/Report/report_customer.php
 RewriteRule ^Manager/Report/report-supplier?$ Manager/Report/report_supplier.php

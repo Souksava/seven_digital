@@ -4,6 +4,8 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
+  include (''.$path.'PHPMailer/PHPMailerAutoload.php');
+  include (''.$path.'header-footer/mail.php');
 ?>
 
 <div style="width: 100%;">
@@ -38,6 +40,7 @@
                 ?>
                 <tr>
                     <td><?php echo $row['form_id'] ?></td>
+                    <td style="display: none;"><?php echo $row['emp_id'] ?></td>
                     <td><?php echo $row['emp_name'] ?></td>
                     <td><?php echo $row['company'] ?></td>
                     <td><?php echo $row['amount'] ?></td>
@@ -154,6 +157,7 @@
                 <h5 align="center" class="card-title"></h5>
                 <form action="accept" id="formadd" method="POST">
                     <input type="hidden" name="form_id" id="form_id">
+                    <input type="hidden" name="emp_id_user" id="emp_id_user">
                     <p class="card-text">
                         <div class="row">
                             <div class="col-md-6">
@@ -226,33 +230,68 @@
 </div>
 <?php
     if(isset($_POST['btnDiscard'])){
-        $form_id = $_POST['form_id'];
-        $user_name = $_SESSION['emp_name'];
-        $accpet = mysqli_query($conn,"update form set stt_accept='ບໍ່ອະນຸມັດ',usr_acc='$user_name' where form_id='$form_id'");
-        if(!$accpet){
+        if($_POST['form_id'] == ""){
             echo"<script>";
-            echo"window.location.href='accept?Discard=fail';";
+            echo"window.location.href='accept?form=null';";
             echo"</script>";
         }
         else{
-            echo"<script>";
-            echo"window.location.href='accept?Discard2=success';";
-            echo"</script>";
+            $form_id = $_POST['form_id'];
+            $user_name = $_SESSION['emp_name'];
+            $emp_id = $_POST['emp_id_user'];
+            $emp_id = $_POST['emp_id_user'];
+            $mail->Subject = 'Discard Distribute Form';
+            $mail->Body = 'ມີການປະຕິເສດຟອມເບີກສິນຄ້າເລກທີ '.$form_id.' ໂດຍ '.$user_name.'';
+            $getemail = mysqli_query($conn,"select email from employee where emp_id='$emp_id'");
+            if(mysqli_num_rows($getemail) > 0){
+                foreach($getemail as $rowemail){
+                    $mail->AddAddress($rowemail['email']);
+                }
+            }
+            $accpet = mysqli_query($conn,"update form set stt_accept='ບໍ່ອະນຸມັດ',usr_acc='$user_name' where form_id='$form_id'");
+            if(!$accpet){
+                echo"<script>";
+                echo"window.location.href='accept?Discard=fail';";
+                echo"</script>";
+            }
+            else{
+                $mail->Send();
+                echo"<script>";
+                echo"window.location.href='accept?Discard2=success';";
+                echo"</script>";
+            }
         }
     }
     if(isset($_POST['btnAccept'])){
-        $form_id = $_POST['form_id'];
-        $user_name = $_SESSION['emp_name'];
-        $accpet = mysqli_query($conn,"update form set stt_accept='ອະນຸມັດ',usr_acc='$user_name' where form_id='$form_id'");
-        if(!$accpet){
+        if($_POST['form_id'] == ""){
             echo"<script>";
-            echo"window.location.href='accept?Accept=fail';";
+            echo"window.location.href='accept?form=null';";
             echo"</script>";
         }
         else{
-            echo"<script>";
-            echo"window.location.href='accept?Accept2=success';";
-            echo"</script>";
+            $form_id = $_POST['form_id'];
+            $user_name = $_SESSION['emp_name'];
+            $emp_id = $_POST['emp_id_user'];
+            $mail->Subject = 'Accept Distribute Form';
+            $mail->Body = 'ມີການອະນຸມັດຟອມເບີກສິນຄ້າເລກທີ '.$form_id.' ໂດຍ '.$user_name.'';
+            $getemail = mysqli_query($conn,"select email from employee where emp_id='$emp_id'");
+            if(mysqli_num_rows($getemail) > 0){
+                foreach($getemail as $rowemail){
+                    $mail->AddAddress($rowemail['email']);
+                }
+            }
+            $accpet = mysqli_query($conn,"update form set stt_accept='ອະນຸມັດ',usr_acc='$user_name' where form_id='$form_id'");
+            if(!$accpet){
+                echo"<script>";
+                echo"window.location.href='accept?Accept=fail';";
+                echo"</script>";
+            }
+            else{
+                $mail->Send();
+                echo"<script>";
+                echo"window.location.href='accept?Accept2=success';";
+                echo"</script>";
+            }
         }
     }
 ?>
@@ -277,6 +316,11 @@
   if(isset($_GET['Accept2'])=='success'){
     echo'<script type="text/javascript">
     swal("", "ການອະນຸມັດຟອມເບີກສຳເລັດ", "success");
+    </script>';
+  }
+  if(isset($_GET['form'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ເລືອກລາຍການໃບສະເໜີເບີກສິນຄ້າ", "info");
     </script>';
   }
 ?>
@@ -307,6 +351,7 @@ function load_data(query) {
 
         console.log(data);
         $('#form_id').val(data[0]);
+        $('#emp_id_user').val(data[1]);
     });
     $(document).on('click', '.btnUpdate_accept', function() {
         var form_id = $('#form_id').val();
