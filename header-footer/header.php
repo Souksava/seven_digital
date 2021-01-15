@@ -295,17 +295,71 @@
 
 
     ?>
-
-            <!-- <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form> -->
+    <?php
+        if($stt == 1){
+            echo'           
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+        </ul> &nbsp; &nbsp; &nbsp;';
+        }
+        if($stt == 2){
+            echo'            
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="far fa-bell"></i>
+                    <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <span class="dropdown-item dropdown-header">15 Notifications</span>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 4 new messages
+                        <span class="float-right text-muted text-sm">3 mins</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 8 friend requests
+                        <span class="float-right text-muted text-sm">12 hours</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-envelope mr-2"></i> 3 new reports
+                        <span class="float-right text-muted text-sm">2 days</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+            </li>
+        </ul> &nbsp; &nbsp; &nbsp;';
+        }
+    ?>
+        
         </nav>
 
         <!-- Main Sidebar Container -->
@@ -325,13 +379,13 @@
                         <?php
                             if($_SESSION['img_path'] == ''){
                             ?>
-                        <img src="<?php echo $path ?>image/image.jpeg"  class="img-circle elevation-2" alt="">
+                        <img src="<?php echo $path ?>image/image.jpeg" class="img-circle elevation-2" alt="">
                         <?php
 
                             }
                             else{
                             ?>
-                        <img src="<?php echo $path ?>image/<?php echo $_SESSION['img_path'] ?>" 
+                        <img src="<?php echo $path ?>image/<?php echo $_SESSION['img_path'] ?>"
                             class="img-circle elevation-2" alt="">
                         <?php
                             }
@@ -342,7 +396,7 @@
                     </div>
                 </div>
 
-<?php
+                <?php
 if($stt == 1){
     echo '
     <nav class="mt-2">
@@ -847,290 +901,33 @@ if($stt == 1){
     echo '';
 }
 ?>
-                <!-- <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    ຈັດການຂໍ້ມູນຫຼັກ
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/auther" class="nav-link">
-                                        <i class="fas fa-network-wired nav-icon"></i>
-                                        <p>ຂໍ້ມູນຕຳແໜ່ງ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/employee" class="nav-link">
-                                        <i class="far fa fa-user nav-icon"></i>
-                                        <p>ຂໍ້ມູນພະນັງານ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/supplier" class="nav-link">
-                                        <i class="far fa fa-user nav-icon"></i>
-                                        <p>ຂໍ້ມູນຜູ້ສະໜອງ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/customer-status" class="nav-link">
-                                        <i class="fas fa-stamp nav-icon"></i>
-                                        <p>ຂໍ້ມູນສະຖານະລູກຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/customer" class="nav-link">
-                                        <i class="far fa fa-user nav-icon"></i>
-                                        <p>ຂໍ້ມູນລູກຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/category" class="nav-link">
-                                        <i class="far fa fa-cube nav-icon"></i>
-                                        <p>ຂໍ້ມູນປະເພດສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/unit" class="nav-link">
-                                        <i class="far fa fa-cube nav-icon"></i>
-                                        <p>ຂໍ້ມູນຫົວໜ່ວຍສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/products" class="nav-link">
-                                        <i class="fas fa-boxes nav-icon"></i>
-                                        <p>ຂໍ້ມູນສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/product-address" class="nav-link">
-                                        <i class="fas fa-warehouse nav-icon"></i>
-                                        <p>ຂໍ້ມູນຂໍ້ມູນສາງ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/brand" class="nav-link">
-                                        <i class="fas fa-copyright nav-icon"></i>
-                                        <p>ຂໍ້ມູນຍີ່ຫໍ້</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Management/rate" class="nav-link">
-                                        <i class="fas fa-dollar-sign nav-icon"></i>
-                                        <p>ຂໍ້ມູນເລດເງີນ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="<?php echo $links ?>Import/import" class="nav-link">
-                                <i class="nav-icon fa fa-truck"></i>
-                                <p>
-                                    ນຳເຂົ້າສິນຄ້າ
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="" class="nav-link">
-                                <i class="fab fa-product-hunt nav-icon"></i>
-                                <p>
-                                    ສ້າງຟອມ ແລະ ເບີກຈ່າຍສິນຄ້າ
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Form/form" class="nav-link">
-                                        <i class="far fa-file-alt nav-icon"></i>
-                                        <p>ສ້າງໃບສະເໜີເບີກສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Form/accept" class="nav-link">
-                                        <i class="fas fa-vote-yea nav-icon"></i>
-                                        <p>ອະນຸມັດຟອມເບີກສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Form/distribute" class="nav-link">
-                                        <i class="fas fa-boxes nav-icon"></i>
-                                        <p>ເບີກຈ່າຍສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Form/product-putback" class="nav-link">
-                                        <i class="fas fa-undo nav-icon"></i>
-                                        <p>ສິນຄ້າເບີກແລ້ວນຳກັບເຂົ້າສາງຄືນ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo $links ?>Check/check-stock" class="nav-link">
-                                <i class="fas fa fa-cubes nav-icon"></i>
-                                <p>
-                                    ນັບສະຕ໋ອກສິນຄ້າ
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo $links ?>Spare/spare-part" class="nav-link">
-                                <i class="fas fa-undo nav-icon"></i>
-                                <p>
-                                    ປ່ຽນອາໄຫຼ່
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    ລາຍງານ
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-employee" class="nav-link">
-                                        <i class="far fas fa-book nav-icon"></i>
-                                        <p>ລາຍງານຂໍ້ມູນພະນັກງານ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-customer" class="nav-link">
-                                        <i class="far fas fa-book nav-icon"></i>
-                                        <p>ລາຍງານຂໍ້ມູນລູກຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-supplier" class="nav-link">
-                                        <i class="far fas fa-book nav-icon"></i>
-                                        <p>ລາຍງານຂໍ້ມູນຜູ້ສະໜອງ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-product" class="nav-link">
-                                        <i class="far fas fa-book nav-icon"></i>
-                                        <p>ລາຍງານຂໍ້ມູນສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-stock" class="nav-link">
-                                        <i class="far fas fa-book nav-icon"></i>
-                                        <p>ລາຍງານຂໍ້ມູນສະຕ໋ອກສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-check-stock" class="nav-link">
-                                        <i class="far fas fa-book nav-icon"></i>
-                                        <p>ລາຍງານຂໍ້ມູນການນັບສະຕ໋ອກ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-warehouse" class="nav-link">
-                                        <i class="far fas fa-book nav-icon"></i>
-                                        <p>ລາຍງານຂໍ້ມູນສາງເກັບຮັກສາ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-distribute" class="nav-link">
-                                        <i class="far fas fa-book nav-icon"></i>
-                                        <p>ລາຍງານຂໍ້ມູນການເບີກຈ່າຍສິນຄ້າ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?php echo $links ?>Report/report-product-putback" class="nav-link">
-                                        <i class="far fas fa-book nav-icon"></i>
-                                        <p>ລາຍງານສິນຄ້າເບີກແລ້ວເກັບເຂົ້າສາງ</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                                <i class="nav-icon fas fa-power-off"></i>
-                                <p>
-                                    ອອກຈາກລະບົບ
-                                </p>
-                            </a>
-                        </li>
-                        </li>
-                    </ul>
-                </nav> -->
-            <!-- </div>
-        </aside> -->
-        <form action="#" method="POST" id="formLogout">
-            <div class="modal fade font14" id="exampleModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" align="center">
-                            ທ່ານຕ້ອງການອອກຈາກລະບົບ ຫຼື ບໍ່ ?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary"
-                                data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="btnLogout" class="btn btn-outline-danger">ອອກຈາກລະບົບ</button>
+                <form action="#" method="POST" id="formLogout">
+                    <div class="modal fade font14" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" align="center">
+                                    ທ່ານຕ້ອງການອອກຈາກລະບົບ ຫຼື ບໍ່ ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-dismiss="modal">ຍົກເລີກ</button>
+                                    <button type="submit" name="btnLogout"
+                                        class="btn btn-outline-danger">ອອກຈາກລະບົບ</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </form>
-        <?php
+                </form>
+                <?php
             if(isset($_POST['btnLogout'])){
                 $obj->logout();
             }
         ?>
-        <div class="main-footer">
+                <div class="main-footer">

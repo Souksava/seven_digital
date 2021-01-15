@@ -227,7 +227,8 @@
 <?php
     if(isset($_POST['btnDiscard'])){
         $form_id = $_POST['form_id'];
-        $accpet = mysqli_query($conn,"update form set stt_accept='ບໍ່ອະນຸມັດ' where form_id='$form_id'");
+        $user_name = $_SESSION['emp_name'];
+        $accpet = mysqli_query($conn,"update form set stt_accept='ບໍ່ອະນຸມັດ',usr_acc='$user_name' where form_id='$form_id'");
         if(!$accpet){
             echo"<script>";
             echo"window.location.href='accept?Discard=fail';";
@@ -241,7 +242,8 @@
     }
     if(isset($_POST['btnAccept'])){
         $form_id = $_POST['form_id'];
-        $accpet = mysqli_query($conn,"update form set stt_accept='ອະນຸມັດ' where form_id='$form_id'");
+        $user_name = $_SESSION['emp_name'];
+        $accpet = mysqli_query($conn,"update form set stt_accept='ອະນຸມັດ',usr_acc='$user_name' where form_id='$form_id'");
         if(!$accpet){
             echo"<script>";
             echo"window.location.href='accept?Accept=fail';";
