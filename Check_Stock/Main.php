@@ -202,7 +202,7 @@ if ($stt == 1){
 }elseif($stt == 4){
     echo '
     <div class="row">
-    <a href="';?><?php echo $links ?><?php echo 'Management/product-address" class="m-a">
+    <a href="';?><?php echo $links ?><?php echo 'Management/product_address" class="m-a">
     <div class="btn btn-light mainlink">
     ຂໍ້ມູນສາງສິນຄ້າ
     </div>
