@@ -1,4 +1,5 @@
 <?php
+  include ('../PHPMailer/PHPMailerAutoload.php');
 $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->SMTPAuth = true;
@@ -9,4 +10,7 @@ $mail->isHTML();
 $mail->Username = 'admin@sevendigital.la';
 $mail->Password = 'Seven@1234';
 $mail->SetFrom('no-reply@sevendigital.com');
+$mail->Subject = 'Distribute Form';
+$mail->Body = 'ມີການປະຕິເສດຟອມເບີກສິນຄ້າເລກທີ ';
+$mail->AddAddress('souksavath@verisette.com');
 ?>
