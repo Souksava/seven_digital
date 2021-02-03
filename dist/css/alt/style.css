@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 @font-face {
     font-family: 'Noto Sans Lao';
-    src: 
+    src:
     url(NotoSansLao-Bold.ttf) format('truetype'),
     url(notosanslao-bold-webfont.woff) format('woff'),
     url(notosanslao-bold-webfont.woff2) format('woff2');
@@ -10,7 +10,7 @@
   }
   @font-face {
     font-family: '10B Muc Zeit';
-    src: 
+    src:
     url(Muc-Zeit-Medium.ttf) format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -174,24 +174,24 @@ left: 10px;
 
 .pagination li a{
     color:black!important;
-    font-weight: 100!important;   
+    font-weight: 100!important;
 }
 
 .pagination li button{
     color:black!important;
-    font-weight: 100!important; 
+    font-weight: 100!important;
 }
 sup{
     color: red;
 }
 
 .table-responsive{
-    overflow-y: scroll; 
+    overflow-y: scroll;
     height:500px;
 }
 
 .table-responsive2{
-    overflow-y: scroll; 
+    overflow-y: scroll;
     height:300px;
 }
 
@@ -228,18 +228,18 @@ text-align-last: center;
     -moz-appearance: textfield;
     appearance: textfield;
     }
-    
+
     .number-input input[type=number]::-webkit-inner-spin-button,
     .number-input input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     }
-    
+
     .number-input {
       display: flex;
       justify-content: space-around;
       align-items: center;
     }
-    
+
     .number-input button {
     -webkit-appearance: none;
     background-color: transparent;
@@ -250,7 +250,7 @@ text-align-last: center;
     margin: 0;
     position: relative;
     }
-    
+
     .number-input button:before,
     .number-input button:after {
     display: inline-block;
@@ -273,35 +273,35 @@ text-align-last: center;
     transform: translate(-50%, -50%) rotate(90deg);
     background-color: #19EB1C!important;
     }
-    
+
     .number-input input[type=number] {
     text-align: center;
     }
-    
+
     .number-input.number-input {
     /* border: 1px solid grey; */
     width: 10rem;
     border-radius: 25px;
     background-color: white;
     }
-    
+
     .number-input.number-input button {
     width: 2.6rem;
     height: .7rem;
     border: none;
     outline: none;
     }
-    
+
     .number-input.number-input button.minus {
     padding-left: 10px;
     }
-    
+
     .number-input.number-input button:before,
     .number-input.number-input button:after {
     width: .7rem;
     background-color: #495057;
     }
-    
+
     .number-input.number-input input[type=number] {
     max-width: 4rem;
     padding: .5rem;
@@ -311,10 +311,10 @@ text-align-last: center;
     height: 2rem;
     color: #495057;
     }
-    
+
     @media not all and (min-resolution:.001dpcm) {
         @supports (-webkit-appearance: none) and (stroke-color:transparent) {
-        
+
             .number-input.def-number-input.safari_only button:before,
             .number-input.def-number-input.safari_only button:after {
             margin-top: -.3rem;
@@ -326,11 +326,11 @@ text-align-last: center;
     tr.hide-table-padding td {
         padding: 0;
       }
-      
+
       .expand-button {
           position: relative;
       }
-      
+
       .accordion-toggle .expand-button:after
       {
         position: absolute;
