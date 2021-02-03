@@ -380,6 +380,15 @@ function checkInputs() {
     } else {
         setSuccessFor(gender);
     }
+    if(emailValue === ''){
+      setErrorFor(email, 'ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວ')
+    }
+    else if(!isEmail(emailValue)){
+      setErrorFor(email, 'ຮູບແບບອີເມວບໍ່ຖືກຕ້ອງ')
+    }
+    else{
+      setSuccessFor(email);
+    }
     if (telValue === '') {
         setErrorFor(tel, 'ກະລຸນາປ້ອນເບີໂທລະສັບ');
     } else {
@@ -396,7 +405,7 @@ function checkInputs() {
         setSuccessFor(status);
     }
     if (emp_idValue !== '' && emp_nameValue !== '' && genderValue !== '' && telValue !== '' && auther_idValue !== '' &&
-        statusValue !== '') {
+        statusValue !== ''  && emailValue !== '') {
         document.getElementById("form1").action = "employee";
         document.getElementById("form1").submit();
     }
@@ -408,6 +417,7 @@ const myformUpdate = document.getElementById('formUpdate');
 const emp_id2 = document.getElementById('emp_id2');
 const emp_name2 = document.getElementById('emp_name2');
 const gender2 = document.getElementById('gender2');
+const email_update = document.getElementById('email2');
 const tel2 = document.getElementById('tel2');
 const auther_id2 = document.getElementById('auther_id2');
 const status2 = document.getElementById('status2');
@@ -420,6 +430,7 @@ function checkInputs2() {
     const emp_id2Value = emp_id2.value.trim();
     const emp_name2Value = emp_name2.value.trim();
     const gender2Value = gender2.value.trim();
+    const email_UpdateValue = email_update.value.trim();
     const tel2Value = tel2.value.trim();
     const auther_id2Value = auther_id2.value.trim();
     const status2Value = status2.value.trim();
@@ -438,6 +449,15 @@ function checkInputs2() {
     } else {
         setSuccessFor(tel2);
     }
+    if(email_UpdateValue === ''){
+      setErrorFor(email_update, 'ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວ')
+    }
+    else if(!isEmail(email_UpdateValue)){
+      setErrorFor(email_update, 'ຮູບແບບອີເມວບໍ່ຖືກຕ້ອງ')
+    }
+    else{
+      setSuccessFor(email_update);
+    }
     if (auther_id2Value === '') {
         setErrorFor(auther_id2, 'ກະລຸນາປ້ອນລະຫັດຕຳແໜ່ງ');
     } else {
@@ -449,7 +469,7 @@ function checkInputs2() {
         setSuccessFor(status2);
     }
     if (emp_id2Value !== '' && emp_name2Value !== '' && gender2Value !== '' && tel2Value !== '' && auther_id2Value !==
-        '' && status2Value !== '') {
+        '' && status2Value !== '' && email_UpdateValue !== '') {
         document.getElementById("formUpdate").action = "employee";
         document.getElementById("formUpdate").submit();
     }
