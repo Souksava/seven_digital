@@ -35,7 +35,7 @@ if($stt == 1){
 }
 if($stt == 2){
 ?>
-  function loadDocalert() {
+  function loadDocalert2() {
             setInterval(function(){
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
@@ -47,7 +47,7 @@ if($stt == 2){
                 xhttp.send();
             },1000);
         }
-        loadDocalert(); 
+        loadDocalert2(); 
 <?php
 }
 ?>
@@ -91,19 +91,6 @@ $.widget.bridge('uibutton', $.ui.button)
       if($stt == 1){
 ?>
 <script>
-    // load_datalist('0');
-    // function load_datalist(query) {
-    //     $.ajax({
-    //         url: "<?php echo $path ?>header-footer/fetch_list_manager.php",
-    //         method: "POST",
-    //         data: {
-    //             query:query
-    //         },
-    //         success: function(data) {
-    //             $('#result_list').html(data);
-    //         }
-    //     });
-    // }
     function load_datalist() {
             setInterval(function(){
                 var xhttp = new XMLHttpRequest();
@@ -124,19 +111,20 @@ $.widget.bridge('uibutton', $.ui.button)
       if($stt == 2){
 ?>
 <script>
-load_datalist('0');
-    function load_datalist(query) {
-        $.ajax({
-            url: "<?php echo $path ?>header-footer/fetch_list_user.php",
-            method: "POST",
-            data: {
-                query:query
-            },
-            success: function(data) {
-                $('#result_list').html(data);
-            }
-        });
-    }
+     function load_datalist2() {
+            setInterval(function(){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("result_list_user").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "<?php echo $path ?>header-footer/fetch_list_user.php", true);
+                xhttp.send();
+            },1000);
+        }
+        load_datalist2(); 
+   
 </script>
 <?php
       }

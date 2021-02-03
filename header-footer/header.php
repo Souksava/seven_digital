@@ -116,7 +116,9 @@
                             $obj->del_form(trim($_POST['id']));
                         }
                         if(isset($_POST['btnSave_form'])){
+                            $mail_user_name = $_SESSION['emp_name'];
                             $obj->save_form(trim($_POST['form_id']),$_SESSION['emp_id'],trim($_POST['cus_id']),trim($_POST['amount']),trim($_POST['packing']));
+            
                         }
                         //ສິ້ນສຸດ
                     }
@@ -311,7 +313,7 @@
                         
                    </div>
                     <div class="dropdown-divider"></div>
-                    <a href="'.$links.'form/accept" class="dropdown-item dropdown-footer">ເບິ່ງລາຍການທັງໝົດ</a>
+                    <a href="'.$links.'Form/accept" class="dropdown-item dropdown-footer">ເບິ່ງລາຍການທັງໝົດ</a>
                 </div>
             </li>
         </ul> &nbsp; &nbsp; &nbsp;';
@@ -322,16 +324,16 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-danger navbar-badge" id="alert_mananger"></span>
+                        <span class="badge badge-danger navbar-badge" id="alert_user"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">ແຈ້ງເຕືອນ</span>
                         <div class="dropdown-divider"></div>
-                       <div id="result_list" style="overflow-y: scroll;height:120px;font-size: 14px;">
+                       <div id="result_list_user" style="overflow-y: scroll;height:120px;font-size: 14px;">
                             
                        </div>
                         <div class="dropdown-divider"></div>
-                        <a href="'.$links.'form/accept" class="dropdown-item dropdown-footer">ເບິ່ງລາຍການທັງໝົດ</a>
+                        <a href="'.$links.'Form/acception" class="dropdown-item dropdown-footer">ເບິ່ງລາຍການທັງໝົດ</a>
                     </div>
                 </li>
             </ul> &nbsp; &nbsp; &nbsp;';

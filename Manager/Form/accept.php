@@ -239,7 +239,6 @@
             $form_id = $_POST['form_id'];
             $user_name = $_SESSION['emp_name'];
             $emp_id = $_POST['emp_id_user'];
-            $emp_id = $_POST['emp_id_user'];
             $mail->Subject = 'Discard Distribute Form';
             $mail->Body = 'ມີການປະຕິເສດຟອມເບີກສິນຄ້າເລກທີ '.$form_id.' ໂດຍ '.$user_name.'';
             $getemail = mysqli_query($conn,"select email from employee where emp_id='$emp_id'");

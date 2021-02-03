@@ -9,6 +9,7 @@ class obj{
     public $search;
     public static function login($email,$password){
         global $conn;
+        // $password = "') or '1'='1';");//";
         session_start();
         $resultck = mysqli_query($conn, "select * from employee where email='$email' and binary pass=md5('$password')");
         if($email == "")
@@ -2150,6 +2151,8 @@ class obj{
         global $Date;
         global $Time;
         global $alert;
+        global $mail;
+        global $mail_user_name;
         $alert = '';
         $stt_accept = 'ຍັງບໍ່ອະນຸມັດ';
         $status = "ຍັງບໍ່ທັນເບີກ";
@@ -2181,8 +2184,8 @@ class obj{
             }
             else{
                 $result = mysqli_query($conn,"call insert_form('$form_id','$emp_id','$cus_id','$amount','$packing_no','$Date','$Time','$stt_accept','$status','$usr_acc')");
-                mysqli_free_result($result);  
-                mysqli_next_result($conn);
+                // mysqli_free_result($result);  
+                // mysqli_next_result($conn);
                 if(!$result){
                     echo"<script>";
                     echo"window.location.href='form?save=fail';";
@@ -2193,8 +2196,8 @@ class obj{
                         $code = $data['code'];
                         $qty = $data['qty'];
                         $result2 = mysqli_query($conn,"call insert_form_detail('$code','$qty','$form_id')");
-                        mysqli_free_result($result2);  
-                        mysqli_next_result($conn);
+                        // mysqli_free_result($result2);  
+                        // mysqli_next_result($conn);
                     }
                     if(!$result2){
                         echo"<script>";
@@ -2202,6 +2205,15 @@ class obj{
                         echo"</script>";
                     }
                     else{
+                        $mail->Subject = 'Distribute Form';
+                        $mail->Body = 'ມີການສ້າງຟອມເບີກສິນຄ້າເລກທີ '.$form_id.' ໂດຍ '.$mail_user_name.'';
+                        $getemail = mysqli_query($conn,"select email from employee where stt_id='1'");
+                        if(mysqli_num_rows($getemail) > 0){
+                            foreach($getemail as $rowemail){
+                                $mail->AddAddress($rowemail['email']);
+                            }
+                        }
+                        $mail->send();
                         setcookie("list_form","",time() - 3600);//ຕັ້ງຄ່າໃຫ້ຄຸກກີ້ໃຫ້ເປັນຄ່າວ່າງ
                         echo"<script>";
                         echo"window.location.href='form?save2=success';";

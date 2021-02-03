@@ -3,7 +3,10 @@
   $path = "../../";
   $links = "../";
   $session_path = "../../";
+  include (''.$path.'PHPMailer/PHPMailerAutoload.php');
+  include (''.$path.'header-footer/mail.php');
   include ("../../header-footer/header.php");
+
   $amount = 0;
 ?>
 <div style="width: 100%;">
