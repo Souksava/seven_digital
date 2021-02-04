@@ -829,7 +829,7 @@ if($stt == 1){
                             </a>
                             <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="'.$links.'Management/product-address" class="nav-link">
+                                <a href="'.$links.'Management/product_address" class="nav-link">
                                     <i class="far fa fa-warehouse nav-icon"></i>
                                     <p>ຂໍ້ມູນສາງສິນຄ້າ</p>
                                 </a>
