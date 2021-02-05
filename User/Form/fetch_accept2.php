@@ -46,13 +46,14 @@ if(mysqli_num_rows($resultform2) > 0)
         <th style="width: 80px">ວັນທີ</th>
         <th style="width: 80px">ເວລາ</th>
         <th style="width: 100px">ສະຖານະ</th>
-        <th style="width: 30px"></th>
     </tr>
  ';
  while($row = mysqli_fetch_array($resultform2))
  {
   $output .= '
-   <tr  class="result">
+
+   <tr  class="result btnUpdate_accept">
+   
     <td>'.$row["form_id"].'</td>
     <td>'.$row["emp_name"].'</td>
     <td>'.$row["company"].'</td>
@@ -61,10 +62,8 @@ if(mysqli_num_rows($resultform2) > 0)
     <td>'.date("d/m/Y",strtotime($row["form_date"])).'</td>
     <td>'.$row["form_time"].'</td>
     <td>'.$row["stt_accept"].'</td>
-        <td>
-            <a href="#" data-toggle="modal" data-target="#exampleModalUpdate" class="fa fa-info toolcolor btnUpdate_accept"></a>&nbsp; &nbsp; 
-        </td>
    </tr>
+ 
   ';
  }
  mysqli_free_result($resultform2);  

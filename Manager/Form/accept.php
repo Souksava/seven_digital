@@ -33,12 +33,11 @@
                     <th style="width: 80px">ວັນທີ</th>
                     <th style="width: 80px">ເວລາ</th>
                     <th style="width: 100px">ສະຖານະ</th>
-                    <th style="width: 30px"></th>
                 </tr>
                 <?php
                     foreach($resultform as $row){
                 ?>
-                <tr>
+                <tr class="btnUpdate_accept">
                     <td><?php echo $row['form_id'] ?></td>
                     <td style="display: none;"><?php echo $row['emp_id'] ?></td>
                     <td><?php echo $row['emp_name'] ?></td>
@@ -48,10 +47,7 @@
                     <td><?php echo date("d/m/Y",strtotime($row["form_date"])) ?></td>
                     <td><?php echo $row['form_time'] ?></td>
                     <td><?php echo $row['stt_accept'] ?></td>
-                    <td>
-                        <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                            class="fa fa-info toolcolor btnUpdate_accept"></a>&nbsp; &nbsp;
-                    </td>
+                   
                 </tr>
                 <?php
                     }
