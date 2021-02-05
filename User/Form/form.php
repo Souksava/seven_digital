@@ -478,8 +478,8 @@ function checkInputs2() {
         setSuccessFor(packing);
     }
     if (cus_idValue !== '' && packingValue !== '') {
-        document.getElementById("form2").action = "form";
-        document.getElementById("form2").submit();
+        document.getElementById("form_save").action = "form";
+        document.getElementById("form_save").submit();
     }
 }
 </script>
@@ -512,6 +512,11 @@ function checkInputs2() {
   if(isset($_GET['qty'])=='null'){
     echo'<script type="text/javascript">
     swal("", "ຈຳນວນສິນຄ້າໃນສະຕ໋ອກແມ່ນມີ 0 ກະລຸນາປ້ອນຈຳນວນສີນຄ້າທີ່ມີຫຼາຍກວ່າ 0", "info");
+    </script>';
+  }
+  if(isset($_GET['list'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ກະລຸນາປ້ອນລາຍການສີນຄ້າ", "info");
     </script>';
   }
 
