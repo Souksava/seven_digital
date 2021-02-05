@@ -115,7 +115,7 @@
                         if(isset($_POST['btnDelete_form'])){
                             $obj->del_form(trim($_POST['id']));
                         }
-                        if(isset($_POST['btnSave_form'])){
+                        if(isset($_POST['form_id'])){
                             $mail_user_name = $_SESSION['emp_name'];
                             $obj->save_form(trim($_POST['form_id']),$_SESSION['emp_id'],trim($_POST['cus_id']),trim($_POST['amount']),trim($_POST['packing']));
             

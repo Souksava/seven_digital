@@ -15,7 +15,7 @@
 <br>
 <div class="row">
     <div class="col-md-7">
-        <?php
+        <?php 
         $output = '';
         if(isset($_POST['page'])){
            $page = $_POST['page'];
@@ -88,7 +88,7 @@
  </tr>
   ';
  }
- mysqli_free_result($result_form_check);
+ mysqli_free_result($result_form_check);  
  mysqli_next_result($conn);
  $output .='
    </table>
@@ -96,17 +96,17 @@
 <br>
  ';
  echo $output;
-
+ 
 
    $obj->select_form_check_count();
    $count = mysqli_num_rows($result_form_check_count);
-   mysqli_free_result($result_form_check_count);
+   mysqli_free_result($result_form_check_count);  
    mysqli_next_result($conn);
    $a = ceil($count/15);
    if(isset($_POST['page'])){
       if($_POST['page'] > 1){
          $previous = $_POST['page'] - 1;
-         echo '
+         echo '      
          <nav aria-label="...">
             <ul class="pagination">
                <li class="page-item">
@@ -161,7 +161,7 @@
             $page_next += 1;
          }
          $next = $page_next + 1;
-         echo '
+         echo '      
 
                      <li class="page-item">
                         <a href="#" class="btn btn-success page-links" id="'.$next.'" value="'.$next.'" style="color: white!important;" href="#">ໜ້າຖັດໄປ</a>
@@ -174,7 +174,7 @@
       else{
          echo'';
       }
-
+   
 }
 else
 {
@@ -198,7 +198,7 @@ else
                 <p class="card-text">
                     <form action="form" id="form_save" method="POST">
                         <div>
-                            <?php
+                            <?php 
                                 $getid = mysqli_query($conn,"select max(form_id) as form_id from form;");
                                 $fetch_id = mysqli_fetch_array($getid,MYSQLI_ASSOC);
                                 $formid = $fetch_id['form_id'] + 1;
@@ -268,13 +268,13 @@ else
             if(isset($_COOKIE['list_form'])){
 ?>
                         <div class="table-responsive2" style="text-align: center;">
-                            <table class="table font12" style="width: 700px">
+                            <table class="table font12" style="width: 750px">
                                 <tr>
                                     <th style="width: 50px">ສິນຄ້າ</th>
                                     <th style="width: 150px">ລະຫັດສິນຄ້າ</th>
                                     <th>ຊື່ສິນຄ້າ</th>
                                     <th>ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
-                                    <th style="width: 50px">ຈຳນວນ</th>
+                                    <th style="width: 70px">ຈຳນວນ</th>
                                     <th style="width: 75px;"><a href="#" data-toggle="modal"
                                             data-target="#exampleModalClear" class="clear">ລ້າງ</a></th>
                                 </tr>
@@ -327,7 +327,7 @@ else
                 </div>
             ';
             }
-            ?>
+            ?>              
                         <div class="col-md-12" align="right">
                             <br>
                             <h4 style="color: #CE3131;"> <?php echo $amount ?> PCT.</h4>
@@ -435,6 +435,7 @@ else
 <script type="text/javascript">
 const myform = document.getElementById('formUpdate');
 const qty = document.getElementById('qty');
+
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
@@ -478,8 +479,8 @@ function checkInputs2() {
         setSuccessFor(packing);
     }
     if (cus_idValue !== '' && packingValue !== '') {
-        document.getElementById("form2").action = "form";
-        document.getElementById("form2").submit();
+        document.getElementById("form_save").action = "form";
+        document.getElementById("form_save").submit();
     }
 }
 </script>
@@ -514,7 +515,11 @@ function checkInputs2() {
     swal("", "ຈຳນວນສິນຄ້າໃນສະຕ໋ອກແມ່ນມີ 0 ກະລຸນາປ້ອນຈຳນວນສີນຄ້າທີ່ມີຫຼາຍກວ່າ 0", "info");
     </script>';
   }
-
+  if(isset($_GET['list'])=='null'){
+    echo'<script type="text/javascript">
+    swal("", "ກະລຸນາເພີ່ມລາຍການເບີກຈ່າຍສິນຄ້າ", "info");
+    </script>';
+  }
 
 ?>
 
