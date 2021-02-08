@@ -84,7 +84,7 @@
   <td>
   <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
       class="fa fa-plus toolcolor btnUpdate_form"></a>&nbsp; &nbsp;
-</td>
+    </td>
  </tr>
   ';
  }

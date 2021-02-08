@@ -33,12 +33,11 @@
                     <th style="width: 80px">ວັນທີ</th>
                     <th style="width: 80px">ເວລາ</th>
                     <th style="width: 100px">ສະຖານະ</th>
-                    <th style="width: 30px"></th>
                 </tr>
                 <?php
                     foreach($resultform as $row){
                 ?>
-                <tr>
+                <tr class="btnUpdate_accept">
                     <td><?php echo $row['form_id'] ?></td>
                     <td style="display: none;"><?php echo $row['emp_id'] ?></td>
                     <td><?php echo $row['emp_name'] ?></td>
@@ -48,10 +47,7 @@
                     <td><?php echo date("d/m/Y",strtotime($row["form_date"])) ?></td>
                     <td><?php echo $row['form_time'] ?></td>
                     <td><?php echo $row['stt_accept'] ?></td>
-                    <td>
-                        <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-                            class="fa fa-info toolcolor btnUpdate_accept"></a>&nbsp; &nbsp;
-                    </td>
+                   
                 </tr>
                 <?php
                     }
@@ -156,7 +152,7 @@
             <div class="card-body">
                 <h5 align="center" class="card-title"></h5>
                 <form action="accept" id="formadd" method="POST">
-                    <input type="hidden" name="form_id" id="form_id">
+                    <input type="hidden" name="form_id_accept" id="form_id_accept">
                     <input type="hidden" name="emp_id_user" id="emp_id_user">
                     <p class="card-text">
                         <div class="row">
@@ -231,13 +227,13 @@
 
 <?php
     if(isset($_POST['btnDiscard'])){
-        if($_POST['form_id'] == ""){
+        if($_POST['form_id_accept'] == ""){
             echo"<script>";
             echo"window.location.href='accept?form=null';";
             echo"</script>";
         }
         else{
-            $form_id = $_POST['form_id'];
+            $form_id = $_POST['form_id_accept'];
             $user_name = $_SESSION['emp_name'];
             $emp_id = $_POST['emp_id_user'];
             $mail->Subject = 'Discard Distribute Form';
@@ -263,13 +259,13 @@
         }
     }
     if(isset($_POST['btnAccept'])){
-        if($_POST['form_id'] == ""){
+        if($_POST['form_id_accept'] == ""){
             echo"<script>";
             echo"window.location.href='accept?form=null';";
             echo"</script>";
         }
         else{
-            $form_id = $_POST['form_id'];
+            $form_id = $_POST['form_id_accept'];
             $user_name = $_SESSION['emp_name'];
             $emp_id = $_POST['emp_id_user'];
             $mail->Subject = 'Accept Distribute Form';
@@ -350,11 +346,11 @@ function load_data(query) {
         }).get();
 
         console.log(data);
-        $('#form_id').val(data[0]);
+        $('#form_id_accept').val(data[0]);
         $('#emp_id_user').val(data[1]);
     });
     $(document).on('click', '.btnUpdate_accept', function() {
-        var form_id = $('#form_id').val();
+        var form_id = $('#form_id_accept').val();
         console.log(form_id);
         if (form_id != '') {
             load_data(form_id);
