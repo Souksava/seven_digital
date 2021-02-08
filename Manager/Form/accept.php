@@ -152,7 +152,7 @@
             <div class="card-body">
                 <h5 align="center" class="card-title"></h5>
                 <form action="accept" id="formadd" method="POST">
-                    <input type="hidden" name="form_id" id="form_id">
+                    <input type="hidden" name="form_id_accept" id="form_id_accept">
                     <input type="hidden" name="emp_id_user" id="emp_id_user">
                     <p class="card-text">
                         <div class="row">
@@ -226,13 +226,13 @@
 </div>
 <?php
     if(isset($_POST['btnDiscard'])){
-        if($_POST['form_id'] == ""){
+        if($_POST['form_id_accept'] == ""){
             echo"<script>";
             echo"window.location.href='accept?form=null';";
             echo"</script>";
         }
         else{
-            $form_id = $_POST['form_id'];
+            $form_id = $_POST['form_id_accept'];
             $user_name = $_SESSION['emp_name'];
             $emp_id = $_POST['emp_id_user'];
             $mail->Subject = 'Discard Distribute Form';
@@ -258,13 +258,13 @@
         }
     }
     if(isset($_POST['btnAccept'])){
-        if($_POST['form_id'] == ""){
+        if($_POST['form_id_accept'] == ""){
             echo"<script>";
             echo"window.location.href='accept?form=null';";
             echo"</script>";
         }
         else{
-            $form_id = $_POST['form_id'];
+            $form_id = $_POST['form_id_accept'];
             $user_name = $_SESSION['emp_name'];
             $emp_id = $_POST['emp_id_user'];
             $mail->Subject = 'Accept Distribute Form';
@@ -345,11 +345,11 @@ function load_data(query) {
         }).get();
 
         console.log(data);
-        $('#form_id').val(data[0]);
+        $('#form_id_accept').val(data[0]);
         $('#emp_id_user').val(data[1]);
     });
     $(document).on('click', '.btnUpdate_accept', function() {
-        var form_id = $('#form_id').val();
+        var form_id = $('#form_id_accept').val();
         console.log(form_id);
         if (form_id != '') {
             load_data(form_id);
