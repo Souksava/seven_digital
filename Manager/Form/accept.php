@@ -228,6 +228,7 @@
 </div>
 </div>
 </div>
+
 <?php
     if(isset($_POST['btnDiscard'])){
         if($_POST['form_id'] == ""){
