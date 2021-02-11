@@ -4,7 +4,7 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
-  if(isset($_POST['btnDelete'])){
+  if(isset($_POST['id'])){
     $obj->delete_auther(trim($_POST['id']));
   }
   if(isset($_POST['auther_id'])){
@@ -43,8 +43,6 @@
                                     <small class="">Error message</small>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-body">
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ຕຳແໜ່ງ</label>
@@ -58,7 +56,10 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
                                 data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="btnSave" class="btn btn-outline-primary">ບັນທຶກ</button>
+                            <button type="submit" name="btnSave" class="btn btn-outline-primary">
+                                ບັນທຶກ
+                                <span class=""  id="load" role="status" aria-hidden="true"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -136,7 +137,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnUpdate" class="btn btn-outline-success">ແກ້ໄຂ</button>
+                    <button type="submit" name="btnUpdate" class="btn btn-outline-success">
+                        ແກ້ໄຂ
+                        <span class=""  id="load_update" role="status" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -161,7 +165,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">
+                        ລົບ
+                        <span class=""  id="load_delete" role="status" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -173,6 +180,7 @@
 const myform = document.getElementById('form1');
 const auther_id = document.getElementById('auther_id');
 const auther_name = document.getElementById('auther_name');
+const loaddata = document.getElementById('load');
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
@@ -192,6 +200,7 @@ function checkInputs() {
         setSuccessFor(auther_name);
     }
     if (auther_idValue !== '' && auther_nameValue !== '' ) {
+        loading(loaddata);
         document.getElementById("form1").action = "auther";
         document.getElementById("form1").submit();
     }
@@ -201,6 +210,7 @@ function checkInputs() {
 <script type="text/javascript">
 const myformupdate = document.getElementById('formUpdate');
 const auther_name_update = document.getElementById('auther_name_update');
+const loaddata_update = document.getElementById('load_update');
 myformupdate.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs2();
@@ -215,10 +225,12 @@ function checkInputs2() {
     }
 
     if (auther_name_updateValue !== '') {
+        loading(loaddata_update);
         document.getElementById("formUpdate").action = "auther";
         document.getElementById("formUpdate").submit();
     }
 }
+
 $('.btnUpdate_auther').on('click', function() {
         $('#exampleModalUpdate').modal('show');
         $tr = $(this).closest('tr');
@@ -242,6 +254,20 @@ $('.btnUpdate_auther').on('click', function() {
         console.log(data);
         $('#id').val(data[0]);
     });
+    const myformudelete = document.getElementById('formDelete');
+    const loaddata_delete = document.getElementById('load_delete');
+    myformudelete.addEventListener('submit', (e) => {
+        e.preventDefault();
+        checkInputs3();
+    });
+
+    function checkInputs3() {
+        
+            loading(loaddata_delete);
+            document.getElementById("formDelete").action = "auther";
+            document.getElementById("formDelete").submit();
+        
+    }
 </script>
 
 
