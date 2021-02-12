@@ -383,12 +383,15 @@ else
                     </button>
                 </div>
                 <div class="modal-body" align="center">
-                    <input type="hidden" name="id" id="id">
+                    <input type="hidden" name="del_list_form_id" id="del_list_form_id">
                     ທ່ານຕ້ອງການລົບຂໍ້ມູນ ຫຼື ບໍ່ ?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete_form" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete_form" id="btnDelete" class="btn btn-outline-danger">
+                        ລົບ
+                        <span class="" id="load_delete"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -431,8 +434,10 @@ else
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success"
-                        onclick="">ເພີ່ມ</button>
+                    <button type="submit" name="btnUpdate" id="btnAdd" class="btn btn-outline-success"
+                        onclick="">ເພີ່ມ
+                        <span class="" id="load_add"></span>    
+                    </button>
                 </div>
             </div>
         </div>
@@ -443,6 +448,8 @@ else
 <script type="text/javascript">
 const myform = document.getElementById('formUpdate');
 const qty = document.getElementById('qty');
+const load_add = document.getElementById("load_add");
+const btnLoad_add = document.getElementById("btnAdd");
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
@@ -456,6 +463,7 @@ function checkInputs() {
         setSuccessFor(qty);
     }
     if (qtyValue !== '') {
+        setloading(load_add,btnLoad_add);
         document.getElementById("formUpdate").action = "form";
         document.getElementById("formUpdate").submit();
     }
@@ -492,6 +500,22 @@ function checkInputs2() {
         document.getElementById("form_save").action = "form";
         document.getElementById("form_save").submit();
     }
+}
+const myformudelete = document.getElementById('formDelete');
+const del_list_form_id = document.getElementById("del_list_form_id");
+const load_delete = document.getElementById("load_delete");
+const btnLoad_delete = document.getElementById("btnDelete");
+myformudelete.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs3();
+});
+
+function checkInputs3() {
+
+    setloading(load_delete,btnLoad_delete)
+    document.getElementById("formDelete").action = "form";
+    document.getElementById("formDelete").submit();
+
 }
 </script>
 
@@ -597,11 +621,10 @@ $(window).load(function() {
             return $(this).text();
         }).get();
         console.log(data);
-        $('#id').val(data[1]);
+        $('#del_list_form_id').val(data[1]);
     });
 });
 </script>
-
 <!-- /.content-wrapper -->
 <br>
 <?php

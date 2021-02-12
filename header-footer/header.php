@@ -112,8 +112,8 @@
                         if(isset($_POST['clear_form'])){
                             $obj->clear_form();
                         }
-                        if(isset($_POST['btnDelete_form'])){
-                            $obj->del_form(trim($_POST['id']));
+                        if(isset($_POST['del_list_form_id'])){
+                            $obj->del_form(trim($_POST['del_list_form_id']));
                         }
                         if(isset($_POST['form_id'])){
                             $mail_user_name = $_SESSION['emp_name'];

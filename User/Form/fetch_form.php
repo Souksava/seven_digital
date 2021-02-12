@@ -36,13 +36,12 @@ if(mysqli_num_rows($resultproduct2) > 0)
       <th style="width: 150px;">ລຸ້ນເຄື່ອງຂອງສິນຄ້າ</th>
       <th style="width: 150px;">ຈຳນວນ</th>
       <th style="width: 100px;">ຮູບພາບສິນຄ້າ</th>
-      <th style="width: 30px;"></th>  
     </tr>
  ';
  while($row = mysqli_fetch_array($resultproduct2))
  {
   $output .= '
-  <tr  class="result">
+  <tr  class="result btnUpdate_form">
   <td>'.$row["code"].'</td>
   <td style="display: none;">'.$row["pro_name"].'</td>
   <td style="display: none;">'.$row["cate_id"].'</td>
@@ -73,10 +72,6 @@ if(mysqli_num_rows($resultproduct2) > 0)
   ';
   }
   $output .='
-  <td>
-  <a href="#" data-toggle="modal" data-target="#exampleModalUpdate"
-      class="fa fa-plus toolcolor btnUpdate_form"></a>&nbsp; &nbsp;
-</td>
  </tr>
   ';
  }
