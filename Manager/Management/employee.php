@@ -5,7 +5,7 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 
-  if(isset($_POST['btnDelete'])){
+  if(isset($_POST['id'])){
     $obj->delete_employee(trim($_POST['id']));
   }
   if(isset($_POST['emp_id'])){
@@ -41,21 +41,24 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດພະນັກງານ</label>
-                                    <input type="text" name="emp_id" id="emp_id" placeholder="ລະຫັດພະນັກງານ" class="form-control">
+                                    <input type="text" name="emp_id" id="emp_id" placeholder="ລະຫັດພະນັກງານ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ພະນັກງານ</label>
-                                    <input type="text" name="emp_name" id="emp_name" placeholder="ຊື່ພະນັກງານ" class="form-control">
+                                    <input type="text" name="emp_name" id="emp_name" placeholder="ຊື່ພະນັກງານ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ນາມສະກຸນ</label>
-                                    <input type="text" name="emp_surname" id="emp_surname" placeholder="ນາມສະກຸນ" class="form-control">
+                                    <input type="text" name="emp_surname" id="emp_surname" placeholder="ນາມສະກຸນ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -101,29 +104,32 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເບີໂທລະສັບ</label>
-                                    <input type="text" name="tel" id="tel" placeholder="ເບີໂທລະສັບ" class="form-control">
+                                    <input type="text" name="tel" id="tel" placeholder="ເບີໂທລະສັບ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ທີ່ຢູ່ອີເມວ</label>
-                                    <input type="text" name="email" id="email" placeholder="ທີ່ຢູ່ອີເມວ" class="form-control">
+                                    <input type="text" name="email" id="email" placeholder="ທີ່ຢູ່ອີເມວ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຜູ້ໃຊ້ລະບົບ</label>
-                                    <input type="password" name="password" id="password" placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ" class="form-control">
+                                    <input type="password" name="password" id="password" placeholder="ລະຫັດຜູ້ໃຊ້ລະບົບ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຢືນຢັນລະຫັດ</label>
-                                    <input type="password" name="password_cf" id="password_cf"
-                                        placeholder="ຢືນຢັນລະຫັດ" class="form-control">
+                                    <input type="password" name="password_cf" id="password_cf" placeholder="ຢືນຢັນລະຫັດ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -131,8 +137,8 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ສິດໃນການເຂົ້າໃຊ້ລະບົບ</label>
                                     <select name="status" id="status">
-                                    <option value="">--- ສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
-                                    <?php
+                                        <option value="">--- ສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
+                                        <?php
                                         $obj->select_status();
                                         foreach($resutlstatus as $rowstt){
                                         ?>
@@ -164,8 +170,11 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
                                 data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="Save" id="Save" class="btn btn-outline-primary"
-                                onclick="">ບັນທຶກ</button>
+                            <button type="submit" name="Save" id="btnSave" class="btn btn-outline-primary"
+                                onclick="">
+                                ບັນທຶກ
+                                <span class="" id="load_save"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -188,14 +197,16 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ພະນັກງານ</label>
                                     <input type="hidden" name="emp_id2" id="emp_id2" placeholder="ລະຫັດພະນັກງານ">
-                                    <input type="text" name="emp_name2" id="emp_name2" placeholder="ຊື່ພະນັກງານ" class="form-control">
+                                    <input type="text" name="emp_name2" id="emp_name2" placeholder="ຊື່ພະນັກງານ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ນາມສະກຸນ</label>
-                                    <input type="text" name="emp_surname2" id="emp_surname2" placeholder="ນາມສະກຸນ" class="form-control">
+                                    <input type="text" name="emp_surname2" id="emp_surname2" placeholder="ນາມສະກຸນ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -241,14 +252,16 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ເບີໂທລະສັບ</label>
-                                    <input type="text" name="tel2" id="tel2" placeholder="ເບີໂທລະສັບ" class="form-control">
+                                    <input type="text" name="tel2" id="tel2" placeholder="ເບີໂທລະສັບ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ທີ່ຢູ່ອີເມວ</label>
-                                    <input type="text" name="email2" id="email2" placeholder="ທີ່ຢູ່ອີເມວ" class="form-control">
+                                    <input type="text" name="email2" id="email2" placeholder="ທີ່ຢູ່ອີເມວ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -272,8 +285,8 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ສິດໃນການເຂົ້າໃຊ້ລະບົບ</label>
                                     <select name="status2" id="status2">
-                                    <option value="">--- ສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
-                                    <?php
+                                        <option value="">--- ສິດໃນການເຂົ້າໃຊ້ລະບົບ ---</option>
+                                        <?php
                                         $obj->select_status();
                                         foreach($resutlstatus as $rowstt){
                                         ?>
@@ -305,8 +318,11 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
                                 data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success"
-                                onclick="">ແກ້ໄຂ</button>
+                            <button type="submit" name="btnUpdate" id="btnUpdate"
+                                class="btn btn-outline-success " onclick="">
+                                ແກ້ໄຂ
+                                <span class="" id="load_update"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -315,7 +331,11 @@
     </div>
 </div>
 
-<div id="result"></div>
+<div id="result">
+    <?php
+        include ($path."header-footer/loading.php");
+    ?>
+</div>
 </div>
 
 <form action="employee" id="formDelete" method="POST" enctype="multipart/form-data">
@@ -335,7 +355,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete" id="btnDelete" class="btn btn-outline-danger ">
+                        ລົບ
+                        <span class="" id="load_delete"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -352,6 +375,9 @@ const gender = document.getElementById('gender');
 const tel = document.getElementById('tel');
 const auther_id = document.getElementById('auther_id');
 const status = document.getElementById('status');
+const load_save = document.getElementById("load_save");
+const btnLoad_save = document.getElementById("btnSave");
+
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
@@ -380,14 +406,12 @@ function checkInputs() {
     } else {
         setSuccessFor(gender);
     }
-    if(emailValue === ''){
-      setErrorFor(email, 'ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວ')
-    }
-    else if(!isEmail(emailValue)){
-      setErrorFor(email, 'ຮູບແບບອີເມວບໍ່ຖືກຕ້ອງ')
-    }
-    else{
-      setSuccessFor(email);
+    if (emailValue === '') {
+        setErrorFor(email, 'ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວ')
+    } else if (!isEmail(emailValue)) {
+        setErrorFor(email, 'ຮູບແບບອີເມວບໍ່ຖືກຕ້ອງ')
+    } else {
+        setSuccessFor(email);
     }
     if (telValue === '') {
         setErrorFor(tel, 'ກະລຸນາປ້ອນເບີໂທລະສັບ');
@@ -405,14 +429,13 @@ function checkInputs() {
         setSuccessFor(status);
     }
     if (emp_idValue !== '' && emp_nameValue !== '' && genderValue !== '' && telValue !== '' && auther_idValue !== '' &&
-        statusValue !== ''  && emailValue !== '') {
+        statusValue !== '' && emailValue !== '') {
+        setloading(load_save,btnLoad_save);
         document.getElementById("form1").action = "employee";
         document.getElementById("form1").submit();
     }
 }
-</script>
 
-<script type="text/javascript">
 const myformUpdate = document.getElementById('formUpdate');
 const emp_id2 = document.getElementById('emp_id2');
 const emp_name2 = document.getElementById('emp_name2');
@@ -421,6 +444,9 @@ const email_update = document.getElementById('email2');
 const tel2 = document.getElementById('tel2');
 const auther_id2 = document.getElementById('auther_id2');
 const status2 = document.getElementById('status2');
+const load_update = document.getElementById("load_update");
+const btnLoad_update = document.getElementById("btnUpdate");
+
 myformUpdate.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs2();
@@ -449,14 +475,12 @@ function checkInputs2() {
     } else {
         setSuccessFor(tel2);
     }
-    if(email_UpdateValue === ''){
-      setErrorFor(email_update, 'ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວ')
-    }
-    else if(!isEmail(email_UpdateValue)){
-      setErrorFor(email_update, 'ຮູບແບບອີເມວບໍ່ຖືກຕ້ອງ')
-    }
-    else{
-      setSuccessFor(email_update);
+    if (email_UpdateValue === '') {
+        setErrorFor(email_update, 'ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວ')
+    } else if (!isEmail(email_UpdateValue)) {
+        setErrorFor(email_update, 'ຮູບແບບອີເມວບໍ່ຖືກຕ້ອງ')
+    } else {
+        setSuccessFor(email_update);
     }
     if (auther_id2Value === '') {
         setErrorFor(auther_id2, 'ກະລຸນາປ້ອນລະຫັດຕຳແໜ່ງ');
@@ -470,10 +494,27 @@ function checkInputs2() {
     }
     if (emp_id2Value !== '' && emp_name2Value !== '' && gender2Value !== '' && tel2Value !== '' && auther_id2Value !==
         '' && status2Value !== '' && email_UpdateValue !== '') {
+        setloading(load_update, btnLoad_update);
         document.getElementById("formUpdate").action = "employee";
         document.getElementById("formUpdate").submit();
     }
 };
+const myformudelete = document.getElementById('formDelete');
+const id = document.getElementById("id");
+const load_delete = document.getElementById("load_delete");
+const btnLoad_delete = document.getElementById("btnDelete");
+myformudelete.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs3();
+});
+
+function checkInputs3() {
+
+    setloading(load_delete,btnLoad_delete)
+    document.getElementById("formDelete").action = "employee";
+    document.getElementById("formDelete").submit();
+
+}
 </script>
 
 <!-- sweetalert -->
@@ -573,7 +614,7 @@ function checkInputs2() {
   ?>
 
 <script>
-    var loadFile = function(event) {
+var loadFile = function(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
@@ -589,7 +630,7 @@ var loadFile2 = function(event) {
 };
 $(document).ready(function() {
 
-    load_data('%%','0');
+    load_data('%%', '0');
 
     function load_data(query, page) {
         $.ajax({

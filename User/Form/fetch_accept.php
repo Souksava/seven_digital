@@ -33,7 +33,7 @@ if(mysqli_num_rows($result) > 0)
  while($row = mysqli_fetch_array($result))
  {
   $output .= '
-  <tr>
+  <tr  class="result btnUpdate_accept">
   ';
   if($row['img_path'] == ''){
     $output .='

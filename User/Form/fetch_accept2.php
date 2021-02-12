@@ -179,7 +179,7 @@ $('.btnUpdate_accept').on('click', function() {
         }).get();
 
         console.log(data);
-        $('#form_id').val(data[0]);
+        $('#del_form').val(data[0]);
         $('#form_id_Report').val(data[0]);
     });
 </script>

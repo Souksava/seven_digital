@@ -5,7 +5,7 @@
   $session_path = "../../";
   include ("../../header-footer/header.php");
 
-  if(isset($_POST['btnDelete'])){
+  if(isset($_POST['id'])){
     $obj->delete_customer(trim($_POST['id']));
   }
   if(isset($_POST['cus_id'])){
@@ -103,8 +103,10 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
                                 data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="Save" id="Save" class="btn btn-outline-primary"
-                                onclick="">ບັນທຶກ</button>
+                            <button type="submit" name="Save" id="btnSave" class="btn btn-outline-primary" onclick="">
+                                ບັນທຶກ
+                                <span class="" id="load_save"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -183,8 +185,11 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
                                 data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success"
-                                onclick="">ແກ້ໄຂ</button>
+                            <button type="submit" name="btnUpdate" id="btnUpdate" class="btn btn-outline-success "
+                                onclick="">
+                                ແກ້ໄຂ
+                                <span class="" id="load_update"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -193,11 +198,7 @@
     </div>
 </div>
 
-<div id="result">
-    <?php
-              include ($path."header-footer/loading.php");
-       ?>
-</div>
+<div id="result"></div>
 <div class="clearfix"></div><br>
 
 <!-- <div class="table-responsive">
@@ -249,7 +250,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete" id="btnDelete" class="btn btn-outline-danger ">
+                        ລົບ
+                        <span class="" id="load_delete"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -263,7 +267,8 @@ const cus_id = document.getElementById('cus_id');
 const company = document.getElementById('company');
 const tel = document.getElementById('tel');
 const stt_id = document.getElementById('stt_id');
-const email_update = document.getElementById('email_update');
+const load_save = document.getElementById("load_save");
+const btnLoad_save = document.getElementById("btnSave");
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
@@ -296,6 +301,7 @@ function checkInputs() {
         setSuccessFor(stt_id);
     }
     if (cus_idValue !== '' && companyValue !== '' && telValue !== '' && stt_idValue !== '') {
+        setloading(load_save, btnLoad_save);
         document.getElementById("form1").action = "customer";
         document.getElementById("form1").submit();
     }
@@ -308,7 +314,8 @@ const cus_id_update = document.getElementById('cus_id_update');
 const company_update = document.getElementById('company_update');
 const tel_update = document.getElementById('tel_update');
 const stt_id_update = document.getElementById('stt_id_update');
-const email_update = document.getElementById('email_update');
+const load_update = document.getElementById("load_update");
+const btnLoad_update = document.getElementById("btnUpdate");
 myformUpdate.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputsUpdate();
@@ -336,17 +343,28 @@ function checkInputsUpdate() {
     } else {
         setSuccessFor(stt_id_update);
     }
-    if(!isEmail(email_UpdateValue)){
-      setErrorFor(email_update, 'ຮູບແບບອີເມວບໍ່ຖືກຕ້ອງ')
-    }
-    else{
-      setSuccessFor(email_update);
-    }
     if (cus_id_updateValue !== '' && company_updateValue !== '' && tel_updateValue !== '' && stt_id_updateValue !==
         '') {
+        setloading(load_update, btnLoad_update);
         document.getElementById("formUpdate").action = "customer";
         document.getElementById("formUpdate").submit();
     }
+}
+const myformudelete = document.getElementById('formDelete');
+const id = document.getElementById("id");
+const load_delete = document.getElementById("load_delete");
+const btnLoad_delete = document.getElementById("btnDelete");
+myformudelete.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs3();
+});
+
+function checkInputs3() {
+
+    setloading(load_delete,btnLoad_delete)
+    document.getElementById("formDelete").action = "customer";
+    document.getElementById("formDelete").submit();
+
 }
 </script>
 
@@ -403,6 +421,11 @@ function checkInputsUpdate() {
     swal("", "ລົບຂໍ້ຂໍ້ມູນສຳເລັດ", "success");
     </script>';
   }
+  if(isset($_GET['form'])=='fail'){
+    echo'<script type="text/javascript">
+    swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນໄດ້ ເນື່ອງຈາກລະຫັດລູກຄ້ານີ້ໄດ້ເຄືຍທຳການສ້າງຟອມແລ້ວ", "error");
+    </script>';
+  }
 ?>
 
 <script>
@@ -411,16 +434,6 @@ $(document).ready(function() {
     load_data('%%', '0');
 
     function load_data(query, page) {
-        // $.ajax({
-        //     url: "<?php echo $path ?>header-footer/loading.php",
-        //     method: "POST",
-        //     data: {
-        //         query: query,
-        //     },
-        //     success: function(data) {
-        //         $('.result').html(data);
-        //     }
-        // });
         $.ajax({
             url: "fetch_customer.php",
             method: "POST",

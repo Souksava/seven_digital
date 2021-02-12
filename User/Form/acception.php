@@ -18,71 +18,75 @@
         <div class="card">
             <div class="card-body">
                 <h5 align="center" class="card-title"></h5>
-                    <p class="card-text">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div>
-                                    <button type="button" name="Discard" class="btn btn-outline-danger"
-                                        data-toggle="modal" data-target="#exampleModal_discard">ລົບຟອມເບີກ</button>
-                                    <div class="modal fade font14" id="exampleModal_discard" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body" align="center">
-                                                    ທ່ານບໍ່ຕ້ອງການລົບຟອມເບີກ ຫຼື ບໍ່ ?
-                                                </div>
-                                                <form action="acception" id="formadd" method="POST">
-                                                <input type="hidden" name="form_id" id="form_id">
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-secondary"
-                                                        data-dismiss="modal">ຍົກເລີກ</button>
-                                                    <button type="submit" name="btnDel"
-                                                        class="btn btn-outline-danger">ລົບ</button>
-                                                </div>
-                                                </form>
-                                            </div>
+                <p class="card-text">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                            <button type="button" name="Discard" class="btn btn-outline-danger" data-toggle="modal"
+                                data-target="#exampleModal_discard">ລົບຟອມເບີກ</button>
+                            <div class="modal fade font14" id="exampleModal_discard" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div align="right">
-                                    <button type="button" name="btnAdd" class="btn btn-outline-success"
-                                        data-toggle="modal" data-target="#exampleModal2">ພິມຟອມເບີກ</button>
-                                    <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body" align="center">
-                                                    ທ່ານຕ້ອງການພິມລາຍງານ ຫຼື ບໍ່ ?
-                                                </div>
-                                                <form action="#" id="FormReport" method="POST">
-                                                <input type="hidden" name="form_id_Report" id="form_id_Report">
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-secondary"
-                                                        data-dismiss="modal">ຍົກເລີກ</button>
-                                                    <button type="submit" name="btnReport"
-                                                        class="btn btn-outline-success">ພິມລາຍງານ</button>
-                                                </div>
-                                                </form>
-                                            </div>
+                                        <div class="modal-body" align="center">
+                                            ທ່ານບໍ່ຕ້ອງການລົບຟອມເບີກ ຫຼື ບໍ່ ?
                                         </div>
+                                        <form action="acception" id="formDelete" method="POST">
+                                            <input type="hidden" name="del_form" id="del_form">
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    data-dismiss="modal">ຍົກເລີກ</button>
+                                                <button type="submit" name="btnDelete" id="btnDelete"
+                                                    class="btn btn-outline-danger ">
+                                                    ລົບ
+                                                    <span class="" id="load_delete"></span>
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div align="right">
+                            <button type="button" name="btnAdd" class="btn btn-outline-success" data-toggle="modal"
+                                data-target="#exampleModal2">ພິມຟອມເບີກ</button>
+                            <div class="modal fade font14" id="exampleModal2" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">ຢຶນຢັນ</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <div class="modal-body" align="center">
+                                            ທ່ານຕ້ອງການພິມລາຍງານ ຫຼື ບໍ່ ?
+                                        </div>
+                                        <form action="#" id="FormReport" method="POST">
+                                            <input type="hidden" name="form_id_Report" id="form_id_Report">
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    data-dismiss="modal">ຍົກເລີກ</button>
+                                                <button type="submit" name="btnReport" id="btnReport"
+                                                    class="btn btn-outline-success">
+                                                    ພິມລາຍງານ
+                                                    <span class="" id="load_report"></span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="result"></div>
         </div>
@@ -95,8 +99,8 @@
 </div>
 </div>
 <?php
-    if(isset($_POST['btnDel'])){
-        $obj->del_form2($_POST['form_id']);
+    if(isset($_POST['del_form'])){
+        $obj->del_form2($_POST['del_form']);
     }
    
 ?>
@@ -120,7 +124,7 @@
     swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນໄດ້ ເນື່ອງຈາກເລກທີຟອມເບີກນີ້ໄດ້ເຄື່ອນໄຫວໃນການນຳສິນຄ້າກັບຄືນແລ້ວ", "warning");
     </script>';
   }
-  if(isset($_GET['accept'])=='not'){
+  if(isset($_GET['acception'])=='not'){
     echo'<script type="text/javascript">
     swal("", "ບໍ່ສາມາດລົບຂໍ້ມູນໄດ້ ເນື່ອງຈາກເລກທີຟອມເບີກນີ້ໄດ້ຮັບການອະນຸມັດແລ້ວ", "warning");
     </script>';
@@ -142,37 +146,36 @@ $(window).load(function() {
     var search = $('#search').val();
     if (search != '') {
 
-    }
-    else{
+    } else {
         var search = "%%";
     }
     var page = 0;
     var emp_id = '<?php echo $_SESSION['emp_id'] ?>';
-load_data(search,page,emp_id);
-load_data2();
+    load_data(search, page, emp_id);
+    load_data2();
 
-function load_data(query,page,emp_id) {
-    $.ajax({
-        url: "fetch_accept2.php",
-        method: "POST",
-        data: {
-            query:query,
-            page:page,
-            emp_id:emp_id
-        },
-        success: function(data) {
-            $('#result2').html(data);
-        }
-    });
-}
+    function load_data(query, page, emp_id) {
+        $.ajax({
+            url: "fetch_accept2.php",
+            method: "POST",
+            data: {
+                query: query,
+                page: page,
+                emp_id: emp_id
+            },
+            success: function(data) {
+                $('#result2').html(data);
+            }
+        });
+    }
     $('#search').keyup(function() {
         var page = 0;
         var emp_id = '<?php echo $_SESSION['emp_id'] ?>';
         var search = $(this).val();
         if (search != '') {
-            load_data(search,page,emp_id);
+            load_data(search, page, emp_id);
         } else {
-            load_data('%%',page);
+            load_data('%%', page);
         }
     });
     $(document).on('click', '.page-links', function() {
@@ -181,22 +184,23 @@ function load_data(query,page,emp_id) {
         console.log(page);
         var search = $('#search').val();
         if (search != '') {
-            load_data(search,page,emp_id);
+            load_data(search, page, emp_id);
         } else {
-            load_data('%%',page,emp_id);
+            load_data('%%', page, emp_id);
         }
     });
+
     function load_data2(query) {
-    $.ajax({
-        url: "fetch_accept.php",
-        method: "POST",
-        data: {
-            query: query
-        },
-        success: function(data) {
-            $('#result').html(data);
-        }
-    });
+        $.ajax({
+            url: "fetch_accept.php",
+            method: "POST",
+            data: {
+                query: query
+            },
+            success: function(data) {
+                $('#result').html(data);
+            }
+        });
     }
     $(document).on('click', '.btnUpdate_accept', function() {
         var form_id = $('#form_id').val();
@@ -208,6 +212,35 @@ function load_data(query,page,emp_id) {
         }
     });
 });
+</script>
+<script>
+const FormReport = document.getElementById('FormReport');
+const load_save = document.getElementById("load_report");
+const btnLoad_save = document.getElementById("btnReport");
+FormReport.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs();
+});
+function checkInputs() {
+    setloading(load_save,btnLoad_save);
+    document.getElementById("FormReport").action = "#";
+    document.getElementById("FormReport").submit();
+}
+const myformudelete = document.getElementById('formDelete');
+const load_delete = document.getElementById("load_delete");
+const btnLoad_delete = document.getElementById("btnDelete");
+myformudelete.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs3();
+});
+
+function checkInputs3() {
+
+    setloading(load_delete,btnLoad_delete)
+    document.getElementById("formDelete").action = "acception";
+    document.getElementById("formDelete").submit();
+
+}
 </script>
 <!-- /.content-wrapper -->
 <br>
