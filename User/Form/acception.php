@@ -12,7 +12,11 @@
 <br>
 <div class="row">
     <div class="col-md-7">
-        <div id="result2"></div>
+        <div id="result2">
+            <?php
+                include ($path."header-footer/loading.php");
+            ?>
+        </div>
     </div>
     <div class="col-md-5">
         <div class="card">
@@ -88,7 +92,11 @@
                     </div>
                 </div>
             </div>
-            <div id="result"></div>
+            <div id="result">
+                <?php
+                    include ($path."header-footer/loading.php");
+                ?>
+            </div>
         </div>
     </div>
     </p>
@@ -221,8 +229,9 @@ FormReport.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
 });
+
 function checkInputs() {
-    setloading(load_save,btnLoad_save);
+    setloading(load_save, btnLoad_save);
     document.getElementById("FormReport").action = "#";
     document.getElementById("FormReport").submit();
 }
@@ -236,7 +245,7 @@ myformudelete.addEventListener('submit', (e) => {
 
 function checkInputs3() {
 
-    setloading(load_delete,btnLoad_delete)
+    setloading(load_delete, btnLoad_delete)
     document.getElementById("formDelete").action = "acception";
     document.getElementById("formDelete").submit();
 

@@ -402,3 +402,8 @@ div table tr.btnUpdate_accept:hover {
 div table tr.btnUpdate_form:hover {
     cursor: pointer;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

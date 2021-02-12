@@ -187,7 +187,9 @@ else
 
         }
             else{
-                echo'<div id="result"></div>';
+                echo'<div id="result">';
+                include ($path."header-footer/loading.php");
+                echo'</div>';
             }
         ?>
     </div>
