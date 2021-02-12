@@ -4,7 +4,7 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
-  if(isset($_POST['btnDelete'])){
+  if(isset($_POST['id'])){
     $obj->delete_customer_status(trim($_POST['id']));
   }
   if(isset($_POST['stt_id'])){
@@ -37,14 +37,16 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດສະຖານະລູກຄ້າ</label>
-                                    <input type="text" name="stt_id" id="stt_id" placeholder="ລະຫັດສະຖານະລູກຄ້າ" class="form-control">
+                                    <input type="text" name="stt_id" id="stt_id" placeholder="ລະຫັດສະຖານະລູກຄ້າ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ສະຖານະລູກຄ້າ</label>
-                                    <input type="text" name="stt_name" id="stt_name" placeholder="ຊື່ສະຖານະລູກຄ້າ" class="form-control">
+                                    <input type="text" name="stt_name" id="stt_name" placeholder="ຊື່ສະຖານະລູກຄ້າ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -54,8 +56,10 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
                                 data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="Save" id="Save" class="btn btn-outline-primary"
-                                onclick="">ບັນທຶກ</button>
+                            <button type="submit" name="btnSave" id="btnSave" class="btn btn-outline-primary">
+                                ບັນທຶກ
+                                <span class="" id="load"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -78,7 +82,7 @@
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ສະຖານະລູກຄ້າ</label>
                                     <input type="hidden" name="stt_id_update" id="stt_id_update"
-                                        placeholder="ລະຫັດສະຖານະລູກຄ້າ" >
+                                        placeholder="ລະຫັດສະຖານະລູກຄ້າ">
                                     <input type="text" name="stt_name_update" id="stt_name_update"
                                         placeholder="ຊື່ສະຖານະລູກຄ້າ" class="form-control">
                                     <i class="fas fa-check-circle "></i>
@@ -90,8 +94,10 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
                                 data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="btnUpdate" id="Update" class="btn btn-outline-success"
-                                onclick="">ແກ້ໄຂ</button>
+                            <button type="submit" name="btnUpdate" id="btnUpdate" class="btn btn-outline-success">
+                                ແກ້ໄຂ
+                                <span class="" id="load_update"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -136,10 +142,10 @@
           } 
           else{
         ?>
-                    <hr size="1" width="90%">
-              <p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
-            <hr size="1" width="90%">
-        <?php
+<hr size="1" width="90%">
+<p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
+<hr size="1" width="90%">
+<?php
           }
         ?>
 
@@ -162,7 +168,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete" id="btnDelete" class="btn btn-outline-danger">
+                        ລົບ
+                        <span class="" id="load_delete"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -174,6 +183,8 @@
 const myform = document.getElementById('form1');
 const stt_id = document.getElementById('stt_id');
 const stt_name = document.getElementById('stt_name');
+const loaddata = document.getElementById('load');
+const btnSave = document.getElementById('btnSave');
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
@@ -194,6 +205,7 @@ function checkInputs() {
         setSuccessFor(stt_name);
     }
     if (stt_nameValue !== '' && stt_idValue !== '') {
+        setloading(loaddata, btnSave);
         document.getElementById("form1").action = "customer-status";
         document.getElementById("form1").submit();
     }
@@ -203,6 +215,8 @@ function checkInputs() {
 <script type="text/javascript">
 const myformUpdate = document.getElementById('formUpdate');
 const stt_name_update = document.getElementById('stt_name_update');
+const loaddata_update = document.getElementById('load_update');
+const btnUpdate = document.getElementById('btnUpdate');
 myformUpdate.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputsUpdate();
@@ -216,32 +230,47 @@ function checkInputsUpdate() {
         setSuccessFor(stt_name_update);
     }
     if (stt_name_updateValue !== '') {
+        setloading(loaddata_update, btnUpdate);
         document.getElementById("formUpdate").action = "customer-status";
         document.getElementById("formUpdate").submit();
     }
 }
-    // update customer status
-    $('.btnUpdate_customer_status').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
+// update customer status
+const myformudelete = document.getElementById('formDelete');
+const loaddata_delete = document.getElementById('load_delete');
+const btnDelete = document.getElementById('btnDelete');
+myformudelete.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs3();
+});
 
-        console.log(data);
+function checkInputs3() {
+    setloading(loaddata_delete, btnDelete);
+    document.getElementById("formDelete").action = "customer-status";
+    document.getElementById("formDelete").submit();
 
-        $('#stt_id_update').val(data[0]);
-        $('#stt_name_update').val(data[1]);
-    });
-    $('.btnDelete_customer_status').on('click', function() {
-        $('#exampleModalDelete').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
-        console.log(data);
-        $('#id').val(data[0]);
-    });
+}
+$('.btnUpdate_customer_status').on('click', function() {
+    $('#exampleModalUpdate').modal('show');
+    $tr = $(this).closest('tr');
+    var data = $tr.children("td").map(function() {
+        return $(this).text();
+    }).get();
+
+    console.log(data);
+
+    $('#stt_id_update').val(data[0]);
+    $('#stt_name_update').val(data[1]);
+});
+$('.btnDelete_customer_status').on('click', function() {
+    $('#exampleModalDelete').modal('show');
+    $tr = $(this).closest('tr');
+    var data = $tr.children("td").map(function() {
+        return $(this).text();
+    }).get();
+    console.log(data);
+    $('#id').val(data[0]);
+});
 </script>
 
 <!-- sweetalert -->

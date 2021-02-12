@@ -760,15 +760,9 @@ class obj{
     public static function delete_customer($cus_id){
         global $conn;
         $check_form = mysqli_query($conn,"select * from form where cus_id='$cus_id'");
-        $check_putback = mysqli_query($conn,"select * from product_putback_stock where cus_id='$cus_id'");
         if(mysqli_num_rows($check_form) > 0){
             echo"<script>";
             echo"window.location.href='customer?form=fail';";
-            echo"</script>";
-        }
-        else if(mysqli_num_rows($check_putback) > 0){
-            echo"<script>";
-            echo"window.location.href='customer?pps=fail';";
             echo"</script>";
         }
         else{
@@ -1233,7 +1227,7 @@ class obj{
         }
         else if(mysqli_num_rows($check_form) > 0){
             echo"<script>";
-            echo"window.location.href='acception?accept=not';";
+            echo"window.location.href='acception?acception=not';";
             echo"</script>";
         }
         else{

@@ -62,6 +62,7 @@ if($stt == 2){
 $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
+<script src="<?php echo $path ?>dist/js/loading.js"></script>
 <script src="<?php echo $path ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
 <script src="<?php echo $path ?>plugins/chart.js/Chart.min.js"></script>

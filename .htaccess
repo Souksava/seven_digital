@@ -25,7 +25,6 @@ RewriteRule ^User/Report/report-distribute?$ User/Report/report_distribute.php
 RewriteRule ^User/Report/report-product-putback?$ User/Report/report_product_putback.php
 RewriteRule ^User/Form/acception?$ User/Form/acception.php
 RewriteRule ^User/Form/form?$ User/Form/form.php
-RewriteRule ^User/Form/formdetail?$ User/Form/formdetail.php
 RewriteRule ^User/Import/import?$ User/Import/import.php
 RewriteRule ^User/Form/distribute?$ User/Form/distribute.php
 RewriteRule ^User/Form/product-putback?$ User/Form/product_putback.php

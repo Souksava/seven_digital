@@ -112,8 +112,8 @@
                         if(isset($_POST['clear_form'])){
                             $obj->clear_form();
                         }
-                        if(isset($_POST['btnDelete_form'])){
-                            $obj->del_form(trim($_POST['id']));
+                        if(isset($_POST['del_list_form_id'])){
+                            $obj->del_form(trim($_POST['del_list_form_id']));
                         }
                         if(isset($_POST['form_id'])){
                             $mail_user_name = $_SESSION['emp_name'];
@@ -380,9 +380,9 @@
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <span class="dropdown-item dropdown-header">ແຈ້ງເຕືອນ</span>
                     <div class="dropdown-divider"></div>
-                   <div id="result_list" style="overflow-y: scroll;height:120px;font-size: 14px;">
-                        
-                   </div>
+                        <a href="'.$links.'Form/accept">
+                            <div id="result_list" style="overflow-y: scroll;height:120px;font-size: 14px;"></div>
+                        </a>
                     <div class="dropdown-divider"></div>
                     <a href="'.$links.'Form/accept" class="dropdown-item dropdown-footer">ເບິ່ງລາຍການທັງໝົດ</a>
                 </div>
@@ -400,9 +400,9 @@
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">ແຈ້ງເຕືອນ</span>
                         <div class="dropdown-divider"></div>
-                       <div id="result_list_user" style="overflow-y: scroll;height:120px;font-size: 14px;">
-                            
-                       </div>
+                            <a href="'.$links.'Form/acception">
+                                <div id="result_list_user" style="overflow-y: scroll;height:120px;font-size: 14px;"></div>
+                            </a>
                         <div class="dropdown-divider"></div>
                         <a href="'.$links.'Form/acception" class="dropdown-item dropdown-footer">ເບິ່ງລາຍການທັງໝົດ</a>
                     </div>

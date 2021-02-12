@@ -398,3 +398,12 @@ div table tr:hover {
 div table tr.btnUpdate_accept:hover {
     cursor: pointer;
 }
+
+div table tr.btnUpdate_form:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

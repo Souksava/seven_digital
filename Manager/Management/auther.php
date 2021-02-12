@@ -4,7 +4,7 @@
   $links = "../";
   $session_path = "../../";
   include ("../../header-footer/header.php");
-  if(isset($_POST['btnDelete'])){
+  if(isset($_POST['id'])){
     $obj->delete_auther(trim($_POST['id']));
   }
   if(isset($_POST['auther_id'])){
@@ -37,18 +37,18 @@
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຕຳແໜ່ງ</label>
-                                    <input type="text" name="auther_id" id="auther_id" placeholder="ລະຫັດຕຳແໜ່ງ" class="form-control">
+                                    <input type="text" name="auther_id" id="auther_id" placeholder="ລະຫັດຕຳແໜ່ງ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-body">
                             <div class="row" align="left">
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ຊື່ຕຳແໜ່ງ</label>
-                                    <input type="text" name="auther_name" id="auther_name" placeholder="ຊື່ຕຳແໜ່ງ" class="form-control">
+                                    <input type="text" name="auther_name" id="auther_name" placeholder="ຊື່ຕຳແໜ່ງ"
+                                        class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
@@ -58,7 +58,10 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary"
                                 data-dismiss="modal">ຍົກເລີກ</button>
-                            <button type="submit" name="btnSave" class="btn btn-outline-primary">ບັນທຶກ</button>
+                            <button type="submit" name="btnSave" id="btnSave" class="btn btn-outline-primary">
+                                ບັນທຶກ
+                                <span class="" id="load" ></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -103,10 +106,10 @@
           } 
           else{
         ?>
-            <hr size="1" width="90%">
-              <p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
-            <hr size="1" width="90%">
-        <?php
+<hr size="1" width="90%">
+<p align="center">ຍັງບໍ່ມີຂໍ້ມູນ</p>
+<hr size="1" width="90%">
+<?php
           }
         ?>
 
@@ -127,7 +130,8 @@
                         <div class="col-md-12 col-sm-6 form-control2">
                             <label>ຊື່ຕຳແໜ່ງ</label>
                             <input type="hidden" id="auther_id_update" name="auther_id_update">
-                            <input type="text" name="auther_name_update" id="auther_name_update" placeholder="ຊື່ຕຳແໜ່ງ" class="form-control">
+                            <input type="text" name="auther_name_update" id="auther_name_update" placeholder="ຊື່ຕຳແໜ່ງ"
+                                class="form-control">
                             <i class="fas fa-check-circle "></i>
                             <i class="fas fa-exclamation-circle "></i>
                             <small class="">Error message</small>
@@ -136,7 +140,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnUpdate" class="btn btn-outline-success">ແກ້ໄຂ</button>
+                    <button type="submit" name="btnUpdate" id="btnUpdate" class="btn btn-outline-success">
+                        ແກ້ໄຂ
+                        <span class="" id="load_update"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -161,7 +168,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">ຍົກເລີກ</button>
-                    <button type="submit" name="btnDelete" class="btn btn-outline-danger">ລົບ</button>
+                    <button type="submit" name="btnDelete" id="btnDelete" class="btn btn-outline-danger">
+                        ລົບ
+                        <span class="" id="load_delete"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -173,11 +183,15 @@
 const myform = document.getElementById('form1');
 const auther_id = document.getElementById('auther_id');
 const auther_name = document.getElementById('auther_name');
+const loaddata = document.getElementById('load');
+const btnSave = document.getElementById('btnSave');
 myform.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs();
 });
-
+// function setloading(input) {
+//     input.className = 'spinner-border spinner-border-sm';
+// }
 function checkInputs() {
     const auther_idValue = auther_id.value.trim();
     const auther_nameValue = auther_name.value.trim();
@@ -191,7 +205,8 @@ function checkInputs() {
     } else {
         setSuccessFor(auther_name);
     }
-    if (auther_idValue !== '' && auther_nameValue !== '' ) {
+    if (auther_idValue !== '' && auther_nameValue !== '') {
+        setloading(loaddata,btnSave);
         document.getElementById("form1").action = "auther";
         document.getElementById("form1").submit();
     }
@@ -201,6 +216,8 @@ function checkInputs() {
 <script type="text/javascript">
 const myformupdate = document.getElementById('formUpdate');
 const auther_name_update = document.getElementById('auther_name_update');
+const loaddata_update = document.getElementById('load_update');
+const btnUpdate = document.getElementById('btnUpdate');
 myformupdate.addEventListener('submit', (e) => {
     e.preventDefault();
     checkInputs2();
@@ -215,33 +232,51 @@ function checkInputs2() {
     }
 
     if (auther_name_updateValue !== '') {
+        setloading(loaddata_update,btnUpdate);
         document.getElementById("formUpdate").action = "auther";
         document.getElementById("formUpdate").submit();
     }
 }
+
 $('.btnUpdate_auther').on('click', function() {
-        $('#exampleModalUpdate').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
+    $('#exampleModalUpdate').modal('show');
+    $tr = $(this).closest('tr');
+    var data = $tr.children("td").map(function() {
+        return $(this).text();
+    }).get();
 
-        console.log(data);
+    console.log(data);
 
-        $('#auther_id_update').val(data[0]);
-        $('#auther_name_update').val(data[1]);
+    $('#auther_id_update').val(data[0]);
+    $('#auther_name_update').val(data[1]);
 
-    })
-    $('.btnDelete_auther').on('click', function() {
-        $('#exampleModalDelete').modal('show');
-        $tr = $(this).closest('tr');
-        var data = $tr.children("td").map(function() {
-            return $(this).text();
-        }).get();
+})
+$('.btnDelete_auther').on('click', function() {
+    $('#exampleModalDelete').modal('show');
+    $tr = $(this).closest('tr');
+    var data = $tr.children("td").map(function() {
+        return $(this).text();
+    }).get();
 
-        console.log(data);
-        $('#id').val(data[0]);
-    });
+    console.log(data);
+    $('#id').val(data[0]);
+});
+const myformudelete = document.getElementById('formDelete');
+const loaddata_delete = document.getElementById('load_delete');
+const btnDelete = document.getElementById('btnDelete');
+myformudelete.addEventListener('submit', (e) => {
+    e.preventDefault();
+    checkInputs3();
+});
+
+function checkInputs3() {
+
+    setloading(loaddata_delete,btnDelete);
+    document.getElementById("formDelete").action = "auther";
+    document.getElementById("formDelete").submit();
+
+}
+
 </script>
 
 
