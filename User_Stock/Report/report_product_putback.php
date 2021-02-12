@@ -22,68 +22,60 @@
     <!-- button search report -->
     <form class="form-inline ml-3">
         <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="date" aria-label="Search">
-        <input class="form-control form-control-navbar" type="date"aria-label="Search">
-            <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+        <input class="form-control form-control-navbar" type="date" aria-label="Search" name="da" id="da">
+        <input class="form-control form-control-navbar" type="date"aria-label="Search" name="db" id="db">
             <div class="input-group-append">
-                <button type="button" class="btn btn-sm btn-outline-warning">&nbsp;&nbsp; ສະແດງລາຍການ
+                <button type="button" class="btn btn-sm btn-outline-warning" id="test">&nbsp;&nbsp; ສະແດງລາຍການ 
                     &nbsp;&nbsp;</button>
             </div>
         </div>
     </form>
 </div><br>
+<div id="result"></div>
 
-<div class="table-responsive">
+<script>
+$(document).ready(function(){
+  load_data('%%','0');
+  function load_data(query,page)
+  {
+    $.ajax({
+      url:"fetch_report_product_putback.php",
+      method:"POST",
+      data:{query:query,page:page},
+      success:function(data)
+      {
+        $('#result').html(data);
+      }
+    });
+  }
+  $('#search').keyup(function(){
+    var page = "0";
+    var search = $(this).val();
+    if(search != '')
+    {
+    load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+  $(document).on('click', '.page-links', function(){    
+    var page = this.id;
+    console.log(page);
+    var search = $('#search').val();
+    if(search != '')
+    {
+      load_data(search,page);
+    }
+    else
+    {
+      load_data('%%',page);
+    }
+  });
+});
 
-
-
-    <table class="table font12" style="width: 1500px;">
-
-        <tr>
-            <th>ລະຫັດສິນຄ້າ</th>
-            <th>ລະຫັດນຳສິນຄ້າກັບຄືນ</th>
-            <th>ລະຫັດສິນຄ້າ</th>
-            <th>ໝາຍເລກ Serial Number</th>
-            <th>ຈຳນວນ</th>
-            <th>ລະຫັດພະນັກງານຜູ້ຮັບເຄື່ອງ</th>
-            <th>ລະຫັດລູກຄ້າ</th>
-            <th>ເລກທີຟອມເບີກ</th>
-            <th>ວັນທີນຳສິນຄ້າກັບຄືນ</th>
-            <th>ເວລານຳສິນຄ້າກັບຄືນ</th>
-            <th>ໝາຍເຫດ</th>
-
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>c</td>
-        </tr>
-    </table>
-</div>
-
-<!-- pagination -->
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <?php 
-
-?>
-        <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-    </ul>
-</nav>
-
-</div>
+</script>
 
 
 

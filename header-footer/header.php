@@ -295,6 +295,77 @@
                                                       echo"";
                                                     } 
 
+                                                    if ($title == "ລາຍງານສິນຄ້າ"){
+                                                        echo '<form class="form-inline ml-3">
+                                                        <div class="input-group input-group-sm">
+                                                          <input class="form-control form-control-navbar" type="search" name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                                          <div class="input-group-append">
+                                                            <button class="btn btn-navbar" type="submit">
+                                                              <i class="fas fa-search"></i>
+                                                            </button>
+                                                          </div>
+                                                        </div>
+                                                      </form>
+                                                      ';
+                                                        }
+                                                        else{ 
+                                                          echo"";
+                                                        }
+
+                                                        
+                                                    if ($title == "ລາຍງານພະນັກງານ"){
+                                                        echo '<form class="form-inline ml-3">
+                                                        <div class="input-group input-group-sm">
+                                                          <input class="form-control form-control-navbar" type="search" name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                                          <div class="input-group-append">
+                                                            <button class="btn btn-navbar" type="submit">
+                                                              <i class="fas fa-search"></i>
+                                                            </button>
+                                                          </div>
+                                                        </div>
+                                                      </form>
+                                                      ';
+                                                        }
+                                                        else{ 
+                                                          echo"";
+                                                        }
+
+                                                        if ($title == "ລາຍງານລູກຄ້າ"){
+                                                            echo '<form class="form-inline ml-3">
+                                                            <div class="input-group input-group-sm">
+                                                              <input class="form-control form-control-navbar" type="search" name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                                              <div class="input-group-append">
+                                                                <button class="btn btn-navbar" type="submit">
+                                                                  <i class="fas fa-search"></i>
+                                                                </button>
+                                                              </div>
+                                                            </div>
+                                                          </form>
+                                                          ';
+                                                            }
+                                                            else{ 
+                                                              echo"";
+                                                            }
+
+                                                            if ($title == "ລາຍງານຜູ້ສະໜອງ"){
+                                                                echo '<form class="form-inline ml-3">
+                                                                <div class="input-group input-group-sm">
+                                                                  <input class="form-control form-control-navbar" type="search" name="search" id="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+                                                                  <div class="input-group-append">
+                                                                    <button class="btn btn-navbar" type="submit">
+                                                                      <i class="fas fa-search"></i>
+                                                                    </button>
+                                                                  </div>
+                                                                </div>
+                                                              </form>
+                                                              ';
+                                                                }
+                                                                else{ 
+                                                                  echo"";
+                                                                }
+
+
+
 
     ?>
     <?php

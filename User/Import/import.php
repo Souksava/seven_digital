@@ -134,14 +134,9 @@
                             if($values['img_path'] == ''){
                         ?>
                          <td>
-<<<<<<< HEAD
-                            <a href="<?php echo $path ?>image/logo.png" target="_blank">
-                                <img src="<?php echo $path ?>image/logo.png" class="img-circle elevation-2" alt="" width="30px">
-=======
                          <a href="<?php echo $path ?>image/logo.png" target="_blank">
                          <img src="<?php echo $path ?>image/logo.png" class="img-circle elevation-2" alt="" width="30px">
                                
->>>>>>> c460bcd4446e6f17477852bd0e21bfb268fe2741
                             </a>
                         </td>
                         <?php
@@ -149,13 +144,8 @@
                             else{
                         ?>
                          <td>
-<<<<<<< HEAD
-                            <a href="<?php echo $path ?>image/<?php echo $values['img_path']; ?>" target="_blank">
-                                <img src="<?php echo $path ?>image/<?php echo $values['img_path']; ?>" class="img-circle elevation-2" alt="" width="30px">
-=======
                          <a href="<?php echo $path ?>image/<?php echo $values['img_path']; ?>" target="_blank">
                          <img src="<?php echo $path ?>image/<?php echo $values['img_path']; ?>" class="img-circle elevation-2" alt="" width="30px">
->>>>>>> c460bcd4446e6f17477852bd0e21bfb268fe2741
                             </a>
                         </td>
                         <?php

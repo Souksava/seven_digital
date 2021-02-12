@@ -18,82 +18,69 @@
 
 </div>
 
+
 <div class="clearfix">
     <!-- button search report -->
     <form class="form-inline ml-3">
         <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="date" aria-label="Search">
-        <input class="form-control form-control-navbar" type="date"aria-label="Search">
-            <input class="form-control form-control-navbar" type="search" placeholder="ຄົ້ນຫາ" aria-label="Search">
+        <input class="form-control form-control-navbar" type="date" aria-label="Search" name="da" id="da">
+        <input class="form-control form-control-navbar" type="date"aria-label="Search" name="db" id="db">
             <div class="input-group-append">
-                <button type="button" class="btn btn-sm btn-outline-warning">&nbsp;&nbsp; ສະແດງລາຍການ
+                <button type="button" class="btn btn-sm btn-outline-warning" id="test">&nbsp;&nbsp; ສະແດງລາຍການ 
                     &nbsp;&nbsp;</button>
             </div>
         </div>
     </form>
 </div><br>
+<div id="result"></div>
 
-<div class="table-responsive">
+<script>
+$(document).ready(function(){
+  load_data('0000-00-00','<?php echo $Date ?>','0');
+  function load_data(da,db,page)
+  {
+    $.ajax({
+      url:"fetch_report_stock.php",
+      method:"POST",
+      data:{da:da,db:db,page:page},
+      success:function(data)
+      {
+        $('#result').html(data);
+      }
+    });
+  }
+  $(document).on('click', '#test', function(){    
+    var page = "0";
+    var da = $('#da').val();
+    var db = $('#db').val();
+    console.log(da);
+    console.log(db);
+    if(da != '' && db != '')
+    {
+    load_data(da,db,page);
+    }
+    else
+    {
+      load_data('0000-00-00','<?php echo $Date ?>',page);
+    }
+  });
+  $(document).on('click', '.page-links', function(){    
+    var page = this.id;
+    console.log(page);
+    var da = $('#da').val();
+    var db = $('#db').val();
+    if(search != '')
+    {
+      load_data(da,db,page);
+    }
+    else
+    {
+      load_data('0000-00-00','<?php echo $Date ?>',page);
+    }
+  });
+});
 
-
-
-    <table class="table font12" style="width: 1500px;">
-
-        <tr>
-            <th>ລະຫັດສະຕ໋ອກ</th>
-            <th>ລະຫັດສິນຄ້າ</th>
-            <th>ໝາຍເລກ Serial Number</th>
-            <th>ຈຳນວນ</th>
-            <th>ລາຄາ</th>
-            <th>ເລກທີໃບສັ່ງຊື້</th>
-            <th>ເລກທີໃບນຳເຂົ້າສິນຄ້າ</th>
-            <th>ວັນທີນຳເຂົ້າສິນຄ້າ</th>
-            <th>ເວລານຳເຂົ້າສິນຄ້າ</th>
-            <th>ລະຫັດພະນັກງານຜູ້ນຳເຂົ້າ</th>
-            <th>ລະຫັດຜູ້ສະໜອງຜູ້ນຳເຂົ້າ</th>
-            <th>ໝາຍເຫດ</th>
-            <th>ໝາຍເລກເຄືອງ</th>
-            <th>ລະຫັດເລດເງີນ</th>
-            <th>ເລດເງີນ</th>
-
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>1</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-            <td>c</td>
-        </tr>
-    </table>
-</div>
-
-<!-- pagination -->
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <?php 
-
-?>
-        <li class="page-item"><button class="page-link" href="#">ກັບຄືນ</button></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><button class="page-link" href="#">ຕໍ່ໄປ</button></li>
-    </ul>
-</nav>
-
-</div>
-
-
+</script>
 
 
 <?php

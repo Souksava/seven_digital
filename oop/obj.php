@@ -2385,6 +2385,47 @@ class obj{
         }
     }
     //end putback
+
+    public static function select_stocks($da,$db,$page){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultstocks; 
+        $resultstocks = mysqli_query($conn,"call stocks('$da','$db','$page')");      
+    }
+    public static function select_stocks_count($da,$db){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultstocks_count; 
+        $resultstocks_count = mysqli_query($conn,"call stocks_count('$da','$db')");      
+    }
+    public static function select_checkstock($da,$db,$page){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultcheckstock; 
+        $resultcheckstock = mysqli_query($conn,"call checkstock('$da','$db','$page')");      
+    }
+    public static function select_checkstock_count($da,$db){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultcheckstock_count; 
+        $resultcheckstock_count = mysqli_query($conn,"call checkstock_count('$da','$db')");      
+    }
+    public static function select_reportdis($da,$db,$page){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultreportdis; 
+        $resultreportdis = mysqli_query($conn,"call report_dis('$da','$db','$page')");      
+    }
+    public static function select_reportdis_count($da,$db){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultreportdis_count; 
+        $resultreportdis_count = mysqli_query($conn,"call reportdis_count('$da','$db')");      
+    }
+    public static function select_reportpps($da,$db,$page){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultreportpps; 
+        $resultreportpps = mysqli_query($conn,"call report_pps('$da','$db','$page')");      
+    }
+    public static function select_reportpps_count($da,$db){//method ດຶງຂໍ້ມູນພະນັກງານມາສະແດງ
+        global $conn;
+        global $resultreportpps_count; 
+        $resultreportpps_count = mysqli_query($conn,"call report_pps_count('$da','$db')");     
+    }    
 }
 $obj = new obj();
 ?>
