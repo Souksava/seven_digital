@@ -69,5 +69,8 @@ RewriteRule ^User_Stock/Report/report-product-putback?$ User_Stock/Report/report
 #check-stock
 RewriteRule ^Check_Stock/Main?$ Check_Stock/Main.php
 RewriteRule ^Check_Stock/Management/product-address?$ Check_Stock/Management/product_addr.php
+RewriteRule ^Check_Stock/Management/product_address?$ Check_Stock/Management/product_addr.php
 RewriteRule ^Check_Stock/Report/report-check-stock?$ Check_Stock/Report/report_check_stock.php
+RewriteRule ^Check_Stock/Report/report_check-stock?$ Check_Stock/Report/report_check_stock.php
 RewriteRule ^Check_Stock/Check/check-stock?$ Check_Stock/Check/check_stock.php
+RewriteRule ^Check_Stock/Check/check_stock?$ Check_Stock/Check/check_stock.php

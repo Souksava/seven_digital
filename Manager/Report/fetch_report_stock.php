@@ -34,6 +34,8 @@ if(mysqli_num_rows($resultstocks) > 0)
     <th>ລະຫັດສິນຄ້າ</th>
     <th>ສິນຄ້າ</th>
     <th>ຈຳນວນ</th>
+    <th>ລາຄາ</th>
+    <th>ອັດຕາ</th>
     <th>ຊື່ບໍ່ລິສັດ</th>
     <th>ວັນທີນຳເຂົ້າ</th>
     <th>ພະນັກງານ</th>
@@ -49,6 +51,8 @@ if(mysqli_num_rows($resultstocks) > 0)
    <td>'.$row["dnv"].'</td>
    <td>'.$row["cate_name"].' '.$row["brand_name"].' <br> '.$row["pro_name"].'</td>
    <td>'.$row["qty"].' '.$row["unit_name"].'</td>
+   <td>'.$row["price"].'</td>
+   <td>'.$row["rate_sell"].'</td>
    <td>'.$row["company"].'</td>
    <td>'.$row["imp_date"].'</td>
    <td>'.$row["emp_name"].'</td>
