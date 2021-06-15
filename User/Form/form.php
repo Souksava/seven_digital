@@ -272,7 +272,7 @@ else
                     <?php
             $obj->select_form_cookie();
             if(isset($_COOKIE['list_form'])){
-?>
+            ?>
                     <div class="table-responsive2" style="text-align: center;">
                         <table class="table font12" style="width: 750px">
                             <tr>

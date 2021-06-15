@@ -112,11 +112,12 @@
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ທີ່ຢູ່ອີເມວ</label>
-                                    <input type="text" name="email" id="email" placeholder="ທີ່ຢູ່ອີເມວ"
+                                    <input type="text" name="email" id="email" class="email" placeholder="ທີ່ຢູ່ອີເມວ"
                                         class="form-control">
                                     <i class="fas fa-check-circle "></i>
                                     <i class="fas fa-exclamation-circle "></i>
                                     <small class="">Error message</small>
+                                    <label style="font-size: 12px;color: red;" id="result_mail"></label>
                                 </div>
                                 <div class="col-md-12 col-sm-6 form-control2">
                                     <label>ລະຫັດຜູ້ໃຊ້ລະບົບ</label>
@@ -631,7 +632,7 @@ var loadFile2 = function(event) {
 $(document).ready(function() {
 
     load_data('%%', '0');
-
+    load_data2('');
     function load_data(query, page) {
         $.ajax({
             url: "fetch_employee.php",
@@ -662,6 +663,28 @@ $(document).ready(function() {
             load_data(search, page);
         } else {
             load_data('%%', page);
+        }
+    });
+
+
+    function load_data2(query) {
+        $.ajax({
+            url: "check.php",
+            method: "POST",
+            data: {
+                query: query
+            },
+            success: function(data) {
+                $('#result_mail').html(data);
+            }
+        });
+    }
+    $('.email').keyup(function() {
+        var email_check = $(this).val();
+        if (email_check != '') {
+            load_data2(email_check);
+        } else {
+            load_data2('');
         }
     });
 });

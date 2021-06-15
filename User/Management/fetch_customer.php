@@ -107,11 +107,6 @@ if(mysqli_num_rows($resultcustomer) > 0)
          $page_next2 = 1;
       }
    }
-   // <a href="#" id="'.$b.'" style="color: red;" class="page-links" value="'.$b.'" >'.$b.'</a>    
-   // <a href="#" id="'.$b.'" class="page-links" value="'.$b.'" >'.$b.'</a>
-   // <a href="#" id="'.$next.'" class="page-links" value="'.$next.'" >
-   //    Next
-   // </a>
    for($b=1;$b<=$a;$b++){
       $i = $b;
       if($page_next2 == $b){

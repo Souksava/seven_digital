@@ -255,4 +255,4 @@ function checkInputs3() {
 <br>
 <?php
     include ("../../header-footer/footer.php");
-  ?>
+?>
